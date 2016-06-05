@@ -12,7 +12,7 @@ namespace windows_tweak_tool
 
         private static PolicyManager policy;
 
-        private PolicyManager() {} /* only instance inside the class */
+       private PolicyManager() {} /* only instance inside the class */
 
         public bool checkPolicy(string path, String key, object expected)
         {
@@ -34,7 +34,7 @@ namespace windows_tweak_tool
             return Registry.GetValue(path, key, null);
         }
 
-        public static PolicyManager getPolicy()
+        public static PolicyManager getRegPolicy()
         {
             if(policy == null)
             {
