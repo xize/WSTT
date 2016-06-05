@@ -21,7 +21,5 @@ namespace windows_tweak_tool
 
         object[] getRegistryObject();
 
-
-
     }
 }
