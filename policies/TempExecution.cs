@@ -26,10 +26,15 @@ namespace windows_tweak_tool.policies
 
         public bool isEnabled()
         {
-            throw new NotImplementedException();
+            return false;
         }
 
         public bool setEnabled()
+        {
+            throw new NotImplementedException();
+        }
+
+        public object[] getRegistryObject()
         {
             throw new NotImplementedException();
         }
