@@ -31,15 +31,31 @@ namespace windows_tweak_tool.src.policies
 
         public void setEnabled()
         {
-            Process.Start("wmic.exe", "/interactive:off nicconfig where TcpipNetbiosOptions=0 call SetTcpipNetbios 2");
-            Process.Start("wmic.exe", "/interactive:off nicconfig where TcpipNetbiosOptions=1 call SetTcpipNetbios 2");
+            Process proc1 = Process.Start("wmic.exe", "/interactive:off nicconfig where TcpipNetbiosOptions=0 call SetTcpipNetbios 2");
+            if(proc1.HasExited)
+            {
+                proc1.Close();
+            }
+            Process proc2 = Process.Start("wmic.exe", "/interactive:off nicconfig where TcpipNetbiosOptions=1 call SetTcpipNetbios 2");
+            if(proc2.HasExited)
+            {
+                proc2.Close();
+            }
             Config.getConfig().put("netbios", true);
         }
 
         public void setDisabled()
         {
-            Process.Start("wmic.exe", "/interactive:off nicconfig where TcpipNetbiosOptions=0 call SetTcpipNetbios 1");
-            Process.Start("wmic.exe", "/interactive:off nicconfig where TcpipNetbiosOptions=1 call SetTcpipNetbios 1");
+            Process proc1 = Process.Start("wmic.exe", "/interactive:off nicconfig where TcpipNetbiosOptions=0 call SetTcpipNetbios 1");
+            if(proc1.HasExited)
+            {
+                proc1.Close();
+            }
+            Process proc2 = Process.Start("wmic.exe", "/interactive:off nicconfig where TcpipNetbiosOptions=1 call SetTcpipNetbios 1");
+            if(proc2.HasExited)
+            {
+                proc2.Close();
+            }
             Config.getConfig().put("netbios", false);
         }
 
