@@ -82,11 +82,19 @@ namespace windows_tweak_tool
             if(p.isEnabled())
             {
                 p.setDisabled();
+                progressBar1.Value = 0;
+                button1.Text = "Apply";
             } else
             {
                 p.setEnabled();
                 progressBar1.Value = 100;
+                button1.Text = "Disable";
             }
+
+        }
+
+        private void progressBar1_Click(object sender, EventArgs e)
+        {
 
         }
     }
