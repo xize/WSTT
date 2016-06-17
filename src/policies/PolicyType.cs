@@ -13,6 +13,7 @@ namespace windows_tweak_tool
         public static PolicyType POLICY_TEMP_EXECUTION = new PolicyType("TEMP_EXECUTION");
         public static PolicyType POLICY_WSCRIPT_AND_POWERSHELL = new PolicyType("WSCRIPT_AND_POWERSHELL");
         public static PolicyType POLICY_NETBIOS_OVER_IP = new PolicyType("NETBIOS_OVER_IP");
+        public static PolicyType POLICY_JS_FILE_ACC = new PolicyType("JS_FILE_ACC");
 
         private string name;
 
