@@ -89,6 +89,8 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <None Include="src\reg\scriptdisable_del.reg" />
+    <None Include="src\reg\scriptdisable_add.reg" />
     <None Include="src\reg\softrestriction_del.reg" />
     <None Include="src\reg\softrestriction_add.reg" />
   </ItemGroup>
