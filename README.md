@@ -3,7 +3,7 @@
 
 a easy way to tweak windows and its security policies.
 
-currently in developement.
+currently in development.
 
 **IMPORTANT PLEASE READ**
 
