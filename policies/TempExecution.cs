@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -26,17 +27,19 @@ namespace windows_tweak_tool.policies
 
         public bool isEnabled()
         {
-            return false;
+            return Config.getConfig().getBoolean("softrestriction");
         }
 
-        public bool setEnabled()
+        public void setEnabled()
         {
-            throw new NotImplementedException();
+            PolicyManager.getRegPolicy().setPolicyByRegFile("reg/softrestriction_add.reg");
+            Config.getConfig().put("softrestriction", true);
         }
 
-        public object[] getRegistryObject()
+        public void setDisabled()
         {
-            throw new NotImplementedException();
-        }
+            PolicyManager.getRegPolicy().setPolicyByRegFile("reg/softrestriction_add.reg");
+            Config.getConfig().put("softrestriction", false);
+         }
     }
 }
