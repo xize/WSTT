@@ -34,7 +34,13 @@ namespace windows_tweak_tool.src
 
         public Boolean getBoolean(string node)
         {
-            return (bool)get(node);
+            bool bol = false;
+
+            if(get(node) != null)
+            {
+                bol = (bool)get(node);
+            }
+            return bol;
         }
 
         public void put(String node, Object obj)
@@ -82,13 +88,17 @@ namespace windows_tweak_tool.src
 
         private void readConfig()
         {
-            FileStream fs = File.OpenWrite("config.txt");
+            FileStream fs = File.OpenRead("config.txt");
             StreamReader reader = new StreamReader(fs);
             string cfg = reader.ReadToEnd();
             string[] cfglines = cfg.Split('\n');
             for (int index = 0; index < cfglines.Length; index++)
             {
                 string node = cfglines[index];
+                if(!node.Contains(":"))
+                {
+                    break;
+                }
                 string key = node.Split(':')[0];
                 object value = node.Split(':', ' ')[1];
 
