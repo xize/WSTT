@@ -38,7 +38,7 @@ namespace windows_tweak_tool.policies
 
         public void setDisabled()
         {
-            PolicyManager.getRegPolicy().setPolicyByRegFile("reg/softrestriction_add.reg");
+            PolicyManager.getRegPolicy().setPolicyByRegFile("reg/softrestriction_del.reg");
             Config.getConfig().put("softrestriction", false);
          }
     }
