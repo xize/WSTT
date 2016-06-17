@@ -5,7 +5,7 @@ a easy way to tweak windows and its security policies.
 
 currently in developement.
 
-** IMPORTANT PLEASE READ  **
+**IMPORTANT PLEASE READ**
 
 there are a few issues with this program as for now.
 these security tweaks are not safe because windows policy system uses special unique mutexes, these mutexes are hardcoded in this program and not anymore unique.
