@@ -55,10 +55,11 @@
   <ItemGroup>
     <Compile Include="src\Config.cs" />
     <Compile Include="src\ConfigInfo.cs" />
+    <Compile Include="src\policies\ScriptDisablePolicy.cs" />
     <Compile Include="src\policies\PolicyType.cs" />
     <Compile Include="src\policies\Policy.cs" />
     <Compile Include="src\PolicyManager.cs" />
-    <Compile Include="src\policies\TempExecution.cs" />
+    <Compile Include="src\policies\TempExecutionPolicy.cs" />
     <Compile Include="src\window.cs">
       <SubType>Form</SubType>
     </Compile>
