@@ -36,10 +36,23 @@ namespace windows_tweak_tool.src
         {
             try
             {
-                Process proc = Process.Start("regedit.exe", "/s " + name);
-                if (proc.HasExited)
+                //for debugging purposes we set it on false to see if it actually finds the reg key within the class scope (if possible, java allows this type of behaviour not sure about C#)
+                bool silence = false;
+
+                if(silence)
                 {
-                    proc.Close();
+                    Process proc = Process.Start("regedit.exe", "/s " + name);
+                    if (proc.HasExited)
+                    {
+                        proc.Close();
+                    }
+                } else
+                {
+                    Process proc = Process.Start("regedit.exe", " " + name);
+                    if (proc.HasExited)
+                    {
+                        proc.Close();
+                    }
                 }
             } catch(Exception e)
             {
