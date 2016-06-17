@@ -6,7 +6,39 @@ using System.Threading.Tasks;
 
 namespace windows_tweak_tool.src.policies
 {
-    class ScriptDisablePolicy
+    class ScriptDisablePolicy : Policy
     {
+        public string getDescription()
+        {
+            return "disable wscript and powershell scripts";
+        }
+
+        public string getName()
+        {
+            return getType().getName();
+        }
+
+        public PolicyType getType()
+        {
+            return PolicyType.POLICY_WSCRIPT_AND_POWERSHELL;
+        }
+
+        public bool isEnabled()
+        {
+            return Config.getConfig().getBoolean("scriptdisable");
+        }
+
+        public void setEnabled()
+        {
+            PolicyManager.getRegPolicy().setPolicyByRegFile("reg/scriptdisable_add.reg");
+            Config.getConfig().put("scriptdisable", true);
+        }
+
+        public void setDisabled()
+        {
+            PolicyManager.getRegPolicy().setPolicyByRegFile("reg/scriptdisable_del.reg");
+            Config.getConfig().put("scriptdisable", false);
+        }
+
     }
 }

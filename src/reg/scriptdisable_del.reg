@@ -1,0 +1,18 @@
+[-HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\Safer\CodeIdentifiers\0\Paths\{d486b993-2eb8-4806-9618-353d18452b2b}]
+"LastModified"=hex(b):04,b3,58,fe,eb,c4,d1,01
+"Description"=""
+"SaferFlags"=dword:00000000
+"ItemData"="C:\\windows\\syswow64\\WindowsPowerShell"
+[-HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\Safer\CodeIdentifiers\0\Paths\{487b87f6-1a27-4a94-a9bb-bd159b5c1c8b}]
+"LastModified"=hex(b):9b,a4,c4,f7,eb,c4,d1,01
+"Description"=""
+"SaferFlags"=dword:00000000
+"ItemData"="C:\\windows\\system32\\WindowsPowerShell"
+[-HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\Safer\CodeIdentifiers\0\Paths\{4d1b1688-24a4-4137-81aa-e43b5241da48}]
+"LastModified"=hex(b):63,fa,ed,76,ed,c7,d1,01
+"Description"=""
+"SaferFlags"=dword:00000000
+"ItemData"=hex(2):25,00,4c,00,6f,00,63,00,61,00,6c,00,41,00,70,00,70,00,44,00,\
+  61,00,74,00,61,00,25,00,5c,00,2a,00,2e,00,65,00,78,00,65,00,00,00
+[-HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows Script Host\Settings]
+"Enabled"="0"

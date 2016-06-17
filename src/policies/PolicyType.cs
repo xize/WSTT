@@ -11,6 +11,7 @@ namespace windows_tweak_tool
 
         protected static HashSet<PolicyType> types = new HashSet<PolicyType>();
         public static PolicyType POLICY_TEMP_EXECUTION = new PolicyType("TEMP_EXECUTION");
+        public static PolicyType POLICY_WSCRIPT_AND_POWERSHELL = new PolicyType("WSCRIPT_AND_POWERSHELL");
         public static PolicyType POLICY_NETBIOS_OVER_IP = new PolicyType("NETBIOS_OVER_IP");
 
         private string name;
