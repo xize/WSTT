@@ -6,7 +6,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
-namespace windows_tweak_tool
+namespace windows_tweak_tool.src
 {
     class Config : ConfigInfo
     {

@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace windows_tweak_tool
+namespace windows_tweak_tool.src
 {
     class PolicyManager
     {

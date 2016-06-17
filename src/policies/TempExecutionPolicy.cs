@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace windows_tweak_tool.policies
+namespace windows_tweak_tool.src.policies
 {
     class TempExecutionPolicy : Policy
     {

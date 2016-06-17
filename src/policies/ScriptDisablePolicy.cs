@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using windows_tweak_tool.src;
+using windows_tweak_tool.src.policies;
 
-namespace windows_tweak_tool.src.policies
+namespace windows_tweak.src.policies
 {
     class ScriptDisablePolicy : Policy
     {

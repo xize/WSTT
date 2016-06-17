@@ -55,6 +55,7 @@
   <ItemGroup>
     <Compile Include="src\Config.cs" />
     <Compile Include="src\ConfigInfo.cs" />
+    <Compile Include="src\policies\JSFilePolicy.cs" />
     <Compile Include="src\policies\NetbiosPolicy.cs" />
     <Compile Include="src\policies\ScriptDisablePolicy.cs" />
     <Compile Include="src\policies\PolicyType.cs" />
@@ -90,6 +91,8 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <None Include="src\reg\jsfile_del.reg" />
+    <None Include="src\reg\jsfile_add.reg" />
     <None Include="src\reg\scriptdisable_del.reg" />
     <None Include="src\reg\scriptdisable_add.reg" />
     <None Include="src\reg\softrestriction_del.reg" />
