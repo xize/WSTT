@@ -158,9 +158,10 @@
             this.label3.AutoSize = true;
             this.label3.Location = new System.Drawing.Point(12, 89);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(221, 13);
+            this.label3.Size = new System.Drawing.Size(402, 13);
             this.label3.TabIndex = 8;
-            this.label3.Text = "disable wscript so that vbs scripts cannot run:";
+            this.label3.Text = "disable wscript and powershell so that vbs scripts and powershell scripts cannot " +
+    "run:";
             // 
             // button3
             // 

@@ -55,19 +55,19 @@
   <ItemGroup>
     <Compile Include="src\Config.cs" />
     <Compile Include="src\ConfigInfo.cs" />
-    <Compile Include="src\PolicyType.cs" />
-    <Compile Include="src\Policy.cs" />
+    <Compile Include="src\policies\PolicyType.cs" />
+    <Compile Include="src\policies\Policy.cs" />
     <Compile Include="src\PolicyManager.cs" />
     <Compile Include="src\policies\TempExecution.cs" />
-    <Compile Include="window.cs">
+    <Compile Include="src\window.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="window.Designer.cs">
+    <Compile Include="src\window.Designer.cs">
       <DependentUpon>window.cs</DependentUpon>
     </Compile>
     <Compile Include="src\Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="window.resx">
+    <EmbeddedResource Include="src\window.resx">
       <DependentUpon>window.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
