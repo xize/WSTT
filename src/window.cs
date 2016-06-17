@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using windows_tweak_tool;
+using windows_tweak_tool.src.policies;
 
 namespace windows_tweak_tool
 {
@@ -75,7 +76,18 @@ namespace windows_tweak_tool
 
         private void button1_Click(object sender, EventArgs e)
         {
-            
+
+            Policy p = PolicyType.POLICY_TEMP_EXECUTION.getPolicy();
+
+            if(p.isEnabled())
+            {
+                p.setDisabled();
+            } else
+            {
+                p.setEnabled();
+                progressBar1.Value = 100;
+            }
+
         }
     }
 }
