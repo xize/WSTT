@@ -36,7 +36,8 @@
     <StartupObject>windows_tweak_tool.Program</StartupObject>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>icon.ico</ApplicationIcon>
+    <ApplicationIcon>
+    </ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -52,17 +53,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="PolicyType.cs" />
-    <Compile Include="Policy.cs" />
-    <Compile Include="PolicyManager.cs" />
-    <Compile Include="policies\TempExecution.cs" />
+    <Compile Include="src\Config.cs" />
+    <Compile Include="src\ConfigInfo.cs" />
+    <Compile Include="src\PolicyType.cs" />
+    <Compile Include="src\Policy.cs" />
+    <Compile Include="src\PolicyManager.cs" />
+    <Compile Include="src\policies\TempExecution.cs" />
     <Compile Include="window.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="window.Designer.cs">
       <DependentUpon>window.cs</DependentUpon>
     </Compile>
-    <Compile Include="Program.cs" />
+    <Compile Include="src\Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="window.resx">
       <DependentUpon>window.cs</DependentUpon>
@@ -85,12 +88,11 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <None Include="src\reg\softrestriction_del.reg" />
+    <None Include="src\reg\softrestriction_add.reg" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="icon.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
