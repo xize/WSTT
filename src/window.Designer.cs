@@ -1,4 +1,6 @@
-﻿namespace windows_tweak_tool
+﻿using windows_tweak_tool.src.policies;
+
+namespace windows_tweak_tool
 {
     partial class window
     {
@@ -31,6 +33,13 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(window));
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.button1 = new System.Windows.Forms.Button();
+
+            if (PolicyType.POLICY_TEMP_EXECUTION.getPolicy().isEnabled())
+            {
+                this.progressBar1.Value = 100;
+                this.button1.Text = "Disable";
+            }
+
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.button2 = new System.Windows.Forms.Button();
@@ -107,6 +116,7 @@
             this.progressBar1.Name = "progressBar1";
             this.progressBar1.Size = new System.Drawing.Size(438, 23);
             this.progressBar1.TabIndex = 0;
+            this.progressBar1.Click += new System.EventHandler(this.progressBar1_Click);
             // 
             // button1
             // 
