@@ -6,6 +6,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace windows_tweak_tool.src
 {
@@ -33,7 +34,17 @@ namespace windows_tweak_tool.src
 
         public void setPolicyByRegFile(string name)
         {
-            Process.Start("regedit.exe", "/s "+name);
+            try
+            {
+                Process proc = Process.Start("regedit.exe", "/s " + name);
+                if (proc.HasExited)
+                {
+                    proc.Close();
+                }
+            } catch(Exception e)
+            {
+                MessageBox.Show("you need to fire this under administrator!");
+            }
         }
 
         private object getValue(string path, string key)
