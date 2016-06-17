@@ -17,9 +17,9 @@ namespace windows_tweak_tool
 
         bool isEnabled();
 
-        bool setEnabled();
+        void setEnabled();
 
-        object[] getRegistryObject();
+        void setDisabled();
 
     }
 }

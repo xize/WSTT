@@ -1,6 +1,8 @@
 ﻿using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,7 +12,7 @@ namespace windows_tweak_tool
     class PolicyManager
     {
 
-        private static PolicyManager policy;
+       private static PolicyManager policy;
 
        private PolicyManager() {} /* only instance inside the class */
 
@@ -27,6 +29,11 @@ namespace windows_tweak_tool
         public void setPolicy(string path, string key, object data)
         {
             Registry.SetValue(path, key, data);
+        }
+
+        public void setPolicyByRegFile(string name)
+        {
+            Process.Start("regedit.exe", "/s "+name);
         }
 
         private object getValue(string path, string key)
