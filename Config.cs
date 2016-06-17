@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace windows_tweak_tool
 {
-    class Config
+    class Config : ConfigInfo
     {
 
         private static Config cfg;
@@ -127,7 +127,7 @@ namespace windows_tweak_tool
         }
 
 
-        public static Config getConfig()
+        public static ConfigInfo getConfig()
         {
             if(cfg == null)
             {
