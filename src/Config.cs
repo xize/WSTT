@@ -17,25 +17,30 @@ namespace windows_tweak_tool.src
 
         private Config() { }
 
+        [Override]
         public String getString(String node)
         {
             return get<String>(node);
         }
-
+        
+        [Override]
         public int getInt(String node)
         {
             return get<int>(node);
         }
 
+        [Override]
         public double getDouble(String node)
         {
             return get<double>(node);
         }
 
+        [Override]
         public bool getBoolean(string node) {
             return get<bool>(node);
         }
 
+        [Override]
         public void put(String node, Object obj)
         {
             if(!nodes.ContainsKey(node.ToLower()))

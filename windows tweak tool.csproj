@@ -36,8 +36,7 @@
     <StartupObject>windows_tweak_tool.src.Program</StartupObject>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>
-    </ApplicationIcon>
+    <ApplicationIcon>windows.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -55,6 +54,7 @@
   <ItemGroup>
     <Compile Include="src\Config.cs" />
     <Compile Include="src\ConfigInfo.cs" />
+    <Compile Include="src\Override.cs" />
     <Compile Include="src\policies\JSFilePolicy.cs" />
     <Compile Include="src\policies\NetbiosPolicy.cs" />
     <Compile Include="src\policies\ScriptDisablePolicy.cs" />
@@ -100,6 +100,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="windows.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
