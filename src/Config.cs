@@ -19,31 +19,21 @@ namespace windows_tweak_tool.src
 
         public String getString(String node)
         {
-            return (string)get(node);
+            return get<String>(node);
         }
 
         public int getInt(String node)
         {
-            return (int)get(node);
+            return get<int>(node);
         }
 
         public double getDouble(String node)
         {
-            return (double)get(node);
+            return get<double>(node);
         }
 
-        public Boolean getBoolean(string node)
-        {
-            Boolean bol = false;
-
-            if(get(node) != null)
-            {
-                bol = (bool)get(node);
-            } else
-            {
-                Console.WriteLine("the boolean in getBoolean is empty");
-            }
-            return bol;
+        public bool getBoolean(string node) {
+            return get<bool>(node);
         }
 
         public void put(String node, Object obj)
@@ -65,11 +55,11 @@ namespace windows_tweak_tool.src
             readConfig();
         }
 
-        private object get(string node)
+        private T get<T>(string node)
         {
-            object obj = null;
-            nodes.TryGetValue(node.ToLower(), out obj);
-            return obj;
+            Object obj = null;
+            obj = nodes.TryGetValue(node.ToLower(), out obj);
+            return (T)obj;
         }
 
         private void saveConfig()
