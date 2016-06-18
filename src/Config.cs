@@ -34,11 +34,14 @@ namespace windows_tweak_tool.src
 
         public Boolean getBoolean(string node)
         {
-            bool bol = false;
+            Boolean bol = false;
 
             if(get(node) != null)
             {
                 bol = (bool)get(node);
+            } else
+            {
+                Console.WriteLine("the boolean in getBoolean is empty");
             }
             return bol;
         }
@@ -94,43 +97,43 @@ namespace windows_tweak_tool.src
             string[] cfglines = cfg.Split('\n');
             for (int index = 0; index < cfglines.Length; index++)
             {
-                string node = cfglines[index];
-                if(!node.Contains(":"))
+                String node = cfglines[index];
+                if(node.Contains(":"))
                 {
-                    break;
-                }
-                string key = node.Split(':')[0];
-                object value = node.Split(':', ' ')[1];
+                    node = node.Replace(" ", "");
+                    node = node.Replace("\r", "");
+                    node = node.Replace("\n", "");
+                    string key = node.Split(':')[0];
+                    object value = node.Split(':')[1];
 
-                //set the object to a string since it is a primitive, then check for the real primitive:
-                string v = (string)value;
+                    //set the object to a string since it is a primitive, then check for the real primitive:
+                    string v = (string)value;
 
-                if (v.ToLower() == "true" || v.ToLower() == "false")
-                {
-                    //the primitive is a boolean so we set the type to a instanceof boolean.
-                    if (v.ToLower() == "true")
+                    Console.WriteLine("value: "+v);
+
+                    if (v.ToLower() == "true" || v.ToLower() == "false")
                     {
-                        value = true;
-                    }
-                    else if (v.ToLower() == "false")
-                    {
+                        //the primitive is a boolean so we set the type to a instanceof boolean.
+
+                        value = Boolean.Parse(v);
+                        
+                    } else {
+                        //the type is either a instanceof int or double
+                        if (Regex.IsMatch(v, "^[0-9]+$"))
                         {
-                            value = false;
+                            value = (int)value;
+                        }
+                        else if (Regex.IsMatch(v, "^[0-9\\.]+$"))
+                        {
+                            value = (double)value;
                         }
                     }
-
-                    //the type is either a instanceof int or double
-                    if (Regex.IsMatch(v, "^[0-9]+$"))
-                    {
-                        value = (int)value;
-                    }
-                    else if (Regex.IsMatch(v, "^[0-9\\.]+$"))
-                    {
-                        value = (double)value;
-                    }
-
                     //add the key and the fixed value to the map, already existed keys will be updated. 
-                    nodes.Add(key, value);
+                    if(nodes.ContainsKey(key))
+                    {
+                        nodes.Remove(key);
+                    }
+                    nodes.Add(key.ToLower(), value);
                 }
             }
             reader.Close();
