@@ -7,8 +7,7 @@ using windows_tweak.src.policies;
 
 namespace windows_tweak_tool.src.policies
 {
-    class PolicyType
-    {
+    class PolicyType {
 
         protected static HashSet<PolicyType> types = new HashSet<PolicyType>();
         public static PolicyType POLICY_TEMP_EXECUTION = new PolicyType("TEMP_EXECUTION", new TempExecutionPolicy());
@@ -52,6 +51,5 @@ namespace windows_tweak_tool.src.policies
         {
             return types.ToArray();
         }
-
     }
 }

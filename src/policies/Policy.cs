@@ -25,10 +25,7 @@ namespace windows_tweak_tool.src.policies
 
         public abstract void writeReg();
 
-        protected bool hasRegistryIdentifier()
-        {
-            return getType().isRegIdentifierPolicy();
-        }
+        public abstract bool hasRegistryIdentifier();
 
         protected String generateGUID()
         {

@@ -40,6 +40,11 @@ namespace windows_tweak_tool.src.policies
             Config.getConfig().put("JSFileACC", false);
         }
 
+        public override bool hasRegistryIdentifier()
+        {
+            return false;
+        }
+
         public override void writeReg()
         {
             throw new NotImplementedException();

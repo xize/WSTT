@@ -67,6 +67,11 @@ namespace windows_tweak_tool.src.policies
             Config.getConfig().put("softrestriction", false);
          }
 
+        public override bool hasRegistryIdentifier()
+        {
+            return true;
+        }
+
         public override void writeReg()
         {
             string reg_add = "Windows Registry Editor Version 5.00\n";

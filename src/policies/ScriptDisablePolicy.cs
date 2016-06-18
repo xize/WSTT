@@ -55,6 +55,12 @@ namespace windows_tweak.src.policies
             Config.getConfig().put("scriptdisable", false);
         }
 
+        public override bool hasRegistryIdentifier()
+        {
+            return true;
+        }
+
+
         public override void writeReg()
         {
             string reg_add = "Windows Registry Editor Version 5.00\n";
