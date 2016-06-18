@@ -43,13 +43,27 @@ namespace windows_tweak_tool.src.policies
 
         public override void setEnabled()
         {
-            //PolicyManager.getRegPolicy().setPolicyByRegFile("reg/softrestriction_add.reg");
+            if(File.Exists("reg/softrestriction_del.reg"))
+            {
+                PolicyManager.getRegPolicy().setPolicyByRegFile("reg/softrestriction_del.reg");
+                File.Delete("reg/softrestriction_add.reg");
+                File.Delete("reg/softrestriction_del.reg");
+            }
+
+            writeReg();
+
+            PolicyManager.getRegPolicy().setPolicyByRegFile("reg/softrestriction_add.reg");
             Config.getConfig().put("softrestriction", true);
         }
 
         public override void setDisabled()
         {
-            //PolicyManager.getRegPolicy().setPolicyByRegFile("reg/softrestriction_del.reg");
+            if (File.Exists("reg/softrestriction_del.reg"))
+            {
+                PolicyManager.getRegPolicy().setPolicyByRegFile("reg/softrestriction_del.reg");
+                File.Delete("reg/softrestriction_add.reg");
+                File.Delete("reg/softrestriction_del.reg");
+            }
             Config.getConfig().put("softrestriction", false);
          }
 
