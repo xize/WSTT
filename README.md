@@ -10,7 +10,7 @@ currently in development.
 there are a few issues with this program as for now.
 these security tweaks are not safe because windows policy system uses special unique identifiers, these identifiers are hardcoded in this program and not anymore unique.
 
-this grants a attacker to change the policy which have been set by this program, because the identifier is nog longer unique.
+this grants a attacker to change the policy which have been set by this program, because the identifier is no longer unique.
 
 I haven't found a better solution to combat this, but it would be great if someone could sent me a PR.
 
