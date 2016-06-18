@@ -8,36 +8,41 @@ namespace windows_tweak_tool.src.policies
 {
     class JSFilePolicy : Policy
     {
-        public string getDescription()
+        public override string getDescription()
         {
             return "change file accosiation from javascript to notepad so it will not be executable like vbs files";
         }
 
-        public string getName()
+        public override string getName()
         {
             return getType().getName();
         }
 
-        public PolicyType getType()
+        public override PolicyType getType()
         {
             return PolicyType.POLICY_JS_FILE_ACC;
         }
 
-        public bool isEnabled()
+        public override bool isEnabled()
         {
             return Config.getConfig().getBoolean("JSFileACC");
         }
 
-        public void setEnabled()
+        public override void setEnabled()
         {
             PolicyManager.getRegPolicy().setPolicyByRegFile("jsfile_add.reg");
             Config.getConfig().put("JSFileACC", true);
         }
 
-        public void setDisabled()
+        public override void setDisabled()
         {
             PolicyManager.getRegPolicy().setPolicyByRegFile("jsfile_del.reg");
             Config.getConfig().put("JSFileACC", false);
+        }
+
+        public override void writeReg()
+        {
+            throw new NotImplementedException();
         }
     }
 }

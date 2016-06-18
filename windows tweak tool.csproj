@@ -52,6 +52,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="test\Test.cs" />
     <Compile Include="src\Config.cs" />
     <Compile Include="src\ConfigInfo.cs" />
     <Compile Include="src\Override.cs" />

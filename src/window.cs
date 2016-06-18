@@ -17,6 +17,17 @@ namespace windows_tweak_tool
         public window()
         {
             InitializeComponent();
+            Policy p = PolicyType.POLICY_TEMP_EXECUTION.getPolicy();
+
+            if (p.isEnabled())
+            {
+                this.progressBar1.Value = 100;
+                this.button1.Text = "Disable";
+            }
+            else
+            {
+                Console.WriteLine("init enabling progessbar failed, policy was false");
+            }
         }
 
         private void label1_Click(object sender, EventArgs e)

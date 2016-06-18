@@ -1,4 +1,5 @@
-﻿using windows_tweak_tool.src.policies;
+﻿using System;
+using windows_tweak_tool.src.policies;
 
 namespace windows_tweak_tool
 {
@@ -33,12 +34,6 @@ namespace windows_tweak_tool
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(window));
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.button1 = new System.Windows.Forms.Button();
-
-            if (PolicyType.POLICY_TEMP_EXECUTION.getPolicy().isEnabled())
-            {
-                this.progressBar1.Value = 100;
-                this.button1.Text = "Disable";
-            }
 
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
