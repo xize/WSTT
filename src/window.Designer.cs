@@ -338,9 +338,10 @@ namespace windows_tweak_tool
             this.label11.AutoSize = true;
             this.label11.Location = new System.Drawing.Point(9, 378);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(120, 13);
+            this.label11.Size = new System.Drawing.Size(114, 13);
             this.label11.TabIndex = 32;
-            this.label11.Text = "disable remote registery:";
+            this.label11.Text = "disable remote registry:";
+            this.label11.Click += new System.EventHandler(this.label11_Click);
             // 
             // button11
             // 

@@ -109,5 +109,10 @@ namespace windows_tweak_tool
         {
 
         }
+
+        private void label11_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
