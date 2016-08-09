@@ -52,17 +52,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="test\Test.cs" />
     <Compile Include="src\Config.cs" />
     <Compile Include="src\ConfigInfo.cs" />
     <Compile Include="src\Override.cs" />
-    <Compile Include="src\policies\JSFilePolicy.cs" />
-    <Compile Include="src\policies\NetbiosPolicy.cs" />
-    <Compile Include="src\policies\ScriptDisablePolicy.cs" />
     <Compile Include="src\policies\PolicyType.cs" />
     <Compile Include="src\policies\Policy.cs" />
     <Compile Include="src\PolicyManager.cs" />
-    <Compile Include="src\policies\TempExecutionPolicy.cs" />
     <Compile Include="src\window.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -92,18 +87,30 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <Compile Include="src\policies\TempPolicy.cs" />
+    <None Include="src\policies\autoit\GPupdate.au3" />
+    <None Include="src\policies\autoit\SoftwareRestriction_clear.au3" />
+    <None Include="src\policies\autoit\SoftwareRestriction_create.au3" />
     <None Include="src\reg\jsfile_del.reg" />
     <None Include="src\reg\jsfile_add.reg" />
     <None Include="src\reg\scriptdisable_del.reg" />
     <None Include="src\reg\scriptdisable_add.reg" />
-    <None Include="src\reg\softrestriction_del.reg" />
-    <None Include="src\reg\softrestriction_add.reg" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="src\policies\autoit\GPupdate.exe" />
+    <Content Include="src\policies\autoit\SoftwareRestriction_clear.exe">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="src\policies\autoit\SoftwareRestriction_create.exe">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="windows.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="test\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

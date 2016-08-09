@@ -19,13 +19,9 @@ namespace windows_tweak_tool.src.policies
 
         public abstract bool isEnabled();
 
-        public abstract void setEnabled();
+        public abstract void apply();
 
-        public abstract void setDisabled();
-
-        public abstract void writeReg();
-
-        public abstract bool hasRegistryIdentifier();
+        public abstract void unapply();
 
         protected String generateGUID()
         {

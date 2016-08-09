@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using windows_tweak_tool;
+using windows_tweak_tool.src;
 using windows_tweak_tool.src.policies;
 
 namespace windows_tweak_tool
@@ -17,16 +18,14 @@ namespace windows_tweak_tool
         public window()
         {
             InitializeComponent();
-            Policy p = PolicyType.POLICY_TEMP_EXECUTION.getPolicy();
+        }
 
-            if (p.isEnabled())
+        private void initializeGuiWithConfig()
+        {
+            foreach(PolicyType a in PolicyType.values())
             {
-                this.progressBar1.Value = 100;
-                this.button1.Text = "Disable";
-            }
-            else
-            {
-                Console.WriteLine("init enabling progessbar failed, policy was false");
+                Policy p = a.getPolicy();
+                //TODO: add policies...
             }
         }
 
@@ -87,24 +86,26 @@ namespace windows_tweak_tool
 
         private void button1_Click(object sender, EventArgs e)
         {
-
-            Policy p = PolicyType.POLICY_TEMP_EXECUTION.getPolicy();
-
+            Policy p = PolicyType.TEMP_POLICY.getPolicy();
             if(p.isEnabled())
             {
-                p.setDisabled();
-                progressBar1.Value = 0;
-                button1.Text = "Apply";
+                p.unapply();
+                temp_policy_load.Value = 0;
+                temp_policy_btn.Text = "Apply";
             } else
             {
-                p.setEnabled();
-                progressBar1.Value = 100;
-                button1.Text = "Disable";
+                p.apply();
+                temp_policy_load.Value = 100;
+                temp_policy_btn.Text = "Undo";
             }
-
         }
 
         private void progressBar1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label3_Click(object sender, EventArgs e)
         {
 
         }
