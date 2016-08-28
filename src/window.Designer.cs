@@ -123,6 +123,24 @@ namespace windows_tweak_tool
             this.temp_policy_btn.UseVisualStyleBackColor = true;
             this.temp_policy_btn.Click += new System.EventHandler(this.button1_Click);
             // 
+            // wscript_btn
+            // 
+            this.wscript_btn.Location = new System.Drawing.Point(456, 105);
+            this.wscript_btn.Name = "wscript_btn";
+            this.wscript_btn.Size = new System.Drawing.Size(75, 23);
+            this.wscript_btn.TabIndex = 7;
+            this.wscript_btn.Text = "Apply";
+            this.wscript_btn.UseVisualStyleBackColor = true;
+            this.wscript_btn.Click += new System.EventHandler(this.wscript_btn_Click);
+            // 
+            // wscript_progress
+            // 
+            this.wscript_progress.Location = new System.Drawing.Point(12, 105);
+            this.wscript_progress.Name = "wscript_progress";
+            this.wscript_progress.Size = new System.Drawing.Size(438, 23);
+            this.wscript_progress.TabIndex = 6;
+            this.wscript_progress.Click += new System.EventHandler(this.wscript_progress_Click);
+            // 
             // label1
             // 
             this.label1.AutoSize = true;
@@ -144,6 +162,7 @@ namespace windows_tweak_tool
             // 
             // button2
             // 
+            this.button2.Enabled = false;
             this.button2.Location = new System.Drawing.Point(456, 64);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(75, 23);
@@ -153,6 +172,7 @@ namespace windows_tweak_tool
             // 
             // progressBar2
             // 
+            this.progressBar2.Enabled = false;
             this.progressBar2.Location = new System.Drawing.Point(12, 64);
             this.progressBar2.Name = "progressBar2";
             this.progressBar2.Size = new System.Drawing.Size(438, 23);
@@ -168,24 +188,6 @@ namespace windows_tweak_tool
             this.label3.Text = "disable wscript so that vbs scripts cannot run:";
             this.label3.Click += new System.EventHandler(this.label3_Click);
             // 
-            // wscript_btn
-            // 
-            this.wscript_btn.Location = new System.Drawing.Point(456, 105);
-            this.wscript_btn.Name = "wscript_btn";
-            this.wscript_btn.Size = new System.Drawing.Size(75, 23);
-            this.wscript_btn.TabIndex = 7;
-            this.wscript_btn.Text = "Apply";
-            this.wscript_btn.UseVisualStyleBackColor = true;
-            this.wscript_btn.Click += new System.EventHandler(this.wscript_btn_Click);
-            // 
-            // wscript_progress
-            // 
-            this.wscript_progress.Location = new System.Drawing.Point(12, 105);
-            this.wscript_progress.Name = "wscript_progress";
-            this.wscript_progress.Size = new System.Drawing.Size(438, 23);
-            this.wscript_progress.TabIndex = 6;
-            this.wscript_progress.Click += new System.EventHandler(this.wscript_progress_Click);
-            // 
             // label4
             // 
             this.label4.AutoSize = true;
@@ -197,6 +199,7 @@ namespace windows_tweak_tool
             // 
             // button4
             // 
+            this.button4.Enabled = false;
             this.button4.Location = new System.Drawing.Point(456, 146);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(75, 23);
@@ -206,6 +209,7 @@ namespace windows_tweak_tool
             // 
             // progressBar4
             // 
+            this.progressBar4.Enabled = false;
             this.progressBar4.Location = new System.Drawing.Point(12, 146);
             this.progressBar4.Name = "progressBar4";
             this.progressBar4.Size = new System.Drawing.Size(438, 23);
@@ -222,6 +226,7 @@ namespace windows_tweak_tool
             // 
             // button5
             // 
+            this.button5.Enabled = false;
             this.button5.Location = new System.Drawing.Point(453, 187);
             this.button5.Name = "button5";
             this.button5.Size = new System.Drawing.Size(75, 23);
@@ -231,6 +236,7 @@ namespace windows_tweak_tool
             // 
             // progressBar5
             // 
+            this.progressBar5.Enabled = false;
             this.progressBar5.Location = new System.Drawing.Point(9, 187);
             this.progressBar5.Name = "progressBar5";
             this.progressBar5.Size = new System.Drawing.Size(441, 23);
@@ -247,6 +253,7 @@ namespace windows_tweak_tool
             // 
             // button6
             // 
+            this.button6.Enabled = false;
             this.button6.Location = new System.Drawing.Point(453, 228);
             this.button6.Name = "button6";
             this.button6.Size = new System.Drawing.Size(75, 23);
@@ -256,6 +263,7 @@ namespace windows_tweak_tool
             // 
             // progressBar6
             // 
+            this.progressBar6.Enabled = false;
             this.progressBar6.Location = new System.Drawing.Point(9, 228);
             this.progressBar6.Name = "progressBar6";
             this.progressBar6.Size = new System.Drawing.Size(441, 23);
@@ -272,6 +280,7 @@ namespace windows_tweak_tool
             // 
             // button7
             // 
+            this.button7.Enabled = false;
             this.button7.Location = new System.Drawing.Point(453, 269);
             this.button7.Name = "button7";
             this.button7.Size = new System.Drawing.Size(75, 23);
@@ -281,6 +290,7 @@ namespace windows_tweak_tool
             // 
             // progressBar7
             // 
+            this.progressBar7.Enabled = false;
             this.progressBar7.Location = new System.Drawing.Point(9, 269);
             this.progressBar7.Name = "progressBar7";
             this.progressBar7.Size = new System.Drawing.Size(441, 23);
@@ -297,6 +307,7 @@ namespace windows_tweak_tool
             // 
             // button8
             // 
+            this.button8.Enabled = false;
             this.button8.Location = new System.Drawing.Point(453, 311);
             this.button8.Name = "button8";
             this.button8.Size = new System.Drawing.Size(75, 23);
@@ -306,6 +317,7 @@ namespace windows_tweak_tool
             // 
             // progressBar8
             // 
+            this.progressBar8.Enabled = false;
             this.progressBar8.Location = new System.Drawing.Point(9, 311);
             this.progressBar8.Name = "progressBar8";
             this.progressBar8.Size = new System.Drawing.Size(441, 23);
@@ -322,6 +334,7 @@ namespace windows_tweak_tool
             // 
             // button10
             // 
+            this.button10.Enabled = false;
             this.button10.Location = new System.Drawing.Point(453, 352);
             this.button10.Name = "button10";
             this.button10.Size = new System.Drawing.Size(75, 23);
@@ -331,6 +344,7 @@ namespace windows_tweak_tool
             // 
             // progressBar10
             // 
+            this.progressBar10.Enabled = false;
             this.progressBar10.Location = new System.Drawing.Point(9, 352);
             this.progressBar10.Name = "progressBar10";
             this.progressBar10.Size = new System.Drawing.Size(441, 23);
@@ -348,6 +362,7 @@ namespace windows_tweak_tool
             // 
             // button11
             // 
+            this.button11.Enabled = false;
             this.button11.Location = new System.Drawing.Point(453, 394);
             this.button11.Name = "button11";
             this.button11.Size = new System.Drawing.Size(75, 23);
@@ -357,6 +372,7 @@ namespace windows_tweak_tool
             // 
             // progressBar11
             // 
+            this.progressBar11.Enabled = false;
             this.progressBar11.Location = new System.Drawing.Point(9, 394);
             this.progressBar11.Name = "progressBar11";
             this.progressBar11.Size = new System.Drawing.Size(441, 23);
@@ -373,6 +389,7 @@ namespace windows_tweak_tool
             // 
             // button12
             // 
+            this.button12.Enabled = false;
             this.button12.Location = new System.Drawing.Point(453, 436);
             this.button12.Name = "button12";
             this.button12.Size = new System.Drawing.Size(75, 23);
@@ -382,6 +399,7 @@ namespace windows_tweak_tool
             // 
             // progressBar12
             // 
+            this.progressBar12.Enabled = false;
             this.progressBar12.Location = new System.Drawing.Point(9, 436);
             this.progressBar12.Name = "progressBar12";
             this.progressBar12.Size = new System.Drawing.Size(441, 23);
@@ -412,6 +430,7 @@ namespace windows_tweak_tool
             this.label14.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label14.AutoSize = true;
+            this.label14.Enabled = false;
             this.label14.Location = new System.Drawing.Point(537, 9);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(159, 13);
@@ -421,6 +440,7 @@ namespace windows_tweak_tool
             // button16
             // 
             this.button16.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.button16.Enabled = false;
             this.button16.Location = new System.Drawing.Point(853, 25);
             this.button16.Name = "button16";
             this.button16.Size = new System.Drawing.Size(75, 23);
@@ -432,6 +452,7 @@ namespace windows_tweak_tool
             // 
             this.progressBar14.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.progressBar14.Enabled = false;
             this.progressBar14.Location = new System.Drawing.Point(537, 25);
             this.progressBar14.Name = "progressBar14";
             this.progressBar14.Size = new System.Drawing.Size(313, 23);
@@ -442,6 +463,7 @@ namespace windows_tweak_tool
             this.label15.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label15.AutoSize = true;
+            this.label15.Enabled = false;
             this.label15.Location = new System.Drawing.Point(537, 91);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(314, 13);
@@ -451,6 +473,7 @@ namespace windows_tweak_tool
             // button17
             // 
             this.button17.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.button17.Enabled = false;
             this.button17.Location = new System.Drawing.Point(853, 107);
             this.button17.Name = "button17";
             this.button17.Size = new System.Drawing.Size(75, 23);
@@ -462,6 +485,7 @@ namespace windows_tweak_tool
             // 
             this.progressBar15.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.progressBar15.Enabled = false;
             this.progressBar15.Location = new System.Drawing.Point(537, 107);
             this.progressBar15.Name = "progressBar15";
             this.progressBar15.Size = new System.Drawing.Size(313, 23);
@@ -472,6 +496,7 @@ namespace windows_tweak_tool
             this.label16.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label16.AutoSize = true;
+            this.label16.Enabled = false;
             this.label16.Location = new System.Drawing.Point(537, 50);
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(237, 13);
@@ -481,6 +506,7 @@ namespace windows_tweak_tool
             // button18
             // 
             this.button18.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.button18.Enabled = false;
             this.button18.Location = new System.Drawing.Point(853, 66);
             this.button18.Name = "button18";
             this.button18.Size = new System.Drawing.Size(75, 23);
@@ -492,6 +518,7 @@ namespace windows_tweak_tool
             // 
             this.progressBar16.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.progressBar16.Enabled = false;
             this.progressBar16.Location = new System.Drawing.Point(537, 66);
             this.progressBar16.Name = "progressBar16";
             this.progressBar16.Size = new System.Drawing.Size(313, 23);
@@ -502,6 +529,7 @@ namespace windows_tweak_tool
             this.label17.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label17.AutoSize = true;
+            this.label17.Enabled = false;
             this.label17.Location = new System.Drawing.Point(537, 130);
             this.label17.Name = "label17";
             this.label17.Size = new System.Drawing.Size(238, 13);
@@ -511,6 +539,7 @@ namespace windows_tweak_tool
             // button19
             // 
             this.button19.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.button19.Enabled = false;
             this.button19.Location = new System.Drawing.Point(853, 146);
             this.button19.Name = "button19";
             this.button19.Size = new System.Drawing.Size(75, 23);
@@ -522,6 +551,7 @@ namespace windows_tweak_tool
             // 
             this.progressBar17.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.progressBar17.Enabled = false;
             this.progressBar17.Location = new System.Drawing.Point(537, 146);
             this.progressBar17.Name = "progressBar17";
             this.progressBar17.Size = new System.Drawing.Size(313, 23);
@@ -532,6 +562,7 @@ namespace windows_tweak_tool
             this.label18.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label18.AutoSize = true;
+            this.label18.Enabled = false;
             this.label18.Location = new System.Drawing.Point(537, 172);
             this.label18.Name = "label18";
             this.label18.Size = new System.Drawing.Size(377, 13);
@@ -543,6 +574,7 @@ namespace windows_tweak_tool
             // button20
             // 
             this.button20.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.button20.Enabled = false;
             this.button20.Location = new System.Drawing.Point(853, 188);
             this.button20.Name = "button20";
             this.button20.Size = new System.Drawing.Size(75, 23);
@@ -554,6 +586,7 @@ namespace windows_tweak_tool
             // 
             this.progressBar18.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.progressBar18.Enabled = false;
             this.progressBar18.Location = new System.Drawing.Point(537, 188);
             this.progressBar18.Name = "progressBar18";
             this.progressBar18.Size = new System.Drawing.Size(313, 23);
@@ -564,6 +597,7 @@ namespace windows_tweak_tool
             this.label19.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label19.AutoSize = true;
+            this.label19.Enabled = false;
             this.label19.Location = new System.Drawing.Point(534, 213);
             this.label19.Name = "label19";
             this.label19.Size = new System.Drawing.Size(166, 13);
@@ -574,6 +608,7 @@ namespace windows_tweak_tool
             // button21
             // 
             this.button21.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.button21.Enabled = false;
             this.button21.Location = new System.Drawing.Point(850, 229);
             this.button21.Name = "button21";
             this.button21.Size = new System.Drawing.Size(75, 23);
@@ -585,6 +620,7 @@ namespace windows_tweak_tool
             // 
             this.progressBar19.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.progressBar19.Enabled = false;
             this.progressBar19.Location = new System.Drawing.Point(534, 229);
             this.progressBar19.Name = "progressBar19";
             this.progressBar19.Size = new System.Drawing.Size(313, 23);
@@ -595,6 +631,7 @@ namespace windows_tweak_tool
             this.label20.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label20.AutoSize = true;
+            this.label20.Enabled = false;
             this.label20.Location = new System.Drawing.Point(534, 299);
             this.label20.Name = "label20";
             this.label20.Size = new System.Drawing.Size(117, 13);
@@ -605,6 +642,7 @@ namespace windows_tweak_tool
             // button22
             // 
             this.button22.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.button22.Enabled = false;
             this.button22.Location = new System.Drawing.Point(850, 315);
             this.button22.Name = "button22";
             this.button22.Size = new System.Drawing.Size(75, 23);
@@ -616,6 +654,7 @@ namespace windows_tweak_tool
             // 
             this.progressBar20.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.progressBar20.Enabled = false;
             this.progressBar20.Location = new System.Drawing.Point(534, 315);
             this.progressBar20.Name = "progressBar20";
             this.progressBar20.Size = new System.Drawing.Size(313, 23);
@@ -646,6 +685,7 @@ namespace windows_tweak_tool
             this.label21.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label21.AutoSize = true;
+            this.label21.Enabled = false;
             this.label21.Location = new System.Drawing.Point(534, 340);
             this.label21.Name = "label21";
             this.label21.Size = new System.Drawing.Size(183, 13);
@@ -656,6 +696,7 @@ namespace windows_tweak_tool
             // button25
             // 
             this.button25.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.button25.Enabled = false;
             this.button25.Location = new System.Drawing.Point(850, 356);
             this.button25.Name = "button25";
             this.button25.Size = new System.Drawing.Size(75, 23);
@@ -667,6 +708,7 @@ namespace windows_tweak_tool
             // 
             this.progressBar21.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.progressBar21.Enabled = false;
             this.progressBar21.Location = new System.Drawing.Point(534, 356);
             this.progressBar21.Name = "progressBar21";
             this.progressBar21.Size = new System.Drawing.Size(313, 23);
@@ -676,6 +718,7 @@ namespace windows_tweak_tool
             // 
             this.progressBar13.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.progressBar13.Enabled = false;
             this.progressBar13.Location = new System.Drawing.Point(9, 477);
             this.progressBar13.Name = "progressBar13";
             this.progressBar13.Size = new System.Drawing.Size(441, 23);
@@ -685,6 +728,7 @@ namespace windows_tweak_tool
             // button13
             // 
             this.button13.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.button13.Enabled = false;
             this.button13.Location = new System.Drawing.Point(453, 478);
             this.button13.Name = "button13";
             this.button13.Size = new System.Drawing.Size(75, 23);
@@ -710,6 +754,7 @@ namespace windows_tweak_tool
             this.label9.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label9.AutoSize = true;
+            this.label9.Enabled = false;
             this.label9.Location = new System.Drawing.Point(534, 254);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(208, 13);
@@ -720,6 +765,7 @@ namespace windows_tweak_tool
             // button9
             // 
             this.button9.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.button9.Enabled = false;
             this.button9.Location = new System.Drawing.Point(850, 270);
             this.button9.Name = "button9";
             this.button9.Size = new System.Drawing.Size(75, 23);
@@ -731,6 +777,7 @@ namespace windows_tweak_tool
             // 
             this.progressBar9.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.progressBar9.Enabled = false;
             this.progressBar9.Location = new System.Drawing.Point(534, 270);
             this.progressBar9.Name = "progressBar9";
             this.progressBar9.Size = new System.Drawing.Size(313, 23);
@@ -741,6 +788,7 @@ namespace windows_tweak_tool
             this.label23.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label23.AutoSize = true;
+            this.label23.Enabled = false;
             this.label23.Location = new System.Drawing.Point(534, 383);
             this.label23.Name = "label23";
             this.label23.Size = new System.Drawing.Size(163, 13);
@@ -751,6 +799,7 @@ namespace windows_tweak_tool
             // button27
             // 
             this.button27.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.button27.Enabled = false;
             this.button27.Location = new System.Drawing.Point(850, 399);
             this.button27.Name = "button27";
             this.button27.Size = new System.Drawing.Size(75, 23);
@@ -762,6 +811,7 @@ namespace windows_tweak_tool
             // 
             this.progressBar23.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.progressBar23.Enabled = false;
             this.progressBar23.Location = new System.Drawing.Point(534, 399);
             this.progressBar23.Name = "progressBar23";
             this.progressBar23.Size = new System.Drawing.Size(313, 23);
@@ -848,6 +898,7 @@ namespace windows_tweak_tool
             this.Text = "Windows Tweaker Tool 1.0b (WTT) - nuke the planet with security";
             this.ResumeLayout(false);
             this.PerformLayout();
+
         }
 
         #endregion
