@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace windows_tweak_tool.src.policies
 {
@@ -55,5 +56,16 @@ namespace windows_tweak_tool.src.policies
                 }
             }
         }
+
+        public override ProgressBar getProgressbar()
+        {
+            return Program.getGui().temp_policy_load;
+        }
+
+        public override Button getButton()
+        {
+            return Program.getGui().temp_policy_btn;
+        }
+
     }
 }

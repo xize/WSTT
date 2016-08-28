@@ -18,16 +18,18 @@ namespace windows_tweak_tool
         public window()
         {
             InitializeComponent();
+            //initializeGuiWithPolicies(); //cannot use this yet because of a issue with instance loading ;-)
         }
 
-        private void initializeGuiWithConfig()
+        private void initializeGuiWithPolicies()
         {
             foreach(PolicyType a in PolicyType.values())
             {
                 Policy p = a.getPolicy();
                 if(p.isEnabled())
                 {
-
+                    p.getButton().Text = "Undo";
+                    p.getProgressbar().Value = 100;
                 }
             }
         }

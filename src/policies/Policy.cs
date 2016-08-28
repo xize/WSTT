@@ -23,6 +23,10 @@ namespace windows_tweak_tool.src.policies
 
         public abstract void unapply();
 
+        public abstract ProgressBar getProgressbar();
+
+        public abstract Button getButton();
+
         protected String generateGUID()
         {
             return "{"+Guid.NewGuid().ToString()+"}";

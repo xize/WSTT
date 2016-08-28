@@ -5,6 +5,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace windows_tweak_tool.src.policies
 {
@@ -49,6 +50,16 @@ namespace windows_tweak_tool.src.policies
         public override void apply()
         {
             reg.SetValue("Enabled", 0);
+        }
+
+        public override ProgressBar getProgressbar()
+        {
+            return Program.getGui().wscript_progress;
+        }
+
+        public override Button getButton()
+        {
+            return Program.getGui().wscript_btn;
         }
     }
 }

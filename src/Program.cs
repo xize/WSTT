@@ -8,6 +8,9 @@ namespace windows_tweak_tool.src
 {
     static class Program
     {
+
+        private static window gui;
+
         /// <summary>
         /// The main entry point for the application.
         /// </summary>
@@ -16,7 +19,13 @@ namespace windows_tweak_tool.src
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new window());
+            gui = new window();
+            Application.Run(gui);
+        }
+
+        public static window getGui()
+        {
+            return gui;
         }
     }
 }

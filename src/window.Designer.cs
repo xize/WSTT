@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Windows.Forms;
 using windows_tweak_tool.src.policies;
 
 namespace windows_tweak_tool
@@ -34,13 +35,13 @@ namespace windows_tweak_tool
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(window));
             this.temp_policy_load = new System.Windows.Forms.ProgressBar();
             this.temp_policy_btn = new System.Windows.Forms.Button();
+            this.wscript_btn = new System.Windows.Forms.Button();
+            this.wscript_progress = new System.Windows.Forms.ProgressBar();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.button2 = new System.Windows.Forms.Button();
             this.progressBar2 = new System.Windows.Forms.ProgressBar();
             this.label3 = new System.Windows.Forms.Label();
-            this.wscript_btn = new System.Windows.Forms.Button();
-            this.wscript_progress = new System.Windows.Forms.ProgressBar();
             this.label4 = new System.Windows.Forms.Label();
             this.button4 = new System.Windows.Forms.Button();
             this.progressBar4 = new System.Windows.Forms.ProgressBar();
@@ -847,20 +848,19 @@ namespace windows_tweak_tool
             this.Text = "Windows Tweaker Tool 1.0b (WTT) - nuke the planet with security";
             this.ResumeLayout(false);
             this.PerformLayout();
-
         }
 
         #endregion
 
-        private System.Windows.Forms.ProgressBar temp_policy_load;
-        private System.Windows.Forms.Button temp_policy_btn;
+        public ProgressBar temp_policy_load;
+        public Button temp_policy_btn;
+        public ProgressBar wscript_progress;
+        public Button wscript_btn;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.ProgressBar progressBar2;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Button wscript_btn;
-        private System.Windows.Forms.ProgressBar wscript_progress;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.ProgressBar progressBar4;
