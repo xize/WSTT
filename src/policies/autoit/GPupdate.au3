@@ -6,4 +6,6 @@ func updatePolicy()
    Send("gpupdate.exe /force")
    Sleep(400)
    Send("{ENTER}")
+   Sleep(3400)
+   WinClose("Administrator: C:\Windows\SYSTEM32\cmd.exe")
 EndFunc
