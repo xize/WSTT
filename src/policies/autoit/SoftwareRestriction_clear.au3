@@ -16,3 +16,4 @@ func clear()
    MouseClick("primary", 785, 3, 1, 0)
    updatePolicy()
 EndFunc
+clear()
