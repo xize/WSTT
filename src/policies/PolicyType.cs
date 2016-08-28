@@ -8,6 +8,7 @@ namespace windows_tweak_tool.src.policies
         protected static HashSet<PolicyType> types = new HashSet<PolicyType>();
 
         public static PolicyType TEMP_POLICY = new PolicyType("temp_policy", new TempPolicy());
+        public static PolicyType WSCRIPT_POLICY = new PolicyType("wscript_policy", new WscriptPolicy());
 
         private string name;
         private Policy pol;

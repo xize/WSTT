@@ -25,7 +25,10 @@ namespace windows_tweak_tool
             foreach(PolicyType a in PolicyType.values())
             {
                 Policy p = a.getPolicy();
-                //TODO: add policies...
+                if(p.isEnabled())
+                {
+
+                }
             }
         }
 
@@ -111,6 +114,28 @@ namespace windows_tweak_tool
         }
 
         private void label11_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void wscript_btn_Click(object sender, EventArgs e)
+        {
+            Policy p = PolicyType.WSCRIPT_POLICY.getPolicy();
+            if (p.isEnabled())
+            {
+                p.unapply();
+                wscript_progress.Value = 0;
+                wscript_btn.Text = "Apply";
+            }
+            else
+            {
+                p.apply();
+                wscript_progress.Value = 100;
+                wscript_btn.Text = "Undo";
+            }
+        }
+
+        private void wscript_progress_Click(object sender, EventArgs e)
         {
 
         }

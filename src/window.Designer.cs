@@ -39,8 +39,8 @@ namespace windows_tweak_tool
             this.button2 = new System.Windows.Forms.Button();
             this.progressBar2 = new System.Windows.Forms.ProgressBar();
             this.label3 = new System.Windows.Forms.Label();
-            this.button3 = new System.Windows.Forms.Button();
-            this.progressBar3 = new System.Windows.Forms.ProgressBar();
+            this.wscript_btn = new System.Windows.Forms.Button();
+            this.wscript_progress = new System.Windows.Forms.ProgressBar();
             this.label4 = new System.Windows.Forms.Label();
             this.button4 = new System.Windows.Forms.Button();
             this.progressBar4 = new System.Windows.Forms.ProgressBar();
@@ -167,21 +167,23 @@ namespace windows_tweak_tool
             this.label3.Text = "disable wscript so that vbs scripts cannot run:";
             this.label3.Click += new System.EventHandler(this.label3_Click);
             // 
-            // button3
+            // wscript_btn
             // 
-            this.button3.Location = new System.Drawing.Point(456, 105);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(75, 23);
-            this.button3.TabIndex = 7;
-            this.button3.Text = "Apply";
-            this.button3.UseVisualStyleBackColor = true;
+            this.wscript_btn.Location = new System.Drawing.Point(456, 105);
+            this.wscript_btn.Name = "wscript_btn";
+            this.wscript_btn.Size = new System.Drawing.Size(75, 23);
+            this.wscript_btn.TabIndex = 7;
+            this.wscript_btn.Text = "Apply";
+            this.wscript_btn.UseVisualStyleBackColor = true;
+            this.wscript_btn.Click += new System.EventHandler(this.wscript_btn_Click);
             // 
-            // progressBar3
+            // wscript_progress
             // 
-            this.progressBar3.Location = new System.Drawing.Point(12, 105);
-            this.progressBar3.Name = "progressBar3";
-            this.progressBar3.Size = new System.Drawing.Size(438, 23);
-            this.progressBar3.TabIndex = 6;
+            this.wscript_progress.Location = new System.Drawing.Point(12, 105);
+            this.wscript_progress.Name = "wscript_progress";
+            this.wscript_progress.Size = new System.Drawing.Size(438, 23);
+            this.wscript_progress.TabIndex = 6;
+            this.wscript_progress.Click += new System.EventHandler(this.wscript_progress_Click);
             // 
             // label4
             // 
@@ -830,8 +832,8 @@ namespace windows_tweak_tool
             this.Controls.Add(this.button4);
             this.Controls.Add(this.progressBar4);
             this.Controls.Add(this.label3);
-            this.Controls.Add(this.button3);
-            this.Controls.Add(this.progressBar3);
+            this.Controls.Add(this.wscript_btn);
+            this.Controls.Add(this.wscript_progress);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.progressBar2);
@@ -857,8 +859,8 @@ namespace windows_tweak_tool
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.ProgressBar progressBar2;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.ProgressBar progressBar3;
+        private System.Windows.Forms.Button wscript_btn;
+        private System.Windows.Forms.ProgressBar wscript_progress;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.ProgressBar progressBar4;

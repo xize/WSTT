@@ -57,6 +57,7 @@
     <Compile Include="src\Override.cs" />
     <Compile Include="src\policies\PolicyType.cs" />
     <Compile Include="src\policies\Policy.cs" />
+    <Compile Include="src\policies\WscriptPolicy.cs" />
     <Compile Include="src\PolicyManager.cs" />
     <Compile Include="src\window.cs">
       <SubType>Form</SubType>
@@ -88,19 +89,25 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
     <Compile Include="src\policies\TempPolicy.cs" />
-    <None Include="src\policies\autoit\GPupdate.au3" />
-    <None Include="src\policies\autoit\SoftwareRestriction_clear.au3" />
-    <None Include="src\policies\autoit\SoftwareRestriction_create.au3" />
+    <None Include="src\policies\autoit\GPupdate.au3">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="src\policies\autoit\SoftwareRestriction_clear.au3">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="src\policies\autoit\SoftwareRestriction_create.au3">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="src\reg\jsfile_del.reg" />
     <None Include="src\reg\jsfile_add.reg" />
-    <None Include="src\reg\scriptdisable_del.reg" />
-    <None Include="src\reg\scriptdisable_add.reg" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="src\policies\autoit\GPupdate.exe" />
+    <Content Include="src\policies\autoit\GPupdate.exe">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="src\policies\autoit\SoftwareRestriction_clear.exe">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
