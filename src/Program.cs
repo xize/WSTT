@@ -20,16 +20,10 @@ namespace windows_tweak_tool.src
         [STAThread]
         static void Main()
         {
-            if(isElevated())
-            {
-                Application.EnableVisualStyles();
-                Application.SetCompatibleTextRenderingDefault(false);
-                gui = new window();
-                Application.Run(gui);
-            } else
-            {
-                RunElevated(Application.ExecutablePath);
-            }
+            Application.EnableVisualStyles();
+            Application.SetCompatibleTextRenderingDefault(false);
+            gui = new window();
+            Application.Run(gui);
         }
 
         public static window getGui()
@@ -37,29 +31,5 @@ namespace windows_tweak_tool.src
             return gui;
         }
 
-        public static bool isElevated()
-        {
-            WindowsPrincipal pricipal = new WindowsPrincipal(WindowsIdentity.GetCurrent());
-            if(pricipal.IsInRole(WindowsBuiltInRole.Administrator))
-            {
-                return true;
-            }
-            return false;
-        }
-
-        private static void RunElevated(string fileName)
-        {
-            ProcessStartInfo processInfo = new ProcessStartInfo();
-            processInfo.Verb = "runas";
-            processInfo.FileName = fileName;
-            try
-            {
-                Process.Start(processInfo);
-            }
-            catch (Win32Exception)
-            {
-                //Do nothing. Probably the user canceled the UAC window
-            }
-        }
     }
 }
