@@ -46,10 +46,10 @@ namespace windows_tweak_tool.src.policies
             fixUnhappyTrigger(); //fix a issue whereby windows 10 complains about a missing GEO location file which cause to freezes the automation....
             Console.WriteLine("unhappy trigger has been fired");
             //it.Send("{ENTER}");
-            it.MouseClick("primary", 45, 206, 1, 100);
-            it.MouseClick("right", 45, 207, 1, 100);
+            it.MouseClick("primary", 45, 206, 1, 1);
+            it.MouseClick("right", 45, 207, 1, 1);
             it.Sleep(300);
-            it.MouseClick("primary", 48, 212, 1, 100);
+            it.MouseClick("primary", 48, 212, 1, 1);
             it.Sleep(300);
             it.Send("{ENTER}");
             Console.WriteLine("policy has been removed now closing window... here is the freeze btw ;-)");
