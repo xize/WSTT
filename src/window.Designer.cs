@@ -193,9 +193,9 @@ namespace windows_tweak_tool
             this.label4.AutoSize = true;
             this.label4.Location = new System.Drawing.Point(12, 130);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(336, 13);
+            this.label4.Size = new System.Drawing.Size(366, 13);
             this.label4.TabIndex = 11;
-            this.label4.Text = "change the default js extension to notepad so it can\'t run as a vbs file:";
+            this.label4.Text = "change the default extension of scripts to notepad to fight browser payloads:";
             // 
             // button4
             // 
