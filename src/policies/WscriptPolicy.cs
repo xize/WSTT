@@ -54,12 +54,12 @@ namespace windows_tweak_tool.src.policies
 
         public override ProgressBar getProgressbar()
         {
-            return Program.getGui().wscript_progress;
+            return gui.wscript_progress;
         }
 
         public override Button getButton()
         {
-            return Program.getGui().wscript_btn;
+            return gui.wscript_btn;
         }
     }
 }

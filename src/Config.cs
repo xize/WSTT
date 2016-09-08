@@ -17,30 +17,25 @@ namespace windows_tweak_tool.src
 
         private Config() { }
 
-        [Override]
         public String getString(String node)
         {
             return get<String>(node);
         }
         
-        [Override]
         public int getInt(String node)
         {
             return get<int>(node);
         }
 
-        [Override]
         public double getDouble(String node)
         {
             return get<double>(node);
         }
 
-        [Override]
         public bool getBoolean(string node) {
             return get<bool>(node);
         }
 
-        [Override]
         public void put(String node, Object obj)
         {
             if(!nodes.ContainsKey(node.ToLower()))
@@ -63,7 +58,7 @@ namespace windows_tweak_tool.src
         private T get<T>(string node)
         {
             Object obj = null;
-            obj = nodes.TryGetValue(node.ToLower(), out obj);
+            obj = nodes[node.ToLower()];
             return (T)obj;
         }
 
@@ -84,7 +79,7 @@ namespace windows_tweak_tool.src
             fs.Close();
         }
 
-        private void readConfig()
+        public void readConfig()
         {
             FileStream fs = File.OpenRead("config.txt");
             StreamReader reader = new StreamReader(fs);
@@ -98,44 +93,33 @@ namespace windows_tweak_tool.src
                     node = node.Replace(" ", "");
                     node = node.Replace("\r", "");
                     node = node.Replace("\n", "");
+
                     string key = node.Split(':')[0];
-                    object value = node.Split(':')[1];
+                    Object value = (Object)node.Split(':')[1];
 
-                    //set the object to a string since it is a primitive, then check for the real primitive:
-                    string v = (string)value;
-
-                    Console.WriteLine("value: "+v);
-
-                    if (v.ToLower() == "true" || v.ToLower() == "false")
-                    {
-                        //the primitive is a boolean so we set the type to a instanceof boolean.
-
-                        value = Boolean.Parse(v);
-                        
-                    } else {
-                        //the type is either a instanceof int or double
-                        if (Regex.IsMatch(v, "^[0-9]+$"))
-                        {
-                            value = (int)value;
-                        }
-                        else if (Regex.IsMatch(v, "^[0-9\\.]+$"))
-                        {
-                            value = (double)value;
-                        }
-                    }
                     //add the key and the fixed value to the map, already existed keys will be updated. 
-                    if(nodes.ContainsKey(key))
+                    if (nodes.ContainsKey(key))
                     {
                         nodes.Remove(key);
                     }
-                    nodes.Add(key.ToLower(), value);
+
+                    if (bool.Parse((string)value))
+                    {
+                        nodes.Add(key.ToLower(), bool.Parse((string)value));
+                    } else if(double.Parse((string)value) != -1.0)
+                    {
+                        nodes.Add(key.ToLower(), double.Parse((string)value));
+                    } else if(int.Parse((string)value) != -1)
+                    {
+                        nodes.Add(key.ToLower(), int.Parse((string)value));
+                    }
                 }
             }
             reader.Close();
         }
 
 
-        public static ConfigInfo getConfig()
+        public static Config getConfig()
         {
             if(cfg == null)
             {

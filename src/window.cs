@@ -17,15 +17,16 @@ namespace windows_tweak_tool
     {
         public window()
         {
+            Config.getConfig().readConfig();
             InitializeComponent();
-            //initializeGuiWithPolicies(); //cannot use this yet because of a issue with instance loading ;-)
+            initializeGuiWithPolicies(); //cannot use this yet because of a issue with instance loading ;-)
         }
 
         private void initializeGuiWithPolicies()
         {
             foreach(PolicyType a in PolicyType.values())
             {
-                Policy p = a.getPolicy();
+                Policy p = a.getPolicy(this);
                 if(p.isEnabled())
                 {
                     p.getButton().Text = "Undo";
@@ -91,8 +92,9 @@ namespace windows_tweak_tool
 
         private void button1_Click(object sender, EventArgs e)
         {
-            Policy p = PolicyType.TEMP_POLICY.getPolicy();
-            if(p.isEnabled())
+            Policy p = PolicyType.TEMP_POLICY.getPolicy(this);
+
+            if (p.isEnabled())
             {
                 p.unapply();
                 temp_policy_load.Value = 0;
@@ -122,7 +124,7 @@ namespace windows_tweak_tool
 
         private void wscript_btn_Click(object sender, EventArgs e)
         {
-            Policy p = PolicyType.WSCRIPT_POLICY.getPolicy();
+            Policy p = PolicyType.WSCRIPT_POLICY.getPolicy(this);
             if (p.isEnabled())
             {
                 p.unapply();
