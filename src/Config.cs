@@ -19,20 +19,36 @@ namespace windows_tweak_tool.src
 
         public String getString(String node)
         {
+            if(!nodes.ContainsKey(node.ToLower()))
+            {
+                return null;
+            }
             return get<String>(node);
         }
         
         public int getInt(String node)
         {
+            if(!nodes.ContainsKey((node.ToLower())))
+            {
+                return 0;
+            }
             return get<int>(node);
         }
 
         public double getDouble(String node)
         {
+            if(!nodes.ContainsKey(node.ToLower()))
+            {
+                return 0.0;
+            }
             return get<double>(node);
         }
 
         public bool getBoolean(string node) {
+            if(!nodes.ContainsKey(node.ToLower()))
+            {
+                return false;
+            }
             return get<bool>(node);
         }
 
@@ -81,6 +97,10 @@ namespace windows_tweak_tool.src
 
         public void readConfig()
         {
+            if(!File.Exists("config.txt"))
+            {
+                return;
+            }
             FileStream fs = File.OpenRead("config.txt");
             StreamReader reader = new StreamReader(fs);
             string cfg = reader.ReadToEnd();
@@ -103,15 +123,18 @@ namespace windows_tweak_tool.src
                         nodes.Remove(key);
                     }
 
+                    double dresult = 0.0;
+                    int iresult = 0;
+
                     if (bool.Parse((string)value))
                     {
                         nodes.Add(key.ToLower(), bool.Parse((string)value));
-                    } else if(double.Parse((string)value) != -1.0)
+                    } else if(double.TryParse((string)value, out dresult))
                     {
-                        nodes.Add(key.ToLower(), double.Parse((string)value));
-                    } else if(int.Parse((string)value) != -1)
+                        nodes.Add(key.ToLower(), dresult);
+                    } else if(int.TryParse((string)value, out iresult))
                     {
-                        nodes.Add(key.ToLower(), int.Parse((string)value));
+                        nodes.Add(key.ToLower(), iresult);
                     }
                 }
             }
