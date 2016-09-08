@@ -143,5 +143,21 @@ namespace windows_tweak_tool
         {
 
         }
+
+        private void uac_btn_Click(object sender, EventArgs e)
+        {
+            Policy p = PolicyType.UAC_POLICY.getPolicy(this);
+            if(p.isEnabled())
+            {
+                p.unapply();
+                uac_btn.Text = "apply";
+                uac_progress.Value = 0;
+            } else
+            {
+                p.apply();
+                uac_btn.Text = "Undo";
+                uac_progress.Value = 100;
+            }
+        }
     }
 }

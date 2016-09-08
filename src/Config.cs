@@ -130,7 +130,7 @@ namespace windows_tweak_tool.src
                     if (bool.TryParse((string)value, out bol))
                     {
                         nodes.Add(key.ToLower(), bool.Parse((string)value));
-                    } else if(double.TryParse((string)value, out dresult))
+                    } else if(((string)value).Contains(".") && double.TryParse((string)value, out dresult))
                     {
                         nodes.Add(key.ToLower(), dresult);
                     } else if(int.TryParse((string)value, out iresult))

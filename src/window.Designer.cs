@@ -55,8 +55,8 @@ namespace windows_tweak_tool
             this.button7 = new System.Windows.Forms.Button();
             this.progressBar7 = new System.Windows.Forms.ProgressBar();
             this.label8 = new System.Windows.Forms.Label();
-            this.button8 = new System.Windows.Forms.Button();
-            this.progressBar8 = new System.Windows.Forms.ProgressBar();
+            this.uac_btn = new System.Windows.Forms.Button();
+            this.uac_progress = new System.Windows.Forms.ProgressBar();
             this.label10 = new System.Windows.Forms.Label();
             this.button10 = new System.Windows.Forms.Button();
             this.progressBar10 = new System.Windows.Forms.ProgressBar();
@@ -305,23 +305,22 @@ namespace windows_tweak_tool
             this.label8.TabIndex = 23;
             this.label8.Text = "higher security from \"User account control\":";
             // 
-            // button8
+            // uac_btn
             // 
-            this.button8.Enabled = false;
-            this.button8.Location = new System.Drawing.Point(453, 311);
-            this.button8.Name = "button8";
-            this.button8.Size = new System.Drawing.Size(75, 23);
-            this.button8.TabIndex = 22;
-            this.button8.Text = "Apply";
-            this.button8.UseVisualStyleBackColor = true;
+            this.uac_btn.Location = new System.Drawing.Point(453, 311);
+            this.uac_btn.Name = "uac_btn";
+            this.uac_btn.Size = new System.Drawing.Size(75, 23);
+            this.uac_btn.TabIndex = 22;
+            this.uac_btn.Text = "Apply";
+            this.uac_btn.UseVisualStyleBackColor = true;
+            this.uac_btn.Click += new System.EventHandler(this.uac_btn_Click);
             // 
-            // progressBar8
+            // uac_progress
             // 
-            this.progressBar8.Enabled = false;
-            this.progressBar8.Location = new System.Drawing.Point(9, 311);
-            this.progressBar8.Name = "progressBar8";
-            this.progressBar8.Size = new System.Drawing.Size(441, 23);
-            this.progressBar8.TabIndex = 21;
+            this.uac_progress.Location = new System.Drawing.Point(9, 311);
+            this.uac_progress.Name = "uac_progress";
+            this.uac_progress.Size = new System.Drawing.Size(441, 23);
+            this.uac_progress.TabIndex = 21;
             // 
             // label10
             // 
@@ -868,8 +867,8 @@ namespace windows_tweak_tool
             this.Controls.Add(this.button10);
             this.Controls.Add(this.progressBar10);
             this.Controls.Add(this.label8);
-            this.Controls.Add(this.button8);
-            this.Controls.Add(this.progressBar8);
+            this.Controls.Add(this.uac_btn);
+            this.Controls.Add(this.uac_progress);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.button7);
             this.Controls.Add(this.progressBar7);
@@ -925,8 +924,8 @@ namespace windows_tweak_tool
         private System.Windows.Forms.Button button7;
         private System.Windows.Forms.ProgressBar progressBar7;
         private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.Button button8;
-        private System.Windows.Forms.ProgressBar progressBar8;
+        public System.Windows.Forms.Button uac_btn;
+        public System.Windows.Forms.ProgressBar uac_progress;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Button button10;
         private System.Windows.Forms.ProgressBar progressBar10;

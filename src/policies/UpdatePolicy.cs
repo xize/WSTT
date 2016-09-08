@@ -14,11 +14,10 @@ namespace windows_tweak_tool.src.policies
 
         public override void apply()
         {
-            Process proc = Process.Start("gpupdate", "/force");
-            while (proc.HasExited)
-            {
-                Console.WriteLine("I'm done with updating the policies! :D");
-            }
+
+            AutoItX3 it = createAutoIT("update");
+            it.Run("gpupdate /force");
+            removeAutoITtask("update");
         }
 
         public override Button getButton()
