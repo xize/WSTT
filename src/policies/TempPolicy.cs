@@ -71,19 +71,21 @@ namespace windows_tweak_tool.src.policies
             it.WinActive("Lokaal beveiligingsbeleid"); //TODO: add language bundle here.
             it.Sleep(400);
             fixUnhappyTrigger(); //fix a issue whereby windows 10 complains about a missing GEO location file which cause to freezes the automation....
-            it.MouseClick("primary", 48, 207, 1, 1);
+
+            int x = it.WinGetPosX("Lokaal beveiligingsbeleid");
+            int y = it.WinGetPosY("Lokaal beveiligingsbeleid");
+
+            it.MouseClick("primary", x+48, y+207, 1, 1);
             it.Sleep(500);
-            it.MouseClick("right", 45, 207, 1, 1);
+            it.MouseClick("right", x+45, y+207, 1, 1);
             it.Sleep(500);
-            it.MouseClick("primary", 48, 212, 1, 1);
+            it.MouseClick("primary", x+58, y+212, 1, 1);
             it.Sleep(500);
             it.Send("{ENTER}");
             it.Sleep(500);
             setTrustedPolicy();
-            pressOK();
             setEnforcementPropertyPolicy();
-            pressOK();
-            it.MouseClick("primary", 280, 139, 2, 1);
+            it.MouseClick("primary", x+280, y+139, 2, 1);
             it.Sleep(400);
             addPolicyRule("%temp%\\*.exe");
             addPolicyRule("%temp%\\*.dll");
@@ -115,10 +117,14 @@ namespace windows_tweak_tool.src.policies
             //it.MouseClick("Primary", x+400, y+200, 1, 100);
         }
 
-        private void pressOK()
+        private void pressOK(string windowtitle)
         {
             AutoItX3 it = getAutoIT("temp");
-            it.MouseClick("primary", 360, 480, 1, 0);
+
+            int x = it.WinGetPosX(windowtitle);
+            int y = it.WinGetPosY(windowtitle);
+
+            it.MouseClick("primary", x+200, y+430, 1, 1);
         }
 
         private void setTrustedPolicy()
@@ -129,6 +135,7 @@ namespace windows_tweak_tool.src.policies
             it.MouseClick("primary", 260, 160, 1, 1);
             it.MouseClick("primary", 260, 260, 1, 1);
             it.MouseClick("primary", 260, 363, 1, 1);
+            pressOK("Eigenschappen van Vertrouwde uitgevers");
         }
 
         private void setEnforcementPropertyPolicy()
@@ -138,7 +145,7 @@ namespace windows_tweak_tool.src.policies
             it.WinWait("Eigenschappen van Afdwingen"); //TODO: add a language bundle here.
             it.MouseClick("primary", 260, 173, 1, 1);
             it.MouseClick("primary", 260, 307, 1, 1);
-            pressOK();
+            pressOK("Eigenschappen van Afdwingen");
         }
 
         private void addPolicyRule(string name)
@@ -148,10 +155,17 @@ namespace windows_tweak_tool.src.policies
             it.Sleep(500);
             it.MouseClick("primary", 290, 556, 1, 1);
             it.WinWait("Regel voor nieuw pad"); //TODO: add a language bundle here.
-            it.Send(name);
-            it.MouseClick("primary", 360, 480, 1, 1);
+            it.WinActivate("Regel voor nieuw pad"); //TODO: add a language bundle here.
+
+            int x = it.WinGetPosX("Regel voor nieuw pad"); //TODO: add a langauge bundle here.
+            int y = it.WinGetPosY("Regel voor nieuw pad"); //TODO: add a langauge bundle here.
+
+            it.MouseClick("primary", x+100, y+148, 1, 1);
             it.Sleep(300);
-                
+            it.Send(name);
+            it.Sleep(300);
+            it.MouseClick("primary", x+180, y+445, 1, 1);
+            it.Sleep(400);
         }
 
         private void closeMMCWindow()
