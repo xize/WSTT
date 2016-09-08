@@ -14,10 +14,8 @@ namespace windows_tweak_tool.src.policies
 
         public override void apply()
         {
-
-            AutoItX3 it = createAutoIT("update");
-            it.Run("gpupdate /force");
-            removeAutoITtask("update");
+            Process proc = Process.Start("gpupdate.exe", "/force");
+            while(proc.HasExited){}
         }
 
         public override Button getButton()
