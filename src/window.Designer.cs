@@ -146,9 +146,9 @@ namespace windows_tweak_tool
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(12, 7);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(333, 13);
+            this.label1.Size = new System.Drawing.Size(371, 13);
             this.label1.TabIndex = 2;
-            this.label1.Text = "protect known malware directories (policies, needs windows ultimate):";
+            this.label1.Text = "protect known malware directories (policies, needs windows ultimate) (macro):";
             this.label1.Click += new System.EventHandler(this.label1_Click_1);
             // 
             // label2
@@ -301,9 +301,10 @@ namespace windows_tweak_tool
             this.label8.AutoSize = true;
             this.label8.Location = new System.Drawing.Point(9, 295);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(213, 13);
+            this.label8.Size = new System.Drawing.Size(251, 13);
             this.label8.TabIndex = 23;
-            this.label8.Text = "higher security from \"User account control\":";
+            this.label8.Text = "higher security from \"User account control\" (macro):";
+            this.label8.Click += new System.EventHandler(this.label8_Click);
             // 
             // uac_btn
             // 

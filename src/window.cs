@@ -159,5 +159,10 @@ namespace windows_tweak_tool
                 uac_progress.Value = 100;
             }
         }
+
+        private void label8_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
