@@ -144,12 +144,12 @@ namespace windows_tweak_tool.src.policies
         private void addPolicyRule(string name)
         {
             AutoItX3 it = getAutoIT("temp");
-            it.MouseClick("right", 280, 480, 1, 0);
+            it.MouseClick("right", 280, 480, 1, 1);
             it.Sleep(500);
-            it.MouseClick("primary", 290, 556, 1, 0);
+            it.MouseClick("primary", 290, 556, 1, 1);
             it.WinWait("Regel voor nieuw pad"); //TODO: add a language bundle here.
             it.Send(name);
-            it.MouseClick("primary", 360, 480, 1, 0);
+            it.MouseClick("primary", 360, 480, 1, 1);
             it.Sleep(300);
                 
         }
