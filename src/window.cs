@@ -150,7 +150,7 @@ namespace windows_tweak_tool
             if(p.isEnabled())
             {
                 p.unapply();
-                uac_btn.Text = "apply";
+                uac_btn.Text = "Apply";
                 uac_progress.Value = 0;
             } else
             {
