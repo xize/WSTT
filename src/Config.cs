@@ -123,10 +123,11 @@ namespace windows_tweak_tool.src
                         nodes.Remove(key);
                     }
 
+                    bool bol = false;
                     double dresult = 0.0;
                     int iresult = 0;
 
-                    if (bool.Parse((string)value))
+                    if (bool.TryParse((string)value, out bol))
                     {
                         nodes.Add(key.ToLower(), bool.Parse((string)value));
                     } else if(double.TryParse((string)value, out dresult))
