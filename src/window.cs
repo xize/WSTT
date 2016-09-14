@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Runtime.Remoting.Messaging;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -27,23 +28,34 @@ namespace windows_tweak_tool
             foreach(PolicyType a in PolicyType.values())
             {
                 Policy p = a.getPolicy(this);
-                if(p.isEnabled())
+                if(p.getType() != PolicyType.UPDATE_POLICY)
                 {
-                    p.getButton().Text = "Undo";
-                    p.getProgressbar().Value = 100;
-                }
-
-
-                if(!p.isSecpolEnabled() && p.isSecpolDepended())
-                {
-                    if (p.getType() != PolicyType.UPDATE_POLICY)
+                    if (p.isEnabled())
                     {
-                        Console.WriteLine("Warning: policy "+p.getName() + " has been disabled unsupported windows edition, no secpol.msc found!");
-                        p.getButton().Enabled = false;
-                        p.getProgressbar().Enabled = false;
-                        p.getButton().Text = "unsupported!";
+                        p.getButton().Text = "Undo";
+                        p.getProgressbar().Value = 100;
+                    }
+
+
+                    if (!p.isSecpolEnabled() && p.isSecpolDepended())
+                    {
+                            Console.WriteLine("Warning: policy " + p.getName() + " has been disabled unsupported windows edition, no secpol.msc found!");
+                            p.getButton().Enabled = false;
+                            p.getProgressbar().Enabled = false;
+                            p.getButton().Text = "unsupported!";
+                    }
+
+                    if (!p.isAutoItInstalled() && p.isMacro())
+                    {
+                            Console.WriteLine("Warning: policy " + p.getName() + " has been disabled, missing AutoIT dll file");
+                            p.getButton().Enabled = false;
+                            p.getProgressbar().Enabled = false;
+                            p.getButton().Text = "Error!";
+                            MessageBox.Show("you are missing a important dependency please download at: https://www.autoitscript.com/site/autoit/downloads/");
+                        break;
                     }
                 }
+               
 
             }
         }

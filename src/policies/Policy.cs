@@ -60,6 +60,17 @@ namespace windows_tweak_tool.src.policies
             return false;
         }
 
+        public abstract bool isMacro();
+
+        public bool isAutoItInstalled()
+        {
+            if(File.Exists(Environment.GetFolderPath(Environment.SpecialFolder.ProgramFilesX86) + @"AutoIt3\AutoItX\AutoItX3.dll") || File.Exists(Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles) + @"AutoIt3\AutoItX\AutoItX3.dll"))
+            {
+                return true;
+            }
+            return false;
+        }
+
         public abstract string getName();
 
         public abstract PolicyType getType();

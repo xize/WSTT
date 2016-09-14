@@ -40,12 +40,17 @@ namespace windows_tweak_tool.src.policies
 
         public override PolicyType getType()
         {
-            throw new NotImplementedException();
+            return PolicyType.UPDATE_POLICY;
         }
 
         public override bool isEnabled()
         {
             return false;
+        }
+
+        public override bool isMacro()
+        {
+            return true;
         }
 
         public override bool isSecpolDepended()

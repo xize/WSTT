@@ -66,5 +66,10 @@ namespace windows_tweak_tool.src.policies
         {
             return false;
         }
+
+        public override bool isMacro()
+        {
+            return false;
+        }
     }
 }
