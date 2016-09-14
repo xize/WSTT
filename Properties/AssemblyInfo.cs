@@ -8,7 +8,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle("Windows Tweak Tool")]
 [assembly: AssemblyDescription("With this tool you can automate security patches, such as policies")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
+[assembly: AssemblyCompany("Windows Tweak Tool")]
 [assembly: AssemblyProduct("windows tweak tool")]
 [assembly: AssemblyCopyright("Copyright ©  2016")]
 [assembly: AssemblyTrademark("")]
