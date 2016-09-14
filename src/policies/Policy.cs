@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Management;
+using Microsoft.Win32;
 
 namespace windows_tweak_tool.src.policies
 {
@@ -133,6 +134,28 @@ namespace windows_tweak_tool.src.policies
                 return autoit_tasks[name.ToLower()];
             }
             throw new NullReferenceException("cannot find AutoIT task, maybe you gave in a wrong name?");
+        }
+
+        public RegistryKey getRegistry(string path, REG reg)
+        {
+            switch(reg)
+            {
+                case REG.HKCR:
+                    return (Environment.Is64BitOperatingSystem ? RegistryKey.OpenBaseKey(RegistryHive.ClassesRoot, RegistryView.Registry64) : RegistryKey.OpenBaseKey(RegistryHive.ClassesRoot, RegistryView.Registry32)).OpenSubKey(path);
+                case REG.HKCU:
+                    return (Environment.Is64BitOperatingSystem ? RegistryKey.OpenBaseKey(RegistryHive.CurrentUser, RegistryView.Registry64) : RegistryKey.OpenBaseKey(RegistryHive.CurrentUser, RegistryView.Registry32)).OpenSubKey(path);
+                case REG.HKLM:
+                    return (Environment.Is64BitOperatingSystem ? RegistryKey.OpenBaseKey(RegistryHive.LocalMachine, RegistryView.Registry64) : RegistryKey.OpenBaseKey(RegistryHive.LocalMachine, RegistryView.Registry32)).OpenSubKey(path);
+                default:
+                    return (Environment.Is64BitOperatingSystem ? RegistryKey.OpenBaseKey(RegistryHive.LocalMachine, RegistryView.Registry64) : RegistryKey.OpenBaseKey(RegistryHive.LocalMachine, RegistryView.Registry32)).OpenSubKey(path);
+            }
+        }
+
+       public enum REG
+        {
+            HKLM,
+            HKCU,
+            HKCR
         }
 
         private void hookAutoIT()
