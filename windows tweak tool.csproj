@@ -105,7 +105,6 @@
     <Compile Include="src\policies\UacPolicy.cs" />
     <Compile Include="src\policies\UpdatePolicy.cs" />
     <Compile Include="src\policies\WscriptPolicy.cs" />
-    <Compile Include="src\PolicyManager.cs" />
     <Compile Include="src\window.cs">
       <SubType>Form</SubType>
     </Compile>
