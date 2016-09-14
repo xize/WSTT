@@ -62,13 +62,23 @@ namespace windows_tweak_tool.src.policies
             getButton().Enabled = true;
         }
 
+        private void l(string l)
+        {
+            Console.WriteLine(l);
+        }
+
         public override void apply()
         {
             getButton().Enabled = false;
+            l("button disabled...");
             AutoItX3 it = createAutoIT("temp");
+            l("autoit instance created");
             it.Run("mmc.exe secpol.msc");
+            l("starting secpol through mmc.exe");
             it.WinWait("Lokaal beveiligingsbeleid"); //TODO: add language bundle here.
-            it.WinActive("Lokaal beveiligingsbeleid"); //TODO: add language bundle here.
+            l("waiting on window title....");
+            it.WinActivate("Lokaal beveiligingsbeleid"); //TODO: add language bundle here.
+            l("window title found, activating window");
             it.Sleep(400);
             fixUnhappyTrigger(); //fix a issue whereby windows 10 complains about a missing GEO location file which cause to freezes the automation....
 
@@ -87,14 +97,7 @@ namespace windows_tweak_tool.src.policies
             setEnforcementPropertyPolicy();
             it.MouseClick("primary", x+280, y+139, 2, 1);
             it.Sleep(400);
-            addPolicyRule("%temp%\\*.exe");
-            addPolicyRule("%temp%\\*.dll");
-            addPolicyRule("%temp%\\*.sys");
-            addPolicyRule("%temp%\\*.au3");
-            addPolicyRule("%temp%\\*\\*.exe");
-            addPolicyRule("%temp%\\*\\*.dll");
-            addPolicyRule("%temp%\\*\\*.sys");
-            addPolicyRule("%temp%\\*\\*.au3");
+            addPolicyRule("%temp%");
             addPolicyRule("%localappdata%\\*.exe");
             addPolicyRule("%localappdata%\\*.dll");
             addPolicyRule("%localappdata%\\*.au3");
@@ -111,10 +114,14 @@ namespace windows_tweak_tool.src.policies
         private void fixUnhappyTrigger()
         {
             AutoItX3 it = getAutoIT("temp");
+            it.Sleep(300);
+            it.WinActivate("Beheersjablonen"); //TODO: add language bundle here
+            it.Sleep(300);
             it.Send("{ENTER}");
-            //int x = it.WinGetPosX("Beheersjablonen");
-            //int y = it.WinGetPosY("Beheersjablonen");
-            //it.MouseClick("Primary", x+400, y+200, 1, 100);
+            it.Sleep(300);
+            it.WinActivate("Beheersjablonen"); //TODO: add language bundle here
+            it.Sleep(300);
+            it.Send("{ENTER}");
         }
 
         private void pressOK(string windowtitle)
