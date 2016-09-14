@@ -36,23 +36,21 @@ namespace windows_tweak_tool.src.policies
         {
             getButton().Enabled = false;
             AutoItX3 it = createAutoIT("temp");
-            Console.WriteLine("starting secpol");
             it.Run("mmc.exe secpol.msc");
-            Console.WriteLine("secpol has been started");
             it.WinWait("Lokaal beveiligingsbeleid"); //TODO: add language bundle here.
-            it.WinActive("Lokaal beveiligingsbeleid"); //TODO: add language bundle here.
-            Console.WriteLine("window detected and has been focused!");
+            it.WinActivate("Lokaal beveiligingsbeleid"); //TODO: add language bundle here.
+
+            int x = it.WinGetPosX("Lokaal beveiligingsbeleid");
+            int y = it.WinGetPosY("Lokaal beveiligingsbeleid");
+
             it.Sleep(400);
             fixUnhappyTrigger(); //fix a issue whereby windows 10 complains about a missing GEO location file which cause to freezes the automation....
-            Console.WriteLine("unhappy trigger has been fired");
-            //it.Send("{ENTER}");
-            it.MouseClick("primary", 45, 206, 1, 1);
-            it.MouseClick("right", 45, 207, 1, 1);
+            it.MouseClick("primary", x+45, y+206, 1, 100);
+            it.MouseClick("right", x+45, y+207, 1, 100);
             it.Sleep(300);
-            it.MouseClick("primary", 48, 212, 1, 1);
+            it.MouseClick("primary", x+48, y+212, 1, 100);
             it.Sleep(300);
             it.Send("{ENTER}");
-            Console.WriteLine("policy has been removed now closing window... here is the freeze btw ;-)");
             it.Sleep(400);
             closeMMCWindow();
             Policy p = PolicyType.UPDATE_POLICY.getPolicy(gui);
@@ -139,9 +137,13 @@ namespace windows_tweak_tool.src.policies
             AutoItX3 it = getAutoIT("temp");
             it.MouseClick("primary", 380, 200, 2, 1);
             it.WinWait("Eigenschappen van Vertrouwde uitgevers"); //TODO: add a language bundle here.
-            it.MouseClick("primary", 260, 160, 1, 1);
-            it.MouseClick("primary", 260, 260, 1, 1);
-            it.MouseClick("primary", 260, 363, 1, 1);
+
+            int x = it.WinGetPosX("Eigenschappen van Vertrouwde uitgevers"); //TODO: add a language bundle here.
+            int y = it.WinGetPosY("Eigenschappen van Vertrouwde uitgevers"); //TODO: add a language bundle here.
+
+            it.MouseClick("primary", x+160, y+110, 1, 1);
+            it.MouseClick("primary", x+160, y+200, 1, 1);
+            it.MouseClick("primary", x+160, y+313, 1, 1);
             pressOK("Eigenschappen van Vertrouwde uitgevers");
         }
 
@@ -150,8 +152,12 @@ namespace windows_tweak_tool.src.policies
             AutoItX3 it = getAutoIT("temp");
             it.MouseClick("primary", 280, 160, 2, 1);
             it.WinWait("Eigenschappen van Afdwingen"); //TODO: add a language bundle here.
-            it.MouseClick("primary", 260, 173, 1, 1);
-            it.MouseClick("primary", 260, 307, 1, 1);
+
+            int x = it.WinGetPosX("Eigenschappen van Afdwingen");
+            int y = it.WinGetPosY("Eigenschappen van Afdwingen");
+
+            it.MouseClick("primary", x+60, y+120, 1, 1);
+            it.MouseClick("primary", x+60, y+250, 1, 1);
             pressOK("Eigenschappen van Afdwingen");
         }
 
