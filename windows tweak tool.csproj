@@ -99,6 +99,7 @@
   <ItemGroup>
     <Compile Include="src\Config.cs" />
     <Compile Include="src\ConfigInfo.cs" />
+    <Compile Include="src\policies\NetbiosPolicy.cs" />
     <Compile Include="src\policies\PolicyType.cs" />
     <Compile Include="src\policies\Policy.cs" />
     <Compile Include="src\policies\UacPolicy.cs" />

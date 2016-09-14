@@ -195,5 +195,21 @@ namespace windows_tweak_tool
         {
 
         }
+
+        private void netbiosbtn_Click(object sender, EventArgs e)
+        {
+            Policy p = PolicyType.NETBIOS_POLICY.getPolicy(this);
+            if(p.isEnabled())
+            {
+                p.unapply();
+                netbiosbtn.Text = "Apply";
+                netbiosprogress.Value = 0;
+            } else
+            {
+                p.apply();
+                netbiosbtn.Text = "Undo";
+                netbiosprogress.Value = 100;
+            }
+        }
     }
 }
