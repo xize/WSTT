@@ -30,7 +30,7 @@ namespace windows_tweak_tool.src.policies
         public override bool isEnabled()
         {
 
-            RegistryKey key = getRegistry(@"Software/Microsoft/Windows Script Host/Settings", REG.HKLM);
+            RegistryKey key = getRegistry(@"SOFTWARE\Microsoft\Windows Script Host\Settings", REG.HKLM);
 
             if(key.GetValue("Enabled") != null)
             {
@@ -49,7 +49,7 @@ namespace windows_tweak_tool.src.policies
         public override void unapply()
         {
             getButton().Enabled = false;
-            RegistryKey key = getRegistry(@"Software/Microsoft/Windows Script Host/Settings", REG.HKLM);
+            RegistryKey key = getRegistry(@"SOFTWARE\Microsoft\Windows Script Host\Settings", REG.HKLM);
             key.SetValue("Enabled", 1);
             key.Close();
             getButton().Enabled = true;
@@ -58,7 +58,7 @@ namespace windows_tweak_tool.src.policies
         public override void apply()
         {
             getButton().Enabled = false;
-            RegistryKey key = getRegistry(@"Software/Microsoft/Windows Script Host/Settings", REG.HKLM);
+            RegistryKey key = getRegistry(@"SOFTWARE\Microsoft\Windows Script Host\Settings", REG.HKLM);
             key.SetValue("Enabled", 0);
             key.Close();
             getButton().Enabled = true;
