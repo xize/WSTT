@@ -31,8 +31,13 @@ namespace windows_tweak_tool
             foreach (PolicyType a in PolicyType.values())
             {
                 Policy p = a.getPolicy(this);
+
                 if(p.getType() != PolicyType.UPDATE_POLICY)
                 {
+
+                    tooltip.SetToolTip(p.getButton(), p.getDescription());
+                    tooltip.SetToolTip(p.getProgressbar(), p.getDescription());
+
                     if (p.isEnabled())
                     {
                         p.getButton().Text = "Undo";

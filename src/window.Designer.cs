@@ -32,6 +32,7 @@ namespace windows_tweak_tool
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(window));
             this.temp_policy_load = new System.Windows.Forms.ProgressBar();
             this.temp_policy_btn = new System.Windows.Forms.Button();
@@ -39,8 +40,8 @@ namespace windows_tweak_tool
             this.wscript_progress = new System.Windows.Forms.ProgressBar();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.button2 = new System.Windows.Forms.Button();
-            this.progressBar2 = new System.Windows.Forms.ProgressBar();
+            this.netbiosbtn = new System.Windows.Forms.Button();
+            this.netbiosprogress = new System.Windows.Forms.ProgressBar();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.button4 = new System.Windows.Forms.Button();
@@ -103,6 +104,7 @@ namespace windows_tweak_tool
             this.label23 = new System.Windows.Forms.Label();
             this.button27 = new System.Windows.Forms.Button();
             this.progressBar23 = new System.Windows.Forms.ProgressBar();
+            this.tooltip = new System.Windows.Forms.ToolTip(this.components);
             this.SuspendLayout();
             // 
             // temp_policy_load
@@ -160,23 +162,22 @@ namespace windows_tweak_tool
             this.label2.TabIndex = 5;
             this.label2.Text = "disable netbios over ip to protect against network viruses:";
             // 
-            // button2
+            // netbiosbtn
             // 
-            this.button2.Enabled = false;
-            this.button2.Location = new System.Drawing.Point(456, 64);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
-            this.button2.TabIndex = 4;
-            this.button2.Text = "Apply";
-            this.button2.UseVisualStyleBackColor = true;
+            this.netbiosbtn.Location = new System.Drawing.Point(456, 64);
+            this.netbiosbtn.Name = "netbiosbtn";
+            this.netbiosbtn.Size = new System.Drawing.Size(75, 23);
+            this.netbiosbtn.TabIndex = 4;
+            this.netbiosbtn.Text = "Apply";
+            this.netbiosbtn.UseVisualStyleBackColor = true;
+            this.netbiosbtn.Click += new System.EventHandler(this.netbiosbtn_Click);
             // 
-            // progressBar2
+            // netbiosprogress
             // 
-            this.progressBar2.Enabled = false;
-            this.progressBar2.Location = new System.Drawing.Point(12, 64);
-            this.progressBar2.Name = "progressBar2";
-            this.progressBar2.Size = new System.Drawing.Size(438, 23);
-            this.progressBar2.TabIndex = 3;
+            this.netbiosprogress.Location = new System.Drawing.Point(12, 64);
+            this.netbiosprogress.Name = "netbiosprogress";
+            this.netbiosprogress.Size = new System.Drawing.Size(438, 23);
+            this.netbiosprogress.TabIndex = 3;
             // 
             // label3
             // 
@@ -886,8 +887,8 @@ namespace windows_tweak_tool
             this.Controls.Add(this.wscript_btn);
             this.Controls.Add(this.wscript_progress);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.progressBar2);
+            this.Controls.Add(this.netbiosbtn);
+            this.Controls.Add(this.netbiosprogress);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.temp_policy_btn);
             this.Controls.Add(this.temp_policy_load);
@@ -909,8 +910,8 @@ namespace windows_tweak_tool
         public Button wscript_btn;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.ProgressBar progressBar2;
+        public System.Windows.Forms.Button netbiosbtn;
+        public System.Windows.Forms.ProgressBar netbiosprogress;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Button button4;
@@ -973,6 +974,7 @@ namespace windows_tweak_tool
         private System.Windows.Forms.Label label23;
         private System.Windows.Forms.Button button27;
         private System.Windows.Forms.ProgressBar progressBar23;
+        private ToolTip tooltip;
     }
 }
 
