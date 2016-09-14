@@ -25,7 +25,10 @@ namespace windows_tweak_tool
 
         private void initializeGuiWithPolicies()
         {
-            foreach(PolicyType a in PolicyType.values())
+
+            bool msg = false;
+
+            foreach (PolicyType a in PolicyType.values())
             {
                 Policy p = a.getPolicy(this);
                 if(p.getType() != PolicyType.UPDATE_POLICY)
@@ -47,12 +50,15 @@ namespace windows_tweak_tool
 
                     if (!p.isAutoItInstalled() && p.isMacro())
                     {
+                        if(msg == false)
+                        {
+                            msg = !msg;
+                            MessageBox.Show("you are missing a important dependency please download at: https://www.autoitscript.com/site/autoit/downloads/");
+                        }
                             Console.WriteLine("Warning: policy " + p.getName() + " has been disabled, missing AutoIT dll file");
                             p.getButton().Enabled = false;
                             p.getProgressbar().Enabled = false;
                             p.getButton().Text = "Error!";
-                            MessageBox.Show("you are missing a important dependency please download at: https://www.autoitscript.com/site/autoit/downloads/");
-                        break;
                     }
                 }
                
