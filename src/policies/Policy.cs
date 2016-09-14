@@ -7,6 +7,7 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Management;
 
 namespace windows_tweak_tool.src.policies
 {
@@ -28,6 +29,31 @@ namespace windows_tweak_tool.src.policies
             {
                 this.gui = win;
             }
+        }
+
+        public abstract bool isSecpolDepended();
+
+        public bool isSecpolEnabled()
+        {
+            var name = (from x in new ManagementObjectSearcher("SELECT Caption FROM Win32_OperatingSystem").Get().Cast<ManagementObject>()
+                        select x.GetPropertyValue("Caption")).FirstOrDefault();
+            if(name != null)
+            {
+                string[] OS = name.ToString().Split(' ');
+                string OS_NAME = OS[3];
+                switch(OS_NAME)
+                {
+                    case "Pro":
+                        return true;
+                    case "Ultimate":
+                        return true;
+                    case "Professional":
+                        return true;
+                    default:
+                        return false;
+                }
+            }
+            return false;
         }
 
         public abstract string getName();

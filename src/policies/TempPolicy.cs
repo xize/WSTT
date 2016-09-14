@@ -185,5 +185,9 @@ namespace windows_tweak_tool.src.policies
             return gui.temp_policy_btn;
         }
 
+        public override bool isSecpolDepended()
+        {
+            return true;
+        }
     }
 }

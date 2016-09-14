@@ -32,6 +32,19 @@ namespace windows_tweak_tool
                     p.getButton().Text = "Undo";
                     p.getProgressbar().Value = 100;
                 }
+
+
+                if(!p.isSecpolEnabled() && p.isSecpolDepended())
+                {
+                    if (p.getType() != PolicyType.UPDATE_POLICY)
+                    {
+                        Console.WriteLine("Warning: policy "+p.getName() + " has been disabled unsupported windows edition, no secpol.msc found!");
+                        p.getButton().Enabled = false;
+                        p.getProgressbar().Enabled = false;
+                        p.getButton().Text = "unsupported!";
+                    }
+                }
+
             }
         }
 

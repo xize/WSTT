@@ -48,6 +48,11 @@ namespace windows_tweak_tool.src.policies
             return false;
         }
 
+        public override bool isSecpolDepended()
+        {
+            return true;
+        }
+
         public override void unapply()
         {
             throw new NotImplementedException();

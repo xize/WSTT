@@ -61,5 +61,10 @@ namespace windows_tweak_tool.src.policies
         {
             return gui.wscript_btn;
         }
+
+        public override bool isSecpolDepended()
+        {
+            return false;
+        }
     }
 }

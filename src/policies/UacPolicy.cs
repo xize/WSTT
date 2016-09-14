@@ -78,5 +78,10 @@ namespace windows_tweak_tool.src.policies
         {
             return gui.uac_progress;
         }
+
+        public override bool isSecpolDepended()
+        {
+            return false;
+        }
     }
 }
