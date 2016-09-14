@@ -11,7 +11,6 @@ namespace windows_tweak_tool.src.policies
 {
     class WscriptPolicy : Policy
     {
-        private RegistryKey reg = RegistryKey.OpenBaseKey(RegistryHive.LocalMachine, RegistryView.Registry32).OpenSubKey("SOFTWARE").OpenSubKey("Microsoft").OpenSubKey("Windows Script Host").OpenSubKey("Settings", true);
 
         public override string getName()
         {
@@ -20,7 +19,7 @@ namespace windows_tweak_tool.src.policies
 
         public override string getDescription()
         {
-            return "disables wscript to be runnable :)";
+            return "disables wscript so it's impossible for malware to execute wscript scripts through a webpage :)";
         }
 
         public override PolicyType getType()
@@ -30,26 +29,39 @@ namespace windows_tweak_tool.src.policies
 
         public override bool isEnabled()
         {
-            if(reg.GetValue("Enabled") != null)
+
+            RegistryKey key = getRegistry(@"Software/Microsoft/Windows Script Host/Settings", REG.HKLM);
+
+            if(key.GetValue("Enabled") != null)
             {
-                int value = (int)reg.GetValue("Enabled");
+                int value = (int)key.GetValue("Enabled");
 
                 if (value == 0)
                 {
+                    key.Close();
                     return true;
                 }
             }
+            key.Close();
             return false;
         }
 
         public override void unapply()
         {
-            reg.SetValue("Enabled", 1);
+            getButton().Enabled = false;
+            RegistryKey key = getRegistry(@"Software/Microsoft/Windows Script Host/Settings", REG.HKLM);
+            key.SetValue("Enabled", 1);
+            key.Close();
+            getButton().Enabled = true;
         }
 
         public override void apply()
         {
-            reg.SetValue("Enabled", 0);
+            getButton().Enabled = false;
+            RegistryKey key = getRegistry(@"Software/Microsoft/Windows Script Host/Settings", REG.HKLM);
+            key.SetValue("Enabled", 0);
+            key.Close();
+            getButton().Enabled = true;
         }
 
         public override ProgressBar getProgressbar()
