@@ -66,8 +66,6 @@ namespace windows_tweak_tool
                             p.getButton().Text = "Error!";
                     }
                 }
-               
-
             }
         }
 
