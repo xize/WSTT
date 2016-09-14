@@ -45,10 +45,10 @@ namespace windows_tweak_tool.src.policies
 
             it.Sleep(400);
             fixUnhappyTrigger(); //fix a issue whereby windows 10 complains about a missing GEO location file which cause to freezes the automation....
-            it.MouseClick("primary", x+45, y+206, 1, 100);
-            it.MouseClick("right", x+45, y+207, 1, 100);
+            it.MouseClick("primary", x+45, y+206, 1, 1);
+            it.MouseClick("right", x+45, y+207, 1, 1);
             it.Sleep(300);
-            it.MouseClick("primary", x+48, y+212, 1, 100);
+            it.MouseClick("primary", x+48, y+212, 1, 1);
             it.Sleep(300);
             it.Send("{ENTER}");
             it.Sleep(400);
@@ -60,23 +60,13 @@ namespace windows_tweak_tool.src.policies
             getButton().Enabled = true;
         }
 
-        private void l(string l)
-        {
-            Console.WriteLine(l);
-        }
-
         public override void apply()
         {
             getButton().Enabled = false;
-            l("button disabled...");
             AutoItX3 it = createAutoIT("temp");
-            l("autoit instance created");
             it.Run("mmc.exe secpol.msc");
-            l("starting secpol through mmc.exe");
             it.WinWait("Lokaal beveiligingsbeleid"); //TODO: add language bundle here.
-            l("waiting on window title....");
             it.WinActivate("Lokaal beveiligingsbeleid"); //TODO: add language bundle here.
-            l("window title found, activating window");
             it.Sleep(400);
             fixUnhappyTrigger(); //fix a issue whereby windows 10 complains about a missing GEO location file which cause to freezes the automation....
 
