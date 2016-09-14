@@ -140,7 +140,6 @@
     <Compile Include="src\policies\TempPolicy.cs" />
     <None Include="src\reg\jsfile_del.reg" />
     <None Include="src\reg\jsfile_add.reg" />
-    <None Include="windows tweak tool_TemporaryKey.pfx" />
     <None Include="WTT.pfx" />
   </ItemGroup>
   <ItemGroup>
