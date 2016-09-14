@@ -31,7 +31,6 @@ namespace windows_tweak_tool.src.policies
         public override bool isEnabled()
         {
             RegistryKey key = getRegistry(@"SYSTEM\CurrentControlSet\services\NetBT\Parameters\Interfaces", REG.HKLM);
-            Console.WriteLine("data: "+key.ToString());
             string[] adapters = key.GetSubKeyNames();
 
             foreach (string adapter in adapters)
