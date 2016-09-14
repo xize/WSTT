@@ -55,6 +55,7 @@ namespace windows_tweak_tool.src.policies
 
         public override void apply()
         {
+            getButton().Enabled = false;
             RegistryKey key = getRegistry(@"SYSTEM\CurrentControlSet\services\NetBT\Parameters\Interfaces", REG.HKLM);
             string[] adapters = key.GetSubKeyNames();
 
@@ -70,10 +71,12 @@ namespace windows_tweak_tool.src.policies
                 }
             }
             key.Close();
+            getButton().Enabled = true;
         }
 
         public override void unapply()
         {
+            getButton().Enabled = false;
             RegistryKey key = getRegistry(@"SYSTEM\CurrentControlSet\services\NetBT\Parameters\Interfaces", REG.HKLM);
 
             string[] adapters = key.GetSubKeyNames();
@@ -90,6 +93,7 @@ namespace windows_tweak_tool.src.policies
                 }
             }
             key.Close();
+            getButton().Enabled = true;
         }
 
         public override bool isMacro()
