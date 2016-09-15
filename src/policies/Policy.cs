@@ -156,16 +156,31 @@ namespace windows_tweak_tool.src.policies
 
         public RegistryKey getRegistry(string path, REG reg)
         {
-            switch(reg)
+            if (path == null)
             {
-                case REG.HKCR:
-                    return (Environment.Is64BitOperatingSystem ? RegistryKey.OpenBaseKey(RegistryHive.ClassesRoot, RegistryView.Registry64) : RegistryKey.OpenBaseKey(RegistryHive.ClassesRoot, RegistryView.Registry32)).OpenSubKey(path, true);
-                case REG.HKCU:
-                    return (Environment.Is64BitOperatingSystem ? RegistryKey.OpenBaseKey(RegistryHive.CurrentUser, RegistryView.Registry64) : RegistryKey.OpenBaseKey(RegistryHive.CurrentUser, RegistryView.Registry32)).OpenSubKey(path, true);
-                case REG.HKLM:
-                    return (Environment.Is64BitOperatingSystem ? RegistryKey.OpenBaseKey(RegistryHive.LocalMachine, RegistryView.Registry64) : RegistryKey.OpenBaseKey(RegistryHive.LocalMachine, RegistryView.Registry32)).OpenSubKey(path, true);
-                default:
-                    return (Environment.Is64BitOperatingSystem ? RegistryKey.OpenBaseKey(RegistryHive.LocalMachine, RegistryView.Registry64) : RegistryKey.OpenBaseKey(RegistryHive.LocalMachine, RegistryView.Registry32)).OpenSubKey(path, true);
+                switch (reg)
+                {
+                    case REG.HKCR:
+                        return (Environment.Is64BitOperatingSystem ? RegistryKey.OpenBaseKey(RegistryHive.ClassesRoot, RegistryView.Registry64) : RegistryKey.OpenBaseKey(RegistryHive.ClassesRoot, RegistryView.Registry32));
+                    case REG.HKCU:
+                        return (Environment.Is64BitOperatingSystem ? RegistryKey.OpenBaseKey(RegistryHive.CurrentUser, RegistryView.Registry64) : RegistryKey.OpenBaseKey(RegistryHive.CurrentUser, RegistryView.Registry32));
+                    case REG.HKLM:
+                        return (Environment.Is64BitOperatingSystem ? RegistryKey.OpenBaseKey(RegistryHive.LocalMachine, RegistryView.Registry64) : RegistryKey.OpenBaseKey(RegistryHive.LocalMachine, RegistryView.Registry32));
+                    default:
+                        return (Environment.Is64BitOperatingSystem ? RegistryKey.OpenBaseKey(RegistryHive.LocalMachine, RegistryView.Registry64) : RegistryKey.OpenBaseKey(RegistryHive.LocalMachine, RegistryView.Registry32));
+                }
+            } else {
+                switch (reg)
+                {
+                    case REG.HKCR:
+                        return (Environment.Is64BitOperatingSystem ? RegistryKey.OpenBaseKey(RegistryHive.ClassesRoot, RegistryView.Registry64) : RegistryKey.OpenBaseKey(RegistryHive.ClassesRoot, RegistryView.Registry32)).OpenSubKey(path, true);
+                    case REG.HKCU:
+                        return (Environment.Is64BitOperatingSystem ? RegistryKey.OpenBaseKey(RegistryHive.CurrentUser, RegistryView.Registry64) : RegistryKey.OpenBaseKey(RegistryHive.CurrentUser, RegistryView.Registry32)).OpenSubKey(path, true);
+                    case REG.HKLM:
+                        return (Environment.Is64BitOperatingSystem ? RegistryKey.OpenBaseKey(RegistryHive.LocalMachine, RegistryView.Registry64) : RegistryKey.OpenBaseKey(RegistryHive.LocalMachine, RegistryView.Registry32)).OpenSubKey(path, true);
+                    default:
+                        return (Environment.Is64BitOperatingSystem ? RegistryKey.OpenBaseKey(RegistryHive.LocalMachine, RegistryView.Registry64) : RegistryKey.OpenBaseKey(RegistryHive.LocalMachine, RegistryView.Registry32)).OpenSubKey(path, true);
+                }
             }
         }
 
