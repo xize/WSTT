@@ -249,5 +249,10 @@ namespace windows_tweak_tool
                 renameprogress.Value = 100;
             }
         }
+
+        private void window_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
