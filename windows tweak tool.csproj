@@ -102,6 +102,7 @@
     <Compile Include="src\policies\NetbiosPolicy.cs" />
     <Compile Include="src\policies\PolicyType.cs" />
     <Compile Include="src\policies\Policy.cs" />
+    <Compile Include="src\policies\RenamePolicy.cs" />
     <Compile Include="src\policies\UacPolicy.cs" />
     <Compile Include="src\policies\UpdatePolicy.cs" />
     <Compile Include="src\policies\WscriptPolicy.cs" />

@@ -44,8 +44,8 @@ namespace windows_tweak_tool
             this.netbiosprogress = new System.Windows.Forms.ProgressBar();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-            this.button4 = new System.Windows.Forms.Button();
-            this.progressBar4 = new System.Windows.Forms.ProgressBar();
+            this.renamebtn = new System.Windows.Forms.Button();
+            this.renameprogress = new System.Windows.Forms.ProgressBar();
             this.label5 = new System.Windows.Forms.Label();
             this.button5 = new System.Windows.Forms.Button();
             this.progressBar5 = new System.Windows.Forms.ProgressBar();
@@ -105,6 +105,8 @@ namespace windows_tweak_tool
             this.button27 = new System.Windows.Forms.Button();
             this.progressBar23 = new System.Windows.Forms.ProgressBar();
             this.tooltip = new System.Windows.Forms.ToolTip(this.components);
+            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this.toolTip2 = new System.Windows.Forms.ToolTip(this.components);
             this.SuspendLayout();
             // 
             // temp_policy_load
@@ -198,23 +200,22 @@ namespace windows_tweak_tool
             this.label4.TabIndex = 11;
             this.label4.Text = "change the default extension of scripts to notepad to fight browser payloads:";
             // 
-            // button4
+            // renamebtn
             // 
-            this.button4.Enabled = false;
-            this.button4.Location = new System.Drawing.Point(456, 146);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(75, 23);
-            this.button4.TabIndex = 10;
-            this.button4.Text = "Apply";
-            this.button4.UseVisualStyleBackColor = true;
+            this.renamebtn.Location = new System.Drawing.Point(456, 146);
+            this.renamebtn.Name = "renamebtn";
+            this.renamebtn.Size = new System.Drawing.Size(75, 23);
+            this.renamebtn.TabIndex = 10;
+            this.renamebtn.Text = "Apply";
+            this.renamebtn.UseVisualStyleBackColor = true;
+            this.renamebtn.Click += new System.EventHandler(this.renamebtn_Click);
             // 
-            // progressBar4
+            // renameprogress
             // 
-            this.progressBar4.Enabled = false;
-            this.progressBar4.Location = new System.Drawing.Point(12, 146);
-            this.progressBar4.Name = "progressBar4";
-            this.progressBar4.Size = new System.Drawing.Size(438, 23);
-            this.progressBar4.TabIndex = 9;
+            this.renameprogress.Location = new System.Drawing.Point(12, 146);
+            this.renameprogress.Name = "renameprogress";
+            this.renameprogress.Size = new System.Drawing.Size(438, 23);
+            this.renameprogress.TabIndex = 9;
             // 
             // label5
             // 
@@ -881,8 +882,8 @@ namespace windows_tweak_tool
             this.Controls.Add(this.button5);
             this.Controls.Add(this.progressBar5);
             this.Controls.Add(this.label4);
-            this.Controls.Add(this.button4);
-            this.Controls.Add(this.progressBar4);
+            this.Controls.Add(this.renamebtn);
+            this.Controls.Add(this.renameprogress);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.wscript_btn);
             this.Controls.Add(this.wscript_progress);
@@ -914,8 +915,8 @@ namespace windows_tweak_tool
         public System.Windows.Forms.ProgressBar netbiosprogress;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Button button4;
-        private System.Windows.Forms.ProgressBar progressBar4;
+        public System.Windows.Forms.Button renamebtn;
+        public System.Windows.Forms.ProgressBar renameprogress;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Button button5;
         private System.Windows.Forms.ProgressBar progressBar5;
@@ -975,6 +976,8 @@ namespace windows_tweak_tool
         private System.Windows.Forms.Button button27;
         private System.Windows.Forms.ProgressBar progressBar23;
         private ToolTip tooltip;
+        private ToolTip toolTip1;
+        private ToolTip toolTip2;
     }
 }
 

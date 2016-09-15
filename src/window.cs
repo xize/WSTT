@@ -232,5 +232,22 @@ namespace windows_tweak_tool
                 netbiosprogress.Value = 100;
             }
         }
+
+        private void renamebtn_Click(object sender, EventArgs e)
+        {
+            Policy p = PolicyType.RENAME_POLICY.getPolicy(this);
+
+            if(p.isEnabled())
+            {
+                p.unapply();
+                renamebtn.Text = "Apply";
+                renameprogress.Value = 0;
+            } else
+            {
+                p.apply();
+                renamebtn.Text = "Undo";
+                renameprogress.Value = 100;
+            }
+        }
     }
 }

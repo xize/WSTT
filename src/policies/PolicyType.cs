@@ -30,6 +30,7 @@ namespace windows_tweak_tool.src.policies
         public static PolicyType UPDATE_POLICY = new PolicyType("update_policy", new UpdatePolicy());
         public static PolicyType UAC_POLICY = new PolicyType("uac_policy", new UacPolicy());
         public static PolicyType NETBIOS_POLICY = new PolicyType("netbios_policy", new NetbiosPolicy());
+        public static PolicyType RENAME_POLICY = new PolicyType("rename_policy", new RenamePolicy());
 
         private string name;
         private Policy pol;
