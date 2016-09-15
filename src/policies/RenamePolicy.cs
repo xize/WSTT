@@ -45,6 +45,7 @@ namespace windows_tweak_tool.src.policies
             ".ws",
             ".ocx",
             ".scr",
+            ".pif",
             //macros need to be blocked aswell :)
             ".docm",
             ".dotm",
@@ -117,7 +118,30 @@ namespace windows_tweak_tool.src.policies
                 while (proc1.HasExited) { } ////lock the local thread till the process has been ended.
 
                 ProcessStartInfo ftype = new ProcessStartInfo("cmd.exe");
-                ftype.Arguments = "/c ftype " + extension.ToUpper() + @"File=C:\Windows\System32\wscript.exe";
+
+                switch (extension)
+                {
+                    //TODO: figuring out how these macros work..... which program it uses to be exact.
+                    case ".docm":
+                        ftype.Arguments = "/c ftype " + extension.ToUpper() + @"File=C:\Program Files (x86)\Microsoft Office\root\Office16\winword.exe";
+                        break;
+                    case ".dotm":
+                        ftype.Arguments = "/c ftype " + extension.ToUpper() + @"File=C:\Program Files (x86)\Microsoft Office\root\Office16\winword.exe";
+                        break;
+                    case ".pptm":
+                        ftype.Arguments = "/c ftype " + extension.ToUpper() + @"File=C:\Program Files (x86)\Microsoft Office\root\Office16\powerpoint.exe";
+                        break;
+                    case ".xlm":
+                        ftype.Arguments = "/c ftype " + extension.ToUpper() + @"File=C:\Program Files (x86)\Microsoft Office\root\Office16\Excel.exe";
+                        break;
+                    case ".xlsm":
+                        ftype.Arguments = "/c ftype " + extension.ToUpper() + @"File=C:\Program Files (x86)\Microsoft Office\root\Office16\Excel.exe";
+                        break;
+                    default:
+                        ftype.Arguments = "/c ftype " + extension.ToUpper() + @"File=C:\Windows\System32\wscript.exe";
+                        break;
+                }
+
                 ftype.CreateNoWindow = true;
                 Process proc2 = Process.Start(ftype);
 
