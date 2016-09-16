@@ -62,25 +62,26 @@ namespace windows_tweak_tool
             this.button1 = new System.Windows.Forms.Button();
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
-            this.checkBox2 = new System.Windows.Forms.CheckBox();
-            this.checkBox3 = new System.Windows.Forms.CheckBox();
-            this.checkBox4 = new System.Windows.Forms.CheckBox();
-            this.checkBox5 = new System.Windows.Forms.CheckBox();
-            this.checkBox6 = new System.Windows.Forms.CheckBox();
-            this.checkBox7 = new System.Windows.Forms.CheckBox();
-            this.checkBox8 = new System.Windows.Forms.CheckBox();
-            this.checkBox9 = new System.Windows.Forms.CheckBox();
-            this.checkBox11 = new System.Windows.Forms.CheckBox();
-            this.checkBox12 = new System.Windows.Forms.CheckBox();
-            this.checkBox10 = new System.Windows.Forms.CheckBox();
-            this.checkBox13 = new System.Windows.Forms.CheckBox();
-            this.checkBox14 = new System.Windows.Forms.CheckBox();
-            this.checkBox15 = new System.Windows.Forms.CheckBox();
-            this.checkBox16 = new System.Windows.Forms.CheckBox();
-            this.checkBox17 = new System.Windows.Forms.CheckBox();
-            this.button2 = new System.Windows.Forms.Button();
+            this.linkLabel1 = new System.Windows.Forms.LinkLabel();
             this.button3 = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
+            this.checkBox17 = new System.Windows.Forms.CheckBox();
+            this.checkBox16 = new System.Windows.Forms.CheckBox();
+            this.checkBox15 = new System.Windows.Forms.CheckBox();
+            this.checkBox14 = new System.Windows.Forms.CheckBox();
+            this.checkBox13 = new System.Windows.Forms.CheckBox();
+            this.checkBox10 = new System.Windows.Forms.CheckBox();
+            this.checkBox12 = new System.Windows.Forms.CheckBox();
+            this.checkBox11 = new System.Windows.Forms.CheckBox();
+            this.checkBox9 = new System.Windows.Forms.CheckBox();
+            this.checkBox8 = new System.Windows.Forms.CheckBox();
+            this.checkBox7 = new System.Windows.Forms.CheckBox();
+            this.checkBox6 = new System.Windows.Forms.CheckBox();
+            this.checkBox5 = new System.Windows.Forms.CheckBox();
+            this.checkBox4 = new System.Windows.Forms.CheckBox();
+            this.checkBox3 = new System.Windows.Forms.CheckBox();
+            this.checkBox2 = new System.Windows.Forms.CheckBox();
+            this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.label6 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.button4 = new System.Windows.Forms.Button();
@@ -91,7 +92,6 @@ namespace windows_tweak_tool
             this.label13 = new System.Windows.Forms.Label();
             this.button6 = new System.Windows.Forms.Button();
             this.progressBar4 = new System.Windows.Forms.ProgressBar();
-            this.linkLabel1 = new System.Windows.Forms.LinkLabel();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -421,192 +421,27 @@ namespace windows_tweak_tool
             this.panel1.TabIndex = 68;
             this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint_1);
             // 
-            // checkBox1
+            // linkLabel1
             // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.Enabled = false;
-            this.checkBox1.Location = new System.Drawing.Point(3, 22);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(86, 17);
-            this.checkBox1.TabIndex = 1;
-            this.checkBox1.Text = "Install Skype";
-            this.checkBox1.UseVisualStyleBackColor = true;
+            this.linkLabel1.AutoSize = true;
+            this.linkLabel1.Location = new System.Drawing.Point(1, -1);
+            this.linkLabel1.Name = "linkLabel1";
+            this.linkLabel1.Size = new System.Drawing.Size(306, 13);
+            this.linkLabel1.TabIndex = 79;
+            this.linkLabel1.TabStop = true;
+            this.linkLabel1.Text = "ninite installer (for more programs visit https://www.ninite.com/):";
+            this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel1_LinkClicked);
             // 
-            // checkBox2
+            // button3
             // 
-            this.checkBox2.AutoSize = true;
-            this.checkBox2.Enabled = false;
-            this.checkBox2.Location = new System.Drawing.Point(95, 22);
-            this.checkBox2.Name = "checkBox2";
-            this.checkBox2.Size = new System.Drawing.Size(113, 17);
-            this.checkBox2.TabIndex = 2;
-            this.checkBox2.Text = "Install Thunderbird";
-            this.checkBox2.UseVisualStyleBackColor = true;
-            // 
-            // checkBox3
-            // 
-            this.checkBox3.AutoSize = true;
-            this.checkBox3.Enabled = false;
-            this.checkBox3.Location = new System.Drawing.Point(214, 22);
-            this.checkBox3.Name = "checkBox3";
-            this.checkBox3.Size = new System.Drawing.Size(85, 17);
-            this.checkBox3.TabIndex = 3;
-            this.checkBox3.Text = "Install Itunes";
-            this.checkBox3.UseVisualStyleBackColor = true;
-            // 
-            // checkBox4
-            // 
-            this.checkBox4.AutoSize = true;
-            this.checkBox4.Enabled = false;
-            this.checkBox4.Location = new System.Drawing.Point(305, 22);
-            this.checkBox4.Name = "checkBox4";
-            this.checkBox4.Size = new System.Drawing.Size(78, 17);
-            this.checkBox4.TabIndex = 4;
-            this.checkBox4.Text = "VLC Player";
-            this.checkBox4.UseVisualStyleBackColor = true;
-            // 
-            // checkBox5
-            // 
-            this.checkBox5.AutoSize = true;
-            this.checkBox5.Enabled = false;
-            this.checkBox5.Location = new System.Drawing.Point(389, 22);
-            this.checkBox5.Name = "checkBox5";
-            this.checkBox5.Size = new System.Drawing.Size(58, 17);
-            this.checkBox5.TabIndex = 5;
-            this.checkBox5.Text = "Spotify";
-            this.checkBox5.UseVisualStyleBackColor = true;
-            // 
-            // checkBox6
-            // 
-            this.checkBox6.AutoSize = true;
-            this.checkBox6.Enabled = false;
-            this.checkBox6.Location = new System.Drawing.Point(3, 45);
-            this.checkBox6.Name = "checkBox6";
-            this.checkBox6.Size = new System.Drawing.Size(73, 17);
-            this.checkBox6.TabIndex = 6;
-            this.checkBox6.Text = "Essentials";
-            this.checkBox6.UseVisualStyleBackColor = true;
-            // 
-            // checkBox7
-            // 
-            this.checkBox7.AutoSize = true;
-            this.checkBox7.Enabled = false;
-            this.checkBox7.Location = new System.Drawing.Point(95, 45);
-            this.checkBox7.Name = "checkBox7";
-            this.checkBox7.Size = new System.Drawing.Size(91, 17);
-            this.checkBox7.TabIndex = 7;
-            this.checkBox7.Text = "Malwarebytes";
-            this.checkBox7.UseVisualStyleBackColor = true;
-            // 
-            // checkBox8
-            // 
-            this.checkBox8.AutoSize = true;
-            this.checkBox8.Enabled = false;
-            this.checkBox8.Location = new System.Drawing.Point(214, 45);
-            this.checkBox8.Name = "checkBox8";
-            this.checkBox8.Size = new System.Drawing.Size(66, 17);
-            this.checkBox8.TabIndex = 8;
-            this.checkBox8.Text = "Dropbox";
-            this.checkBox8.UseVisualStyleBackColor = true;
-            // 
-            // checkBox9
-            // 
-            this.checkBox9.AutoSize = true;
-            this.checkBox9.Enabled = false;
-            this.checkBox9.Location = new System.Drawing.Point(303, 45);
-            this.checkBox9.Name = "checkBox9";
-            this.checkBox9.Size = new System.Drawing.Size(88, 17);
-            this.checkBox9.TabIndex = 9;
-            this.checkBox9.Text = "Google Drive";
-            this.checkBox9.UseVisualStyleBackColor = true;
-            // 
-            // checkBox11
-            // 
-            this.checkBox11.AutoSize = true;
-            this.checkBox11.Enabled = false;
-            this.checkBox11.Location = new System.Drawing.Point(389, 45);
-            this.checkBox11.Name = "checkBox11";
-            this.checkBox11.Size = new System.Drawing.Size(65, 17);
-            this.checkBox11.TabIndex = 11;
-            this.checkBox11.Text = "ImgBurn";
-            this.checkBox11.UseVisualStyleBackColor = true;
-            // 
-            // checkBox12
-            // 
-            this.checkBox12.AutoSize = true;
-            this.checkBox12.Enabled = false;
-            this.checkBox12.Location = new System.Drawing.Point(3, 68);
-            this.checkBox12.Name = "checkBox12";
-            this.checkBox12.Size = new System.Drawing.Size(84, 17);
-            this.checkBox12.TabIndex = 12;
-            this.checkBox12.Text = "Classic Start";
-            this.checkBox12.UseVisualStyleBackColor = true;
-            // 
-            // checkBox10
-            // 
-            this.checkBox10.AutoSize = true;
-            this.checkBox10.Enabled = false;
-            this.checkBox10.Location = new System.Drawing.Point(95, 68);
-            this.checkBox10.Name = "checkBox10";
-            this.checkBox10.Size = new System.Drawing.Size(48, 17);
-            this.checkBox10.TabIndex = 13;
-            this.checkBox10.Text = "7-zip";
-            this.checkBox10.UseVisualStyleBackColor = true;
-            // 
-            // checkBox13
-            // 
-            this.checkBox13.AutoSize = true;
-            this.checkBox13.Enabled = false;
-            this.checkBox13.Location = new System.Drawing.Point(214, 68);
-            this.checkBox13.Name = "checkBox13";
-            this.checkBox13.Size = new System.Drawing.Size(68, 17);
-            this.checkBox13.TabIndex = 14;
-            this.checkBox13.Text = "WinRAR";
-            this.checkBox13.UseVisualStyleBackColor = true;
-            // 
-            // checkBox14
-            // 
-            this.checkBox14.AutoSize = true;
-            this.checkBox14.Enabled = false;
-            this.checkBox14.Location = new System.Drawing.Point(303, 68);
-            this.checkBox14.Name = "checkBox14";
-            this.checkBox14.Size = new System.Drawing.Size(61, 17);
-            this.checkBox14.TabIndex = 15;
-            this.checkBox14.Text = "FileZilla";
-            this.checkBox14.UseVisualStyleBackColor = true;
-            // 
-            // checkBox15
-            // 
-            this.checkBox15.AutoSize = true;
-            this.checkBox15.Enabled = false;
-            this.checkBox15.Location = new System.Drawing.Point(389, 68);
-            this.checkBox15.Name = "checkBox15";
-            this.checkBox15.Size = new System.Drawing.Size(79, 17);
-            this.checkBox15.TabIndex = 16;
-            this.checkBox15.Text = "Notepad++";
-            this.checkBox15.UseVisualStyleBackColor = true;
-            // 
-            // checkBox16
-            // 
-            this.checkBox16.AutoSize = true;
-            this.checkBox16.Enabled = false;
-            this.checkBox16.Location = new System.Drawing.Point(2, 91);
-            this.checkBox16.Name = "checkBox16";
-            this.checkBox16.Size = new System.Drawing.Size(66, 17);
-            this.checkBox16.TabIndex = 17;
-            this.checkBox16.Text = "WinSCP";
-            this.checkBox16.UseVisualStyleBackColor = true;
-            // 
-            // checkBox17
-            // 
-            this.checkBox17.AutoSize = true;
-            this.checkBox17.Enabled = false;
-            this.checkBox17.Location = new System.Drawing.Point(95, 91);
-            this.checkBox17.Name = "checkBox17";
-            this.checkBox17.Size = new System.Drawing.Size(50, 17);
-            this.checkBox17.TabIndex = 18;
-            this.checkBox17.Text = "Putty";
-            this.checkBox17.UseVisualStyleBackColor = true;
+            this.button3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.button3.Enabled = false;
+            this.button3.Location = new System.Drawing.Point(222, 91);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(75, 23);
+            this.button3.TabIndex = 20;
+            this.button3.Text = "Select all";
+            this.button3.UseVisualStyleBackColor = true;
             // 
             // button2
             // 
@@ -619,16 +454,192 @@ namespace windows_tweak_tool
             this.button2.Text = "Install programs with Ninite!";
             this.button2.UseVisualStyleBackColor = true;
             // 
-            // button3
+            // checkBox17
             // 
-            this.button3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.button3.Enabled = false;
-            this.button3.Location = new System.Drawing.Point(222, 91);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(75, 23);
-            this.button3.TabIndex = 20;
-            this.button3.Text = "Select all";
-            this.button3.UseVisualStyleBackColor = true;
+            this.checkBox17.AutoSize = true;
+            this.checkBox17.Enabled = false;
+            this.checkBox17.Location = new System.Drawing.Point(95, 91);
+            this.checkBox17.Name = "checkBox17";
+            this.checkBox17.Size = new System.Drawing.Size(50, 17);
+            this.checkBox17.TabIndex = 18;
+            this.checkBox17.Text = "Putty";
+            this.checkBox17.UseVisualStyleBackColor = true;
+            // 
+            // checkBox16
+            // 
+            this.checkBox16.AutoSize = true;
+            this.checkBox16.Enabled = false;
+            this.checkBox16.Location = new System.Drawing.Point(2, 91);
+            this.checkBox16.Name = "checkBox16";
+            this.checkBox16.Size = new System.Drawing.Size(66, 17);
+            this.checkBox16.TabIndex = 17;
+            this.checkBox16.Text = "WinSCP";
+            this.checkBox16.UseVisualStyleBackColor = true;
+            // 
+            // checkBox15
+            // 
+            this.checkBox15.AutoSize = true;
+            this.checkBox15.Enabled = false;
+            this.checkBox15.Location = new System.Drawing.Point(389, 68);
+            this.checkBox15.Name = "checkBox15";
+            this.checkBox15.Size = new System.Drawing.Size(79, 17);
+            this.checkBox15.TabIndex = 16;
+            this.checkBox15.Text = "Notepad++";
+            this.checkBox15.UseVisualStyleBackColor = true;
+            // 
+            // checkBox14
+            // 
+            this.checkBox14.AutoSize = true;
+            this.checkBox14.Enabled = false;
+            this.checkBox14.Location = new System.Drawing.Point(303, 68);
+            this.checkBox14.Name = "checkBox14";
+            this.checkBox14.Size = new System.Drawing.Size(61, 17);
+            this.checkBox14.TabIndex = 15;
+            this.checkBox14.Text = "FileZilla";
+            this.checkBox14.UseVisualStyleBackColor = true;
+            // 
+            // checkBox13
+            // 
+            this.checkBox13.AutoSize = true;
+            this.checkBox13.Enabled = false;
+            this.checkBox13.Location = new System.Drawing.Point(214, 68);
+            this.checkBox13.Name = "checkBox13";
+            this.checkBox13.Size = new System.Drawing.Size(68, 17);
+            this.checkBox13.TabIndex = 14;
+            this.checkBox13.Text = "WinRAR";
+            this.checkBox13.UseVisualStyleBackColor = true;
+            // 
+            // checkBox10
+            // 
+            this.checkBox10.AutoSize = true;
+            this.checkBox10.Enabled = false;
+            this.checkBox10.Location = new System.Drawing.Point(95, 68);
+            this.checkBox10.Name = "checkBox10";
+            this.checkBox10.Size = new System.Drawing.Size(48, 17);
+            this.checkBox10.TabIndex = 13;
+            this.checkBox10.Text = "7-zip";
+            this.checkBox10.UseVisualStyleBackColor = true;
+            // 
+            // checkBox12
+            // 
+            this.checkBox12.AutoSize = true;
+            this.checkBox12.Enabled = false;
+            this.checkBox12.Location = new System.Drawing.Point(3, 68);
+            this.checkBox12.Name = "checkBox12";
+            this.checkBox12.Size = new System.Drawing.Size(84, 17);
+            this.checkBox12.TabIndex = 12;
+            this.checkBox12.Text = "Classic Start";
+            this.checkBox12.UseVisualStyleBackColor = true;
+            // 
+            // checkBox11
+            // 
+            this.checkBox11.AutoSize = true;
+            this.checkBox11.Enabled = false;
+            this.checkBox11.Location = new System.Drawing.Point(389, 45);
+            this.checkBox11.Name = "checkBox11";
+            this.checkBox11.Size = new System.Drawing.Size(65, 17);
+            this.checkBox11.TabIndex = 11;
+            this.checkBox11.Text = "ImgBurn";
+            this.checkBox11.UseVisualStyleBackColor = true;
+            // 
+            // checkBox9
+            // 
+            this.checkBox9.AutoSize = true;
+            this.checkBox9.Enabled = false;
+            this.checkBox9.Location = new System.Drawing.Point(303, 45);
+            this.checkBox9.Name = "checkBox9";
+            this.checkBox9.Size = new System.Drawing.Size(88, 17);
+            this.checkBox9.TabIndex = 9;
+            this.checkBox9.Text = "Google Drive";
+            this.checkBox9.UseVisualStyleBackColor = true;
+            // 
+            // checkBox8
+            // 
+            this.checkBox8.AutoSize = true;
+            this.checkBox8.Enabled = false;
+            this.checkBox8.Location = new System.Drawing.Point(214, 45);
+            this.checkBox8.Name = "checkBox8";
+            this.checkBox8.Size = new System.Drawing.Size(66, 17);
+            this.checkBox8.TabIndex = 8;
+            this.checkBox8.Text = "Dropbox";
+            this.checkBox8.UseVisualStyleBackColor = true;
+            // 
+            // checkBox7
+            // 
+            this.checkBox7.AutoSize = true;
+            this.checkBox7.Enabled = false;
+            this.checkBox7.Location = new System.Drawing.Point(95, 45);
+            this.checkBox7.Name = "checkBox7";
+            this.checkBox7.Size = new System.Drawing.Size(91, 17);
+            this.checkBox7.TabIndex = 7;
+            this.checkBox7.Text = "Malwarebytes";
+            this.checkBox7.UseVisualStyleBackColor = true;
+            // 
+            // checkBox6
+            // 
+            this.checkBox6.AutoSize = true;
+            this.checkBox6.Enabled = false;
+            this.checkBox6.Location = new System.Drawing.Point(3, 45);
+            this.checkBox6.Name = "checkBox6";
+            this.checkBox6.Size = new System.Drawing.Size(73, 17);
+            this.checkBox6.TabIndex = 6;
+            this.checkBox6.Text = "Essentials";
+            this.checkBox6.UseVisualStyleBackColor = true;
+            // 
+            // checkBox5
+            // 
+            this.checkBox5.AutoSize = true;
+            this.checkBox5.Enabled = false;
+            this.checkBox5.Location = new System.Drawing.Point(389, 22);
+            this.checkBox5.Name = "checkBox5";
+            this.checkBox5.Size = new System.Drawing.Size(58, 17);
+            this.checkBox5.TabIndex = 5;
+            this.checkBox5.Text = "Spotify";
+            this.checkBox5.UseVisualStyleBackColor = true;
+            // 
+            // checkBox4
+            // 
+            this.checkBox4.AutoSize = true;
+            this.checkBox4.Enabled = false;
+            this.checkBox4.Location = new System.Drawing.Point(305, 22);
+            this.checkBox4.Name = "checkBox4";
+            this.checkBox4.Size = new System.Drawing.Size(78, 17);
+            this.checkBox4.TabIndex = 4;
+            this.checkBox4.Text = "VLC Player";
+            this.checkBox4.UseVisualStyleBackColor = true;
+            // 
+            // checkBox3
+            // 
+            this.checkBox3.AutoSize = true;
+            this.checkBox3.Enabled = false;
+            this.checkBox3.Location = new System.Drawing.Point(214, 22);
+            this.checkBox3.Name = "checkBox3";
+            this.checkBox3.Size = new System.Drawing.Size(55, 17);
+            this.checkBox3.TabIndex = 3;
+            this.checkBox3.Text = "Itunes";
+            this.checkBox3.UseVisualStyleBackColor = true;
+            // 
+            // checkBox2
+            // 
+            this.checkBox2.AutoSize = true;
+            this.checkBox2.Enabled = false;
+            this.checkBox2.Location = new System.Drawing.Point(95, 22);
+            this.checkBox2.Name = "checkBox2";
+            this.checkBox2.Size = new System.Drawing.Size(83, 17);
+            this.checkBox2.TabIndex = 2;
+            this.checkBox2.Text = "Thunderbird";
+            this.checkBox2.UseVisualStyleBackColor = true;
+            // 
+            // checkBox1
+            // 
+            this.checkBox1.AutoSize = true;
+            this.checkBox1.Enabled = false;
+            this.checkBox1.Location = new System.Drawing.Point(3, 22);
+            this.checkBox1.Name = "checkBox1";
+            this.checkBox1.Size = new System.Drawing.Size(56, 17);
+            this.checkBox1.TabIndex = 1;
+            this.checkBox1.Text = "Skype";
+            this.checkBox1.UseVisualStyleBackColor = true;
             // 
             // label6
             // 
@@ -741,17 +752,6 @@ namespace windows_tweak_tool
             this.progressBar4.Size = new System.Drawing.Size(406, 23);
             this.progressBar4.TabIndex = 76;
             // 
-            // linkLabel1
-            // 
-            this.linkLabel1.AutoSize = true;
-            this.linkLabel1.Location = new System.Drawing.Point(1, -1);
-            this.linkLabel1.Name = "linkLabel1";
-            this.linkLabel1.Size = new System.Drawing.Size(306, 13);
-            this.linkLabel1.TabIndex = 79;
-            this.linkLabel1.TabStop = true;
-            this.linkLabel1.Text = "ninite installer (for more programs visit https://www.ninite.com/):";
-            this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel1_LinkClicked);
-            // 
             // menuStrip1
             // 
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -775,7 +775,7 @@ namespace windows_tweak_tool
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(92, 22);
             this.exitToolStripMenuItem.Text = "exit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
@@ -792,14 +792,14 @@ namespace windows_tweak_tool
             // 
             this.setAsServerToolStripMenuItem.Enabled = false;
             this.setAsServerToolStripMenuItem.Name = "setAsServerToolStripMenuItem";
-            this.setAsServerToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.setAsServerToolStripMenuItem.Size = new System.Drawing.Size(137, 22);
             this.setAsServerToolStripMenuItem.Text = "set as server";
             // 
             // setAsClientToolStripMenuItem
             // 
             this.setAsClientToolStripMenuItem.Enabled = false;
             this.setAsClientToolStripMenuItem.Name = "setAsClientToolStripMenuItem";
-            this.setAsClientToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.setAsClientToolStripMenuItem.Size = new System.Drawing.Size(137, 22);
             this.setAsClientToolStripMenuItem.Text = "set as client";
             // 
             // helpToolStripMenuItem
