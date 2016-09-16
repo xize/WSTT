@@ -61,16 +61,55 @@ namespace windows_tweak_tool
             this.label5 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
-            this.label6 = new System.Windows.Forms.Label();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.checkBox2 = new System.Windows.Forms.CheckBox();
+            this.checkBox3 = new System.Windows.Forms.CheckBox();
+            this.checkBox4 = new System.Windows.Forms.CheckBox();
+            this.checkBox5 = new System.Windows.Forms.CheckBox();
+            this.checkBox6 = new System.Windows.Forms.CheckBox();
+            this.checkBox7 = new System.Windows.Forms.CheckBox();
+            this.checkBox8 = new System.Windows.Forms.CheckBox();
+            this.checkBox9 = new System.Windows.Forms.CheckBox();
+            this.checkBox11 = new System.Windows.Forms.CheckBox();
+            this.checkBox12 = new System.Windows.Forms.CheckBox();
+            this.checkBox10 = new System.Windows.Forms.CheckBox();
+            this.checkBox13 = new System.Windows.Forms.CheckBox();
+            this.checkBox14 = new System.Windows.Forms.CheckBox();
+            this.checkBox15 = new System.Windows.Forms.CheckBox();
+            this.checkBox16 = new System.Windows.Forms.CheckBox();
+            this.checkBox17 = new System.Windows.Forms.CheckBox();
             this.button2 = new System.Windows.Forms.Button();
+            this.button3 = new System.Windows.Forms.Button();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
+            this.button4 = new System.Windows.Forms.Button();
             this.progressBar2 = new System.Windows.Forms.ProgressBar();
+            this.label12 = new System.Windows.Forms.Label();
+            this.button5 = new System.Windows.Forms.Button();
+            this.progressBar3 = new System.Windows.Forms.ProgressBar();
+            this.label13 = new System.Windows.Forms.Label();
+            this.button6 = new System.Windows.Forms.Button();
+            this.progressBar4 = new System.Windows.Forms.ProgressBar();
+            this.linkLabel1 = new System.Windows.Forms.LinkLabel();
+            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.connectionSettingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.setAsServerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.setAsClientToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.documentationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.panel1.SuspendLayout();
+            this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // temp_policy_load
             // 
             this.temp_policy_load.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.temp_policy_load.Location = new System.Drawing.Point(12, 23);
+            this.temp_policy_load.Location = new System.Drawing.Point(12, 44);
             this.temp_policy_load.Name = "temp_policy_load";
             this.temp_policy_load.Size = new System.Drawing.Size(403, 23);
             this.temp_policy_load.TabIndex = 0;
@@ -80,7 +119,7 @@ namespace windows_tweak_tool
             // 
             this.temp_policy_btn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.temp_policy_btn.AutoSize = true;
-            this.temp_policy_btn.Location = new System.Drawing.Point(421, 23);
+            this.temp_policy_btn.Location = new System.Drawing.Point(421, 44);
             this.temp_policy_btn.Name = "temp_policy_btn";
             this.temp_policy_btn.Size = new System.Drawing.Size(75, 23);
             this.temp_policy_btn.TabIndex = 1;
@@ -92,7 +131,7 @@ namespace windows_tweak_tool
             // 
             this.wscript_btn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.wscript_btn.AutoSize = true;
-            this.wscript_btn.Location = new System.Drawing.Point(421, 105);
+            this.wscript_btn.Location = new System.Drawing.Point(421, 126);
             this.wscript_btn.Name = "wscript_btn";
             this.wscript_btn.Size = new System.Drawing.Size(75, 23);
             this.wscript_btn.TabIndex = 7;
@@ -104,7 +143,7 @@ namespace windows_tweak_tool
             // 
             this.wscript_progress.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.wscript_progress.Location = new System.Drawing.Point(12, 105);
+            this.wscript_progress.Location = new System.Drawing.Point(12, 126);
             this.wscript_progress.Name = "wscript_progress";
             this.wscript_progress.Size = new System.Drawing.Size(403, 23);
             this.wscript_progress.TabIndex = 6;
@@ -115,7 +154,7 @@ namespace windows_tweak_tool
             this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(12, 7);
+            this.label1.Location = new System.Drawing.Point(12, 28);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(371, 13);
             this.label1.TabIndex = 2;
@@ -127,7 +166,7 @@ namespace windows_tweak_tool
             this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(12, 48);
+            this.label2.Location = new System.Drawing.Point(12, 69);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(277, 13);
             this.label2.TabIndex = 5;
@@ -137,7 +176,7 @@ namespace windows_tweak_tool
             // 
             this.netbiosbtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.netbiosbtn.AutoSize = true;
-            this.netbiosbtn.Location = new System.Drawing.Point(421, 64);
+            this.netbiosbtn.Location = new System.Drawing.Point(421, 85);
             this.netbiosbtn.Name = "netbiosbtn";
             this.netbiosbtn.Size = new System.Drawing.Size(75, 23);
             this.netbiosbtn.TabIndex = 4;
@@ -149,7 +188,7 @@ namespace windows_tweak_tool
             // 
             this.netbiosprogress.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.netbiosprogress.Location = new System.Drawing.Point(12, 64);
+            this.netbiosprogress.Location = new System.Drawing.Point(12, 85);
             this.netbiosprogress.Name = "netbiosprogress";
             this.netbiosprogress.Size = new System.Drawing.Size(403, 23);
             this.netbiosprogress.TabIndex = 3;
@@ -159,7 +198,7 @@ namespace windows_tweak_tool
             this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(12, 89);
+            this.label3.Location = new System.Drawing.Point(12, 110);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(221, 13);
             this.label3.TabIndex = 8;
@@ -171,7 +210,7 @@ namespace windows_tweak_tool
             this.label4.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(12, 130);
+            this.label4.Location = new System.Drawing.Point(12, 151);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(366, 13);
             this.label4.TabIndex = 11;
@@ -181,7 +220,7 @@ namespace windows_tweak_tool
             // 
             this.renamebtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.renamebtn.AutoSize = true;
-            this.renamebtn.Location = new System.Drawing.Point(421, 146);
+            this.renamebtn.Location = new System.Drawing.Point(421, 167);
             this.renamebtn.Name = "renamebtn";
             this.renamebtn.Size = new System.Drawing.Size(75, 23);
             this.renamebtn.TabIndex = 10;
@@ -193,7 +232,7 @@ namespace windows_tweak_tool
             // 
             this.renameprogress.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.renameprogress.Location = new System.Drawing.Point(12, 146);
+            this.renameprogress.Location = new System.Drawing.Point(12, 167);
             this.renameprogress.Name = "renameprogress";
             this.renameprogress.Size = new System.Drawing.Size(403, 23);
             this.renameprogress.TabIndex = 9;
@@ -203,7 +242,7 @@ namespace windows_tweak_tool
             this.label8.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(9, 214);
+            this.label8.Location = new System.Drawing.Point(9, 235);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(251, 13);
             this.label8.TabIndex = 23;
@@ -214,7 +253,7 @@ namespace windows_tweak_tool
             // 
             this.uac_btn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.uac_btn.AutoSize = true;
-            this.uac_btn.Location = new System.Drawing.Point(418, 230);
+            this.uac_btn.Location = new System.Drawing.Point(418, 251);
             this.uac_btn.Name = "uac_btn";
             this.uac_btn.Size = new System.Drawing.Size(75, 23);
             this.uac_btn.TabIndex = 22;
@@ -226,7 +265,7 @@ namespace windows_tweak_tool
             // 
             this.uac_progress.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.uac_progress.Location = new System.Drawing.Point(9, 230);
+            this.uac_progress.Location = new System.Drawing.Point(9, 251);
             this.uac_progress.Name = "uac_progress";
             this.uac_progress.Size = new System.Drawing.Size(406, 23);
             this.uac_progress.TabIndex = 21;
@@ -236,7 +275,7 @@ namespace windows_tweak_tool
             this.label10.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(9, 256);
+            this.label10.Location = new System.Drawing.Point(9, 277);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(160, 13);
             this.label10.TabIndex = 29;
@@ -247,7 +286,7 @@ namespace windows_tweak_tool
             this.button10.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.button10.AutoSize = true;
             this.button10.Enabled = false;
-            this.button10.Location = new System.Drawing.Point(418, 272);
+            this.button10.Location = new System.Drawing.Point(418, 293);
             this.button10.Name = "button10";
             this.button10.Size = new System.Drawing.Size(75, 23);
             this.button10.TabIndex = 28;
@@ -259,7 +298,7 @@ namespace windows_tweak_tool
             this.progressBar10.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.progressBar10.Enabled = false;
-            this.progressBar10.Location = new System.Drawing.Point(9, 272);
+            this.progressBar10.Location = new System.Drawing.Point(9, 293);
             this.progressBar10.Name = "progressBar10";
             this.progressBar10.Size = new System.Drawing.Size(406, 23);
             this.progressBar10.TabIndex = 27;
@@ -269,7 +308,7 @@ namespace windows_tweak_tool
             this.label11.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(9, 298);
+            this.label11.Location = new System.Drawing.Point(9, 319);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(114, 13);
             this.label11.TabIndex = 32;
@@ -281,7 +320,7 @@ namespace windows_tweak_tool
             this.button11.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.button11.AutoSize = true;
             this.button11.Enabled = false;
-            this.button11.Location = new System.Drawing.Point(418, 314);
+            this.button11.Location = new System.Drawing.Point(418, 335);
             this.button11.Name = "button11";
             this.button11.Size = new System.Drawing.Size(75, 23);
             this.button11.TabIndex = 31;
@@ -293,7 +332,7 @@ namespace windows_tweak_tool
             this.progressBar11.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.progressBar11.Enabled = false;
-            this.progressBar11.Location = new System.Drawing.Point(9, 314);
+            this.progressBar11.Location = new System.Drawing.Point(9, 335);
             this.progressBar11.Name = "progressBar11";
             this.progressBar11.Size = new System.Drawing.Size(406, 23);
             this.progressBar11.TabIndex = 30;
@@ -301,7 +340,7 @@ namespace windows_tweak_tool
             // button14
             // 
             this.button14.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.button14.Location = new System.Drawing.Point(9, 553);
+            this.button14.Location = new System.Drawing.Point(9, 646);
             this.button14.Name = "button14";
             this.button14.Size = new System.Drawing.Size(75, 23);
             this.button14.TabIndex = 39;
@@ -311,7 +350,7 @@ namespace windows_tweak_tool
             // button15
             // 
             this.button15.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.button15.Location = new System.Drawing.Point(90, 553);
+            this.button15.Location = new System.Drawing.Point(90, 646);
             this.button15.Name = "button15";
             this.button15.Size = new System.Drawing.Size(75, 23);
             this.button15.TabIndex = 40;
@@ -323,7 +362,7 @@ namespace windows_tweak_tool
             this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(11, 172);
+            this.label5.Location = new System.Drawing.Point(11, 193);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(262, 13);
             this.label5.TabIndex = 66;
@@ -334,7 +373,7 @@ namespace windows_tweak_tool
             this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.button1.AutoSize = true;
             this.button1.Enabled = false;
-            this.button1.Location = new System.Drawing.Point(420, 188);
+            this.button1.Location = new System.Drawing.Point(420, 209);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
             this.button1.TabIndex = 65;
@@ -346,51 +385,459 @@ namespace windows_tweak_tool
             this.progressBar1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.progressBar1.Enabled = false;
-            this.progressBar1.Location = new System.Drawing.Point(11, 188);
+            this.progressBar1.Location = new System.Drawing.Point(11, 209);
             this.progressBar1.Name = "progressBar1";
             this.progressBar1.Size = new System.Drawing.Size(403, 23);
             this.progressBar1.TabIndex = 64;
+            // 
+            // panel1
+            // 
+            this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel1.BackColor = System.Drawing.SystemColors.Control;
+            this.panel1.Controls.Add(this.linkLabel1);
+            this.panel1.Controls.Add(this.button3);
+            this.panel1.Controls.Add(this.button2);
+            this.panel1.Controls.Add(this.checkBox17);
+            this.panel1.Controls.Add(this.checkBox16);
+            this.panel1.Controls.Add(this.checkBox15);
+            this.panel1.Controls.Add(this.checkBox14);
+            this.panel1.Controls.Add(this.checkBox13);
+            this.panel1.Controls.Add(this.checkBox10);
+            this.panel1.Controls.Add(this.checkBox12);
+            this.panel1.Controls.Add(this.checkBox11);
+            this.panel1.Controls.Add(this.checkBox9);
+            this.panel1.Controls.Add(this.checkBox8);
+            this.panel1.Controls.Add(this.checkBox7);
+            this.panel1.Controls.Add(this.checkBox6);
+            this.panel1.Controls.Add(this.checkBox5);
+            this.panel1.Controls.Add(this.checkBox4);
+            this.panel1.Controls.Add(this.checkBox3);
+            this.panel1.Controls.Add(this.checkBox2);
+            this.panel1.Controls.Add(this.checkBox1);
+            this.panel1.Location = new System.Drawing.Point(9, 378);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(484, 117);
+            this.panel1.TabIndex = 68;
+            this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint_1);
+            // 
+            // checkBox1
+            // 
+            this.checkBox1.AutoSize = true;
+            this.checkBox1.Enabled = false;
+            this.checkBox1.Location = new System.Drawing.Point(3, 22);
+            this.checkBox1.Name = "checkBox1";
+            this.checkBox1.Size = new System.Drawing.Size(86, 17);
+            this.checkBox1.TabIndex = 1;
+            this.checkBox1.Text = "Install Skype";
+            this.checkBox1.UseVisualStyleBackColor = true;
+            // 
+            // checkBox2
+            // 
+            this.checkBox2.AutoSize = true;
+            this.checkBox2.Enabled = false;
+            this.checkBox2.Location = new System.Drawing.Point(95, 22);
+            this.checkBox2.Name = "checkBox2";
+            this.checkBox2.Size = new System.Drawing.Size(113, 17);
+            this.checkBox2.TabIndex = 2;
+            this.checkBox2.Text = "Install Thunderbird";
+            this.checkBox2.UseVisualStyleBackColor = true;
+            // 
+            // checkBox3
+            // 
+            this.checkBox3.AutoSize = true;
+            this.checkBox3.Enabled = false;
+            this.checkBox3.Location = new System.Drawing.Point(214, 22);
+            this.checkBox3.Name = "checkBox3";
+            this.checkBox3.Size = new System.Drawing.Size(85, 17);
+            this.checkBox3.TabIndex = 3;
+            this.checkBox3.Text = "Install Itunes";
+            this.checkBox3.UseVisualStyleBackColor = true;
+            // 
+            // checkBox4
+            // 
+            this.checkBox4.AutoSize = true;
+            this.checkBox4.Enabled = false;
+            this.checkBox4.Location = new System.Drawing.Point(305, 22);
+            this.checkBox4.Name = "checkBox4";
+            this.checkBox4.Size = new System.Drawing.Size(78, 17);
+            this.checkBox4.TabIndex = 4;
+            this.checkBox4.Text = "VLC Player";
+            this.checkBox4.UseVisualStyleBackColor = true;
+            // 
+            // checkBox5
+            // 
+            this.checkBox5.AutoSize = true;
+            this.checkBox5.Enabled = false;
+            this.checkBox5.Location = new System.Drawing.Point(389, 22);
+            this.checkBox5.Name = "checkBox5";
+            this.checkBox5.Size = new System.Drawing.Size(58, 17);
+            this.checkBox5.TabIndex = 5;
+            this.checkBox5.Text = "Spotify";
+            this.checkBox5.UseVisualStyleBackColor = true;
+            // 
+            // checkBox6
+            // 
+            this.checkBox6.AutoSize = true;
+            this.checkBox6.Enabled = false;
+            this.checkBox6.Location = new System.Drawing.Point(3, 45);
+            this.checkBox6.Name = "checkBox6";
+            this.checkBox6.Size = new System.Drawing.Size(73, 17);
+            this.checkBox6.TabIndex = 6;
+            this.checkBox6.Text = "Essentials";
+            this.checkBox6.UseVisualStyleBackColor = true;
+            // 
+            // checkBox7
+            // 
+            this.checkBox7.AutoSize = true;
+            this.checkBox7.Enabled = false;
+            this.checkBox7.Location = new System.Drawing.Point(95, 45);
+            this.checkBox7.Name = "checkBox7";
+            this.checkBox7.Size = new System.Drawing.Size(91, 17);
+            this.checkBox7.TabIndex = 7;
+            this.checkBox7.Text = "Malwarebytes";
+            this.checkBox7.UseVisualStyleBackColor = true;
+            // 
+            // checkBox8
+            // 
+            this.checkBox8.AutoSize = true;
+            this.checkBox8.Enabled = false;
+            this.checkBox8.Location = new System.Drawing.Point(214, 45);
+            this.checkBox8.Name = "checkBox8";
+            this.checkBox8.Size = new System.Drawing.Size(66, 17);
+            this.checkBox8.TabIndex = 8;
+            this.checkBox8.Text = "Dropbox";
+            this.checkBox8.UseVisualStyleBackColor = true;
+            // 
+            // checkBox9
+            // 
+            this.checkBox9.AutoSize = true;
+            this.checkBox9.Enabled = false;
+            this.checkBox9.Location = new System.Drawing.Point(303, 45);
+            this.checkBox9.Name = "checkBox9";
+            this.checkBox9.Size = new System.Drawing.Size(88, 17);
+            this.checkBox9.TabIndex = 9;
+            this.checkBox9.Text = "Google Drive";
+            this.checkBox9.UseVisualStyleBackColor = true;
+            // 
+            // checkBox11
+            // 
+            this.checkBox11.AutoSize = true;
+            this.checkBox11.Enabled = false;
+            this.checkBox11.Location = new System.Drawing.Point(389, 45);
+            this.checkBox11.Name = "checkBox11";
+            this.checkBox11.Size = new System.Drawing.Size(65, 17);
+            this.checkBox11.TabIndex = 11;
+            this.checkBox11.Text = "ImgBurn";
+            this.checkBox11.UseVisualStyleBackColor = true;
+            // 
+            // checkBox12
+            // 
+            this.checkBox12.AutoSize = true;
+            this.checkBox12.Enabled = false;
+            this.checkBox12.Location = new System.Drawing.Point(3, 68);
+            this.checkBox12.Name = "checkBox12";
+            this.checkBox12.Size = new System.Drawing.Size(84, 17);
+            this.checkBox12.TabIndex = 12;
+            this.checkBox12.Text = "Classic Start";
+            this.checkBox12.UseVisualStyleBackColor = true;
+            // 
+            // checkBox10
+            // 
+            this.checkBox10.AutoSize = true;
+            this.checkBox10.Enabled = false;
+            this.checkBox10.Location = new System.Drawing.Point(95, 68);
+            this.checkBox10.Name = "checkBox10";
+            this.checkBox10.Size = new System.Drawing.Size(48, 17);
+            this.checkBox10.TabIndex = 13;
+            this.checkBox10.Text = "7-zip";
+            this.checkBox10.UseVisualStyleBackColor = true;
+            // 
+            // checkBox13
+            // 
+            this.checkBox13.AutoSize = true;
+            this.checkBox13.Enabled = false;
+            this.checkBox13.Location = new System.Drawing.Point(214, 68);
+            this.checkBox13.Name = "checkBox13";
+            this.checkBox13.Size = new System.Drawing.Size(68, 17);
+            this.checkBox13.TabIndex = 14;
+            this.checkBox13.Text = "WinRAR";
+            this.checkBox13.UseVisualStyleBackColor = true;
+            // 
+            // checkBox14
+            // 
+            this.checkBox14.AutoSize = true;
+            this.checkBox14.Enabled = false;
+            this.checkBox14.Location = new System.Drawing.Point(303, 68);
+            this.checkBox14.Name = "checkBox14";
+            this.checkBox14.Size = new System.Drawing.Size(61, 17);
+            this.checkBox14.TabIndex = 15;
+            this.checkBox14.Text = "FileZilla";
+            this.checkBox14.UseVisualStyleBackColor = true;
+            // 
+            // checkBox15
+            // 
+            this.checkBox15.AutoSize = true;
+            this.checkBox15.Enabled = false;
+            this.checkBox15.Location = new System.Drawing.Point(389, 68);
+            this.checkBox15.Name = "checkBox15";
+            this.checkBox15.Size = new System.Drawing.Size(79, 17);
+            this.checkBox15.TabIndex = 16;
+            this.checkBox15.Text = "Notepad++";
+            this.checkBox15.UseVisualStyleBackColor = true;
+            // 
+            // checkBox16
+            // 
+            this.checkBox16.AutoSize = true;
+            this.checkBox16.Enabled = false;
+            this.checkBox16.Location = new System.Drawing.Point(2, 91);
+            this.checkBox16.Name = "checkBox16";
+            this.checkBox16.Size = new System.Drawing.Size(66, 17);
+            this.checkBox16.TabIndex = 17;
+            this.checkBox16.Text = "WinSCP";
+            this.checkBox16.UseVisualStyleBackColor = true;
+            // 
+            // checkBox17
+            // 
+            this.checkBox17.AutoSize = true;
+            this.checkBox17.Enabled = false;
+            this.checkBox17.Location = new System.Drawing.Point(95, 91);
+            this.checkBox17.Name = "checkBox17";
+            this.checkBox17.Size = new System.Drawing.Size(50, 17);
+            this.checkBox17.TabIndex = 18;
+            this.checkBox17.Text = "Putty";
+            this.checkBox17.UseVisualStyleBackColor = true;
+            // 
+            // button2
+            // 
+            this.button2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.button2.Enabled = false;
+            this.button2.Location = new System.Drawing.Point(303, 90);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(161, 23);
+            this.button2.TabIndex = 19;
+            this.button2.Text = "Install programs with Ninite!";
+            this.button2.UseVisualStyleBackColor = true;
+            // 
+            // button3
+            // 
+            this.button3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.button3.Enabled = false;
+            this.button3.Location = new System.Drawing.Point(222, 91);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(75, 23);
+            this.button3.TabIndex = 20;
+            this.button3.Text = "Select all";
+            this.button3.UseVisualStyleBackColor = true;
             // 
             // label6
             // 
             this.label6.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(9, 340);
+            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.Location = new System.Drawing.Point(10, 362);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(114, 13);
+            this.label6.Size = new System.Drawing.Size(101, 13);
             this.label6.TabIndex = 69;
-            this.label6.Text = "disable remote registry:";
+            this.label6.Text = "optional options:";
             // 
-            // button2
+            // label9
             // 
-            this.button2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.button2.AutoSize = true;
-            this.button2.Enabled = false;
-            this.button2.Location = new System.Drawing.Point(418, 356);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
-            this.button2.TabIndex = 68;
-            this.button2.Text = "Apply";
-            this.button2.UseVisualStyleBackColor = true;
+            this.label9.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(9, 498);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(158, 13);
+            this.label9.TabIndex = 72;
+            this.label9.Text = "Install Keepass as Administrator:";
+            // 
+            // button4
+            // 
+            this.button4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.button4.AutoSize = true;
+            this.button4.Enabled = false;
+            this.button4.Location = new System.Drawing.Point(418, 514);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(75, 23);
+            this.button4.TabIndex = 71;
+            this.button4.Text = "Apply";
+            this.button4.UseVisualStyleBackColor = true;
             // 
             // progressBar2
             // 
             this.progressBar2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.progressBar2.Enabled = false;
-            this.progressBar2.Location = new System.Drawing.Point(9, 356);
+            this.progressBar2.Location = new System.Drawing.Point(9, 514);
             this.progressBar2.Name = "progressBar2";
             this.progressBar2.Size = new System.Drawing.Size(406, 23);
-            this.progressBar2.TabIndex = 67;
+            this.progressBar2.TabIndex = 70;
+            // 
+            // label12
+            // 
+            this.label12.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(9, 540);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(369, 13);
+            this.label12.TabIndex = 75;
+            this.label12.Text = "Google Chrome 64 bit (Work/Bussiness Edition) with extra hardened security:";
+            // 
+            // button5
+            // 
+            this.button5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.button5.AutoSize = true;
+            this.button5.Enabled = false;
+            this.button5.Location = new System.Drawing.Point(418, 556);
+            this.button5.Name = "button5";
+            this.button5.Size = new System.Drawing.Size(75, 23);
+            this.button5.TabIndex = 74;
+            this.button5.Text = "Apply";
+            this.button5.UseVisualStyleBackColor = true;
+            // 
+            // progressBar3
+            // 
+            this.progressBar3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.progressBar3.Enabled = false;
+            this.progressBar3.Location = new System.Drawing.Point(9, 556);
+            this.progressBar3.Name = "progressBar3";
+            this.progressBar3.Size = new System.Drawing.Size(406, 23);
+            this.progressBar3.TabIndex = 73;
+            // 
+            // label13
+            // 
+            this.label13.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.label13.AutoSize = true;
+            this.label13.Location = new System.Drawing.Point(9, 582);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(164, 13);
+            this.label13.TabIndex = 78;
+            this.label13.Text = "Install safety addons into chrome:";
+            // 
+            // button6
+            // 
+            this.button6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.button6.AutoSize = true;
+            this.button6.Enabled = false;
+            this.button6.Location = new System.Drawing.Point(418, 598);
+            this.button6.Name = "button6";
+            this.button6.Size = new System.Drawing.Size(75, 23);
+            this.button6.TabIndex = 77;
+            this.button6.Text = "Apply";
+            this.button6.UseVisualStyleBackColor = true;
+            // 
+            // progressBar4
+            // 
+            this.progressBar4.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.progressBar4.Enabled = false;
+            this.progressBar4.Location = new System.Drawing.Point(9, 598);
+            this.progressBar4.Name = "progressBar4";
+            this.progressBar4.Size = new System.Drawing.Size(406, 23);
+            this.progressBar4.TabIndex = 76;
+            // 
+            // linkLabel1
+            // 
+            this.linkLabel1.AutoSize = true;
+            this.linkLabel1.Location = new System.Drawing.Point(1, -1);
+            this.linkLabel1.Name = "linkLabel1";
+            this.linkLabel1.Size = new System.Drawing.Size(306, 13);
+            this.linkLabel1.TabIndex = 79;
+            this.linkLabel1.TabStop = true;
+            this.linkLabel1.Text = "ninite installer (for more programs visit https://www.ninite.com/):";
+            this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel1_LinkClicked);
+            // 
+            // menuStrip1
+            // 
+            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.fileToolStripMenuItem,
+            this.connectionSettingsToolStripMenuItem,
+            this.helpToolStripMenuItem});
+            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
+            this.menuStrip1.Name = "menuStrip1";
+            this.menuStrip1.Size = new System.Drawing.Size(510, 24);
+            this.menuStrip1.TabIndex = 79;
+            this.menuStrip1.Text = "menuStrip1";
+            // 
+            // fileToolStripMenuItem
+            // 
+            this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.exitToolStripMenuItem});
+            this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
+            this.fileToolStripMenuItem.Size = new System.Drawing.Size(35, 20);
+            this.fileToolStripMenuItem.Text = "file";
+            // 
+            // exitToolStripMenuItem
+            // 
+            this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.exitToolStripMenuItem.Text = "exit";
+            this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
+            // 
+            // connectionSettingsToolStripMenuItem
+            // 
+            this.connectionSettingsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.setAsServerToolStripMenuItem,
+            this.setAsClientToolStripMenuItem});
+            this.connectionSettingsToolStripMenuItem.Enabled = false;
+            this.connectionSettingsToolStripMenuItem.Name = "connectionSettingsToolStripMenuItem";
+            this.connectionSettingsToolStripMenuItem.Size = new System.Drawing.Size(60, 20);
+            this.connectionSettingsToolStripMenuItem.Text = "settings";
+            // 
+            // setAsServerToolStripMenuItem
+            // 
+            this.setAsServerToolStripMenuItem.Name = "setAsServerToolStripMenuItem";
+            this.setAsServerToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.setAsServerToolStripMenuItem.Text = "set as server";
+            // 
+            // setAsClientToolStripMenuItem
+            // 
+            this.setAsClientToolStripMenuItem.Name = "setAsClientToolStripMenuItem";
+            this.setAsClientToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.setAsClientToolStripMenuItem.Text = "set as client";
+            // 
+            // helpToolStripMenuItem
+            // 
+            this.helpToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.documentationToolStripMenuItem,
+            this.aboutToolStripMenuItem});
+            this.helpToolStripMenuItem.Enabled = false;
+            this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
+            this.helpToolStripMenuItem.Size = new System.Drawing.Size(42, 20);
+            this.helpToolStripMenuItem.Text = "help";
+            // 
+            // documentationToolStripMenuItem
+            // 
+            this.documentationToolStripMenuItem.Name = "documentationToolStripMenuItem";
+            this.documentationToolStripMenuItem.Size = new System.Drawing.Size(157, 22);
+            this.documentationToolStripMenuItem.Text = "Documentation";
+            // 
+            // aboutToolStripMenuItem
+            // 
+            this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
+            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(157, 22);
+            this.aboutToolStripMenuItem.Text = "About";
             // 
             // window
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-            this.ClientSize = new System.Drawing.Size(510, 584);
-            this.Controls.Add(this.label6);
-            this.Controls.Add(this.button2);
+            this.ClientSize = new System.Drawing.Size(510, 683);
+            this.Controls.Add(this.label13);
+            this.Controls.Add(this.button6);
+            this.Controls.Add(this.progressBar4);
+            this.Controls.Add(this.label12);
+            this.Controls.Add(this.button5);
+            this.Controls.Add(this.progressBar3);
+            this.Controls.Add(this.label9);
+            this.Controls.Add(this.button4);
             this.Controls.Add(this.progressBar2);
+            this.Controls.Add(this.label6);
+            this.Controls.Add(this.panel1);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.progressBar1);
@@ -417,12 +864,18 @@ namespace windows_tweak_tool
             this.Controls.Add(this.label1);
             this.Controls.Add(this.temp_policy_btn);
             this.Controls.Add(this.temp_policy_load);
+            this.Controls.Add(this.menuStrip1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.MinimumSize = new System.Drawing.Size(526, 623);
+            this.MainMenuStrip = this.menuStrip1;
+            this.MinimumSize = new System.Drawing.Size(526, 684);
             this.Name = "window";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Windows Tweaker Tool 1.0b (WTT) - nuke the planet with security";
             this.Load += new System.EventHandler(this.window_Load);
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
+            this.menuStrip1.ResumeLayout(false);
+            this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -457,9 +910,46 @@ namespace windows_tweak_tool
         private Label label5;
         public Button button1;
         public ProgressBar progressBar1;
-        private Label label6;
+        private Panel panel1;
+        private CheckBox checkBox1;
+        private CheckBox checkBox8;
+        private CheckBox checkBox7;
+        private CheckBox checkBox6;
+        private CheckBox checkBox5;
+        private CheckBox checkBox4;
+        private CheckBox checkBox3;
+        private CheckBox checkBox2;
+        private CheckBox checkBox12;
+        private CheckBox checkBox11;
+        private CheckBox checkBox9;
+        private CheckBox checkBox13;
+        private CheckBox checkBox10;
+        private CheckBox checkBox17;
+        private CheckBox checkBox16;
+        private CheckBox checkBox15;
+        private CheckBox checkBox14;
+        private Button button3;
         private Button button2;
+        private Label label6;
+        private Label label9;
+        private Button button4;
         private ProgressBar progressBar2;
+        private Label label12;
+        private Button button5;
+        private ProgressBar progressBar3;
+        private Label label13;
+        private Button button6;
+        private ProgressBar progressBar4;
+        private LinkLabel linkLabel1;
+        private MenuStrip menuStrip1;
+        private ToolStripMenuItem fileToolStripMenuItem;
+        private ToolStripMenuItem exitToolStripMenuItem;
+        private ToolStripMenuItem connectionSettingsToolStripMenuItem;
+        private ToolStripMenuItem setAsServerToolStripMenuItem;
+        private ToolStripMenuItem setAsClientToolStripMenuItem;
+        private ToolStripMenuItem helpToolStripMenuItem;
+        private ToolStripMenuItem documentationToolStripMenuItem;
+        private ToolStripMenuItem aboutToolStripMenuItem;
     }
 }
 
