@@ -46,6 +46,7 @@ namespace windows_tweak_tool.src.policies
             ".ocx",
             ".scr",
             ".pif",
+            ".ps1", //since this is default set to notepad in alot of windows versions, older non updated versions still use ps1 as powershell application, for this reason keep patching it to notepad
             //macros need to be blocked aswell :)
             ".docm",
             ".dotm",
@@ -136,6 +137,9 @@ namespace windows_tweak_tool.src.policies
                         break;
                     case ".xlsm":
                         ftype.Arguments = "/c ftype " + extension.ToUpper() + @"File=C:\Program Files (x86)\Microsoft Office\root\Office16\Excel.exe";
+                        break;
+                    case ".ps1":
+                        //do nothing ps1 is already as default megitated to notepad.
                         break;
                     default:
                         ftype.Arguments = "/c ftype " + extension.ToUpper() + @"File=C:\Windows\System32\wscript.exe";
