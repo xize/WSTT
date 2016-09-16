@@ -784,19 +784,20 @@ namespace windows_tweak_tool
             this.connectionSettingsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.setAsServerToolStripMenuItem,
             this.setAsClientToolStripMenuItem});
-            this.connectionSettingsToolStripMenuItem.Enabled = false;
             this.connectionSettingsToolStripMenuItem.Name = "connectionSettingsToolStripMenuItem";
             this.connectionSettingsToolStripMenuItem.Size = new System.Drawing.Size(60, 20);
             this.connectionSettingsToolStripMenuItem.Text = "settings";
             // 
             // setAsServerToolStripMenuItem
             // 
+            this.setAsServerToolStripMenuItem.Enabled = false;
             this.setAsServerToolStripMenuItem.Name = "setAsServerToolStripMenuItem";
             this.setAsServerToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.setAsServerToolStripMenuItem.Text = "set as server";
             // 
             // setAsClientToolStripMenuItem
             // 
+            this.setAsClientToolStripMenuItem.Enabled = false;
             this.setAsClientToolStripMenuItem.Name = "setAsClientToolStripMenuItem";
             this.setAsClientToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.setAsClientToolStripMenuItem.Text = "set as client";
