@@ -98,7 +98,15 @@ namespace windows_tweak_tool.src
 
         private void saveConfig()
         {
-            FileStream fs = File.Create("config.txt");
+
+            string path = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData)+@"\WTT";
+
+            if(!Directory.Exists(path))
+            {
+                Directory.CreateDirectory(path);
+            }
+
+            FileStream fs = File.Create(path+@"\config.txt");
 
             string data = "";
 
@@ -115,11 +123,19 @@ namespace windows_tweak_tool.src
 
         public void readConfig()
         {
-            if(!File.Exists("config.txt"))
+
+            string path = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\WTT";
+
+            if (!Directory.Exists(path))
             {
                 return;
             }
-            FileStream fs = File.OpenRead("config.txt");
+
+            if (!File.Exists(path+@"\config.txt"))
+            {
+                return;
+            }
+            FileStream fs = File.OpenRead(path+@"\config.txt");
             StreamReader reader = new StreamReader(fs);
             string cfg = reader.ReadToEnd();
             string[] cfglines = cfg.Split('\n');
