@@ -36,10 +36,9 @@ namespace windows_tweak_tool.src.policies
         private Dictionary<string, AutoItX3> autoit_tasks = new Dictionary<string, AutoItX3>();
         protected window gui;
 
-        public Policy()
+        protected Policy()
         {
-            //initialize the embedded AutoIT dll
-            hookAutoIT();
+            
         }
 
         public void setGui(window win)
@@ -189,22 +188,6 @@ namespace windows_tweak_tool.src.policies
             HKLM,
             HKCU,
             HKCR
-        }
-
-        private void hookAutoIT()
-        {
-            AppDomain.CurrentDomain.AssemblyResolve += (sender, args) =>
-            {
-                string resourceName = new AssemblyName(args.Name).Name + ".dll";
-                string resource = Array.Find(this.GetType().Assembly.GetManifestResourceNames(), element => element.EndsWith(resourceName));
-
-                using (var stream = Assembly.GetExecutingAssembly().GetManifestResourceStream(resource))
-                {
-                    Byte[] assemblyData = new Byte[stream.Length];
-                    stream.Read(assemblyData, 0, assemblyData.Length);
-                    return Assembly.Load(assemblyData);
-                }
-            };
         }
     }
 }

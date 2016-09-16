@@ -59,15 +59,5 @@ namespace windows_tweak_tool.Properties {
                 resourceCulture = value;
             }
         }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Byte[].
-        /// </summary>
-        internal static byte[] AutoItX3 {
-            get {
-                object obj = ResourceManager.GetObject("AutoItX3", resourceCulture);
-                return ((byte[])(obj));
-            }
-        }
     }
 }
