@@ -86,6 +86,7 @@
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Management" />
+    <Reference Include="System.ServiceProcess" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -102,6 +103,7 @@
     <Compile Include="src\policies\NetbiosPolicy.cs" />
     <Compile Include="src\policies\PolicyType.cs" />
     <Compile Include="src\policies\Policy.cs" />
+    <Compile Include="src\policies\RemoteRegistryPolicy.cs" />
     <Compile Include="src\policies\RenamePolicy.cs" />
     <Compile Include="src\policies\UacPolicy.cs" />
     <Compile Include="src\policies\UpdatePolicy.cs" />
@@ -140,17 +142,12 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
     <Compile Include="src\policies\TempPolicy.cs" />
-    <None Include="src\reg\jsfile_del.reg" />
-    <None Include="src\reg\jsfile_add.reg" />
     <None Include="WTT.pfx" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="src\lib\AutoItX3.dll">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </EmbeddedResource>
     <Content Include="windows.ico" />
   </ItemGroup>
   <ItemGroup>

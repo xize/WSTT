@@ -31,6 +31,7 @@ namespace windows_tweak_tool.src.policies
         public static PolicyType UAC_POLICY = new PolicyType("uac_policy", new UacPolicy());
         public static PolicyType NETBIOS_POLICY = new PolicyType("netbios_policy", new NetbiosPolicy());
         public static PolicyType RENAME_POLICY = new PolicyType("rename_policy", new RenamePolicy());
+        public static PolicyType REMOTE_REGISTRY_POLICY = new PolicyType("remote_registry_policy", new RemoteRegistryPolicy());
 
         private string name;
         private Policy pol;

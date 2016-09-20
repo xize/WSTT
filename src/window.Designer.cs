@@ -53,8 +53,8 @@ namespace windows_tweak_tool
             this.button10 = new System.Windows.Forms.Button();
             this.progressBar10 = new System.Windows.Forms.ProgressBar();
             this.label11 = new System.Windows.Forms.Label();
-            this.button11 = new System.Windows.Forms.Button();
-            this.progressBar11 = new System.Windows.Forms.ProgressBar();
+            this.remoteregbtn = new System.Windows.Forms.Button();
+            this.remoteregprogress = new System.Windows.Forms.ProgressBar();
             this.button14 = new System.Windows.Forms.Button();
             this.button15 = new System.Windows.Forms.Button();
             this.tooltip = new System.Windows.Forms.ToolTip(this.components);
@@ -101,6 +101,7 @@ namespace windows_tweak_tool
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.documentationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.panel1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -315,27 +316,28 @@ namespace windows_tweak_tool
             this.label11.Text = "disable remote registry:";
             this.label11.Click += new System.EventHandler(this.label11_Click);
             // 
-            // button11
+            // remoteregbtn
             // 
-            this.button11.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.button11.AutoSize = true;
-            this.button11.Enabled = false;
-            this.button11.Location = new System.Drawing.Point(418, 335);
-            this.button11.Name = "button11";
-            this.button11.Size = new System.Drawing.Size(75, 23);
-            this.button11.TabIndex = 31;
-            this.button11.Text = "Apply";
-            this.button11.UseVisualStyleBackColor = true;
+            this.remoteregbtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.remoteregbtn.AutoSize = true;
+            this.remoteregbtn.Enabled = false;
+            this.remoteregbtn.Location = new System.Drawing.Point(418, 335);
+            this.remoteregbtn.Name = "remoteregbtn";
+            this.remoteregbtn.Size = new System.Drawing.Size(75, 23);
+            this.remoteregbtn.TabIndex = 31;
+            this.remoteregbtn.Text = "Apply";
+            this.remoteregbtn.UseVisualStyleBackColor = true;
+            this.remoteregbtn.Click += new System.EventHandler(this.remoteregbtn_Click);
             // 
-            // progressBar11
+            // remoteregprogress
             // 
-            this.progressBar11.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.remoteregprogress.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.progressBar11.Enabled = false;
-            this.progressBar11.Location = new System.Drawing.Point(9, 335);
-            this.progressBar11.Name = "progressBar11";
-            this.progressBar11.Size = new System.Drawing.Size(406, 23);
-            this.progressBar11.TabIndex = 30;
+            this.remoteregprogress.Enabled = false;
+            this.remoteregprogress.Location = new System.Drawing.Point(9, 335);
+            this.remoteregprogress.Name = "remoteregprogress";
+            this.remoteregprogress.Size = new System.Drawing.Size(406, 23);
+            this.remoteregprogress.TabIndex = 30;
             // 
             // button14
             // 
@@ -824,6 +826,10 @@ namespace windows_tweak_tool
             this.aboutToolStripMenuItem.Size = new System.Drawing.Size(157, 22);
             this.aboutToolStripMenuItem.Text = "About";
             // 
+            // toolTip1
+            // 
+            this.toolTip1.Popup += new System.Windows.Forms.PopupEventHandler(this.toolTip1_Popup);
+            // 
             // window
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -845,8 +851,8 @@ namespace windows_tweak_tool
             this.Controls.Add(this.button15);
             this.Controls.Add(this.button14);
             this.Controls.Add(this.label11);
-            this.Controls.Add(this.button11);
-            this.Controls.Add(this.progressBar11);
+            this.Controls.Add(this.remoteregbtn);
+            this.Controls.Add(this.remoteregprogress);
             this.Controls.Add(this.label10);
             this.Controls.Add(this.button10);
             this.Controls.Add(this.progressBar10);
@@ -903,8 +909,8 @@ namespace windows_tweak_tool
         private System.Windows.Forms.Button button10;
         private System.Windows.Forms.ProgressBar progressBar10;
         private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.Button button11;
-        private System.Windows.Forms.ProgressBar progressBar11;
+        public System.Windows.Forms.Button remoteregbtn;
+        public System.Windows.Forms.ProgressBar remoteregprogress;
         private System.Windows.Forms.Button button14;
         private System.Windows.Forms.Button button15;
         private ToolTip tooltip;
@@ -951,6 +957,7 @@ namespace windows_tweak_tool
         private ToolStripMenuItem helpToolStripMenuItem;
         private ToolStripMenuItem documentationToolStripMenuItem;
         private ToolStripMenuItem aboutToolStripMenuItem;
+        private ToolTip toolTip1;
     }
 }
 
