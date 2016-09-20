@@ -149,7 +149,7 @@ namespace windows_tweak_tool
 
             if (p.isEnabled())
             {
-                DialogResult dialog = MessageBox.Show("This macro is rather very instable, it only seems to work on a dutch version on a resolution of 1920*1080\n\n press yes to continue press no to cancel", "warning instable macro!", MessageBoxButtons.YesNo);
+                DialogResult dialog = MessageBox.Show("This macro is rather very unstable, it only seems to work on a dutch version on a resolution of 1920*1080\n\n press yes to continue press no to cancel", "warning unstable macro!", MessageBoxButtons.YesNo);
 
                 if (dialog == DialogResult.No)
                 {
@@ -160,7 +160,7 @@ namespace windows_tweak_tool
                 temp_policy_btn.Text = "Apply";
             } else
             {
-                DialogResult dialog = MessageBox.Show("This macro is rather very instable, it only seems to work on a dutch version on a resolution of 1920*1080\n\n press yes to continue press no to cancel", "warning instable macro!", MessageBoxButtons.YesNo);
+                DialogResult dialog = MessageBox.Show("This macro is rather very unstable, it only seems to work on a dutch version on a resolution of 1920*1080\n\n press yes to continue press no to cancel", "warning unstable macro!", MessageBoxButtons.YesNo);
 
                 if (dialog == DialogResult.No)
                 {
@@ -214,7 +214,7 @@ namespace windows_tweak_tool
             Policy p = PolicyType.UAC_POLICY.getPolicy(this);
             if(p.isEnabled())
             {
-                DialogResult dialog = MessageBox.Show("This macro is rather very instable, it only seems to work on a dutch version on a resolution of 1920*1080\n\n press yes to continue press no to cancel", "warning instable macro!", MessageBoxButtons.YesNo);
+                DialogResult dialog = MessageBox.Show("This macro is rather very unstable, it only seems to work on a dutch version on a resolution of 1920*1080\n\n press yes to continue press no to cancel", "warning unstable macro!", MessageBoxButtons.YesNo);
 
                 if (dialog == DialogResult.No)
                 {
@@ -225,7 +225,7 @@ namespace windows_tweak_tool
                 uac_progress.Value = 0;
             } else
             {
-                DialogResult dialog = MessageBox.Show("This macro is rather very instable, it only seems to work on a dutch version on a resolution of 1920*1080\n\n press yes to continue press no to cancel", "warning instable macro!", MessageBoxButtons.YesNo);
+                DialogResult dialog = MessageBox.Show("This macro is rather very unstable, it only seems to work on a dutch version on a resolution of 1920*1080\n\n press yes to continue press no to cancel", "warning unstable macro!", MessageBoxButtons.YesNo);
 
                 if (dialog == DialogResult.No)
                 {
