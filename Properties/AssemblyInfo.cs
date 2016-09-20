@@ -8,16 +8,14 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle("Windows Tweak Tool")]
 [assembly: AssemblyDescription("With this tool you can automate security patches, such as policies")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Windows Tweak Tool")]
-[assembly: AssemblyProduct("windows tweak tool")]
+[assembly: AssemblyProduct("Windows Tweak Tool")]
 [assembly: AssemblyCopyright("Copyright ©  2016")]
-[assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
 // Setting ComVisible to false makes the types in this assembly not visible 
 // to COM components.  If you need to access a type in this assembly from 
 // COM, set the ComVisible attribute to true on that type.
-[assembly: ComVisible(true)]
+[assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
 [assembly: Guid("8a09e500-4dfa-4a20-b35d-7c7b0237b31a")]
