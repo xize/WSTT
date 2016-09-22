@@ -27,6 +27,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Management;
 using Microsoft.Win32;
+using System.ServiceProcess;
 
 namespace windows_tweak_tool.src.policies
 {
@@ -47,6 +48,28 @@ namespace windows_tweak_tool.src.policies
             {
                 this.gui = win;
             }
+        }
+
+        public bool isServiceStarted(string service)
+        {
+            ServiceController controller = new ServiceController(service);
+            if(controller.Status == ServiceControllerStatus.Running)
+            {
+                return true;
+            }
+            return false;
+        }
+
+        public void startService(string service)
+        {
+            ServiceController controller = new ServiceController(service);
+            controller.Start();
+        }
+
+        public void stopService(string service)
+        {
+            ServiceController controller = new ServiceController(service);
+            controller.Stop();
         }
 
         public abstract bool isSecpolDepended();
