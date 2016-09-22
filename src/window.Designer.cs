@@ -873,6 +873,7 @@ namespace windows_tweak_tool
             // 
             this.textBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.textBox1.Enabled = false;
             this.textBox1.Location = new System.Drawing.Point(9, 685);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(241, 20);
@@ -882,6 +883,7 @@ namespace windows_tweak_tool
             // button8
             // 
             this.button8.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.button8.Enabled = false;
             this.button8.Location = new System.Drawing.Point(337, 682);
             this.button8.Name = "button8";
             this.button8.Size = new System.Drawing.Size(75, 23);
@@ -892,6 +894,7 @@ namespace windows_tweak_tool
             // button9
             // 
             this.button9.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.button9.Enabled = false;
             this.button9.Location = new System.Drawing.Point(418, 682);
             this.button9.Name = "button9";
             this.button9.Size = new System.Drawing.Size(75, 23);
@@ -913,6 +916,7 @@ namespace windows_tweak_tool
             // button11
             // 
             this.button11.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.button11.Enabled = false;
             this.button11.Location = new System.Drawing.Point(256, 682);
             this.button11.Name = "button11";
             this.button11.Size = new System.Drawing.Size(75, 23);
