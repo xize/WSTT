@@ -72,6 +72,36 @@ namespace windows_tweak_tool.src.policies
             controller.Stop();
         }
 
+        public void setServiceType(string service, ServiceType type)
+        {
+            int stype = 4;
+            switch(type)
+            {
+                case ServiceType.AUTOMATIC_SLOWED:
+                    stype = 1;
+                    break;
+                case ServiceType.AUTOMATIC:
+                    stype = 2;
+                    break;
+                case ServiceType.MANUAL:
+                    stype = 3;
+                    break;
+                case ServiceType.DISABLED:
+                    stype = 4;
+                    break;
+            }
+            RegistryKey key = getRegistry(@"SYSTEM\CurrentControlSet\Services\"+service, REG.HKLM);
+            key.SetValue("Start", stype);
+            key.Close();
+        }
+
+        public enum ServiceType {
+            AUTOMATIC_SLOWED,
+            AUTOMATIC,
+            MANUAL,
+            DISABLED
+        }
+
         public abstract bool isSecpolDepended();
 
         public bool isSecpolEnabled()
