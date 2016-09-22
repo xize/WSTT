@@ -909,9 +909,9 @@ namespace windows_tweak_tool
             this.label14.AutoSize = true;
             this.label14.Location = new System.Drawing.Point(6, 665);
             this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(292, 13);
+            this.label14.Size = new System.Drawing.Size(355, 13);
             this.label14.TabIndex = 86;
-            this.label14.Text = "I\'m I compromised on leakedsource.com?: (status: unknown)";
+            this.label14.Text = "I\'m I compromised on leakedsource.com password list?: (status: unknown)";
             // 
             // button11
             // 
