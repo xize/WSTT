@@ -63,18 +63,22 @@ namespace windows_tweak_tool.src.policies
 
         public override void apply()
         {
+            getButton().Enabled = false;
             stopService("RemoteRegistry");
             RegistryKey key = getRegistry(@"SYSTEM\CurrentControlSet\Services\RemoteRegistry", REG.HKLM);
             key.SetValue("Start", 4);
             key.Close();
+            getButton().Enabled = true;
         }
 
         public override void unapply()
         {
+            getButton().Enabled = false;
             RegistryKey key = getRegistry(@"SYSTEM\CurrentControlSet\Services\RemoteRegistry", REG.HKLM);
             key.SetValue("Start", 2);
             key.Close();
             startService("RemoteRegistry");
+            getButton().Enabled = true;
         }
 
         public override Button getButton()
