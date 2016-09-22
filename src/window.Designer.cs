@@ -320,7 +320,6 @@ namespace windows_tweak_tool
             // 
             this.remoteregbtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.remoteregbtn.AutoSize = true;
-            this.remoteregbtn.Enabled = false;
             this.remoteregbtn.Location = new System.Drawing.Point(418, 335);
             this.remoteregbtn.Name = "remoteregbtn";
             this.remoteregbtn.Size = new System.Drawing.Size(75, 23);
@@ -333,7 +332,6 @@ namespace windows_tweak_tool
             // 
             this.remoteregprogress.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.remoteregprogress.Enabled = false;
             this.remoteregprogress.Location = new System.Drawing.Point(9, 335);
             this.remoteregprogress.Name = "remoteregprogress";
             this.remoteregprogress.Size = new System.Drawing.Size(406, 23);

@@ -81,13 +81,7 @@ namespace windows_tweak_tool.src.policies
             key.SetValue("Start", 2);
             key.Close();
             ServiceController service = new ServiceController("RemoteRegistry");
-            try
-            {
-                service.Start();
-            } catch(Exception e)
-            {
-                //suspress the exception :)
-            }
+            service.Start();
         }
 
         public override Button getButton()
