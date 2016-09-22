@@ -58,18 +58,12 @@ namespace windows_tweak_tool.src.policies
 
         public override bool isEnabled()
         {
-            ServiceController service = new ServiceController("Remote Registry");
-            if (service.Status == ServiceControllerStatus.Stopped)
-            {
-                return true;
-            }
-            return false;
+            return !isServiceStarted("RemoteRegistry");
         }
 
         public override void apply()
         {
-            ServiceController service = new ServiceController("RemoteRegistry");
-            service.Stop();
+            stopService("RemoteRegistry");
             RegistryKey key = getRegistry(@"SYSTEM\CurrentControlSet\Services\RemoteRegistry", REG.HKLM);
             key.SetValue("Start", 4);
             key.Close();
@@ -80,8 +74,7 @@ namespace windows_tweak_tool.src.policies
             RegistryKey key = getRegistry(@"SYSTEM\CurrentControlSet\Services\RemoteRegistry", REG.HKLM);
             key.SetValue("Start", 2);
             key.Close();
-            ServiceController service = new ServiceController("RemoteRegistry");
-            service.Start();
+            startService("RemoteRegistry");
         }
 
         public override Button getButton()
