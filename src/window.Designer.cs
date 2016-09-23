@@ -50,8 +50,8 @@ namespace windows_tweak_tool
             this.uac_btn = new System.Windows.Forms.Button();
             this.uac_progress = new System.Windows.Forms.ProgressBar();
             this.label10 = new System.Windows.Forms.Label();
-            this.button10 = new System.Windows.Forms.Button();
-            this.progressBar10 = new System.Windows.Forms.ProgressBar();
+            this.rdpbtn = new System.Windows.Forms.Button();
+            this.rdpprogress = new System.Windows.Forms.ProgressBar();
             this.label11 = new System.Windows.Forms.Label();
             this.remoteregbtn = new System.Windows.Forms.Button();
             this.remoteregprogress = new System.Windows.Forms.ProgressBar();
@@ -110,6 +110,7 @@ namespace windows_tweak_tool
             this.button9 = new System.Windows.Forms.Button();
             this.label14 = new System.Windows.Forms.Label();
             this.button11 = new System.Windows.Forms.Button();
+            this.toolTip2 = new System.Windows.Forms.ToolTip(this.components);
             this.panel1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -290,27 +291,26 @@ namespace windows_tweak_tool
             this.label10.TabIndex = 29;
             this.label10.Text = "disable remote desktop protocol:";
             // 
-            // button10
+            // rdpbtn
             // 
-            this.button10.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.button10.AutoSize = true;
-            this.button10.Enabled = false;
-            this.button10.Location = new System.Drawing.Point(418, 293);
-            this.button10.Name = "button10";
-            this.button10.Size = new System.Drawing.Size(75, 23);
-            this.button10.TabIndex = 28;
-            this.button10.Text = "Apply";
-            this.button10.UseVisualStyleBackColor = true;
+            this.rdpbtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.rdpbtn.AutoSize = true;
+            this.rdpbtn.Location = new System.Drawing.Point(418, 293);
+            this.rdpbtn.Name = "rdpbtn";
+            this.rdpbtn.Size = new System.Drawing.Size(75, 23);
+            this.rdpbtn.TabIndex = 28;
+            this.rdpbtn.Text = "Apply";
+            this.rdpbtn.UseVisualStyleBackColor = true;
+            this.rdpbtn.Click += new System.EventHandler(this.rdpbtn_Click);
             // 
-            // progressBar10
+            // rdpprogress
             // 
-            this.progressBar10.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.rdpprogress.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.progressBar10.Enabled = false;
-            this.progressBar10.Location = new System.Drawing.Point(9, 293);
-            this.progressBar10.Name = "progressBar10";
-            this.progressBar10.Size = new System.Drawing.Size(406, 23);
-            this.progressBar10.TabIndex = 27;
+            this.rdpprogress.Location = new System.Drawing.Point(9, 293);
+            this.rdpprogress.Name = "rdpprogress";
+            this.rdpprogress.Size = new System.Drawing.Size(406, 23);
+            this.rdpprogress.TabIndex = 27;
             // 
             // label11
             // 
@@ -956,8 +956,8 @@ namespace windows_tweak_tool
             this.Controls.Add(this.remoteregbtn);
             this.Controls.Add(this.remoteregprogress);
             this.Controls.Add(this.label10);
-            this.Controls.Add(this.button10);
-            this.Controls.Add(this.progressBar10);
+            this.Controls.Add(this.rdpbtn);
+            this.Controls.Add(this.rdpprogress);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.uac_btn);
             this.Controls.Add(this.uac_progress);
@@ -1008,8 +1008,8 @@ namespace windows_tweak_tool
         public System.Windows.Forms.Button uac_btn;
         public System.Windows.Forms.ProgressBar uac_progress;
         private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.Button button10;
-        private System.Windows.Forms.ProgressBar progressBar10;
+        public System.Windows.Forms.Button rdpbtn;
+        public System.Windows.Forms.ProgressBar rdpprogress;
         private System.Windows.Forms.Label label11;
         public System.Windows.Forms.Button remoteregbtn;
         public System.Windows.Forms.ProgressBar remoteregprogress;
@@ -1068,6 +1068,7 @@ namespace windows_tweak_tool
         private Button button9;
         private Label label14;
         private Button button11;
+        private ToolTip toolTip2;
     }
 }
 
