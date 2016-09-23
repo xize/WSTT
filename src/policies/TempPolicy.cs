@@ -107,11 +107,13 @@ namespace windows_tweak_tool.src.policies
             it.Send("{ENTER}");
 
             setTrustedPolicy();
+            it.Sleep(400);
 
             it.Send("{UP}{UP}");
             it.Send("{ENTER}");
 
             setEnforcementPropertyPolicy();
+            it.Sleep(400);
 
             it.Send("{UP}");
             it.Send("{ENTER}");
@@ -123,6 +125,7 @@ namespace windows_tweak_tool.src.policies
             addPolicyRule("%localappdata%\\*.au3");
             addPolicyRule("%systemdir%\\system32\\WindowsPowershell\\*\\*.exe");
             addPolicyRule("%systemdir%\\syswow64\\WindowsPowershell\\*\\*.exe");
+            it.Sleep(400);
 
             closeMMCWindow();
 
