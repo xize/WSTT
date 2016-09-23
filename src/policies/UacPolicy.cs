@@ -60,11 +60,13 @@ namespace windows_tweak_tool.src.policies
             it.Run("UserAccountControlSettings.exe");
             it.WinWait("Instellingen voor Gebruikersaccountbeheer"); //TODO: add a language bundle here
             it.WinActivate("Instellingen voor Gebruikersaccountbeheer");
-            int x = it.WinGetPosWidth("Instellingen voor Gebruikersaccountbeheer"); //TODO: add a language bundle here
-            int z = it.WinGetPosHeight("Instellingen voor Gebruikersaccountbeheer"); //TODO: add a language bundle here
 
-            it.MouseClick("primary", x-27, z-120, 1, 0);
-            it.Send("{TAB}{ENTER}");
+            it.Send("{TAB}");
+            it.Send("{UP}{UP}{UP}{UP}");
+            it.Sleep(400);
+            it.Send("{TAB}");
+            it.Send("{ENTER}");
+
             removeAutoITtask("uac");
             Config.getConfig().put("uac-mode", 4);
             gui.uac_btn.Enabled = true;
@@ -77,11 +79,14 @@ namespace windows_tweak_tool.src.policies
             it.Run("UserAccountControlSettings.exe");
             it.WinWait("Instellingen voor Gebruikersaccountbeheer"); //TODO: add a language bundle here
             it.WinActivate("Instellingen voor Gebruikersaccountbeheer");
-            int x = it.WinGetPosWidth("Instellingen voor Gebruikersaccountbeheer"); //TODO: add a language bundle here
-            int y = it.WinGetPosHeight("Instellingen voor Gebruikersaccountbeheer"); //TODO: add a language bundle here
 
-            it.MouseClick("primary", x - 27, y - 100, 1, 0);
-            it.Send("{TAB}{ENTER}");
+            it.Send("{TAB}");
+            it.Send("{UP}{UP}{UP}{UP}");
+            it.Send("{DOWN}");
+            it.Sleep(400);
+            it.Send("{TAB}");
+            it.Send("{ENTER}");
+
             removeAutoITtask("uac");
             Config.getConfig().put("uac-mode", 3);
             gui.uac_btn.Enabled = true;
