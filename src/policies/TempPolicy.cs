@@ -159,8 +159,11 @@ namespace windows_tweak_tool.src.policies
 
             it.Send("d");
             it.Send("{TAB}");
-            it.Send("{RIGHT}");
+            it.Send("{DOWN}");
+            it.Send("{TAB}");
             it.Send("c");
+            it.Send("{TAB}");
+            it.Send("{TAB}");
 
             pressOK("Eigenschappen van Vertrouwde uitgevers"); //TODO: add a language bundle here.
         }
@@ -175,6 +178,7 @@ namespace windows_tweak_tool.src.policies
             it.Send("{RIGHT}");
             it.Send("{TAB}");
             it.Send("{RIGHT}");
+            it.Send("{TAB}");
 
             pressOK("Eigenschappen van Afdwingen"); //TODO: add a language bundle here.
         }
