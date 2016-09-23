@@ -149,23 +149,11 @@ namespace windows_tweak_tool
 
             if (p.isEnabled())
             {
-                DialogResult dialog = MessageBox.Show("This macro is rather very unstable, it only seems to work on a dutch version on a resolution of 1920*1080\n\n press yes to continue press no to cancel", "warning unstable macro!", MessageBoxButtons.YesNo);
-
-                if (dialog == DialogResult.No)
-                {
-                    return;
-                }
                 p.unapply();
                 temp_policy_load.Value = 0;
                 temp_policy_btn.Text = "Apply";
             } else
             {
-                DialogResult dialog = MessageBox.Show("This macro is rather very unstable, it only seems to work on a dutch version on a resolution of 1920*1080\n\n press yes to continue press no to cancel", "warning unstable macro!", MessageBoxButtons.YesNo);
-
-                if (dialog == DialogResult.No)
-                {
-                    return;
-                }
                 p.apply();
                 temp_policy_load.Value = 100;
                 temp_policy_btn.Text = "Undo";
@@ -331,6 +319,24 @@ namespace windows_tweak_tool
         private void toolTip1_Popup(object sender, PopupEventArgs e)
         {
 
+        }
+
+        private void rdpbtn_Click(object sender, EventArgs e)
+        {
+            Policy p = PolicyType.RDP_POLICY.getPolicy(this);
+
+            if (p.isEnabled())
+            {
+                p.unapply();
+                rdpbtn.Text = "Apply";
+                rdpprogress.Value = 0;
+            }
+            else
+            {
+                p.apply();
+                rdpbtn.Text = "Undo";
+                rdpprogress.Value = 100;
+            }
         }
     }
 }

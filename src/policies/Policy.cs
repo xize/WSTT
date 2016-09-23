@@ -63,13 +63,19 @@ namespace windows_tweak_tool.src.policies
         public void startService(string service)
         {
             ServiceController controller = new ServiceController(service);
-            controller.Start();
+            if(controller.CanStop)
+            {
+                controller.Start();
+            }
         }
 
         public void stopService(string service)
         {
             ServiceController controller = new ServiceController(service);
-            controller.Stop();
+            if (controller.CanStop)
+            {
+                controller.Stop();
+            }
         }
 
         public void setServiceType(string service, ServiceType type)
