@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Reflection;
 using System.Windows.Forms;
 using windows_tweak_tool.src.policies;
 
@@ -979,7 +980,7 @@ namespace windows_tweak_tool
             this.MinimumSize = new System.Drawing.Size(526, 684);
             this.Name = "window";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Windows Security Tweaker Tool 1.0.0.1b (WSTT) ";
+            this.Text = string.Format("Windows Security Tweaker Tool {0}b (WSTT) ", Application.ProductVersion);
             this.Load += new System.EventHandler(this.window_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
