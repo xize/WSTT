@@ -134,28 +134,26 @@ namespace windows_tweak_tool.src.policies
 
         public bool isSecpolEnabled()
         {
-            var name = (from x in new ManagementObjectSearcher("SELECT Caption FROM Win32_OperatingSystem")
-                        .Get()
-                        .OfType<ManagementObject>()
-                        select x.GetPropertyValue("Caption"))
-                        .FirstOrDefault();
+                ManagementObjectSearcher search = new ManagementObjectSearcher("SELECT Caption FROM Win32_OperatingSystem");
+                var name = (from x in search.Get().OfType<ManagementObject>() select x.GetPropertyValue("Caption")).FirstOrDefault();
+                search.Dispose();
 
-            if(name != null)
-            {
-                string[] OS = name.ToString().Split(' ');
-                string OS_NAME = OS[3];
-                switch(OS_NAME)
+                if (name != null)
                 {
-                    case "Pro":
-                        return true;
-                    case "Ultimate":
-                        return true;
-                    case "Professional":
-                        return true;
-                    default:
-                        return false;
+                    string[] OS = name.ToString().Split(' ');
+                    string OS_NAME = OS[3];
+                    switch (OS_NAME)
+                    {
+                        case "Pro":
+                            return true;
+                        case "Ultimate":
+                            return true;
+                        case "Professional":
+                            return true;
+                        default:
+                            return false;
+                    }
                 }
-            }
             return false;
         }
 
