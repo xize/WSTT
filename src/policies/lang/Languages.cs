@@ -80,7 +80,7 @@ namespace windows_tweak_tool.src.policies.lang
             public static Language LIBYA = new Language("ar-LY", "Libya");
             public static Language MAROCCO = new Language("ar-MA", "Morocco");
             public static Language OMAN = new Language("ar-OM", "Oman");
-            public static Language QATAR = new Language("ar-QA", "QATAR");
+            public static Language QATAR = new Language("ar-QA", "Qatar");
             public static Language SAUDI_ARABIA = new Language("ar-SA", "South Africa");
             public static Language SYRIA = new Language("ar-SY", "Syria");
             public static Language TUNISIA = new Language("ar-TN", "Tunisia");
