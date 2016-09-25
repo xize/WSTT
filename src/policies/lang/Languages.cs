@@ -66,7 +66,7 @@ namespace windows_tweak_tool.src.policies.lang
         {
             //https://msdn.microsoft.com/en-us/library/ee825488(v=cs.20).aspx
 
-            private HashSet<Language> set = new HashSet<Language>();
+            private static HashSet<Language> set = new HashSet<Language>();
 
             public static Language SOUTH_AFRICA = new Language("af-ZA", "South Africa");
             public static Language ALBANIA = new Language("sq-AL", "Albania");
