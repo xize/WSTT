@@ -58,7 +58,11 @@ namespace windows_tweak_tool.src.policies
 
         public override bool isEnabled()
         {
-            return !isServiceStarted("RemoteRegistry");
+            if(getServiceStatus("RemoteRegistry") == ServiceType.DISABLED)
+            {
+                return true;
+            }
+            return false;
         }
 
         public override void apply()

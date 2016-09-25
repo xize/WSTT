@@ -95,6 +95,9 @@ namespace windows_tweak_tool.src.policies
                 case ServiceType.DISABLED:
                     stype = 4;
                     break;
+                default:
+                    stype = 4;
+                    break;
             }
             RegistryKey key = getRegistry(@"SYSTEM\CurrentControlSet\Services\"+service, REG.HKLM);
             key.SetValue("Start", stype);
@@ -106,6 +109,25 @@ namespace windows_tweak_tool.src.policies
             AUTOMATIC,
             MANUAL,
             DISABLED
+        }
+
+        public ServiceType getServiceStatus(string service)
+        {
+            RegistryKey key = getRegistry(@"SYSTEM\CurrentControlSet\Services\" + service, REG.HKLM);
+            int status = (int)key.GetValue("Start");
+            switch(status)
+            {
+                case 1:
+                    return ServiceType.AUTOMATIC_SLOWED;
+                case 2:
+                    return ServiceType.AUTOMATIC;
+                case 3:
+                    return ServiceType.MANUAL;
+                case 4:
+                    return ServiceType.DISABLED;
+                default:
+                    return ServiceType.MANUAL;
+            }
         }
 
         public abstract bool isSecpolDepended();
