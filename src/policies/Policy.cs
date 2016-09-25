@@ -162,8 +162,8 @@ namespace windows_tweak_tool.src.policies
         public bool isAutoItInstalled()
         {
 
-            string b32 = Environment.GetFolderPath(Environment.SpecialFolder.ProgramFilesX86) + @"/AutoIt3\AutoItX\AutoItX3.dll";
-            string b64 = Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles) + @"/AutoIt3\AutoItX\AutoItX3.dll";
+            string b32 = Environment.GetFolderPath(Environment.SpecialFolder.ProgramFilesX86) + @"\AutoIt3\AutoItX\AutoItX3.dll";
+            string b64 = Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles) + @"\AutoIt3\AutoItX\AutoItX3.dll";
 
             if (File.Exists(b32) || File.Exists(b64))
             {

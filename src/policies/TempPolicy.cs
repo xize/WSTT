@@ -56,8 +56,10 @@ namespace windows_tweak_tool.src.policies
             AutoItX3 it = createAutoIT("temp");
             it.Run("mmc.exe secpol.msc");
             it.WinWait("Lokaal beveiligingsbeleid"); //TODO: add language bundle here.
+            it.WinActivate("Lokaal beveiligingsbeleid");
             it.Sleep(400);
             fixUnhappyTrigger(); //fix a issue whereby windows 10 complains about a missing GEO location file which cause to freezes the automation....
+            it.WinActivate("Lokaal beveiligingsbeleid");
 
             it.Send("{DOWN}{DOWN}{DOWN}{DOWN}{DOWN}{DOWN}");
             it.Sleep(400);
