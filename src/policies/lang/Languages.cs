@@ -94,6 +94,8 @@ namespace windows_tweak_tool.src.policies.lang
             public static Language BULGARIA = new Language("bg-BG", "Bulgaria");
             public static Language CATALAN = new Language("ca-ES", "Catalan");
             public static Language CHINA = new Language("zh-CN", "China");
+            //TODO: add more languages
+
 
             private string bettercode;
             private string simplename;
