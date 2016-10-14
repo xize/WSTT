@@ -91,14 +91,14 @@ namespace windows_tweak_tool.src.policies
                 assoc.CreateNoWindow = true;
                 Process proc1 = Process.Start(assoc);
 
-                while (proc1.HasExited) { } ////lock the local thread till the process has been ended.
+                while (!proc1.HasExited) { } ////lock the local thread till the process has been ended.
 
                 ProcessStartInfo ftype = new ProcessStartInfo("cmd.exe");
                 ftype.Arguments = "/c ftype " + extension.ToUpper() + @"File=C:\windows\system32\notepad.exe";
                 ftype.CreateNoWindow = true;
                 Process proc2 = Process.Start(ftype);
 
-                while (proc2.HasExited) { } //lock the local thread till the process has been ended.
+                while (!proc2.HasExited) { } //lock the local thread till the process has been ended.
             }
 
             Config.getConfig().put("renamed", true);
