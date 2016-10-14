@@ -40,6 +40,7 @@ namespace windows_tweak_tool
             Config.getConfig().readConfig();
             InitializeComponent();
             initializeGuiWithPolicies(); //cannot use this yet because of a issue with instance loading ;-)
+            this.Text = String.Format("Windows Security Tweaker Tool {0}b(WSTT)", Application.ProductVersion);
         }
 
         private void initializeGuiWithPolicies()
