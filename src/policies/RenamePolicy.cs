@@ -38,6 +38,7 @@ namespace windows_tweak_tool.src.policies
             ".vbs",
             ".wsh",
             ".wsc",
+            ".wsf",
             ".vbx",
             ".vba",
             ".vb",
