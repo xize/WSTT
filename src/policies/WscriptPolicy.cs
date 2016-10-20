@@ -101,5 +101,15 @@ namespace windows_tweak_tool.src.policies
         {
             return false;
         }
+
+        public override bool isLanguageDepended()
+        {
+            return false;
+        }
+
+        public override bool hasIncompatibilityIssues()
+        {
+            return false;
+        }
     }
 }
