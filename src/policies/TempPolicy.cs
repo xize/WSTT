@@ -169,6 +169,10 @@ namespace windows_tweak_tool.src.policies
             it.Send("c");
             it.Send("{TAB}");
             it.Send("{TAB}");
+            if (hasIncompatibilityIssues())
+            {
+                it.Send("{TAB}");
+            }
 
             pressOK("Eigenschappen van Vertrouwde uitgevers"); //TODO: add a language bundle here.
         }
@@ -184,7 +188,10 @@ namespace windows_tweak_tool.src.policies
             it.Send("{TAB}");
             it.Send("{RIGHT}");
             it.Send("{TAB}");
-
+            if(hasIncompatibilityIssues())
+            {
+                it.Send("{TAB}");
+            }
             pressOK("Eigenschappen van Afdwingen"); //TODO: add a language bundle here.
         }
 
@@ -230,6 +237,18 @@ namespace windows_tweak_tool.src.policies
 
         public override bool isMacro()
         {
+            return true;
+        }
+
+        public override bool isLanguageDepended()
+        {
+            return true;
+        }
+
+        public override bool hasIncompatibilityIssues()
+        {
+            //windows 7 and lower has an extra help url when the windows in setTrustedPolicy() and setEnforcementPropertyPolicy() are used which means there needs to be one extra tab to be pressed.
+            //therefor newer versions don't seem to have those links to the helpcenter....
             return true;
         }
     }
