@@ -247,7 +247,7 @@ namespace windows_tweak_tool.src.policies
 
         public override bool hasIncompatibilityIssues()
         {
-            //windows 7 and lower has an extra help url when the windows in setTrustedPolicy() and setEnforcementPropertyPolicy() are used which means there needs to be one extra tab to be pressed.
+            //windows 7 and lower have an extra help url inside the windows in setTrustedPolicy() and setEnforcementPropertyPolicy() which means there needs to be one extra tab to be pressed.
             //therefor newer versions don't seem to have those links to the helpcenter....
             return true;
         }
