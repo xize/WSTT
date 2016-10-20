@@ -33,7 +33,7 @@ namespace windows_tweak_tool.src.policies
         public override void apply()
         {
             Process proc = Process.Start("gpupdate.exe", "/force");
-            while(proc.HasExited){}
+            while(!proc.HasExited){}
         }
 
         public override Button getButton()
@@ -61,7 +61,17 @@ namespace windows_tweak_tool.src.policies
             return PolicyType.UPDATE_POLICY;
         }
 
+        public override bool hasIncompatibilityIssues()
+        {
+            return false;
+        }
+
         public override bool isEnabled()
+        {
+            return false;
+        }
+
+        public override bool isLanguageDepended()
         {
             return false;
         }
