@@ -345,5 +345,28 @@ namespace windows_tweak_tool
                 NTLMProgress.Value = 100;
             }
         }
+
+        private void mbrbtn_Click(object sender, EventArgs e)
+        {
+            Policy p = PolicyType.MBR_POLICY.getPolicy(this);
+
+            if (p.isEnabled())
+            {
+                p.unapply();
+                mbrbtn.Text = "Apply";
+                mbrprogress.Value = 0;
+            }
+            else
+            {
+                p.apply();
+                mbrbtn.Text = "Undo";
+                mbrprogress.Value = 100;
+            }
+        }
+
+        private void mbrprogress_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

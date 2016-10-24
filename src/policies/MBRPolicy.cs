@@ -17,10 +17,10 @@
     along with this program.If not, see<http://www.gnu.org/licenses/>.
 */
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Diagnostics;
+using System.IO;
+using System.IO.Compression;
+using System.Net;
 using System.Windows.Forms;
 
 namespace windows_tweak_tool.src.policies
@@ -45,17 +45,67 @@ namespace windows_tweak_tool.src.policies
 
         public override bool isEnabled()
         {
-            return Config.getConfig().getBoolean("mbrfilter");
+            if(Directory.Exists(getDataFolder()+@"\mbrfilter"))
+            {
+                return true;
+            }
+            return false;
         }
 
         public override void apply()
         {
-            
+            getButton().Enabled = false;
+            string url = (Environment.Is64BitOperatingSystem ? "https://github.com/yyounan/MBRFilter/files/536998/64.zip" : "https://github.com/yyounan/MBRFilter/files/536997/32.zip");
+            WebClient client = new WebClient();
+            client.Headers.Add("user-agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.59 Safari/537.36");
+            Directory.CreateDirectory(getDataFolder()+@"\mbrfilter");
+            try
+            {
+                client.DownloadFile(new Uri(url), getDataFolder() + @"\mbrfilter\mbrfilter.zip");
+            } catch(Exception e)
+            {
+                Console.WriteLine(e.Message);
+                MessageBox.Show("Unable to download  MBRFilter, perhaps the file has been removed?\nplease visit: "+url);
+                Directory.Delete(getDataFolder() + @"\mbrfilter");
+                getButton().Enabled = true;
+                return;
+            }
+            ZipArchive archive = ZipFile.OpenRead(getDataFolder() + @"\mbrfilter\mbrfilter.zip");
+            archive.ExtractToDirectory(getDataFolder() + @"\mbrfilter");
+            archive.Dispose();
+            File.Delete(getDataFolder() + @"\mbrfilter\mbrfilter.zip");
+
+            ProcessStartInfo proci = new ProcessStartInfo("cmd.exe");
+            proci.Arguments = "/c pnputil.exe /add-driver \""+ getDataFolder() + @"\mbrfilter\"+(Environment.Is64BitOperatingSystem ? "64" : "32")+ @"\MBRFilter.inf" + "\" /install";
+            Process proc = Process.Start(proci);
+            while(!proc.HasExited)
+            {
+                //lock
+            }
+            getButton().Enabled = true;
         }
 
         public override void unapply()
         {
-            
+            getButton().Enabled = false;
+            ProcessStartInfo proci = new ProcessStartInfo("cmd.exe");
+            proci.Arguments = "/c pnputil.exe /delete-driver \"" + getDataFolder() + @"\mbrfilter\" + (Environment.Is64BitOperatingSystem ? "64" : "32") + @"\MBRFilter.inf" + "\"";
+            Process proc = Process.Start(proci);
+            while (!proc.HasExited)
+            {
+                //lock
+            }
+            deleteMBR();
+            getButton().Enabled = true;
+        }
+
+        private void deleteMBR()
+        {
+            foreach(string a in Directory.GetFiles(getDataFolder() + @"\mbrfilter"))
+            {
+                File.Delete(a);
+            }
+            Directory.Delete(getDataFolder() + @"\mbrfilter", true);
         }
 
         public override bool hasIncompatibilityIssues()

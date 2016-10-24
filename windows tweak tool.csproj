@@ -32,6 +32,7 @@
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
     <BootstrapperEnabled>true</BootstrapperEnabled>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -86,6 +87,8 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.IO.Compression" />
+    <Reference Include="System.IO.Compression.FileSystem" />
     <Reference Include="System.Management" />
     <Reference Include="System.ServiceProcess" />
     <Reference Include="System.Xml.Linq" />
@@ -101,7 +104,9 @@
   <ItemGroup>
     <Compile Include="src\Config.cs" />
     <Compile Include="src\ConfigInfo.cs" />
+    <Compile Include="src\policies\MBRPolicy.cs" />
     <Compile Include="src\policies\NetbiosPolicy.cs" />
+    <Compile Include="src\policies\NTLMPolicy.cs" />
     <Compile Include="src\policies\PolicyType.cs" />
     <Compile Include="src\policies\Policy.cs" />
     <Compile Include="src\policies\RDPPolicy.cs" />

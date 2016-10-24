@@ -34,7 +34,7 @@ namespace windows_tweak_tool.src.policies
         public static PolicyType REMOTE_REGISTRY_POLICY = new PolicyType("remote_registry_policy", new RemoteRegistryPolicy());
         public static PolicyType RDP_POLICY = new PolicyType("rdp_policy", new RDPPolicy());
         public static PolicyType NTLM_POLICY = new PolicyType("ntlm_policy", new NTLMPolicy());
-        //public static PolicyType MBR_POLICY = new PolicyType("mbr_policy", new MBRPolicy());
+        public static PolicyType MBR_POLICY = new PolicyType("mbr_policy", new MBRPolicy());
 
         private string name;
         private Policy pol;

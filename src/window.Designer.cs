@@ -918,23 +918,23 @@ namespace windows_tweak_tool
             // 
             this.mbrbtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.mbrbtn.AutoSize = true;
-            this.mbrbtn.Enabled = false;
             this.mbrbtn.Location = new System.Drawing.Point(419, 461);
             this.mbrbtn.Name = "mbrbtn";
             this.mbrbtn.Size = new System.Drawing.Size(75, 23);
             this.mbrbtn.TabIndex = 87;
             this.mbrbtn.Text = "Apply";
             this.mbrbtn.UseVisualStyleBackColor = true;
+            this.mbrbtn.Click += new System.EventHandler(this.mbrbtn_Click);
             // 
             // mbrprogress
             // 
             this.mbrprogress.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.mbrprogress.Enabled = false;
             this.mbrprogress.Location = new System.Drawing.Point(10, 461);
             this.mbrprogress.Name = "mbrprogress";
             this.mbrprogress.Size = new System.Drawing.Size(406, 23);
             this.mbrprogress.TabIndex = 86;
+            this.mbrprogress.Click += new System.EventHandler(this.mbrprogress_Click);
             // 
             // window
             // 
