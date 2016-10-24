@@ -350,6 +350,13 @@ namespace windows_tweak_tool
         {
             Policy p = PolicyType.MBR_POLICY.getPolicy(this);
 
+            DialogResult result = MessageBox.Show("If you plan to use this feature please note that we have not developed MBRFilter\n\nMBRFilter is licensed under the GPLv2 License and maintained by Yves Younan, Cisco Talos at https://github.com/vrtadmin/MBRFilter\n\nby clicking \"yes\" you agree with the license", "Warning Third party driver", MessageBoxButtons.YesNo);
+
+            if(result == DialogResult.No)
+            {
+                return;
+            }
+
             if (p.isEnabled())
             {
                 p.unapply();
