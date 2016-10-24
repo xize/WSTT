@@ -203,23 +203,11 @@ namespace windows_tweak_tool
             Policy p = PolicyType.UAC_POLICY.getPolicy(this);
             if(p.isEnabled())
             {
-                DialogResult dialog = MessageBox.Show("This macro is rather very unstable, it only seems to work on a dutch version on a resolution of 1920*1080\n\n press yes to continue press no to cancel", "warning unstable macro!", MessageBoxButtons.YesNo);
-
-                if (dialog == DialogResult.No)
-                {
-                    return;
-                }
                 p.unapply();
                 uac_btn.Text = "Apply";
                 uac_progress.Value = 0;
             } else
             {
-                DialogResult dialog = MessageBox.Show("This macro is rather very unstable, it only seems to work on a dutch version on a resolution of 1920*1080\n\n press yes to continue press no to cancel", "warning unstable macro!", MessageBoxButtons.YesNo);
-
-                if (dialog == DialogResult.No)
-                {
-                    return;
-                }
                 p.apply();
                 uac_btn.Text = "Undo";
                 uac_progress.Value = 100;
@@ -337,6 +325,24 @@ namespace windows_tweak_tool
                 p.apply();
                 rdpbtn.Text = "Undo";
                 rdpprogress.Value = 100;
+            }
+        }
+
+        private void NTLMbtn_Click(object sender, EventArgs e)
+        {
+            Policy p = PolicyType.NTLM_POLICY.getPolicy(this);
+
+            if (p.isEnabled())
+            {
+                p.unapply();
+                NTLMbtn.Text = "Apply";
+                NTLMProgress.Value = 0;
+            }
+            else
+            {
+                p.apply();
+                NTLMbtn.Text = "Undo";
+                NTLMProgress.Value = 100;
             }
         }
     }

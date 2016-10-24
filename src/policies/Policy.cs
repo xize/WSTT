@@ -35,6 +35,7 @@ namespace windows_tweak_tool.src.policies
     {
 
         private Dictionary<string, AutoItX3> autoit_tasks = new Dictionary<string, AutoItX3>();
+        private int version = -1;
         protected window gui;
 
         protected Policy()
@@ -157,6 +158,26 @@ namespace windows_tweak_tool.src.policies
             return false;
         }
 
+        public int getWindowsVersion()
+        {
+            if(version > -1)
+            {
+                return version;
+            } else
+            {
+                ManagementObjectSearcher search = new ManagementObjectSearcher("SELECT Caption FROM Win32_OperatingSystem");
+                var name = (from x in search.Get().OfType<ManagementObject>() select x.GetPropertyValue("Caption")).FirstOrDefault();
+                search.Dispose();
+
+                if (name != null)
+                {
+                    string[] OS = name.ToString().Split(' ');
+                    return Convert.ToInt32(OS[2]);
+                }
+            }
+            throw new Exception("Failed to get Windows version, maybe WMI is broken?");
+        }
+
         public abstract bool isMacro();
 
         public abstract bool isLanguageDepended();
@@ -234,6 +255,11 @@ namespace windows_tweak_tool.src.policies
                 return autoit_tasks[name.ToLower()];
             }
             throw new NullReferenceException("cannot find AutoIT task, maybe you gave in a wrong name?");
+        }
+
+        public string getDataFolder()
+        {
+            return Config.getConfig().getDataFolder();
         }
 
         public RegistryKey getRegistry(string path, REG reg)

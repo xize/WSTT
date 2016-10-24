@@ -163,17 +163,27 @@ namespace windows_tweak_tool.src.policies
             it.WinWait("Eigenschappen van Vertrouwde uitgevers"); //TODO: add a language bundle here.
 
             it.Send("d");
+            it.Sleep(300);
             it.Send("{TAB}");
+            it.Sleep(300);
             it.Send("{DOWN}");
+            it.Sleep(300);
             it.Send("{TAB}");
+            it.Sleep(300);
             it.Send("c");
+            it.Sleep(300);
             it.Send("{TAB}");
+            it.Sleep(300);
             it.Send("{TAB}");
+            it.Sleep(300);
             if (hasIncompatibilityIssues())
             {
-                it.Send("{TAB}");
+                if (getWindowsVersion() < 10)
+                {
+                    it.Send("{TAB}");
+                }
             }
-
+            it.Sleep(300);
             pressOK("Eigenschappen van Vertrouwde uitgevers"); //TODO: add a language bundle here.
         }
 
@@ -183,15 +193,25 @@ namespace windows_tweak_tool.src.policies
             it.WinWait("Eigenschappen van Afdwingen"); //TODO: add a language bundle here.
 
             it.Send("{RIGHT}");
+            it.Sleep(300);
             it.Send("{TAB}");
+            it.Sleep(300);
             it.Send("{RIGHT}");
+            it.Sleep(300);
             it.Send("{TAB}");
+            it.Sleep(300);
             it.Send("{RIGHT}");
+            it.Sleep(300);
             it.Send("{TAB}");
-            if(hasIncompatibilityIssues())
+            it.Sleep(300);
+            if (hasIncompatibilityIssues())
             {
-                it.Send("{TAB}");
+                if (getWindowsVersion() < 10)
+                {
+                    it.Send("{TAB}");
+                }
             }
+            it.Sleep(300);
             pressOK("Eigenschappen van Afdwingen"); //TODO: add a language bundle here.
         }
 

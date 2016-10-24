@@ -99,7 +99,7 @@ namespace windows_tweak_tool.src
         private void saveConfig()
         {
 
-            string path = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData)+@"\WTT";
+            string path = getDataFolder();
 
             if(!Directory.Exists(path))
             {
@@ -124,7 +124,7 @@ namespace windows_tweak_tool.src
         public void readConfig()
         {
 
-            string path = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\WTT";
+            string path = getDataFolder();
 
             if (!Directory.Exists(path))
             {
@@ -174,6 +174,43 @@ namespace windows_tweak_tool.src
                 }
             }
             reader.Close();
+        }
+
+        public string getDataFolder()
+        {
+            string appdata = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
+
+            if(Directory.Exists(appdata+@"\WSTT"))
+            {
+                return appdata + @"\WSTT";
+            } else if(Directory.Exists(appdata+@"\WTT"))
+            {
+                Directory.Move(appdata+@"\WTT", appdata + @"\WSTT");
+            } else
+            {
+                string path = appdata + @"\WSTT";
+
+                if (!Directory.Exists(path))
+                {
+                    Directory.CreateDirectory(path);
+                }
+
+                FileStream fs = File.Create(path + @"\config.txt");
+
+                string data = "";
+
+                foreach (KeyValuePair<String, Object> set in nodes)
+                {
+                    data += set.Key + ": " + set.Value + "\r\n";
+                }
+
+                byte[] bytes = Encoding.UTF8.GetBytes(data);
+                fs.Write(bytes, 0, bytes.Length);
+                fs.Flush();
+                fs.Close();
+            }
+
+            return Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\WSTT";
         }
 
 
