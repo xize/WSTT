@@ -75,8 +75,8 @@ namespace windows_tweak_tool.src.policies
             archive.Dispose();
             File.Delete(getDataFolder() + @"\mbrfilter\mbrfilter.zip");
 
-            ProcessStartInfo proci = new ProcessStartInfo("cmd.exe");
-            proci.Arguments = "/c pnputil.exe /add-driver \""+ getDataFolder() + @"\mbrfilter\"+(Environment.Is64BitOperatingSystem ? "64" : "32")+ @"\MBRFilter.inf" + "\" /install";
+            ProcessStartInfo proci = new ProcessStartInfo("infdefaultinstall.exe");
+            proci.Arguments = "\""+ getDataFolder() + @"\mbrfilter\"+(Environment.Is64BitOperatingSystem ? "64" : "32")+ @"\MBRFilter.inf" + "\"";
             Process proc = Process.Start(proci);
             while(!proc.HasExited)
             {
@@ -89,6 +89,7 @@ namespace windows_tweak_tool.src.policies
         {
             getButton().Enabled = false;
             ProcessStartInfo proci = new ProcessStartInfo("cmd.exe");
+            proci.Verb = "runas";
             proci.Arguments = "/c pnputil.exe /delete-driver \"" + getDataFolder() + @"\mbrfilter\" + (Environment.Is64BitOperatingSystem ? "64" : "32") + @"\MBRFilter.inf" + "\"";
             Process proc = Process.Start(proci);
             while (!proc.HasExited)
