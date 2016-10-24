@@ -918,6 +918,7 @@ namespace windows_tweak_tool
             // 
             this.mbrbtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.mbrbtn.AutoSize = true;
+            this.mbrbtn.Enabled = false;
             this.mbrbtn.Location = new System.Drawing.Point(419, 461);
             this.mbrbtn.Name = "mbrbtn";
             this.mbrbtn.Size = new System.Drawing.Size(75, 23);
@@ -929,6 +930,7 @@ namespace windows_tweak_tool
             // 
             this.mbrprogress.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.mbrprogress.Enabled = false;
             this.mbrprogress.Location = new System.Drawing.Point(10, 461);
             this.mbrprogress.Name = "mbrprogress";
             this.mbrprogress.Size = new System.Drawing.Size(406, 23);
