@@ -109,7 +109,7 @@ namespace windows_tweak_tool
             this.label14 = new System.Windows.Forms.Label();
             this.button8 = new System.Windows.Forms.Button();
             this.progressBar6 = new System.Windows.Forms.ProgressBar();
-            this.label15 = new System.Windows.Forms.Label();
+            this.label15 = new System.Windows.Forms.LinkLabel();
             this.mbrbtn = new System.Windows.Forms.Button();
             this.mbrprogress = new System.Windows.Forms.ProgressBar();
             this.panel1.SuspendLayout();
@@ -911,8 +911,10 @@ namespace windows_tweak_tool
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(428, 13);
             this.label15.TabIndex = 88;
+            this.label15.TabStop = true;
             this.label15.Text = "install mbrfilter to prevent bootloader modification (created by: Yves Younan, Ci" +
     "sco Talos):";
+            this.label15.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.label15_LinkClicked);
             // 
             // mbrbtn
             // 
@@ -1080,7 +1082,7 @@ namespace windows_tweak_tool
         private Label label14;
         private Button button8;
         private ProgressBar progressBar6;
-        private Label label15;
+        private LinkLabel label15;
         public Button mbrbtn;
         public ProgressBar mbrprogress;
     }
