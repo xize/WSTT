@@ -112,6 +112,7 @@ namespace windows_tweak_tool
             this.label15 = new System.Windows.Forms.LinkLabel();
             this.mbrbtn = new System.Windows.Forms.Button();
             this.mbrprogress = new System.Windows.Forms.ProgressBar();
+            this.button1 = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -349,21 +350,26 @@ namespace windows_tweak_tool
             // button14
             // 
             this.button14.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.button14.Enabled = false;
             this.button14.Location = new System.Drawing.Point(9, 765);
             this.button14.Name = "button14";
-            this.button14.Size = new System.Drawing.Size(75, 23);
+            this.button14.Size = new System.Drawing.Size(158, 23);
             this.button14.TabIndex = 39;
-            this.button14.Text = "Apply all";
+            this.button14.Text = "Apply All Safe Policies";
+            this.tooltip.SetToolTip(this.button14, "this will only apply the policies which can work perfectly fine in bussiness envi" +
+        "ronments");
             this.button14.UseVisualStyleBackColor = true;
             // 
             // button15
             // 
-            this.button15.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.button15.Location = new System.Drawing.Point(90, 765);
+            this.button15.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.button15.Enabled = false;
+            this.button15.Location = new System.Drawing.Point(417, 765);
             this.button15.Name = "button15";
             this.button15.Size = new System.Drawing.Size(75, 23);
             this.button15.TabIndex = 40;
             this.button15.Text = "Undo all";
+            this.tooltip.SetToolTip(this.button15, "This will undo all the policies being set active");
             this.button15.UseVisualStyleBackColor = true;
             // 
             // label5
@@ -939,10 +945,23 @@ namespace windows_tweak_tool
             this.mbrprogress.TabIndex = 86;
             this.mbrprogress.Click += new System.EventHandler(this.mbrprogress_Click);
             // 
+            // button1
+            // 
+            this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.button1.Enabled = false;
+            this.button1.Location = new System.Drawing.Point(173, 765);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(100, 23);
+            this.button1.TabIndex = 89;
+            this.button1.Text = "Apply All (Forced)";
+            this.tooltip.SetToolTip(this.button1, "this will apply everything");
+            this.button1.UseVisualStyleBackColor = true;
+            // 
             // window
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.ClientSize = new System.Drawing.Size(510, 802);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.label15);
             this.Controls.Add(this.mbrbtn);
             this.Controls.Add(this.mbrprogress);
@@ -992,7 +1011,7 @@ namespace windows_tweak_tool
             this.Controls.Add(this.menuStrip1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip1;
-            this.MinimumSize = new System.Drawing.Size(526, 684);
+            this.MinimumSize = new System.Drawing.Size(526, 841);
             this.Name = "window";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Windows Security Tweaker Tool 14.0.25420.1b (WSTT)";
@@ -1086,6 +1105,7 @@ namespace windows_tweak_tool
         private LinkLabel label15;
         public Button mbrbtn;
         public ProgressBar mbrprogress;
+        private Button button1;
     }
 }
 
