@@ -40,7 +40,8 @@ namespace windows_tweak_tool.src.policies
 
         public override PolicyType getType()
         {
-            return PolicyType.MBR_POLICY;
+            return null;
+           // return PolicyType.MBR_POLICY;
         }
 
         public override bool isEnabled()
