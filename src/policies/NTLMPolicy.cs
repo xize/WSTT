@@ -259,5 +259,10 @@ namespace windows_tweak_tool.src.policies
             //needs to be checked
             return false;
         }
+
+        public override bool isSafeForBussiness()
+        {
+            return false;
+        }
     }
 }

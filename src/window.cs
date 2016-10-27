@@ -340,6 +340,14 @@ namespace windows_tweak_tool
             }
             else
             {
+
+                DialogResult dialog = MessageBox.Show("if you are a bussiness and the users are connected to the domain controller this option will break your settings, this option only suits home users if you want to continue this click yes", "Warning: do not use this on clients connected to domain controllers!", MessageBoxButtons.YesNo);
+
+                if(dialog == DialogResult.No)
+                {
+                    return;
+                }
+
                 p.apply();
                 NTLMbtn.Text = "Undo";
                 NTLMProgress.Value = 100;

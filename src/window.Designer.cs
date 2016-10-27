@@ -920,6 +920,7 @@ namespace windows_tweak_tool
             // 
             this.mbrbtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.mbrbtn.AutoSize = true;
+            this.mbrbtn.Enabled = false;
             this.mbrbtn.Location = new System.Drawing.Point(419, 461);
             this.mbrbtn.Name = "mbrbtn";
             this.mbrbtn.Size = new System.Drawing.Size(75, 23);
