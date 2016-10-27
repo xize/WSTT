@@ -53,7 +53,10 @@ namespace windows_tweak_tool.src.policies
             ".dotm",
             ".pptm",
             ".xlm",
-            ".xlsm"
+            ".xlsm",
+            //special cases...
+            //".tif",
+            //".tiff" //Tempory disable Tiff remote explotation, see: https://threatpost.com/remote-code-execution-vulnerabilities-plague-libtiff-library/121570/ not sure if this is the correct way of megitation!
         };
 
         public override string getName()
@@ -125,19 +128,19 @@ namespace windows_tweak_tool.src.policies
                 {
                     //TODO: figuring out how these macros work..... which program it uses to be exact.
                     case ".docm":
-                        ftype.Arguments = "/c ftype " + extension.ToUpper() + @"File=C:\Program Files (x86)\Microsoft Office\root\Office16\winword.exe";
+                        ftype.Arguments = "/c ftype " + extension.ToUpper() + "File=\"C:\\Program Files (x86)\\Microsoft Office\\root\\Office16\\winword.exe\"";
                         break;
                     case ".dotm":
-                        ftype.Arguments = "/c ftype " + extension.ToUpper() + @"File=C:\Program Files (x86)\Microsoft Office\root\Office16\winword.exe";
+                        ftype.Arguments = "/c ftype " + extension.ToUpper() + "File=\"C:\\Program Files (x86)\\Microsoft Office\\root\\Office16\\winword.exe\"";
                         break;
                     case ".pptm":
-                        ftype.Arguments = "/c ftype " + extension.ToUpper() + @"File=C:\Program Files (x86)\Microsoft Office\root\Office16\powerpoint.exe";
+                        ftype.Arguments = "/c ftype " + extension.ToUpper() + "File=\"C:\\Program Files (x86)\\Microsoft Office\\root\\Office16\\powerpoint.exe\"";
                         break;
                     case ".xlm":
-                        ftype.Arguments = "/c ftype " + extension.ToUpper() + @"File=C:\Program Files (x86)\Microsoft Office\root\Office16\Excel.exe";
+                        ftype.Arguments = "/c ftype " + extension.ToUpper() + "File=\"C:\\Program Files (x86)\\Microsoft Office\\root\\Office16\\Excel.exe\"";
                         break;
                     case ".xlsm":
-                        ftype.Arguments = "/c ftype " + extension.ToUpper() + @"File=C:\Program Files (x86)\Microsoft Office\root\Office16\Excel.exe";
+                        ftype.Arguments = "/c ftype " + extension.ToUpper() + "File=\"C:\\Program Files (x86)\\Microsoft Office\\root\\Office16\\Excel.exe\"";
                         break;
                     case ".ps1":
                         //do nothing ps1 is already as default megitated to notepad.
