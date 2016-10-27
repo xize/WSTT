@@ -356,7 +356,7 @@ namespace windows_tweak_tool
 
         private void mbrbtn_Click(object sender, EventArgs e)
         {
-            Policy p = PolicyType.MBR_POLICY.getPolicy(this);
+            Policy p = null;
 
             DialogResult result = MessageBox.Show("If you plan to use this feature please note that we have not developed MBRFilter\n\nMBRFilter is licensed under the GPLv2 License and maintained by Yves Younan, Cisco Talos at https://github.com/vrtadmin/MBRFilter\n\nby clicking \"yes\" you agree with their license", "Warning Third party driver", MessageBoxButtons.YesNo);
 
