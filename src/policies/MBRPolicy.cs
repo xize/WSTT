@@ -138,5 +138,10 @@ namespace windows_tweak_tool.src.policies
         {
             return gui.mbrprogress;
         }
+
+        public override bool isSafeForBussiness()
+        {
+            return true;
+        }
     }
 }

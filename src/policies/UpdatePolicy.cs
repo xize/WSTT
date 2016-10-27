@@ -81,6 +81,11 @@ namespace windows_tweak_tool.src.policies
             return true;
         }
 
+        public override bool isSafeForBussiness()
+        {
+            return false;
+        }
+
         public override bool isSecpolDepended()
         {
             return true;

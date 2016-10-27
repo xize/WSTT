@@ -271,5 +271,10 @@ namespace windows_tweak_tool.src.policies
             //therefor newer versions don't seem to have those links to the helpcenter....
             return true;
         }
+
+        public override bool isSafeForBussiness()
+        {
+            return true;
+        }
     }
 }
