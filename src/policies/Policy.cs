@@ -180,6 +180,8 @@ namespace windows_tweak_tool.src.policies
 
         public abstract bool isMacro();
 
+        public abstract bool isSafeForBussiness();
+
         public abstract bool isLanguageDepended();
 
         public abstract bool hasIncompatibilityIssues();
