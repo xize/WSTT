@@ -55,8 +55,8 @@ namespace windows_tweak_tool.src.policies
             getButton().Enabled = false;
             AutoItX3 it = createAutoIT("temp");
             it.Run("mmc.exe secpol.msc");
-            it.WinWait("Lokaal beveiligingsbeleid"); //TODO: add language bundle here.
-            it.WinActivate("Lokaal beveiligingsbeleid"); //TODO: add language bundle here.
+            it.WinWait("[CLASS:MMCMainFrame]");
+            it.WinActivate("[CLASS:MMCMainFrame]");
             it.Sleep(400);
             fixUnhappyTrigger(); //fix a issue whereby windows 10 complains about a missing GEO location file which cause to freezes the automation....
 
@@ -115,11 +115,11 @@ namespace windows_tweak_tool.src.policies
             getButton().Enabled = false;
             AutoItX3 it = createAutoIT("temp");
             it.Run("mmc.exe secpol.msc");
-            it.WinWait("Lokaal beveiligingsbeleid"); //TODO: add language bundle here.
-            it.WinActivate("Lokaal beveiligingsbeleid");
+            it.WinWait("[CLASS:MMCMainFrame]");
+            it.WinActivate("[CLASS:MMCMainFrame]");
             it.Sleep(400);
             fixUnhappyTrigger(); //fix a issue whereby windows 10 complains about a missing GEO location file which cause to freezes the automation....
-            it.WinActivate("Lokaal beveiligingsbeleid");
+            it.WinActivate("[CLASS:MMCMainFrame]");
 
             it.Send("{DOWN}{DOWN}{DOWN}{DOWN}{DOWN}{DOWN}");
             it.Sleep(400);
@@ -144,11 +144,11 @@ namespace windows_tweak_tool.src.policies
         {
             AutoItX3 it = getAutoIT("temp");
             it.Sleep(300);
-            it.WinActivate("Beheersjablonen"); //TODO: add language bundle here
+            it.WinActivate("Beheersjablonen"); //TODO: find class name of this window
             it.Sleep(300);
             it.Send("{ENTER}");
             it.Sleep(300);
-            it.WinActivate("Beheersjablonen"); //TODO: add language bundle here
+            it.WinActivate("Beheersjablonen"); //TODO: find class name of this window
             it.Sleep(300);
             it.Send("{ENTER}");
         }
@@ -162,7 +162,7 @@ namespace windows_tweak_tool.src.policies
         private void setTrustedPolicy()
         {
             AutoItX3 it = getAutoIT("temp");
-            it.WinWait("Eigenschappen van Vertrouwde uitgevers"); //TODO: add a language bundle here.
+            it.WinWait("[CLASS:#32770]");
 
             it.Send("d");
             it.Sleep(300);
@@ -186,13 +186,13 @@ namespace windows_tweak_tool.src.policies
                 }
             }
             it.Sleep(300);
-            pressOK("Eigenschappen van Vertrouwde uitgevers"); //TODO: add a language bundle here.
+            pressOK("[CLASS:#32770]");
         }
 
         private void setEnforcementPropertyPolicy()
         {
             AutoItX3 it = getAutoIT("temp");
-            it.WinWait("Eigenschappen van Afdwingen"); //TODO: add a language bundle here.
+            it.WinWait("[CLASS:#32770]");
 
             it.Send("{RIGHT}");
             it.Sleep(300);
@@ -214,7 +214,7 @@ namespace windows_tweak_tool.src.policies
                 }
             }
             it.Sleep(300);
-            pressOK("Eigenschappen van Afdwingen"); //TODO: add a language bundle here.
+            pressOK("[CLASS:#32770]");
         }
 
         private void addPolicyRule(string name)
@@ -227,8 +227,8 @@ namespace windows_tweak_tool.src.policies
             it.Send("{DOWN}{DOWN}{DOWN}{DOWN}");
             it.Send("{ENTER}");
       
-            it.WinWait("Regel voor nieuw pad"); //TODO: add a language bundle here.
-            it.WinActivate("Regel voor nieuw pad"); //TODO: add a language bundle here.
+            it.WinWait("[CLASS:#32770]");
+            it.WinActivate("[CLASS:#32770]");
 
             it.Send(name);
             it.Send("{ENTER}");
@@ -238,8 +238,8 @@ namespace windows_tweak_tool.src.policies
         private void closeMMCWindow()
         {
             AutoItX3 it = getAutoIT("temp");
-            it.WinActivate("Lokaal beveiligingsbeleid");
-            it.WinClose("Lokaal beveiligingsbeleid");
+            it.WinActivate("[CLASS:MMCMainFrame]");
+            it.WinClose("[CLASS:MMCMainFrame]");
         }
 
         public override ProgressBar getProgressbar()
