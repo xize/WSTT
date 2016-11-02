@@ -55,9 +55,10 @@ namespace windows_tweak_tool
             this.label11 = new System.Windows.Forms.Label();
             this.remoteregbtn = new System.Windows.Forms.Button();
             this.remoteregprogress = new System.Windows.Forms.ProgressBar();
-            this.button14 = new System.Windows.Forms.Button();
-            this.button15 = new System.Windows.Forms.Button();
+            this.safeapplybtn = new System.Windows.Forms.Button();
+            this.undobtn = new System.Windows.Forms.Button();
             this.tooltip = new System.Windows.Forms.ToolTip(this.components);
+            this.applyforcebtn = new System.Windows.Forms.Button();
             this.label5 = new System.Windows.Forms.Label();
             this.NTLMbtn = new System.Windows.Forms.Button();
             this.NTLMProgress = new System.Windows.Forms.ProgressBar();
@@ -112,7 +113,6 @@ namespace windows_tweak_tool
             this.label15 = new System.Windows.Forms.LinkLabel();
             this.mbrbtn = new System.Windows.Forms.Button();
             this.mbrprogress = new System.Windows.Forms.ProgressBar();
-            this.button1 = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -347,30 +347,42 @@ namespace windows_tweak_tool
             this.remoteregprogress.Size = new System.Drawing.Size(406, 23);
             this.remoteregprogress.TabIndex = 30;
             // 
-            // button14
+            // safeapplybtn
             // 
-            this.button14.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.button14.Enabled = false;
-            this.button14.Location = new System.Drawing.Point(9, 765);
-            this.button14.Name = "button14";
-            this.button14.Size = new System.Drawing.Size(158, 23);
-            this.button14.TabIndex = 39;
-            this.button14.Text = "Apply All Safe Policies";
-            this.tooltip.SetToolTip(this.button14, "this will only apply the policies which can work perfectly fine in bussiness envi" +
+            this.safeapplybtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.safeapplybtn.Location = new System.Drawing.Point(9, 765);
+            this.safeapplybtn.Name = "safeapplybtn";
+            this.safeapplybtn.Size = new System.Drawing.Size(158, 23);
+            this.safeapplybtn.TabIndex = 39;
+            this.safeapplybtn.Text = "Apply All Safe Policies";
+            this.tooltip.SetToolTip(this.safeapplybtn, "this will only apply the policies which can work perfectly fine in bussiness envi" +
         "ronments");
-            this.button14.UseVisualStyleBackColor = true;
+            this.safeapplybtn.UseVisualStyleBackColor = true;
+            this.safeapplybtn.Click += new System.EventHandler(this.button14_Click);
             // 
-            // button15
+            // undobtn
             // 
-            this.button15.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.button15.Enabled = false;
-            this.button15.Location = new System.Drawing.Point(417, 765);
-            this.button15.Name = "button15";
-            this.button15.Size = new System.Drawing.Size(75, 23);
-            this.button15.TabIndex = 40;
-            this.button15.Text = "Undo all";
-            this.tooltip.SetToolTip(this.button15, "This will undo all the policies being set active");
-            this.button15.UseVisualStyleBackColor = true;
+            this.undobtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.undobtn.Location = new System.Drawing.Point(417, 765);
+            this.undobtn.Name = "undobtn";
+            this.undobtn.Size = new System.Drawing.Size(75, 23);
+            this.undobtn.TabIndex = 40;
+            this.undobtn.Text = "Undo all";
+            this.tooltip.SetToolTip(this.undobtn, "This will undo all the policies being set active");
+            this.undobtn.UseVisualStyleBackColor = true;
+            this.undobtn.Click += new System.EventHandler(this.button15_Click);
+            // 
+            // applyforcebtn
+            // 
+            this.applyforcebtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.applyforcebtn.Location = new System.Drawing.Point(173, 765);
+            this.applyforcebtn.Name = "applyforcebtn";
+            this.applyforcebtn.Size = new System.Drawing.Size(100, 23);
+            this.applyforcebtn.TabIndex = 89;
+            this.applyforcebtn.Text = "Apply All (Forced)";
+            this.tooltip.SetToolTip(this.applyforcebtn, "this will apply everything");
+            this.applyforcebtn.UseVisualStyleBackColor = true;
+            this.applyforcebtn.Click += new System.EventHandler(this.button1_Click_1);
             // 
             // label5
             // 
@@ -945,23 +957,11 @@ namespace windows_tweak_tool
             this.mbrprogress.TabIndex = 86;
             this.mbrprogress.Click += new System.EventHandler(this.mbrprogress_Click);
             // 
-            // button1
-            // 
-            this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.button1.Enabled = false;
-            this.button1.Location = new System.Drawing.Point(173, 765);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(100, 23);
-            this.button1.TabIndex = 89;
-            this.button1.Text = "Apply All (Forced)";
-            this.tooltip.SetToolTip(this.button1, "this will apply everything");
-            this.button1.UseVisualStyleBackColor = true;
-            // 
             // window
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.ClientSize = new System.Drawing.Size(510, 802);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.applyforcebtn);
             this.Controls.Add(this.label15);
             this.Controls.Add(this.mbrbtn);
             this.Controls.Add(this.mbrprogress);
@@ -985,8 +985,8 @@ namespace windows_tweak_tool
             this.Controls.Add(this.label5);
             this.Controls.Add(this.NTLMbtn);
             this.Controls.Add(this.NTLMProgress);
-            this.Controls.Add(this.button15);
-            this.Controls.Add(this.button14);
+            this.Controls.Add(this.undobtn);
+            this.Controls.Add(this.safeapplybtn);
             this.Controls.Add(this.label11);
             this.Controls.Add(this.remoteregbtn);
             this.Controls.Add(this.remoteregprogress);
@@ -1048,8 +1048,8 @@ namespace windows_tweak_tool
         private System.Windows.Forms.Label label11;
         public System.Windows.Forms.Button remoteregbtn;
         public System.Windows.Forms.ProgressBar remoteregprogress;
-        private System.Windows.Forms.Button button14;
-        private System.Windows.Forms.Button button15;
+        private System.Windows.Forms.Button safeapplybtn;
+        private System.Windows.Forms.Button undobtn;
         private ToolTip tooltip;
         private Label label5;
         public Button NTLMbtn;
@@ -1105,7 +1105,7 @@ namespace windows_tweak_tool
         private LinkLabel label15;
         public Button mbrbtn;
         public ProgressBar mbrprogress;
-        private Button button1;
+        private Button applyforcebtn;
     }
 }
 

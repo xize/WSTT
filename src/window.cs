@@ -25,6 +25,7 @@ using System.Drawing;
 using System.Linq;
 using System.Runtime.Remoting.Messaging;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using windows_tweak_tool;
@@ -48,7 +49,7 @@ namespace windows_tweak_tool
 
             bool msg = false;
 
-            foreach (PolicyType a in PolicyType.values())
+            foreach (PolicyType a in PolicyType.values().getAll())
             {
                 Policy p = a.getPolicy(this);
 
@@ -151,13 +152,9 @@ namespace windows_tweak_tool
             if (p.isEnabled())
             {
                 p.unapply();
-                temp_policy_load.Value = 0;
-                temp_policy_btn.Text = "Apply";
             } else
             {
                 p.apply();
-                temp_policy_load.Value = 100;
-                temp_policy_btn.Text = "Undo";
             }
         }
 
@@ -182,14 +179,10 @@ namespace windows_tweak_tool
             if (p.isEnabled())
             {
                 p.unapply();
-                wscript_progress.Value = 0;
-                wscript_btn.Text = "Apply";
             }
             else
             {
                 p.apply();
-                wscript_progress.Value = 100;
-                wscript_btn.Text = "Undo";
             }
         }
 
@@ -204,13 +197,9 @@ namespace windows_tweak_tool
             if(p.isEnabled())
             {
                 p.unapply();
-                uac_btn.Text = "Apply";
-                uac_progress.Value = 0;
             } else
             {
                 p.apply();
-                uac_btn.Text = "Undo";
-                uac_progress.Value = 100;
             }
         }
 
@@ -225,13 +214,9 @@ namespace windows_tweak_tool
             if(p.isEnabled())
             {
                 p.unapply();
-                netbiosbtn.Text = "Apply";
-                netbiosprogress.Value = 0;
             } else
             {
                 p.apply();
-                netbiosbtn.Text = "Undo";
-                netbiosprogress.Value = 100;
             }
         }
 
@@ -242,13 +227,9 @@ namespace windows_tweak_tool
             if(p.isEnabled())
             {
                 p.unapply();
-                renamebtn.Text = "Apply";
-                renameprogress.Value = 0;
             } else
             {
                 p.apply();
-                renamebtn.Text = "Undo";
-                renameprogress.Value = 100;
             }
         }
 
@@ -294,14 +275,10 @@ namespace windows_tweak_tool
             if (p.isEnabled())
             {
                 p.unapply();
-                remoteregbtn.Text = "Apply";
-                remoteregprogress.Value = 0;
             }
             else
             {
                 p.apply();
-                remoteregbtn.Text = "Undo";
-                remoteregprogress.Value = 100;
             }
         }
 
@@ -317,14 +294,10 @@ namespace windows_tweak_tool
             if (p.isEnabled())
             {
                 p.unapply();
-                rdpbtn.Text = "Apply";
-                rdpprogress.Value = 0;
             }
             else
             {
                 p.apply();
-                rdpbtn.Text = "Undo";
-                rdpprogress.Value = 100;
             }
         }
 
@@ -335,8 +308,6 @@ namespace windows_tweak_tool
             if (p.isEnabled())
             {
                 p.unapply();
-                NTLMbtn.Text = "Apply";
-                NTLMProgress.Value = 0;
             }
             else
             {
@@ -349,8 +320,6 @@ namespace windows_tweak_tool
                 }
 
                 p.apply();
-                NTLMbtn.Text = "Undo";
-                NTLMProgress.Value = 100;
             }
         }
 
@@ -368,14 +337,10 @@ namespace windows_tweak_tool
             if (p.isEnabled())
             {
                 p.unapply();
-                mbrbtn.Text = "Apply";
-                mbrprogress.Value = 0;
             }
             else
             {
                 p.apply();
-                mbrbtn.Text = "Undo";
-                mbrprogress.Value = 100;
             }
         }
 
@@ -387,6 +352,124 @@ namespace windows_tweak_tool
         private void label15_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             Process.Start("https://github.com/vrtadmin/MBRFilter");
+        }
+
+        private void button14_Click(object sender, EventArgs e)
+        {
+            safeapplybtn.Enabled = false;
+            /*
+            foreach (PolicyType pt in PolicyType.values())
+            {
+                if(pt != PolicyType.UPDATE_POLICY)
+                {
+                    Policy p = pt.getPolicy(this);
+                    p.getButton().Enabled = false;
+                }
+            }
+
+            foreach (PolicyType pt in PolicyType.values())
+            {
+                if (pt != PolicyType.UPDATE_POLICY)
+                {
+                    Policy p = pt.getPolicy(this);
+                    if(p.isSafeForBussiness())
+                    {
+                        if(!p.isEnabled() && !p.isUserControlRequired())
+                        {
+                            p.apply();
+                        }
+                    }
+                }
+            }
+
+            foreach (PolicyType pt in PolicyType.values())
+            {
+                if (pt != PolicyType.UPDATE_POLICY)
+                {
+                    Policy p = pt.getPolicy(this);
+                    p.getButton().Enabled = true;
+                }
+            }
+            safeapplybtn.Enabled = true;
+            MessageBox.Show("All \"safe\" policies have been applied!", "Policies with success applied!");
+    */    
+        }
+
+        private void button1_Click_1(object sender, EventArgs e)
+        {
+            applyforcebtn.Enabled = false;
+            /*
+            foreach (PolicyType pt in PolicyType.values())
+            {
+                if (pt != PolicyType.UPDATE_POLICY)
+                {
+                    Policy p = pt.getPolicy(this);
+                    p.getButton().Enabled = false;
+                }
+            }
+
+            foreach (PolicyType pt in PolicyType.values())
+            {
+                if (pt != PolicyType.UPDATE_POLICY)
+                {
+                    Policy p = pt.getPolicy(this);
+                        if (!p.isEnabled() && !p.isUserControlRequired())
+                        {
+                            p.apply();
+                        }
+                }
+            }
+
+            foreach (PolicyType pt in PolicyType.values())
+            {
+                if (pt != PolicyType.UPDATE_POLICY)
+                {
+                    Policy p = pt.getPolicy(this);
+                    p.getButton().Enabled = true;
+                }
+            }
+            applyforcebtn.Enabled = true;
+            MessageBox.Show("All policies have been applied!, those who are not require user control.", "Policies with success applied!");
+    */    
+    }
+
+        private void button15_Click(object sender, EventArgs e)
+        {
+            undobtn.Enabled = false;
+            /*
+            foreach (PolicyType pt in PolicyType.values())
+            {
+                if (pt != PolicyType.UPDATE_POLICY)
+                {
+                    Policy p = pt.getPolicy(this);
+                    p.getButton().Enabled = false;
+                }
+            }
+
+
+            foreach (PolicyType pt in PolicyType.values())
+            {
+                if (pt != PolicyType.UPDATE_POLICY)
+                {
+                    Policy p = pt.getPolicy(this);
+                    if (p.isEnabled() && !p.isUserControlRequired())
+                    {
+                        p.unapply();
+                    }
+                }
+            }
+
+            foreach (PolicyType pt in PolicyType.values())
+            {
+                if (pt != PolicyType.UPDATE_POLICY)
+                {
+                    Policy p = pt.getPolicy(this);
+                    p.getButton().Enabled = false;
+                }
+            }
+
+            undobtn.Enabled = false;
+    */
         }
     }
 }

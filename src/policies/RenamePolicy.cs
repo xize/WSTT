@@ -88,7 +88,9 @@ namespace windows_tweak_tool.src.policies
         {
             getButton().Enabled = false;
 
-            foreach(string extension in extensions)
+            Console.WriteLine("{== Applying " + getType().getName().ToUpper() + " ==}");
+
+            foreach (string extension in extensions)
             {
                 ProcessStartInfo assoc = new ProcessStartInfo("cmd.exe");
                 assoc.Arguments = "/c assoc " + extension+"="+extension.ToUpper()+"File";
@@ -103,15 +105,20 @@ namespace windows_tweak_tool.src.policies
                 Process proc2 = Process.Start(ftype);
 
                 while (!proc2.HasExited) { } //lock the local thread till the process has been ended.
+                Console.WriteLine("extension: " + extension + " has been defaulted to: " + @"C:\windows\system32\notepad.exe");
             }
 
             Config.getConfig().put("renamed", true);
+            setGuiEnabled(this);
             getButton().Enabled = true;
+            Console.WriteLine("{== " + getType().getName().ToUpper() + " has been applied ==}");
         }
 
         public override void unapply()
         {
             getButton().Enabled = false;
+
+            Console.WriteLine("{== Unapplying Policy " + getType().getName().ToUpper() + " ==}");
 
             foreach (string extension in extensions)
             {
@@ -128,35 +135,43 @@ namespace windows_tweak_tool.src.policies
                 {
                     //TODO: figuring out how these macros work..... which program it uses to be exact.
                     case ".docm":
+                        Console.WriteLine("extension: "+extension+" gets defaulted to: "+ @"C:\Program Files(x86)\Microsoft Office\root\Office16\winword.exe");
                         ftype.Arguments = "/c ftype " + extension.ToUpper() + "File=\"C:\\Program Files (x86)\\Microsoft Office\\root\\Office16\\winword.exe\"";
                         break;
                     case ".dotm":
+                        Console.WriteLine("extension: " + extension + " gets defaulted to: " + @"C:\Program Files(x86)\Microsoft Office\root\Office16\winword.exe");
                         ftype.Arguments = "/c ftype " + extension.ToUpper() + "File=\"C:\\Program Files (x86)\\Microsoft Office\\root\\Office16\\winword.exe\"";
                         break;
                     case ".pptm":
+                        Console.WriteLine("extension: " + extension + " gets defaulted to: " + @"C:\Program Files(x86)\Microsoft Office\root\Office16\powerpoint.exe");
                         ftype.Arguments = "/c ftype " + extension.ToUpper() + "File=\"C:\\Program Files (x86)\\Microsoft Office\\root\\Office16\\powerpoint.exe\"";
                         break;
                     case ".xlm":
+                        Console.WriteLine("extension: " + extension + " gets defaulted to: " + @"C:\Program Files(x86)\Microsoft Office\root\Office16\Excel.exe");
                         ftype.Arguments = "/c ftype " + extension.ToUpper() + "File=\"C:\\Program Files (x86)\\Microsoft Office\\root\\Office16\\Excel.exe\"";
                         break;
                     case ".xlsm":
+                        Console.WriteLine("extension: " + extension + " gets defaulted to: " + @"C:\Program Files(x86)\Microsoft Office\root\Office16\Excel.exe");
                         ftype.Arguments = "/c ftype " + extension.ToUpper() + "File=\"C:\\Program Files (x86)\\Microsoft Office\\root\\Office16\\Excel.exe\"";
                         break;
                     case ".ps1":
-                        //do nothing ps1 is already as default megitated to notepad.
+                        Console.WriteLine("extension: " + extension + " gets defaulted to: " + @"C:\windows\system32\notepad.exe");
+                        ftype.Arguments = "/c ftype " + extension.ToUpper() + @"File=C:\Windows\System32\notepad.exe";
                         break;
                     default:
+                        Console.WriteLine("extension: " + extension + " gets defaulted to: " + @"C:\Windows\System32\wscript.exe");
                         ftype.Arguments = "/c ftype " + extension.ToUpper() + @"File=C:\Windows\System32\wscript.exe";
                         break;
                 }
 
                 ftype.CreateNoWindow = true;
                 Process proc2 = Process.Start(ftype);
-
                 while (!proc2.HasExited) { } //lock the local thread till the process has been ended.
             }
             Config.getConfig().put("renamed", false);
             getButton().Enabled = true;
+            setGuiDisabled(this);
+            Console.WriteLine("{== "+getType().getName().ToUpper()+" has been unapplied ==}");
         }
 
         public override bool isMacro()
@@ -192,6 +207,11 @@ namespace windows_tweak_tool.src.policies
         public override bool isSafeForBussiness()
         {
             return true;
+        }
+
+        public override bool isUserControlRequired()
+        {
+            return false;
         }
     }
 }

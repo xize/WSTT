@@ -64,6 +64,7 @@ namespace windows_tweak_tool.src.policies
             RegistryKey key = getRegistry(@"SYSTEM\CurrentControlSet\Control\Remote Assistance", REG.HKLM);
             key.SetValue("fAllowToGetHelp", 1);
             key.Close();
+            setGuiEnabled(this);
             getButton().Enabled = true;
         }
 
@@ -73,6 +74,7 @@ namespace windows_tweak_tool.src.policies
             RegistryKey key = getRegistry(@"SYSTEM\CurrentControlSet\Control\Remote Assistance", REG.HKLM);
             key.SetValue("fAllowToGetHelp", 0);
             key.Close();
+            setGuiDisabled(this);
             getButton().Enabled = true;
         }
 
@@ -109,6 +111,11 @@ namespace windows_tweak_tool.src.policies
         public override bool isSafeForBussiness()
         {
             return true;
+        }
+
+        public override bool isUserControlRequired()
+        {
+            return false;
         }
     }
 }

@@ -72,12 +72,16 @@ namespace windows_tweak_tool.src.policies
 
         public override void apply()
         {
+            Console.WriteLine("{== Applying " + getType().getName().ToUpper() + " ==}");
             getButton().Enabled = false;
             RegistryKey key = getRegistry(@"SYSTEM\CurrentControlSet\services\NetBT\Parameters\Interfaces", REG.HKLM);
             string[] adapters = key.GetSubKeyNames();
 
             foreach(string adapter in adapters)
             {
+
+                Console.WriteLine("writing to adapter: "+adapter + " setting netbios to value 2");
+
                 RegistryKey adaptersetting = key.OpenSubKey(adapter, true);
 
                 object options = adaptersetting.GetValue("NetbiosOptions");
@@ -85,14 +89,18 @@ namespace windows_tweak_tool.src.policies
                 if (options != null)
                 {
                     adaptersetting.SetValue("NetbiosOptions", 2);
+                    Console.WriteLine("writing to adapter: " + adapter + " values have been set to 2!");
                 }
             }
             key.Close();
+            setGuiEnabled(this);
             getButton().Enabled = true;
+            Console.WriteLine("{== " + getType().getName().ToUpper() + " has been applied ==}");
         }
 
         public override void unapply()
         {
+            Console.WriteLine("{== Unapplying " + getType().getName().ToUpper() + " ==}");
             getButton().Enabled = false;
             RegistryKey key = getRegistry(@"SYSTEM\CurrentControlSet\services\NetBT\Parameters\Interfaces", REG.HKLM);
 
@@ -100,6 +108,9 @@ namespace windows_tweak_tool.src.policies
 
             foreach (string adapter in adapters)
             {
+
+                Console.WriteLine("writing to adapter: " + adapter + " setting netbios to value 0");
+
                 RegistryKey adaptersetting = key.OpenSubKey(adapter, true);
 
                 object options = adaptersetting.GetValue("NetbiosOptions");
@@ -107,10 +118,13 @@ namespace windows_tweak_tool.src.policies
                 if (options != null)
                 {
                     adaptersetting.SetValue("NetbiosOptions", 0);
+                    Console.WriteLine("writing to adapter: " + adapter + " values have been set to 0!");
                 }
             }
             key.Close();
             getButton().Enabled = true;
+            setGuiDisabled(this);
+            Console.WriteLine("{== " + getType().getName().ToUpper() + " has been unapplied ==}");
         }
 
         public override bool isMacro()
@@ -146,6 +160,11 @@ namespace windows_tweak_tool.src.policies
         public override bool isSafeForBussiness()
         {
             return true;
+        }
+
+        public override bool isUserControlRequired()
+        {
+            return false;
         }
     }
 }

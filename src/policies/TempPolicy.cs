@@ -50,35 +50,6 @@ namespace windows_tweak_tool.src.policies
             return Config.getConfig().getBoolean("policy-malware-restriction");
         }
 
-        public override void unapply()
-        {
-            getButton().Enabled = false;
-            AutoItX3 it = createAutoIT("temp");
-            it.Run("mmc.exe secpol.msc");
-            it.WinWait("Lokaal beveiligingsbeleid"); //TODO: add language bundle here.
-            it.WinActivate("Lokaal beveiligingsbeleid");
-            it.Sleep(400);
-            fixUnhappyTrigger(); //fix a issue whereby windows 10 complains about a missing GEO location file which cause to freezes the automation....
-            it.WinActivate("Lokaal beveiligingsbeleid");
-
-            it.Send("{DOWN}{DOWN}{DOWN}{DOWN}{DOWN}{DOWN}");
-            it.Sleep(400);
-            it.Send("{ALT}");
-            it.Send("{TAB}");
-            it.Send("{ENTER}");
-            it.Send("{DOWN}");
-            it.Send("{ENTER}");
-            it.Sleep(400);
-            it.Send("{ENTER}");
-
-            closeMMCWindow();
-            Policy p = PolicyType.UPDATE_POLICY.getPolicy(gui);
-            p.apply();
-            removeAutoITtask("temp");
-            Config.getConfig().put("policy-malware-restriction", false);
-            getButton().Enabled = true;
-        }
-
         public override void apply()
         {
             getButton().Enabled = false;
@@ -135,6 +106,37 @@ namespace windows_tweak_tool.src.policies
             p.apply();
             removeAutoITtask("temp");
             Config.getConfig().put("policy-malware-restriction", true);
+            setGuiEnabled(this);
+            getButton().Enabled = true;
+        }
+
+        public override void unapply()
+        {
+            getButton().Enabled = false;
+            AutoItX3 it = createAutoIT("temp");
+            it.Run("mmc.exe secpol.msc");
+            it.WinWait("Lokaal beveiligingsbeleid"); //TODO: add language bundle here.
+            it.WinActivate("Lokaal beveiligingsbeleid");
+            it.Sleep(400);
+            fixUnhappyTrigger(); //fix a issue whereby windows 10 complains about a missing GEO location file which cause to freezes the automation....
+            it.WinActivate("Lokaal beveiligingsbeleid");
+
+            it.Send("{DOWN}{DOWN}{DOWN}{DOWN}{DOWN}{DOWN}");
+            it.Sleep(400);
+            it.Send("{ALT}");
+            it.Send("{TAB}");
+            it.Send("{ENTER}");
+            it.Send("{DOWN}");
+            it.Send("{ENTER}");
+            it.Sleep(400);
+            it.Send("{ENTER}");
+
+            closeMMCWindow();
+            Policy p = PolicyType.UPDATE_POLICY.getPolicy(gui);
+            p.apply();
+            removeAutoITtask("temp");
+            Config.getConfig().put("policy-malware-restriction", false);
+            setGuiDisabled(this);
             getButton().Enabled = true;
         }
 
@@ -275,6 +277,11 @@ namespace windows_tweak_tool.src.policies
         public override bool isSafeForBussiness()
         {
             return true;
+        }
+
+        public override bool isUserControlRequired()
+        {
+            return false;
         }
     }
 }

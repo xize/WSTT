@@ -21,6 +21,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -77,6 +78,7 @@ namespace windows_tweak_tool.src.policies
             p.apply();
             Config.getConfig().put("NTLM-secure", true);
             removeAutoITtask("NTLM");
+            setGuiEnabled(this);
             getButton().Enabled = true;
         }
 
@@ -103,6 +105,7 @@ namespace windows_tweak_tool.src.policies
             p.apply();
             Config.getConfig().put("NTLM-secure", false);
             removeAutoITtask("NTLM");
+            setGuiDisabled(this);
             getButton().Enabled = true;
         }
 
@@ -261,6 +264,11 @@ namespace windows_tweak_tool.src.policies
         }
 
         public override bool isSafeForBussiness()
+        {
+            return false;
+        }
+
+        public override bool isUserControlRequired()
         {
             return false;
         }

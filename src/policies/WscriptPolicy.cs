@@ -64,21 +64,23 @@ namespace windows_tweak_tool.src.policies
             return false;
         }
 
-        public override void unapply()
-        {
-            getButton().Enabled = false;
-            RegistryKey key = getRegistry(@"SOFTWARE\Microsoft\Windows Script Host\Settings", REG.HKLM);
-            key.SetValue("Enabled", 1);
-            key.Close();
-            getButton().Enabled = true;
-        }
-
         public override void apply()
         {
             getButton().Enabled = false;
             RegistryKey key = getRegistry(@"SOFTWARE\Microsoft\Windows Script Host\Settings", REG.HKLM);
             key.SetValue("Enabled", 0);
             key.Close();
+            setGuiEnabled(this);
+            getButton().Enabled = true;
+        }
+
+        public override void unapply()
+        {
+            getButton().Enabled = false;
+            RegistryKey key = getRegistry(@"SOFTWARE\Microsoft\Windows Script Host\Settings", REG.HKLM);
+            key.SetValue("Enabled", 1);
+            key.Close();
+            setGuiDisabled(this);
             getButton().Enabled = true;
         }
 
@@ -115,6 +117,11 @@ namespace windows_tweak_tool.src.policies
         public override bool isSafeForBussiness()
         {
             return true;
+        }
+
+        public override bool isUserControlRequired()
+        {
+            return false;
         }
     }
 }

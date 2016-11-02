@@ -83,6 +83,7 @@ namespace windows_tweak_tool.src.policies
             {
                 //lock
             }
+            setGuiEnabled(this);
             getButton().Enabled = true;
         }
 
@@ -98,6 +99,7 @@ namespace windows_tweak_tool.src.policies
                 //lock
             }
             deleteMBR();
+            setGuiDisabled(this);
             getButton().Enabled = true;
         }
 
@@ -143,6 +145,11 @@ namespace windows_tweak_tool.src.policies
         public override bool isSafeForBussiness()
         {
             return true;
+        }
+
+        public override bool isUserControlRequired()
+        {
+            throw new NotImplementedException();
         }
     }
 }

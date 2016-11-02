@@ -16,6 +16,7 @@
     You should have received a copy of the GNU General Public License
     along with this program.If not, see<http://www.gnu.org/licenses/>.
 */
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -59,7 +60,7 @@ namespace windows_tweak_tool.src.policies
 
         public static PolicyType valueOf(string name)
         {
-            foreach(PolicyType type in values())
+            foreach(PolicyType type in values().getAll())
             {
                 if(type.getName().ToUpper() == name.ToUpper())
                 {
@@ -69,9 +70,44 @@ namespace windows_tweak_tool.src.policies
             return null;
         }
 
-        public static PolicyType[] values()
+        public static Iterator<PolicyType> values()
         {
-            return types.ToArray();
+            return new Iterator<PolicyType>(types);
         }
+    }
+
+    class Iterator<T>
+    {
+        private T[] elements;
+        private int index = 0;
+
+        public Iterator(HashSet<T> data)
+        {
+            this.elements = data.ToArray();
+        }
+
+        public bool hasNext()
+        {
+            if(index <= this.elements.Length)
+            {
+                return true;
+            }
+            return false;
+        }
+
+        public T next()
+        {
+            if(this.hasNext())
+            {
+                return this.elements[index++];
+            }
+            throw new Exception("Iterator exception: cannot get empty object");
+        }
+
+        public T[] getAll()
+        {
+            return elements;
+        }
+
     }
 }

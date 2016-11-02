@@ -91,9 +91,14 @@ namespace windows_tweak_tool.src.policies
             return true;
         }
 
+        public override bool isUserControlRequired()
+        {
+            return false;
+        }
+
         public override void unapply()
         {
-            throw new NotImplementedException();
+            
         }
     }
 }

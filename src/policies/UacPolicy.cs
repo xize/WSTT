@@ -69,6 +69,7 @@ namespace windows_tweak_tool.src.policies
 
             removeAutoITtask("uac");
             Config.getConfig().put("uac-mode", 4);
+            setGuiEnabled(this);
             gui.uac_btn.Enabled = true;
         }
 
@@ -89,6 +90,7 @@ namespace windows_tweak_tool.src.policies
 
             removeAutoITtask("uac");
             Config.getConfig().put("uac-mode", 3);
+            setGuiDisabled(this);
             gui.uac_btn.Enabled = true;
         }
 
@@ -124,7 +126,12 @@ namespace windows_tweak_tool.src.policies
 
         public override bool isSafeForBussiness()
         {
-            return false;
+            return true;
+        }
+
+        public override bool isUserControlRequired()
+        {
+            return true;
         }
     }
 }

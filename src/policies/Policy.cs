@@ -51,6 +51,18 @@ namespace windows_tweak_tool.src.policies
             }
         }
 
+        public void setGuiEnabled(Policy p)
+        {
+            p.getProgressbar().Value = 100;
+            p.getButton().Text = "Undo";
+        }
+
+        public void setGuiDisabled(Policy p)
+        {
+            p.getProgressbar().Value = 0;
+            p.getButton().Text = "Apply";
+        }
+
         public bool isServiceStarted(string service)
         {
             ServiceController controller = new ServiceController(service);
@@ -130,6 +142,8 @@ namespace windows_tweak_tool.src.policies
                     return ServiceType.MANUAL;
             }
         }
+
+        public abstract bool isUserControlRequired();
 
         public abstract bool isSecpolDepended();
 
