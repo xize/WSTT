@@ -22,7 +22,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using AutoItX3Lib;
 using System.Diagnostics;
 using Microsoft.Win32;
 

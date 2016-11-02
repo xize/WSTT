@@ -16,7 +16,6 @@
     You should have received a copy of the GNU General Public License
     along with this program.If not, see<http://www.gnu.org/licenses/>.
 */
-using AutoItX3Lib;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -53,44 +52,43 @@ namespace windows_tweak_tool.src.policies
         public override void apply()
         {
             getButton().Enabled = false;
-            AutoItX3 it = createAutoIT("temp");
-            it.Run("mmc.exe secpol.msc");
-            it.WinWait("[CLASS:MMCMainFrame]");
-            it.WinActivate("[CLASS:MMCMainFrame]");
-            it.Sleep(400);
+            AutoIt.AutoItX.Run("mmc.exe secpol.msc", null, 0);
+            AutoIt.AutoItX.WinWait("[CLASS:MMCMainFrame]");
+            AutoIt.AutoItX.WinActivate("[CLASS:MMCMainFrame]");
+            AutoIt.AutoItX.Sleep(400);
             fixUnhappyTrigger(); //fix a issue whereby windows 10 complains about a missing GEO location file which cause to freezes the automation....
 
-            it.Send("{DOWN}{DOWN}{DOWN}{DOWN}{DOWN}{DOWN}");
-            it.Sleep(400);
+            AutoIt.AutoItX.Send("{DOWN}{DOWN}{DOWN}{DOWN}{DOWN}{DOWN}");
+            AutoIt.AutoItX.Sleep(400);
 
             //create policy rules
-            it.Send("{ALT}");
-            it.Send("{RIGHT}");
-            it.Send("{ENTER}");
-            it.Send("{DOWN}");
-            it.Send("{ENTER}");
-            it.Sleep(400);
-            it.Send("{ENTER}");
+            AutoIt.AutoItX.Send("{ALT}");
+            AutoIt.AutoItX.Send("{RIGHT}");
+            AutoIt.AutoItX.Send("{ENTER}");
+            AutoIt.AutoItX.Send("{DOWN}");
+            AutoIt.AutoItX.Send("{ENTER}");
+            AutoIt.AutoItX.Sleep(400);
+            AutoIt.AutoItX.Send("{ENTER}");
 
-            it.Send("{RIGHT}");
-            it.Sleep(400);
-            it.Send("{TAB}");
-            it.Sleep(300);
-            it.Send("{DOWN}{DOWN}{DOWN}{DOWN}");
-            it.Send("{ENTER}");
+            AutoIt.AutoItX.Send("{RIGHT}");
+            AutoIt.AutoItX.Sleep(400);
+            AutoIt.AutoItX.Send("{TAB}");
+            AutoIt.AutoItX.Sleep(300);
+            AutoIt.AutoItX.Send("{DOWN}{DOWN}{DOWN}{DOWN}");
+            AutoIt.AutoItX.Send("{ENTER}");
 
             setTrustedPolicy();
-            it.Sleep(400);
+            AutoIt.AutoItX.Sleep(400);
 
-            it.Send("{UP}{UP}");
-            it.Send("{ENTER}");
+            AutoIt.AutoItX.Send("{UP}{UP}");
+            AutoIt.AutoItX.Send("{ENTER}");
 
             setEnforcementPropertyPolicy();
-            it.Sleep(400);
+            AutoIt.AutoItX.Sleep(400);
 
-            it.Send("{UP}");
-            it.Send("{ENTER}");
-            it.Sleep(400);
+            AutoIt.AutoItX.Send("{UP}");
+            AutoIt.AutoItX.Send("{ENTER}");
+            AutoIt.AutoItX.Sleep(400);
 
             addPolicyRule("%temp%");
             addPolicyRule("%localappdata%\\*.exe");
@@ -98,13 +96,12 @@ namespace windows_tweak_tool.src.policies
             addPolicyRule("%localappdata%\\*.au3");
             addPolicyRule("%systemdir%\\system32\\WindowsPowershell\\*\\*.exe");
             addPolicyRule("%systemdir%\\syswow64\\WindowsPowershell\\*\\*.exe");
-            it.Sleep(400);
+            AutoIt.AutoItX.Sleep(400);
 
             closeMMCWindow();
 
             Policy p = PolicyType.UPDATE_POLICY.getPolicy(gui);
             p.apply();
-            removeAutoITtask("temp");
             Config.getConfig().put("policy-malware-restriction", true);
             setGuiEnabled(this);
             getButton().Enabled = true;
@@ -113,28 +110,26 @@ namespace windows_tweak_tool.src.policies
         public override void unapply()
         {
             getButton().Enabled = false;
-            AutoItX3 it = createAutoIT("temp");
-            it.Run("mmc.exe secpol.msc");
-            it.WinWait("[CLASS:MMCMainFrame]");
-            it.WinActivate("[CLASS:MMCMainFrame]");
-            it.Sleep(400);
+            AutoIt.AutoItX.Run("mmc.exe secpol.msc", null, 0);
+            AutoIt.AutoItX.WinWait("[CLASS:MMCMainFrame]");
+            AutoIt.AutoItX.WinActivate("[CLASS:MMCMainFrame]");
+            AutoIt.AutoItX.Sleep(400);
             fixUnhappyTrigger(); //fix a issue whereby windows 10 complains about a missing GEO location file which cause to freezes the automation....
-            it.WinActivate("[CLASS:MMCMainFrame]");
+            AutoIt.AutoItX.WinActivate("[CLASS:MMCMainFrame]");
 
-            it.Send("{DOWN}{DOWN}{DOWN}{DOWN}{DOWN}{DOWN}");
-            it.Sleep(400);
-            it.Send("{ALT}");
-            it.Send("{TAB}");
-            it.Send("{ENTER}");
-            it.Send("{DOWN}");
-            it.Send("{ENTER}");
-            it.Sleep(400);
-            it.Send("{ENTER}");
+            AutoIt.AutoItX.Send("{DOWN}{DOWN}{DOWN}{DOWN}{DOWN}{DOWN}");
+            AutoIt.AutoItX.Sleep(400);
+            AutoIt.AutoItX.Send("{ALT}");
+            AutoIt.AutoItX.Send("{TAB}");
+            AutoIt.AutoItX.Send("{ENTER}");
+            AutoIt.AutoItX.Send("{DOWN}");
+            AutoIt.AutoItX.Send("{ENTER}");
+            AutoIt.AutoItX.Sleep(400);
+            AutoIt.AutoItX.Send("{ENTER}");
 
             closeMMCWindow();
             Policy p = PolicyType.UPDATE_POLICY.getPolicy(gui);
             p.apply();
-            removeAutoITtask("temp");
             Config.getConfig().put("policy-malware-restriction", false);
             setGuiDisabled(this);
             getButton().Enabled = true;
@@ -142,104 +137,98 @@ namespace windows_tweak_tool.src.policies
 
         private void fixUnhappyTrigger()
         {
-            AutoItX3 it = getAutoIT("temp");
-            it.Sleep(300);
-            it.WinActivate("Beheersjablonen"); //TODO: find class name of this window
-            it.Sleep(300);
-            it.Send("{ENTER}");
-            it.Sleep(300);
-            it.WinActivate("Beheersjablonen"); //TODO: find class name of this window
-            it.Sleep(300);
-            it.Send("{ENTER}");
+            AutoIt.AutoItX.Sleep(300);
+            AutoIt.AutoItX.WinActivate("Beheersjablonen"); //TODO: find class name of this window
+            AutoIt.AutoItX.Sleep(300);
+            AutoIt.AutoItX.Send("{ENTER}");
+            AutoIt.AutoItX.Sleep(300);
+            AutoIt.AutoItX.WinActivate("Beheersjablonen"); //TODO: find class name of this window
+            AutoIt.AutoItX.Sleep(300);
+            AutoIt.AutoItX.Send("{ENTER}");
         }
 
         private void pressOK(string windowtitle)
         {
-            AutoItX3 it = getAutoIT("temp");
-            it.Send("{ENTER}");
+            AutoIt.AutoItX.Send("{ENTER}");
         }
 
         private void setTrustedPolicy()
         {
-            AutoItX3 it = getAutoIT("temp");
-            it.WinWait("[CLASS:#32770]");
+            AutoIt.AutoItX.WinWait("[CLASS:#32770]");
 
-            it.Send("d");
-            it.Sleep(300);
-            it.Send("{TAB}");
-            it.Sleep(300);
-            it.Send("{DOWN}");
-            it.Sleep(300);
-            it.Send("{TAB}");
-            it.Sleep(300);
-            it.Send("c");
-            it.Sleep(300);
-            it.Send("{TAB}");
-            it.Sleep(300);
-            it.Send("{TAB}");
-            it.Sleep(300);
+            AutoIt.AutoItX.Send("d");
+            AutoIt.AutoItX.Sleep(300);
+            AutoIt.AutoItX.Send("{TAB}");
+            AutoIt.AutoItX.Sleep(300);
+            AutoIt.AutoItX.Send("{DOWN}");
+            AutoIt.AutoItX.Sleep(300);
+            AutoIt.AutoItX.Send("{TAB}");
+            AutoIt.AutoItX.Sleep(300);
+            AutoIt.AutoItX.Send("c");
+            AutoIt.AutoItX.Sleep(300);
+            AutoIt.AutoItX.Send("{TAB}");
+            AutoIt.AutoItX.Sleep(300);
+            AutoIt.AutoItX.Send("{TAB}");
+            AutoIt.AutoItX.Sleep(300);
             if (hasIncompatibilityIssues())
             {
                 if (getWindowsVersion() < 10)
                 {
-                    it.Send("{TAB}");
+                    AutoIt.AutoItX.Send("{TAB}");
                 }
             }
-            it.Sleep(300);
+            AutoIt.AutoItX.Sleep(300);
             pressOK("[CLASS:#32770]");
         }
 
         private void setEnforcementPropertyPolicy()
         {
-            AutoItX3 it = getAutoIT("temp");
-            it.WinWait("[CLASS:#32770]");
+            AutoIt.AutoItX.WinWait("[CLASS:#32770]");
 
-            it.Send("{RIGHT}");
-            it.Sleep(300);
-            it.Send("{TAB}");
-            it.Sleep(300);
-            it.Send("{RIGHT}");
-            it.Sleep(300);
-            it.Send("{TAB}");
-            it.Sleep(300);
-            it.Send("{RIGHT}");
-            it.Sleep(300);
-            it.Send("{TAB}");
-            it.Sleep(300);
+            AutoIt.AutoItX.Send("{RIGHT}");
+            AutoIt.AutoItX.Sleep(300);
+            AutoIt.AutoItX.Send("{TAB}");
+            AutoIt.AutoItX.Sleep(300);
+            AutoIt.AutoItX.Send("{RIGHT}");
+            AutoIt.AutoItX.Sleep(300);
+            AutoIt.AutoItX.Send("{TAB}");
+            AutoIt.AutoItX.Sleep(300);
+            AutoIt.AutoItX.Send("{RIGHT}");
+            AutoIt.AutoItX.Sleep(300);
+            AutoIt.AutoItX.Send("{TAB}");
+            AutoIt.AutoItX.Sleep(300);
             if (hasIncompatibilityIssues())
             {
                 if (getWindowsVersion() < 10)
                 {
-                    it.Send("{TAB}");
+                    AutoIt.AutoItX.Send("{TAB}");
                 }
             }
-            it.Sleep(300);
+            AutoIt.AutoItX.Sleep(300);
             pressOK("[CLASS:#32770]");
         }
 
         private void addPolicyRule(string name)
         {
-            AutoItX3 it = getAutoIT("temp");
 
-            it.Send("{ALT}");
-            it.Send("{TAB}");
-            it.Send("{ENTER}");
-            it.Send("{DOWN}{DOWN}{DOWN}{DOWN}");
-            it.Send("{ENTER}");
+            AutoIt.AutoItX.Send("{ALT}");
+            AutoIt.AutoItX.Send("{TAB}");
+            AutoIt.AutoItX.Send("{ENTER}");
+            AutoIt.AutoItX.Send("{DOWN}{DOWN}{DOWN}{DOWN}");
+            AutoIt.AutoItX.Send("{ENTER}");
       
-            it.WinWait("[CLASS:#32770]");
-            it.WinActivate("[CLASS:#32770]");
+            AutoIt.AutoItX.WinWait("[CLASS:#32770]");
+            AutoIt.AutoItX.WinActivate("[CLASS:#32770]");
 
-            it.Send(name);
-            it.Send("{ENTER}");
-            it.Sleep(400);
+            AutoIt.AutoItX.Send(name);
+            AutoIt.AutoItX.Send("{ENTER}");
+            AutoIt.AutoItX.Sleep(400);
         }
 
         private void closeMMCWindow()
         {
-            AutoItX3 it = getAutoIT("temp");
-            it.WinActivate("[CLASS:MMCMainFrame]");
-            it.WinClose("[CLASS:MMCMainFrame]");
+            AutoIt.AutoItX.WinActivate("[CLASS:MMCMainFrame]");
+            AutoIt.AutoItX.WinClose("[CLASS:MMCMainFrame]");
         }
 
         public override ProgressBar getProgressbar()

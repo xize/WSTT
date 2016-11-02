@@ -16,7 +16,6 @@
     You should have received a copy of the GNU General Public License
     along with this program.If not, see<http://www.gnu.org/licenses/>.
 */
-using AutoItX3Lib;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -28,13 +27,12 @@ using System.Windows.Forms;
 using System.Management;
 using Microsoft.Win32;
 using System.ServiceProcess;
+using AutoIt;
 
 namespace windows_tweak_tool.src.policies
 {
     abstract class Policy
     {
-
-        private Dictionary<string, AutoItX3> autoit_tasks = new Dictionary<string, AutoItX3>();
         private int version = -1;
         protected window gui;
 
@@ -232,45 +230,6 @@ namespace windows_tweak_tool.src.policies
         protected String generateGUID()
         {
             return "{"+Guid.NewGuid().ToString()+"}";
-        }
-
-        public AutoItX3 createAutoIT(string name)
-        {
-            if(!autoit_tasks.ContainsKey(name.ToLower()))
-            {
-                AutoItX3 it = new AutoItX3();
-                autoit_tasks.Add(name.ToLower(), it);
-                return it;
-            }
-            throw new NullReferenceException("cannot add AutoIT task because this task is already active!");
-        }
-
-        public bool containsAutoITtask(string name)
-        {
-            if(autoit_tasks.ContainsKey(name.ToLower()))
-            {
-                return true;
-            }
-            return false;
-        }
-
-        public bool removeAutoITtask(string name)
-        {
-            if(containsAutoITtask(name.ToLower()))
-            {
-                autoit_tasks.Remove(name.ToLower());
-                return true;
-            }
-            throw new NullReferenceException("AutoIT task does not exist, maybe the task was already removed?");
-        }
-
-        public AutoItX3 getAutoIT(string name)
-        {
-            if(containsAutoITtask(name))
-            {
-                return autoit_tasks[name.ToLower()];
-            }
-            throw new NullReferenceException("cannot find AutoIT task, maybe you gave in a wrong name?");
         }
 
         public string getDataFolder()

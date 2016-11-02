@@ -16,7 +16,6 @@
     You should have received a copy of the GNU General Public License
     along with this program.If not, see<http://www.gnu.org/licenses/>.
 */
-using AutoItX3Lib;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -56,18 +55,16 @@ namespace windows_tweak_tool.src.policies
         public override void apply()
         {
             gui.uac_btn.Enabled = false;
-            AutoItX3 it = createAutoIT("uac");
-            it.Run("UserAccountControlSettings.exe");
-            it.WinWait("[CLASS:NativeHWNDHost]");
-            it.WinActivate("[CLASS:NativeHWNDHost]");
+            AutoIt.AutoItX.Run("UserAccountControlSettings.exe", null, 0);
+            AutoIt.AutoItX.WinWait("[CLASS:NativeHWNDHost]");
+            AutoIt.AutoItX.WinActivate("[CLASS:NativeHWNDHost]");
 
-            it.Send("{TAB}");
-            it.Send("{UP}{UP}{UP}{UP}");
-            it.Sleep(400);
-            it.Send("{TAB}");
-            it.Send("{ENTER}");
+            AutoIt.AutoItX.Send("{TAB}");
+            AutoIt.AutoItX.Send("{UP}{UP}{UP}{UP}");
+            AutoIt.AutoItX.Sleep(400);
+            AutoIt.AutoItX.Send("{TAB}");
+            AutoIt.AutoItX.Send("{ENTER}");
 
-            removeAutoITtask("uac");
             Config.getConfig().put("uac-mode", 4);
             setGuiEnabled(this);
             gui.uac_btn.Enabled = true;
@@ -76,19 +73,17 @@ namespace windows_tweak_tool.src.policies
         public override void unapply()
         {
             gui.uac_btn.Enabled = false;
-            AutoItX3 it = createAutoIT("uac");
-            it.Run("UserAccountControlSettings.exe");
-            it.WinWait("[CLASS:NativeHWNDHost]");
-            it.WinActivate("[CLASS:NativeHWNDHost]");
+            AutoIt.AutoItX.Run("UserAccountControlSettings.exe", null, 0);
+            AutoIt.AutoItX.WinWait("[CLASS:NativeHWNDHost]");
+            AutoIt.AutoItX.WinActivate("[CLASS:NativeHWNDHost]");
 
-            it.Send("{TAB}");
-            it.Send("{UP}{UP}{UP}{UP}");
-            it.Send("{DOWN}");
-            it.Sleep(400);
-            it.Send("{TAB}");
-            it.Send("{ENTER}");
+            AutoIt.AutoItX.Send("{TAB}");
+            AutoIt.AutoItX.Send("{UP}{UP}{UP}{UP}");
+            AutoIt.AutoItX.Send("{DOWN}");
+            AutoIt.AutoItX.Sleep(400);
+            AutoIt.AutoItX.Send("{TAB}");
+            AutoIt.AutoItX.Send("{ENTER}");
 
-            removeAutoITtask("uac");
             Config.getConfig().put("uac-mode", 3);
             setGuiDisabled(this);
             gui.uac_btn.Enabled = true;
