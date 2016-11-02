@@ -62,8 +62,8 @@ namespace windows_tweak_tool.src.policies
 
             it.Run("mmc.exe secpol.msc");
 
-            it.WinWait("Lokaal beveiligingsbeleid"); //TODO: add language bundle here.
-            it.WinActivate("Lokaal beveiligingsbeleid");
+            it.WinWait("[CLASS:MMCMainFrame]");
+            it.WinActivate("[CLASS:MMCMainFrame]");
             it.Sleep(400);
             fixUnhappyTrigger();
             it.Send("{DOWN}{DOWN}{RIGHT}");
@@ -89,8 +89,8 @@ namespace windows_tweak_tool.src.policies
 
             it.Run("mmc.exe secpol.msc");
 
-            it.WinWait("Lokaal beveiligingsbeleid"); //TODO: add language bundle here.
-            it.WinActivate("Lokaal beveiligingsbeleid");
+            it.WinWait("[CLASS:MMCMainFrame]");
+            it.WinActivate("[CLASS:MMCMainFrame]");
             it.Sleep(400);
             fixUnhappyTrigger();
             it.Send("{DOWN}{DOWN}{RIGHT}");
@@ -125,51 +125,51 @@ namespace windows_tweak_tool.src.policies
             loopToOptions();
 
             it.Send("{ENTER}");
-            it.WinWait("Eigenschappen van Netwerkbeveiliging: NTLM beperken:");
+            it.WinWait("[CLASS:#32770]");
             it.Send("{RIGHT}{RIGHT}");
             it.Sleep(300);
             it.Send("{ENTER}");
-            it.WinWait("Instelling wijzigen bevestigen");
+            it.WinWait("[CLASS:#32770]");
             it.Send("{ENTER}");
             it.Sleep(400);
-            it.WinActivate("Lokaal beveiligingsbeleid");
+            it.WinActivate("[CLASS:MMCMainFrame]");
 
             it.Send("{DOWN}{ENTER}");
-            it.WinWait("Eigenschappen van Netwerkbeveiliging: NTLM beperken:");
+            it.WinWait("[CLASS:#32770]");
             it.Send("{RIGHT}{RIGHT}");
             it.Sleep(300);
             it.Send("{ENTER}");
             it.Sleep(400);
-            it.WinActivate("Lokaal beveiligingsbeleid");
+            it.WinActivate("[CLASS:MMCMainFrame]");
 
             it.Send("{DOWN}{ENTER}");
-            it.WinWait("Eigenschappen van Netwerkbeveiliging: NTLM beperken:");
+            it.WinWait("[CLASS:#32770]");
             it.Send("{RIGHT}{RIGHT}{RIGHT}{RIGHT}");
             it.Sleep(300);
             it.Send("{ENTER}");
-            it.WinWait("Instelling wijzigen bevestigen");
+            it.WinWait("[CLASS:#32770]");
             it.Send("{ENTER}");
             it.Sleep(600);
-            it.WinActivate("Lokaal beveiligingsbeleid");
+            it.WinActivate("[CLASS:MMCMainFrame]");
 
             it.Send("{DOWN}{ENTER}");
-            it.WinWait("Eigenschappen van Netwerkbeveiliging: NTLM beperken:");
+            it.WinWait("[CLASS:#32770]");
             it.Send("{RIGHT}{RIGHT}{RIGHT}{RIGHT}");
             it.Sleep(300);
             it.Send("{ENTER}");
             it.Sleep(400);
-            it.WinActivate("Lokaal beveiligingsbeleid");
+            it.WinActivate("[CLASS:MMCMainFrame]");
             it.Sleep(400);
             
             it.Send("{DOWN}{ENTER}");
-            it.WinWait("Eigenschappen van Netwerkbeveiliging: NTLM beperken:");
+            it.WinWait("[CLASS:#32770]");
             it.Send("{RIGHT}{RIGHT}{RIGHT}{RIGHT}");
             it.Sleep(300);
             it.Send("{ENTER}");
-            it.WinWait("Instelling wijzigen bevestigen");
+            it.WinWait("[CLASS:#32770]");
             it.Send("{ENTER}");
             it.Sleep(400);
-            it.WinActivate("Lokaal beveiligingsbeleid");
+            it.WinActivate("[CLASS:MMCMainFrame]");
         }
 
         private void setDefaultOptions()
@@ -179,44 +179,44 @@ namespace windows_tweak_tool.src.policies
             loopToOptions();
 
             it.Send("{ENTER}");
-            it.WinWait("Eigenschappen van Netwerkbeveiliging: NTLM beperken:");
+            it.WinWait("[CLASS:#32770]");
             it.Send("{LEFT}{LEFT}{ENTER}");
-            it.WinActivate("Lokaal beveiligingsbeleid");
-            it.WinWait("Lokaal beveiligingsbeleid");
+            it.WinActivate("[CLASS:MMCMainFrame]");
+            it.WinWait("[CLASS:MMCMainFrame]");
             it.Send("{DOWN}");
 
             it.Send("{ENTER}");
-            it.WinWait("Eigenschappen van Netwerkbeveiliging: NTLM beperken:");
+            it.WinWait("[CLASS:#32770]");
             it.Send("{LEFT}{LEFT}{ENTER}");
-            it.WinActivate("Lokaal beveiligingsbeleid");
-            it.WinWait("Lokaal beveiligingsbeleid");
+            it.WinActivate("[CLASS:MMCMainFrame]");
+            it.WinWait("[CLASS:MMCMainFrame]");
             it.Send("{DOWN}");
 
             it.Send("{ENTER}");
-            it.WinWait("Eigenschappen van Netwerkbeveiliging: NTLM beperken:");
+            it.WinWait("[CLASS:#32770]");
             it.Send("{LEFT}{LEFT}{LEFT}{LEFT}{ENTER}");
-            it.WinActivate("Lokaal beveiligingsbeleid");
-            it.WinWait("Lokaal beveiligingsbeleid");
+            it.WinActivate("[CLASS:MMCMainFrame]");
+            it.WinWait("[CLASS:MMCMainFrame]");
             it.Send("{DOWN}");
 
             it.Send("{ENTER}");
-            it.WinWait("Eigenschappen van Netwerkbeveiliging: NTLM beperken:");
+            it.WinWait("[CLASS:#32770]");
             it.Send("{LEFT}{LEFT}{LEFT}{LEFT}{ENTER}");
-            it.WinActivate("Lokaal beveiligingsbeleid");
-            it.WinWait("Lokaal beveiligingsbeleid");
+            it.WinActivate("[CLASS:MMCMainFrame]");
+            it.WinWait("[CLASS:MMCMainFrame]");
             it.Send("{DOWN}");
 
             it.Send("{ENTER}");
-            it.WinWait("Eigenschappen van Netwerkbeveiliging: NTLM beperken:");
+            it.WinWait("[CLASS:#32770]");
             it.Send("{LEFT}{LEFT}{ENTER}");
-            it.WinActivate("Lokaal beveiligingsbeleid");
+            it.WinActivate("[CLASS:MMCMainFrame]");
         }
 
         private void closeWindow()
         {
             AutoItX3 it = getAutoIT("NTLM");
-            it.WinActivate("Lokaal beveiligingsbeleid");
-            it.WinClose("Lokaal beveiligingsbeleid");
+            it.WinActivate("[CLASS:MMCMainFrame]");
+            it.WinClose("[CLASS:MMCMainFrame]");
         }
 
         public override Button getButton()
@@ -243,11 +243,11 @@ namespace windows_tweak_tool.src.policies
         {
             AutoItX3 it = getAutoIT("NTLM");
             it.Sleep(300);
-            it.WinActivate("Beheersjablonen"); //TODO: add language bundle here
+            it.WinActivate("Beheersjablonen"); //TODO: find window class
             it.Sleep(300);
             it.Send("{ENTER}");
             it.Sleep(300);
-            it.WinActivate("Beheersjablonen"); //TODO: add language bundle here
+            it.WinActivate("Beheersjablonen"); //TODO: find window class
             it.Sleep(300);
             it.Send("{ENTER}");
         }

@@ -58,8 +58,8 @@ namespace windows_tweak_tool.src.policies
             gui.uac_btn.Enabled = false;
             AutoItX3 it = createAutoIT("uac");
             it.Run("UserAccountControlSettings.exe");
-            it.WinWait("Instellingen voor Gebruikersaccountbeheer"); //TODO: add a language bundle here
-            it.WinActivate("Instellingen voor Gebruikersaccountbeheer");
+            it.WinWait("[CLASS:NativeHWNDHost]");
+            it.WinActivate("[CLASS:NativeHWNDHost]");
 
             it.Send("{TAB}");
             it.Send("{UP}{UP}{UP}{UP}");
@@ -78,8 +78,8 @@ namespace windows_tweak_tool.src.policies
             gui.uac_btn.Enabled = false;
             AutoItX3 it = createAutoIT("uac");
             it.Run("UserAccountControlSettings.exe");
-            it.WinWait("Instellingen voor Gebruikersaccountbeheer"); //TODO: add a language bundle here
-            it.WinActivate("Instellingen voor Gebruikersaccountbeheer");
+            it.WinWait("[CLASS:NativeHWNDHost]");
+            it.WinActivate("[CLASS:NativeHWNDHost]");
 
             it.Send("{TAB}");
             it.Send("{UP}{UP}{UP}{UP}");
