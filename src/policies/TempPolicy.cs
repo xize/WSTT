@@ -156,7 +156,8 @@ namespace windows_tweak_tool.src.policies
         {
             AutoIt.AutoItX.WinWait("[CLASS:#32770]");
 
-            AutoIt.AutoItX.Send("d");
+            //AutoIt.AutoItX.Send("d");
+            AutoIt.AutoItX.Send("{TAB}{TAB}{TAB}{TAB}F");
             AutoIt.AutoItX.Sleep(300);
             AutoIt.AutoItX.Send("{TAB}");
             AutoIt.AutoItX.Sleep(300);
@@ -164,7 +165,7 @@ namespace windows_tweak_tool.src.policies
             AutoIt.AutoItX.Sleep(300);
             AutoIt.AutoItX.Send("{TAB}");
             AutoIt.AutoItX.Sleep(300);
-            AutoIt.AutoItX.Send("c");
+            AutoIt.AutoItX.Send("R");
             AutoIt.AutoItX.Sleep(300);
             AutoIt.AutoItX.Send("{TAB}");
             AutoIt.AutoItX.Sleep(300);
@@ -210,6 +211,7 @@ namespace windows_tweak_tool.src.policies
 
         private void addPolicyRule(string name)
         {
+            AutoIt.AutoItX.Send("{TAB}{TAB}{TAB}{TAB}{TAB}{TAB}{TAB}{TAB}");
 
             AutoIt.AutoItX.Send("{ALT}");
             AutoIt.AutoItX.Send("{TAB}");
