@@ -194,6 +194,16 @@ namespace windows_tweak_tool.src.policies
 
         public abstract bool isSafeForBussiness();
 
+        /**
+         * <summary>
+         *      <para>this method has been deprecated, since we are not sure if we can make AutoIT macros language independed, this method will be a fallback.</para>
+         *      <para></para>
+         *      <para>returns true if the policy is language depended otherwise false.</para>
+         * </summary>
+         *
+         * <returns>bool</returns>
+         * */
+        [Obsolete]
         public abstract bool isLanguageDepended();
 
         public abstract bool hasIncompatibilityIssues();

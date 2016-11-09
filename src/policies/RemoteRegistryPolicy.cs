@@ -93,6 +93,7 @@ namespace windows_tweak_tool.src.policies
             return gui.remoteregprogress;
         }
 
+        [Obsolete]
         public override bool isLanguageDepended()
         {
             return false;

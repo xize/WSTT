@@ -242,6 +242,7 @@ namespace windows_tweak_tool.src.policies
             AutoIt.AutoItX.Send("{ENTER}");
         }
 
+        [Obsolete]
         public override bool isLanguageDepended()
         {
             return true;

@@ -146,6 +146,7 @@ namespace windows_tweak_tool.src.policies
             return gui.netbiosprogress;
         }
 
+        [Obsolete]
         public override bool isLanguageDepended()
         {
             return false;

@@ -253,6 +253,7 @@ namespace windows_tweak_tool.src.policies
             return true;
         }
 
+        [Obsolete]
         public override bool isLanguageDepended()
         {
             return true;

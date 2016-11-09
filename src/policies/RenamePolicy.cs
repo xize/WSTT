@@ -194,6 +194,7 @@ namespace windows_tweak_tool.src.policies
             return gui.renameprogress;
         }
 
+        [Obsolete]
         public override bool isLanguageDepended()
         {
             return false;
