@@ -47,8 +47,6 @@ namespace windows_tweak_tool
         private void initializeGuiWithPolicies()
         {
 
-            bool msg = false;
-
             foreach (PolicyType a in PolicyType.values().getAll())
             {
                 Policy p = a.getPolicy(this);
@@ -77,62 +75,7 @@ namespace windows_tweak_tool
             }
         }
 
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label2_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void panel1_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void label1_Click_1(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label18_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label13_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void progressBar13_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void button13_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label22_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void button26_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void progressBar22_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void button1_Click(object sender, EventArgs e)
+        private void callTempPolicyEvent(object sender, EventArgs e)
         {
             Policy p = PolicyType.TEMP_POLICY.getPolicy(this);
 
@@ -145,22 +88,7 @@ namespace windows_tweak_tool
             }
         }
 
-        private void progressBar1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label3_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label11_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void wscript_btn_Click(object sender, EventArgs e)
+        private void callwscriptEvent(object sender, EventArgs e)
         {
             Policy p = PolicyType.WSCRIPT_POLICY.getPolicy(this);
             if (p.isEnabled())
@@ -173,12 +101,7 @@ namespace windows_tweak_tool
             }
         }
 
-        private void wscript_progress_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void uac_btn_Click(object sender, EventArgs e)
+        private void callUACEvent(object sender, EventArgs e)
         {
             Policy p = PolicyType.UAC_POLICY.getPolicy(this);
             if(p.isEnabled())
@@ -190,12 +113,7 @@ namespace windows_tweak_tool
             }
         }
 
-        private void label8_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void netbiosbtn_Click(object sender, EventArgs e)
+        private void callNetbiosEvent(object sender, EventArgs e)
         {
             Policy p = PolicyType.NETBIOS_POLICY.getPolicy(this);
             if(p.isEnabled())
@@ -207,7 +125,7 @@ namespace windows_tweak_tool
             }
         }
 
-        private void renamebtn_Click(object sender, EventArgs e)
+        private void callRenameEvent(object sender, EventArgs e)
         {
             Policy p = PolicyType.RENAME_POLICY.getPolicy(this);
 
@@ -218,26 +136,6 @@ namespace windows_tweak_tool
             {
                 p.apply();
             }
-        }
-
-        private void window_Load(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label6_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void panel1_Paint_1(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void label7_Click(object sender, EventArgs e)
-        {
-
         }
 
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
@@ -255,7 +153,7 @@ namespace windows_tweak_tool
             Application.Exit();
         }
 
-        private void remoteregbtn_Click(object sender, EventArgs e)
+        private void callRemoteRegEvent(object sender, EventArgs e)
         {
             Policy p = PolicyType.REMOTE_REGISTRY_POLICY.getPolicy(this);
 
@@ -269,12 +167,7 @@ namespace windows_tweak_tool
             }
         }
 
-        private void toolTip1_Popup(object sender, PopupEventArgs e)
-        {
-
-        }
-
-        private void rdpbtn_Click(object sender, EventArgs e)
+        private void callRDPEvent(object sender, EventArgs e)
         {
             Policy p = PolicyType.RDP_POLICY.getPolicy(this);
 
@@ -288,7 +181,7 @@ namespace windows_tweak_tool
             }
         }
 
-        private void NTLMbtn_Click(object sender, EventArgs e)
+        private void callNTLMEvent(object sender, EventArgs e)
         {
             Policy p = PolicyType.NTLM_POLICY.getPolicy(this);
 
@@ -310,7 +203,7 @@ namespace windows_tweak_tool
             }
         }
 
-        private void mbrbtn_Click(object sender, EventArgs e)
+        private void callMBREvent(object sender, EventArgs e)
         {
             Policy p = null;
 
@@ -331,17 +224,12 @@ namespace windows_tweak_tool
             }
         }
 
-        private void mbrprogress_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label15_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        private void callMBRfilterlabel(object sender, LinkLabelLinkClickedEventArgs e)
         {
             Process.Start("https://github.com/vrtadmin/MBRFilter");
         }
 
-        private void button14_Click(object sender, EventArgs e)
+        private void callSafeApplyEvent(object sender, EventArgs e)
         {
             safeapplybtn.Enabled = false;
             /*
@@ -382,7 +270,7 @@ namespace windows_tweak_tool
     */    
         }
 
-        private void button1_Click_1(object sender, EventArgs e)
+        private void callApplyEvent(object sender, EventArgs e)
         {
             applyforcebtn.Enabled = false;
             /*
@@ -420,7 +308,7 @@ namespace windows_tweak_tool
     */    
     }
 
-        private void button15_Click(object sender, EventArgs e)
+        private void callUndoEvent(object sender, EventArgs e)
         {
             undobtn.Enabled = false;
             /*
@@ -457,6 +345,21 @@ namespace windows_tweak_tool
 
             undobtn.Enabled = false;
     */
+        }
+
+        private void callInsecureServicesEvent(object sender, EventArgs e)
+        {
+
+        }
+
+        private void callBogusCertEvent(object sender, EventArgs e)
+        {
+
+        }
+
+        private void tempolicylabel_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
