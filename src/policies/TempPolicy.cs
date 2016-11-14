@@ -68,7 +68,7 @@ namespace windows_tweak_tool.src.policies
             AutoIt.AutoItX.Send("{DOWN}");
             AutoIt.AutoItX.Send("{ENTER}");
             AutoIt.AutoItX.Sleep(400);
-            //AutoIt.AutoItX.Send("{ENTER}"); /* ? */
+            //AutoIt.AutoItX.Send("{ENTER}"); /* figuring out what the meaning of this enter is? perhaps language issues? or has it todo with incompatibility... */
 
             AutoIt.AutoItX.Send("{RIGHT}");
             AutoIt.AutoItX.Sleep(400);
