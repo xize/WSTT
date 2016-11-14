@@ -165,7 +165,7 @@ namespace windows_tweak_tool.src.policies
             AutoIt.AutoItX.Sleep(300);
             AutoIt.AutoItX.Send("{TAB}");
             AutoIt.AutoItX.Sleep(300);
-            AutoIt.AutoItX.Send("RC"); /* F for english versions and D for dutch versions... still needs a review about this */
+            AutoIt.AutoItX.Send("RC"); /* R for english versions and C for dutch versions... still needs a review about this */
             AutoIt.AutoItX.Sleep(300);
             AutoIt.AutoItX.Send("{TAB}");
             AutoIt.AutoItX.Sleep(300);
