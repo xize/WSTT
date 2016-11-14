@@ -68,7 +68,7 @@ namespace windows_tweak_tool.src.policies
             AutoIt.AutoItX.Send("{DOWN}");
             AutoIt.AutoItX.Send("{ENTER}");
             AutoIt.AutoItX.Sleep(400);
-            AutoIt.AutoItX.Send("{ENTER}");
+            //AutoIt.AutoItX.Send("{ENTER}"); /* ? */
 
             AutoIt.AutoItX.Send("{RIGHT}");
             AutoIt.AutoItX.Sleep(400);
@@ -157,7 +157,7 @@ namespace windows_tweak_tool.src.policies
             AutoIt.AutoItX.WinWait("[CLASS:#32770]");
 
             //AutoIt.AutoItX.Send("d");
-            AutoIt.AutoItX.Send("{TAB}{TAB}{TAB}{TAB}F");
+            AutoIt.AutoItX.Send("{TAB}{TAB}{TAB}{TAB}FD"); /* F for english versions and D for dutch versions... still needs a review about this */
             AutoIt.AutoItX.Sleep(300);
             AutoIt.AutoItX.Send("{TAB}");
             AutoIt.AutoItX.Sleep(300);
@@ -165,7 +165,7 @@ namespace windows_tweak_tool.src.policies
             AutoIt.AutoItX.Sleep(300);
             AutoIt.AutoItX.Send("{TAB}");
             AutoIt.AutoItX.Sleep(300);
-            AutoIt.AutoItX.Send("R");
+            AutoIt.AutoItX.Send("RC"); /* F for english versions and D for dutch versions... still needs a review about this */
             AutoIt.AutoItX.Sleep(300);
             AutoIt.AutoItX.Send("{TAB}");
             AutoIt.AutoItX.Sleep(300);
@@ -211,11 +211,10 @@ namespace windows_tweak_tool.src.policies
 
         private void addPolicyRule(string name)
         {
-            AutoIt.AutoItX.Send("{TAB}{TAB}{TAB}{TAB}{TAB}{TAB}{TAB}{TAB}");
-
             AutoIt.AutoItX.Send("{ALT}");
             AutoIt.AutoItX.Send("{TAB}");
             AutoIt.AutoItX.Send("{ENTER}");
+            AutoIt.AutoItX.Sleep(400);
             AutoIt.AutoItX.Send("{DOWN}{DOWN}{DOWN}{DOWN}");
             AutoIt.AutoItX.Send("{ENTER}");
       
