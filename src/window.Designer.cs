@@ -459,7 +459,7 @@ namespace windows_tweak_tool
             this.niniteselectallbtn.Name = "niniteselectallbtn";
             this.niniteselectallbtn.Size = new System.Drawing.Size(75, 23);
             this.niniteselectallbtn.TabIndex = 20;
-            this.niniteselectallbtn.Text = "Select all";
+            this.niniteselectallbtn.Text = "Deselect";
             this.niniteselectallbtn.UseVisualStyleBackColor = true;
             this.niniteselectallbtn.Click += new System.EventHandler(this.niniteselectallbtn_Click);
             // 

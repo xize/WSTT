@@ -399,7 +399,7 @@ namespace windows_tweak_tool
                 {
                     option.getCheckbox().Checked = true;
                 }
-                niniteselectallbtn.Text = "Undo";
+                niniteselectallbtn.Text = "Deselect";
             } else
             {
                 foreach (NiniteOption option in NiniteOption.values())
