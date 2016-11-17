@@ -342,7 +342,7 @@ namespace windows_tweak_tool
                 }
             }
 
-            undobtn.Enabled = false;
+            undobtn.Enabled = true;
         }
 
         private void callInsecureServicesEvent(object sender, EventArgs e)
