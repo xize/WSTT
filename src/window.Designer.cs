@@ -893,7 +893,6 @@ namespace windows_tweak_tool
             // 
             this.boguscertbtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.boguscertbtn.AutoSize = true;
-            this.boguscertbtn.Enabled = false;
             this.boguscertbtn.Location = new System.Drawing.Point(417, 419);
             this.boguscertbtn.Name = "boguscertbtn";
             this.boguscertbtn.Size = new System.Drawing.Size(75, 23);
@@ -906,7 +905,6 @@ namespace windows_tweak_tool
             // 
             this.boguscertprogress.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.boguscertprogress.Enabled = false;
             this.boguscertprogress.Location = new System.Drawing.Point(8, 419);
             this.boguscertprogress.Name = "boguscertprogress";
             this.boguscertprogress.Size = new System.Drawing.Size(406, 23);
@@ -1073,8 +1071,6 @@ namespace windows_tweak_tool
         private ProgressBar insecureserviceprogress;
         private ToolTip toolTip2;
         private Label boguscertlabel;
-        private Button boguscertbtn;
-        private ProgressBar boguscertprogress;
         private LinkLabel mbrfilterlabel;
         public Button mbrbtn;
         public ProgressBar mbrprogress;
@@ -1096,6 +1092,8 @@ namespace windows_tweak_tool
         public CheckBox winscpcheckbox;
         public CheckBox ninitenotepadcheckbox;
         public CheckBox ninitefilezillacheckbox;
+        public Button boguscertbtn;
+        public ProgressBar boguscertprogress;
     }
 }
 

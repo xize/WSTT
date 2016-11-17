@@ -234,8 +234,7 @@ namespace windows_tweak_tool
         private void callSafeApplyEvent(object sender, EventArgs e)
         {
             safeapplybtn.Enabled = false;
-            /*
-            foreach (PolicyType pt in PolicyType.values())
+            foreach (PolicyType pt in PolicyType.values().getAll())
             {
                 if(pt != PolicyType.UPDATE_POLICY)
                 {
@@ -244,7 +243,7 @@ namespace windows_tweak_tool
                 }
             }
 
-            foreach (PolicyType pt in PolicyType.values())
+            foreach (PolicyType pt in PolicyType.values().getAll())
             {
                 if (pt != PolicyType.UPDATE_POLICY)
                 {
@@ -259,7 +258,7 @@ namespace windows_tweak_tool
                 }
             }
 
-            foreach (PolicyType pt in PolicyType.values())
+            foreach (PolicyType pt in PolicyType.values().getAll())
             {
                 if (pt != PolicyType.UPDATE_POLICY)
                 {
@@ -269,14 +268,12 @@ namespace windows_tweak_tool
             }
             safeapplybtn.Enabled = true;
             MessageBox.Show("All \"safe\" policies have been applied!", "Policies with success applied!");
-    */    
         }
 
         private void callApplyEvent(object sender, EventArgs e)
         {
             applyforcebtn.Enabled = false;
-            /*
-            foreach (PolicyType pt in PolicyType.values())
+            foreach (PolicyType pt in PolicyType.values().getAll())
             {
                 if (pt != PolicyType.UPDATE_POLICY)
                 {
@@ -285,7 +282,7 @@ namespace windows_tweak_tool
                 }
             }
 
-            foreach (PolicyType pt in PolicyType.values())
+            foreach (PolicyType pt in PolicyType.values().getAll())
             {
                 if (pt != PolicyType.UPDATE_POLICY)
                 {
@@ -297,7 +294,7 @@ namespace windows_tweak_tool
                 }
             }
 
-            foreach (PolicyType pt in PolicyType.values())
+            foreach (PolicyType pt in PolicyType.values().getAll())
             {
                 if (pt != PolicyType.UPDATE_POLICY)
                 {
@@ -307,14 +304,12 @@ namespace windows_tweak_tool
             }
             applyforcebtn.Enabled = true;
             MessageBox.Show("All policies have been applied!, those who are not require user control.", "Policies with success applied!");
-    */    
     }
 
         private void callUndoEvent(object sender, EventArgs e)
         {
             undobtn.Enabled = false;
-            /*
-            foreach (PolicyType pt in PolicyType.values())
+            foreach (PolicyType pt in PolicyType.values().getAll())
             {
                 if (pt != PolicyType.UPDATE_POLICY)
                 {
@@ -324,7 +319,7 @@ namespace windows_tweak_tool
             }
 
 
-            foreach (PolicyType pt in PolicyType.values())
+            foreach (PolicyType pt in PolicyType.values().getAll())
             {
                 if (pt != PolicyType.UPDATE_POLICY)
                 {
@@ -336,7 +331,7 @@ namespace windows_tweak_tool
                 }
             }
 
-            foreach (PolicyType pt in PolicyType.values())
+            foreach (PolicyType pt in PolicyType.values().getAll())
             {
                 if (pt != PolicyType.UPDATE_POLICY)
                 {
@@ -346,7 +341,6 @@ namespace windows_tweak_tool
             }
 
             undobtn.Enabled = false;
-    */
         }
 
         private void callInsecureServicesEvent(object sender, EventArgs e)
@@ -356,7 +350,16 @@ namespace windows_tweak_tool
 
         private void callBogusCertEvent(object sender, EventArgs e)
         {
+            Policy p = PolicyType.CERT_POLICY.getPolicy(this);
 
+            if (p.isEnabled())
+            {
+                p.unapply();
+            }
+            else
+            {
+                p.apply();
+            }
         }
 
         private void tempolicylabel_Click(object sender, EventArgs e)
@@ -366,9 +369,20 @@ namespace windows_tweak_tool
 
         private void niniteselectallbtn_Click(object sender, EventArgs e)
         {
-            foreach(NiniteOption option in NiniteOption.values())
+            if(niniteselectallbtn.Text == "Select all")
             {
-                option.getCheckbox().Enabled = true;
+                foreach (NiniteOption option in NiniteOption.values())
+                {
+                    option.getCheckbox().Checked = true;
+                }
+                niniteselectallbtn.Text = "Undo";
+            } else
+            {
+                foreach (NiniteOption option in NiniteOption.values())
+                {
+                    option.getCheckbox().Checked = false;
+                }
+                niniteselectallbtn.Text = "Select all";
             }
         }
 
