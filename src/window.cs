@@ -268,6 +268,17 @@ namespace windows_tweak_tool
                     p.getButton().Enabled = true;
                 }
             }
+
+
+            NiniteCreator creator = new NiniteCreator();
+            foreach (NiniteOption ninite in NiniteOption.values())
+            {
+                if (ninite.isEnabled())
+                {
+                    creator.Add(ninite);
+                }
+            }
+            creator.downloadNiniteInstaller(creator.getNiniteURL());
             safeapplybtn.Enabled = true;
             MessageBox.Show("All \"safe\" policies have been applied!", "Policies with success applied!");
         }
@@ -304,6 +315,17 @@ namespace windows_tweak_tool
                     p.getButton().Enabled = true;
                 }
             }
+
+            NiniteCreator creator = new NiniteCreator();
+            foreach (NiniteOption ninite in NiniteOption.values())
+            {
+                if(ninite.isEnabled())
+                {
+                    creator.Add(ninite);
+                }
+            }
+            creator.downloadNiniteInstaller(creator.getNiniteURL());
+
             applyforcebtn.Enabled = true;
             MessageBox.Show("All policies have been applied!, those who are not require user control.", "Policies with success applied!");
     }
@@ -490,6 +512,11 @@ namespace windows_tweak_tool
         {
             Process a = Process.Start("https://technet.microsoft.com/en-us/sysinternals/");
             a.Dispose();
+        }
+
+        private void window_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }
