@@ -83,6 +83,7 @@ namespace windows_tweak_tool.src.policies
             {
                 //lock
             }
+            proc.Dispose();
             setGuiEnabled(this);
             getButton().Enabled = true;
         }
@@ -98,6 +99,7 @@ namespace windows_tweak_tool.src.policies
             {
                 //lock
             }
+            proc.Dispose();
             deleteMBR();
             setGuiDisabled(this);
             getButton().Enabled = true;

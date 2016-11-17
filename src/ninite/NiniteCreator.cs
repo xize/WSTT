@@ -47,7 +47,8 @@ namespace windows_tweak_tool.src.ninite
             {
                 Console.WriteLine(e.Message);
                 MessageBox.Show("Unable to download ninite!, perhaps the file has been removed?\nplease visit: " + url);
-                Process.Start(url);
+                Process proc1 = Process.Start(url);
+                proc1.Dispose();
                 Directory.Delete(getDataFolder() + @"\ninite");
                 return;
             }
@@ -58,6 +59,7 @@ namespace windows_tweak_tool.src.ninite
             {
                 //lock thread
             }
+            proc.Dispose();
         }
 
         private string getDataFolder()

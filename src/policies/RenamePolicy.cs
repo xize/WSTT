@@ -99,12 +99,15 @@ namespace windows_tweak_tool.src.policies
 
                 while (!proc1.HasExited) { } ////lock the local thread till the process has been ended.
 
+                proc1.Dispose();
+
                 ProcessStartInfo ftype = new ProcessStartInfo("cmd.exe");
                 ftype.Arguments = "/c ftype " + extension.ToUpper() + @"File=C:\windows\system32\notepad.exe";
                 ftype.CreateNoWindow = true;
                 Process proc2 = Process.Start(ftype);
 
                 while (!proc2.HasExited) { } //lock the local thread till the process has been ended.
+                proc2.Dispose();
                 Console.WriteLine("extension: " + extension + " has been defaulted to: " + @"C:\windows\system32\notepad.exe");
             }
 
@@ -128,6 +131,7 @@ namespace windows_tweak_tool.src.policies
                 Process proc1 = Process.Start(assoc);
 
                 while (!proc1.HasExited) { } ////lock the local thread till the process has been ended.
+                proc1.Dispose();
 
                 ProcessStartInfo ftype = new ProcessStartInfo("cmd.exe");
 
@@ -167,6 +171,7 @@ namespace windows_tweak_tool.src.policies
                 ftype.CreateNoWindow = true;
                 Process proc2 = Process.Start(ftype);
                 while (!proc2.HasExited) { } //lock the local thread till the process has been ended.
+                proc2.Dispose();
             }
             Config.getConfig().put("renamed", false);
             getButton().Enabled = true;

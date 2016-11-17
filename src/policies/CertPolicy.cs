@@ -108,8 +108,13 @@ namespace windows_tweak_tool.src.policies
                     certutilinfo.Arguments = "-delstore Root " +"\""+strippedline+"\"";
                     Process certutil = Process.Start(certutilinfo);
                     while(!certutil.HasExited){} //lock the thread
+                    certutil.Dispose();
                 }
             }
+
+            //cleanup
+            proc.Dispose();
+            notepadproc.Dispose();
 
             MessageBox.Show("success the following certificates have been removed.\n=====================================================\n" + linestext);
             getProgressbar().Value = 100;
