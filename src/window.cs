@@ -142,7 +142,8 @@ namespace windows_tweak_tool
 
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            Process.Start("https://www.ninite.com/");
+            Process a = Process.Start("https://www.ninite.com/");
+            a.Dispose();
         }
 
         private void versionInformationToolStripMenuItem_Click(object sender, EventArgs e)
@@ -228,7 +229,8 @@ namespace windows_tweak_tool
 
         private void callMBRfilterlabel(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            Process.Start("https://github.com/vrtadmin/MBRFilter");
+            Process proc = Process.Start("https://github.com/vrtadmin/MBRFilter");
+            proc.Dispose();
         }
 
         private void callSafeApplyEvent(object sender, EventArgs e)
@@ -482,6 +484,12 @@ namespace windows_tweak_tool
         private void niniteskypecheckbox_CheckedChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void boguscertlabel_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            Process a = Process.Start("https://technet.microsoft.com/en-us/sysinternals/");
+            a.Dispose();
         }
     }
 }

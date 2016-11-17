@@ -107,7 +107,7 @@ namespace windows_tweak_tool
             this.insecureservicesbtn = new System.Windows.Forms.Button();
             this.insecureserviceprogress = new System.Windows.Forms.ProgressBar();
             this.toolTip2 = new System.Windows.Forms.ToolTip(this.components);
-            this.boguscertlabel = new System.Windows.Forms.Label();
+            this.boguscertlabel = new System.Windows.Forms.LinkLabel();
             this.boguscertbtn = new System.Windows.Forms.Button();
             this.boguscertprogress = new System.Windows.Forms.ProgressBar();
             this.mbrfilterlabel = new System.Windows.Forms.LinkLabel();
@@ -885,9 +885,11 @@ namespace windows_tweak_tool
             this.boguscertlabel.AutoSize = true;
             this.boguscertlabel.Location = new System.Drawing.Point(8, 403);
             this.boguscertlabel.Name = "boguscertlabel";
-            this.boguscertlabel.Size = new System.Drawing.Size(131, 13);
+            this.boguscertlabel.Size = new System.Drawing.Size(208, 13);
             this.boguscertlabel.TabIndex = 85;
-            this.boguscertlabel.Text = "remove bogus certificates:";
+            this.boguscertlabel.TabStop = true;
+            this.boguscertlabel.Text = "remove bogus certificates (uses sigcheck):";
+            this.boguscertlabel.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.boguscertlabel_LinkClicked);
             // 
             // boguscertbtn
             // 
@@ -1070,7 +1072,6 @@ namespace windows_tweak_tool
         private Button insecureservicesbtn;
         private ProgressBar insecureserviceprogress;
         private ToolTip toolTip2;
-        private Label boguscertlabel;
         private LinkLabel mbrfilterlabel;
         public Button mbrbtn;
         public ProgressBar mbrprogress;
@@ -1094,6 +1095,7 @@ namespace windows_tweak_tool
         public CheckBox ninitefilezillacheckbox;
         public Button boguscertbtn;
         public ProgressBar boguscertprogress;
+        private LinkLabel boguscertlabel;
     }
 }
 

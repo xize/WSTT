@@ -105,8 +105,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
     <Compile Include="src\Config.cs" />
     <Compile Include="src\ConfigInfo.cs" />
+    <Compile Include="src\ninite\NiniteCreator.cs" />
+    <Compile Include="src\ninite\NiniteOption.cs" />
+    <Compile Include="src\policies\CertPolicy.cs" />
     <Compile Include="src\policies\MBRPolicy.cs" />
     <Compile Include="src\policies\NetbiosPolicy.cs" />
     <Compile Include="src\policies\NTLMPolicy.cs" />
@@ -132,14 +140,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Resources.resx</DependentUpon>
-      <DesignTime>True</DesignTime>
-    </Compile>
     <None Include="app.manifest">
       <SubType>Designer</SubType>
     </None>
@@ -160,6 +163,9 @@
     <Content Include="AutoItX3.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <None Include="Resources\sigcheck.exe" />
+    <None Include="Resources\sigcheck64.exe" />
+    <None Include="Resources\Eula.txt" />
     <Content Include="windows.ico" />
   </ItemGroup>
   <ItemGroup>
