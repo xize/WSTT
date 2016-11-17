@@ -30,12 +30,14 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using windows_tweak_tool;
 using windows_tweak_tool.src;
+using windows_tweak_tool.src.ninite;
 using windows_tweak_tool.src.policies;
 
 namespace windows_tweak_tool
 {
     public partial class window : Form
     {
+
         public window()
         {
             Config.getConfig().readConfig();
@@ -358,6 +360,112 @@ namespace windows_tweak_tool
         }
 
         private void tempolicylabel_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void niniteselectallbtn_Click(object sender, EventArgs e)
+        {
+            foreach(NiniteOption option in NiniteOption.values())
+            {
+                option.getCheckbox().Enabled = true;
+            }
+        }
+
+        private void niniteinstallbtn_Click(object sender, EventArgs e)
+        {
+            NiniteCreator creator = new NiniteCreator();
+            foreach (NiniteOption option in NiniteOption.values())
+            {
+                if(option.isEnabled())
+                {
+                    creator.Add(option);
+                }
+            }
+            creator.downloadNiniteInstaller(creator.getNiniteURL());
+        }
+
+        private void niniteputtycheckbox_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void winscpcheckbox_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void ninitenotepadcheckbox_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void ninitefilezillacheckbox_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void ninitewinrarcheckbox_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void ninite7zipcheckbox_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void niniteclassiccheckbox_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void niniteimgburncheckbox_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void ninitegoogledrivecheckbox_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void ninitedropboxcheckbox_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void ninitembamcheckbox_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void niniteessentialscheckbox_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void ninitespotifycheckbox_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void ninitevlcplayercheckbox_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void niniteitunescheckbox_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void ninitethunderbirdcheckbox_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void niniteskypecheckbox_CheckedChanged(object sender, EventArgs e)
         {
 
         }

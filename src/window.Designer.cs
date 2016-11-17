@@ -455,211 +455,211 @@ namespace windows_tweak_tool
             // niniteselectallbtn
             // 
             this.niniteselectallbtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.niniteselectallbtn.Enabled = false;
             this.niniteselectallbtn.Location = new System.Drawing.Point(222, 91);
             this.niniteselectallbtn.Name = "niniteselectallbtn";
             this.niniteselectallbtn.Size = new System.Drawing.Size(75, 23);
             this.niniteselectallbtn.TabIndex = 20;
             this.niniteselectallbtn.Text = "Select all";
             this.niniteselectallbtn.UseVisualStyleBackColor = true;
+            this.niniteselectallbtn.Click += new System.EventHandler(this.niniteselectallbtn_Click);
             // 
             // niniteinstallbtn
             // 
             this.niniteinstallbtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.niniteinstallbtn.Enabled = false;
             this.niniteinstallbtn.Location = new System.Drawing.Point(303, 90);
             this.niniteinstallbtn.Name = "niniteinstallbtn";
             this.niniteinstallbtn.Size = new System.Drawing.Size(161, 23);
             this.niniteinstallbtn.TabIndex = 19;
             this.niniteinstallbtn.Text = "Install programs with Ninite!";
             this.niniteinstallbtn.UseVisualStyleBackColor = true;
+            this.niniteinstallbtn.Click += new System.EventHandler(this.niniteinstallbtn_Click);
             // 
             // niniteputtycheckbox
             // 
             this.niniteputtycheckbox.AutoSize = true;
-            this.niniteputtycheckbox.Enabled = false;
             this.niniteputtycheckbox.Location = new System.Drawing.Point(95, 91);
             this.niniteputtycheckbox.Name = "niniteputtycheckbox";
             this.niniteputtycheckbox.Size = new System.Drawing.Size(50, 17);
             this.niniteputtycheckbox.TabIndex = 18;
             this.niniteputtycheckbox.Text = "Putty";
             this.niniteputtycheckbox.UseVisualStyleBackColor = true;
+            this.niniteputtycheckbox.CheckedChanged += new System.EventHandler(this.niniteputtycheckbox_CheckedChanged);
             // 
             // winscpcheckbox
             // 
             this.winscpcheckbox.AutoSize = true;
-            this.winscpcheckbox.Enabled = false;
             this.winscpcheckbox.Location = new System.Drawing.Point(2, 91);
             this.winscpcheckbox.Name = "winscpcheckbox";
             this.winscpcheckbox.Size = new System.Drawing.Size(66, 17);
             this.winscpcheckbox.TabIndex = 17;
             this.winscpcheckbox.Text = "WinSCP";
             this.winscpcheckbox.UseVisualStyleBackColor = true;
+            this.winscpcheckbox.CheckedChanged += new System.EventHandler(this.winscpcheckbox_CheckedChanged);
             // 
             // ninitenotepadcheckbox
             // 
             this.ninitenotepadcheckbox.AutoSize = true;
-            this.ninitenotepadcheckbox.Enabled = false;
             this.ninitenotepadcheckbox.Location = new System.Drawing.Point(389, 68);
             this.ninitenotepadcheckbox.Name = "ninitenotepadcheckbox";
             this.ninitenotepadcheckbox.Size = new System.Drawing.Size(79, 17);
             this.ninitenotepadcheckbox.TabIndex = 16;
             this.ninitenotepadcheckbox.Text = "Notepad++";
             this.ninitenotepadcheckbox.UseVisualStyleBackColor = true;
+            this.ninitenotepadcheckbox.CheckedChanged += new System.EventHandler(this.ninitenotepadcheckbox_CheckedChanged);
             // 
             // ninitefilezillacheckbox
             // 
             this.ninitefilezillacheckbox.AutoSize = true;
-            this.ninitefilezillacheckbox.Enabled = false;
             this.ninitefilezillacheckbox.Location = new System.Drawing.Point(303, 68);
             this.ninitefilezillacheckbox.Name = "ninitefilezillacheckbox";
             this.ninitefilezillacheckbox.Size = new System.Drawing.Size(61, 17);
             this.ninitefilezillacheckbox.TabIndex = 15;
             this.ninitefilezillacheckbox.Text = "FileZilla";
             this.ninitefilezillacheckbox.UseVisualStyleBackColor = true;
+            this.ninitefilezillacheckbox.CheckedChanged += new System.EventHandler(this.ninitefilezillacheckbox_CheckedChanged);
             // 
             // ninitewinrarcheckbox
             // 
             this.ninitewinrarcheckbox.AutoSize = true;
-            this.ninitewinrarcheckbox.Enabled = false;
             this.ninitewinrarcheckbox.Location = new System.Drawing.Point(214, 68);
             this.ninitewinrarcheckbox.Name = "ninitewinrarcheckbox";
             this.ninitewinrarcheckbox.Size = new System.Drawing.Size(68, 17);
             this.ninitewinrarcheckbox.TabIndex = 14;
             this.ninitewinrarcheckbox.Text = "WinRAR";
             this.ninitewinrarcheckbox.UseVisualStyleBackColor = true;
+            this.ninitewinrarcheckbox.CheckedChanged += new System.EventHandler(this.ninitewinrarcheckbox_CheckedChanged);
             // 
             // ninite7zipcheckbox
             // 
             this.ninite7zipcheckbox.AutoSize = true;
-            this.ninite7zipcheckbox.Enabled = false;
             this.ninite7zipcheckbox.Location = new System.Drawing.Point(95, 68);
             this.ninite7zipcheckbox.Name = "ninite7zipcheckbox";
             this.ninite7zipcheckbox.Size = new System.Drawing.Size(48, 17);
             this.ninite7zipcheckbox.TabIndex = 13;
             this.ninite7zipcheckbox.Text = "7-zip";
             this.ninite7zipcheckbox.UseVisualStyleBackColor = true;
+            this.ninite7zipcheckbox.CheckedChanged += new System.EventHandler(this.ninite7zipcheckbox_CheckedChanged);
             // 
             // niniteclassiccheckbox
             // 
             this.niniteclassiccheckbox.AutoSize = true;
-            this.niniteclassiccheckbox.Enabled = false;
             this.niniteclassiccheckbox.Location = new System.Drawing.Point(3, 68);
             this.niniteclassiccheckbox.Name = "niniteclassiccheckbox";
             this.niniteclassiccheckbox.Size = new System.Drawing.Size(84, 17);
             this.niniteclassiccheckbox.TabIndex = 12;
             this.niniteclassiccheckbox.Text = "Classic Start";
             this.niniteclassiccheckbox.UseVisualStyleBackColor = true;
+            this.niniteclassiccheckbox.CheckedChanged += new System.EventHandler(this.niniteclassiccheckbox_CheckedChanged);
             // 
             // niniteimgburncheckbox
             // 
             this.niniteimgburncheckbox.AutoSize = true;
-            this.niniteimgburncheckbox.Enabled = false;
             this.niniteimgburncheckbox.Location = new System.Drawing.Point(389, 45);
             this.niniteimgburncheckbox.Name = "niniteimgburncheckbox";
             this.niniteimgburncheckbox.Size = new System.Drawing.Size(65, 17);
             this.niniteimgburncheckbox.TabIndex = 11;
             this.niniteimgburncheckbox.Text = "ImgBurn";
             this.niniteimgburncheckbox.UseVisualStyleBackColor = true;
+            this.niniteimgburncheckbox.CheckedChanged += new System.EventHandler(this.niniteimgburncheckbox_CheckedChanged);
             // 
             // ninitegoogledrivecheckbox
             // 
             this.ninitegoogledrivecheckbox.AutoSize = true;
-            this.ninitegoogledrivecheckbox.Enabled = false;
             this.ninitegoogledrivecheckbox.Location = new System.Drawing.Point(303, 45);
             this.ninitegoogledrivecheckbox.Name = "ninitegoogledrivecheckbox";
             this.ninitegoogledrivecheckbox.Size = new System.Drawing.Size(88, 17);
             this.ninitegoogledrivecheckbox.TabIndex = 9;
             this.ninitegoogledrivecheckbox.Text = "Google Drive";
             this.ninitegoogledrivecheckbox.UseVisualStyleBackColor = true;
+            this.ninitegoogledrivecheckbox.CheckedChanged += new System.EventHandler(this.ninitegoogledrivecheckbox_CheckedChanged);
             // 
             // ninitedropboxcheckbox
             // 
             this.ninitedropboxcheckbox.AutoSize = true;
-            this.ninitedropboxcheckbox.Enabled = false;
             this.ninitedropboxcheckbox.Location = new System.Drawing.Point(214, 45);
             this.ninitedropboxcheckbox.Name = "ninitedropboxcheckbox";
             this.ninitedropboxcheckbox.Size = new System.Drawing.Size(66, 17);
             this.ninitedropboxcheckbox.TabIndex = 8;
             this.ninitedropboxcheckbox.Text = "Dropbox";
             this.ninitedropboxcheckbox.UseVisualStyleBackColor = true;
+            this.ninitedropboxcheckbox.CheckedChanged += new System.EventHandler(this.ninitedropboxcheckbox_CheckedChanged);
             // 
             // ninitembamcheckbox
             // 
             this.ninitembamcheckbox.AutoSize = true;
-            this.ninitembamcheckbox.Enabled = false;
             this.ninitembamcheckbox.Location = new System.Drawing.Point(95, 45);
             this.ninitembamcheckbox.Name = "ninitembamcheckbox";
             this.ninitembamcheckbox.Size = new System.Drawing.Size(91, 17);
             this.ninitembamcheckbox.TabIndex = 7;
             this.ninitembamcheckbox.Text = "Malwarebytes";
             this.ninitembamcheckbox.UseVisualStyleBackColor = true;
+            this.ninitembamcheckbox.CheckedChanged += new System.EventHandler(this.ninitembamcheckbox_CheckedChanged);
             // 
             // niniteessentialscheckbox
             // 
             this.niniteessentialscheckbox.AutoSize = true;
-            this.niniteessentialscheckbox.Enabled = false;
             this.niniteessentialscheckbox.Location = new System.Drawing.Point(3, 45);
             this.niniteessentialscheckbox.Name = "niniteessentialscheckbox";
             this.niniteessentialscheckbox.Size = new System.Drawing.Size(73, 17);
             this.niniteessentialscheckbox.TabIndex = 6;
             this.niniteessentialscheckbox.Text = "Essentials";
             this.niniteessentialscheckbox.UseVisualStyleBackColor = true;
+            this.niniteessentialscheckbox.CheckedChanged += new System.EventHandler(this.niniteessentialscheckbox_CheckedChanged);
             // 
             // ninitespotifycheckbox
             // 
             this.ninitespotifycheckbox.AutoSize = true;
-            this.ninitespotifycheckbox.Enabled = false;
             this.ninitespotifycheckbox.Location = new System.Drawing.Point(389, 22);
             this.ninitespotifycheckbox.Name = "ninitespotifycheckbox";
             this.ninitespotifycheckbox.Size = new System.Drawing.Size(58, 17);
             this.ninitespotifycheckbox.TabIndex = 5;
             this.ninitespotifycheckbox.Text = "Spotify";
             this.ninitespotifycheckbox.UseVisualStyleBackColor = true;
+            this.ninitespotifycheckbox.CheckedChanged += new System.EventHandler(this.ninitespotifycheckbox_CheckedChanged);
             // 
             // ninitevlcplayercheckbox
             // 
             this.ninitevlcplayercheckbox.AutoSize = true;
-            this.ninitevlcplayercheckbox.Enabled = false;
             this.ninitevlcplayercheckbox.Location = new System.Drawing.Point(305, 22);
             this.ninitevlcplayercheckbox.Name = "ninitevlcplayercheckbox";
             this.ninitevlcplayercheckbox.Size = new System.Drawing.Size(78, 17);
             this.ninitevlcplayercheckbox.TabIndex = 4;
             this.ninitevlcplayercheckbox.Text = "VLC Player";
             this.ninitevlcplayercheckbox.UseVisualStyleBackColor = true;
+            this.ninitevlcplayercheckbox.CheckedChanged += new System.EventHandler(this.ninitevlcplayercheckbox_CheckedChanged);
             // 
             // niniteitunescheckbox
             // 
             this.niniteitunescheckbox.AutoSize = true;
-            this.niniteitunescheckbox.Enabled = false;
             this.niniteitunescheckbox.Location = new System.Drawing.Point(214, 22);
             this.niniteitunescheckbox.Name = "niniteitunescheckbox";
             this.niniteitunescheckbox.Size = new System.Drawing.Size(55, 17);
             this.niniteitunescheckbox.TabIndex = 3;
             this.niniteitunescheckbox.Text = "Itunes";
             this.niniteitunescheckbox.UseVisualStyleBackColor = true;
+            this.niniteitunescheckbox.CheckedChanged += new System.EventHandler(this.niniteitunescheckbox_CheckedChanged);
             // 
             // ninitethunderbirdcheckbox
             // 
             this.ninitethunderbirdcheckbox.AutoSize = true;
-            this.ninitethunderbirdcheckbox.Enabled = false;
             this.ninitethunderbirdcheckbox.Location = new System.Drawing.Point(95, 22);
             this.ninitethunderbirdcheckbox.Name = "ninitethunderbirdcheckbox";
             this.ninitethunderbirdcheckbox.Size = new System.Drawing.Size(83, 17);
             this.ninitethunderbirdcheckbox.TabIndex = 2;
             this.ninitethunderbirdcheckbox.Text = "Thunderbird";
             this.ninitethunderbirdcheckbox.UseVisualStyleBackColor = true;
+            this.ninitethunderbirdcheckbox.CheckedChanged += new System.EventHandler(this.ninitethunderbirdcheckbox_CheckedChanged);
             // 
             // niniteskypecheckbox
             // 
             this.niniteskypecheckbox.AutoSize = true;
-            this.niniteskypecheckbox.Enabled = false;
             this.niniteskypecheckbox.Location = new System.Drawing.Point(3, 22);
             this.niniteskypecheckbox.Name = "niniteskypecheckbox";
             this.niniteskypecheckbox.Size = new System.Drawing.Size(56, 17);
             this.niniteskypecheckbox.TabIndex = 1;
             this.niniteskypecheckbox.Text = "Skype";
             this.niniteskypecheckbox.UseVisualStyleBackColor = true;
+            this.niniteskypecheckbox.CheckedChanged += new System.EventHandler(this.niniteskypecheckbox_CheckedChanged);
             // 
             // optionaloptionslabel
             // 
@@ -1045,23 +1045,6 @@ namespace windows_tweak_tool
         public Button NTLMbtn;
         public ProgressBar NTLMProgress;
         private Panel panel1;
-        private CheckBox niniteskypecheckbox;
-        private CheckBox ninitedropboxcheckbox;
-        private CheckBox ninitembamcheckbox;
-        private CheckBox niniteessentialscheckbox;
-        private CheckBox ninitespotifycheckbox;
-        private CheckBox ninitevlcplayercheckbox;
-        private CheckBox niniteitunescheckbox;
-        private CheckBox ninitethunderbirdcheckbox;
-        private CheckBox niniteclassiccheckbox;
-        private CheckBox niniteimgburncheckbox;
-        private CheckBox ninitegoogledrivecheckbox;
-        private CheckBox ninitewinrarcheckbox;
-        private CheckBox ninite7zipcheckbox;
-        private CheckBox niniteputtycheckbox;
-        private CheckBox winscpcheckbox;
-        private CheckBox ninitenotepadcheckbox;
-        private CheckBox ninitefilezillacheckbox;
         private Button niniteselectallbtn;
         private Button niniteinstallbtn;
         private Label optionaloptionslabel;
@@ -1096,6 +1079,23 @@ namespace windows_tweak_tool
         public Button mbrbtn;
         public ProgressBar mbrprogress;
         private Button applyforcebtn;
+        public CheckBox niniteskypecheckbox;
+        public CheckBox ninitedropboxcheckbox;
+        public CheckBox ninitembamcheckbox;
+        public CheckBox niniteessentialscheckbox;
+        public CheckBox ninitespotifycheckbox;
+        public CheckBox ninitevlcplayercheckbox;
+        public CheckBox niniteitunescheckbox;
+        public CheckBox ninitethunderbirdcheckbox;
+        public CheckBox niniteclassiccheckbox;
+        public CheckBox niniteimgburncheckbox;
+        public CheckBox ninitegoogledrivecheckbox;
+        public CheckBox ninitewinrarcheckbox;
+        public CheckBox ninite7zipcheckbox;
+        public CheckBox niniteputtycheckbox;
+        public CheckBox winscpcheckbox;
+        public CheckBox ninitenotepadcheckbox;
+        public CheckBox ninitefilezillacheckbox;
     }
 }
 
