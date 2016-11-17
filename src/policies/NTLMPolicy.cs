@@ -63,7 +63,7 @@ namespace windows_tweak_tool.src.policies
             AutoIt.AutoItX.WinWait("[CLASS:MMCMainFrame]");
             AutoIt.AutoItX.WinActivate("[CLASS:MMCMainFrame]");
             AutoIt.AutoItX.Sleep(400);
-            fixUnhappyTrigger();
+         //   fixUnhappyTrigger();
             AutoIt.AutoItX.Send("{DOWN}{DOWN}{RIGHT}");
             AutoIt.AutoItX.Sleep(300);
             AutoIt.AutoItX.Send("{DOWN}{DOWN}{DOWN}");
@@ -88,7 +88,7 @@ namespace windows_tweak_tool.src.policies
             AutoIt.AutoItX.WinWait("[CLASS:MMCMainFrame]");
             AutoIt.AutoItX.WinActivate("[CLASS:MMCMainFrame]");
             AutoIt.AutoItX.Sleep(400);
-            fixUnhappyTrigger();
+           // fixUnhappyTrigger();
             AutoIt.AutoItX.Send("{DOWN}{DOWN}{RIGHT}");
             AutoIt.AutoItX.Sleep(300);
             AutoIt.AutoItX.Send("{DOWN}{DOWN}{DOWN}");
