@@ -335,7 +335,7 @@ namespace windows_tweak_tool
             undobtn.Enabled = false;
             foreach (PolicyType pt in PolicyType.values().getAll())
             {
-                if (pt != PolicyType.UPDATE_POLICY)
+                if (pt != PolicyType.UPDATE_POLICY && !pt.getPolicy(this).isUserControlRequired())
                 {
                     Policy p = pt.getPolicy(this);
                     p.getButton().Enabled = false;
@@ -357,7 +357,7 @@ namespace windows_tweak_tool
 
             foreach (PolicyType pt in PolicyType.values().getAll())
             {
-                if (pt != PolicyType.UPDATE_POLICY)
+                if (pt != PolicyType.UPDATE_POLICY && !pt.getPolicy(this).isUserControlRequired())
                 {
                     Policy p = pt.getPolicy(this);
                     p.getButton().Enabled = false;
