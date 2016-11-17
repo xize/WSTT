@@ -52,7 +52,7 @@ namespace windows_tweak_tool.src.ninite
 
         public bool isEnabled()
         {
-            return box.Enabled;
+            return box.Checked;
         }
 
         public static NiniteOption valueOf(string name)
