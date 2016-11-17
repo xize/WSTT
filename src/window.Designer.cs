@@ -477,6 +477,8 @@ namespace windows_tweak_tool
             // niniteputtycheckbox
             // 
             this.niniteputtycheckbox.AutoSize = true;
+            this.niniteputtycheckbox.Checked = true;
+            this.niniteputtycheckbox.CheckState = System.Windows.Forms.CheckState.Checked;
             this.niniteputtycheckbox.Location = new System.Drawing.Point(95, 91);
             this.niniteputtycheckbox.Name = "niniteputtycheckbox";
             this.niniteputtycheckbox.Size = new System.Drawing.Size(50, 17);
@@ -499,6 +501,8 @@ namespace windows_tweak_tool
             // ninitenotepadcheckbox
             // 
             this.ninitenotepadcheckbox.AutoSize = true;
+            this.ninitenotepadcheckbox.Checked = true;
+            this.ninitenotepadcheckbox.CheckState = System.Windows.Forms.CheckState.Checked;
             this.ninitenotepadcheckbox.Location = new System.Drawing.Point(389, 68);
             this.ninitenotepadcheckbox.Name = "ninitenotepadcheckbox";
             this.ninitenotepadcheckbox.Size = new System.Drawing.Size(79, 17);
@@ -510,6 +514,8 @@ namespace windows_tweak_tool
             // ninitefilezillacheckbox
             // 
             this.ninitefilezillacheckbox.AutoSize = true;
+            this.ninitefilezillacheckbox.Checked = true;
+            this.ninitefilezillacheckbox.CheckState = System.Windows.Forms.CheckState.Checked;
             this.ninitefilezillacheckbox.Location = new System.Drawing.Point(303, 68);
             this.ninitefilezillacheckbox.Name = "ninitefilezillacheckbox";
             this.ninitefilezillacheckbox.Size = new System.Drawing.Size(61, 17);
@@ -521,6 +527,8 @@ namespace windows_tweak_tool
             // ninitewinrarcheckbox
             // 
             this.ninitewinrarcheckbox.AutoSize = true;
+            this.ninitewinrarcheckbox.Checked = true;
+            this.ninitewinrarcheckbox.CheckState = System.Windows.Forms.CheckState.Checked;
             this.ninitewinrarcheckbox.Location = new System.Drawing.Point(214, 68);
             this.ninitewinrarcheckbox.Name = "ninitewinrarcheckbox";
             this.ninitewinrarcheckbox.Size = new System.Drawing.Size(68, 17);
@@ -543,6 +551,8 @@ namespace windows_tweak_tool
             // niniteclassiccheckbox
             // 
             this.niniteclassiccheckbox.AutoSize = true;
+            this.niniteclassiccheckbox.Checked = true;
+            this.niniteclassiccheckbox.CheckState = System.Windows.Forms.CheckState.Checked;
             this.niniteclassiccheckbox.Location = new System.Drawing.Point(3, 68);
             this.niniteclassiccheckbox.Name = "niniteclassiccheckbox";
             this.niniteclassiccheckbox.Size = new System.Drawing.Size(84, 17);
@@ -554,6 +564,8 @@ namespace windows_tweak_tool
             // niniteimgburncheckbox
             // 
             this.niniteimgburncheckbox.AutoSize = true;
+            this.niniteimgburncheckbox.Checked = true;
+            this.niniteimgburncheckbox.CheckState = System.Windows.Forms.CheckState.Checked;
             this.niniteimgburncheckbox.Location = new System.Drawing.Point(389, 45);
             this.niniteimgburncheckbox.Name = "niniteimgburncheckbox";
             this.niniteimgburncheckbox.Size = new System.Drawing.Size(65, 17);
@@ -609,6 +621,8 @@ namespace windows_tweak_tool
             // ninitespotifycheckbox
             // 
             this.ninitespotifycheckbox.AutoSize = true;
+            this.ninitespotifycheckbox.Checked = true;
+            this.ninitespotifycheckbox.CheckState = System.Windows.Forms.CheckState.Checked;
             this.ninitespotifycheckbox.Location = new System.Drawing.Point(389, 22);
             this.ninitespotifycheckbox.Name = "ninitespotifycheckbox";
             this.ninitespotifycheckbox.Size = new System.Drawing.Size(58, 17);
@@ -631,6 +645,8 @@ namespace windows_tweak_tool
             // niniteitunescheckbox
             // 
             this.niniteitunescheckbox.AutoSize = true;
+            this.niniteitunescheckbox.Checked = true;
+            this.niniteitunescheckbox.CheckState = System.Windows.Forms.CheckState.Checked;
             this.niniteitunescheckbox.Location = new System.Drawing.Point(214, 22);
             this.niniteitunescheckbox.Name = "niniteitunescheckbox";
             this.niniteitunescheckbox.Size = new System.Drawing.Size(55, 17);
@@ -642,6 +658,8 @@ namespace windows_tweak_tool
             // ninitethunderbirdcheckbox
             // 
             this.ninitethunderbirdcheckbox.AutoSize = true;
+            this.ninitethunderbirdcheckbox.Checked = true;
+            this.ninitethunderbirdcheckbox.CheckState = System.Windows.Forms.CheckState.Checked;
             this.ninitethunderbirdcheckbox.Location = new System.Drawing.Point(95, 22);
             this.ninitethunderbirdcheckbox.Name = "ninitethunderbirdcheckbox";
             this.ninitethunderbirdcheckbox.Size = new System.Drawing.Size(83, 17);
@@ -653,6 +671,8 @@ namespace windows_tweak_tool
             // niniteskypecheckbox
             // 
             this.niniteskypecheckbox.AutoSize = true;
+            this.niniteskypecheckbox.Checked = true;
+            this.niniteskypecheckbox.CheckState = System.Windows.Forms.CheckState.Checked;
             this.niniteskypecheckbox.Location = new System.Drawing.Point(3, 22);
             this.niniteskypecheckbox.Name = "niniteskypecheckbox";
             this.niniteskypecheckbox.Size = new System.Drawing.Size(56, 17);
