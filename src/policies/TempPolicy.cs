@@ -88,7 +88,7 @@ namespace windows_tweak_tool.src.policies
 
             AutoIt.AutoItX.Send("{UP}");
             AutoIt.AutoItX.Send("{ENTER}");
-            AutoIt.AutoItX.Sleep(400);
+            AutoIt.AutoItX.Sleep(600);
 
             addPolicyRule("%temp%");
             addPolicyRule("%localappdata%\\*.exe");
@@ -212,7 +212,9 @@ namespace windows_tweak_tool.src.policies
         private void addPolicyRule(string name)
         {
             AutoIt.AutoItX.Send("{ALT}");
+            AutoIt.AutoItX.Sleep(300);
             AutoIt.AutoItX.Send("{TAB}");
+            AutoIt.AutoItX.Sleep(300);
             AutoIt.AutoItX.Send("{ENTER}");
             AutoIt.AutoItX.Sleep(400);
             AutoIt.AutoItX.Send("{DOWN}{DOWN}{DOWN}{DOWN}");
@@ -220,6 +222,8 @@ namespace windows_tweak_tool.src.policies
       
             AutoIt.AutoItX.WinWait("[CLASS:#32770]");
             AutoIt.AutoItX.WinActivate("[CLASS:#32770]");
+
+            AutoIt.AutoItX.Sleep(400);
 
             AutoIt.AutoItX.Send(name);
             AutoIt.AutoItX.Send("{ENTER}");
