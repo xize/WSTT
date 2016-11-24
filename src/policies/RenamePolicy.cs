@@ -24,6 +24,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using windows_tweak_tool.src.utils;
 
 namespace windows_tweak_tool.src.policies
 {
@@ -54,6 +55,9 @@ namespace windows_tweak_tool.src.policies
             ".pptm",
             ".xlm",
             ".xlsm",
+            ".mhtml",
+            ".mht",
+            ".hta"
             //special cases...
             //".tif",
             //".tiff" //Tempory disable Tiff remote explotation, see: https://threatpost.com/remote-code-execution-vulnerabilities-plague-libtiff-library/121570/ not sure if this is the correct way of megitation!
@@ -161,6 +165,18 @@ namespace windows_tweak_tool.src.policies
                     case ".ps1":
                         Console.WriteLine("extension: " + extension + " gets defaulted to: " + @"C:\windows\system32\notepad.exe");
                         ftype.Arguments = "/c ftype " + extension.ToUpper() + @"File=C:\Windows\System32\notepad.exe";
+                        break;
+                    case ".mhtml":
+                        Console.WriteLine("extension: " + extension + " gets defaulted to: " + BrowserType.INTERNET_EXPLORE.getPath());
+                        ftype.Arguments = "/c ftype " + extension.ToUpper() + "File=\"" + BrowserType.INTERNET_EXPLORE.getPath() + "\"";
+                        break;
+                    case ".mht":
+                        Console.WriteLine("extension: " + extension + " gets defaulted to: " + BrowserType.INTERNET_EXPLORE.getPath());
+                        ftype.Arguments = "/c ftype " + extension.ToUpper() + "File=\"" + BrowserType.INTERNET_EXPLORE.getPath() + "\"";
+                        break;
+                    case ".hta":
+                        Console.WriteLine("extension: " + extension + @" gets defaulted to: C:\windows\system32\mshta.exe");
+                        ftype.Arguments = "/c ftype " + extension.ToUpper() + @"File=C:\windows\system32\mshta.exe";
                         break;
                     default:
                         Console.WriteLine("extension: " + extension + " gets defaulted to: " + @"C:\Windows\System32\wscript.exe");
