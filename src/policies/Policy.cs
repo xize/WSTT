@@ -83,8 +83,7 @@ namespace windows_tweak_tool.src.policies
         public void stopService(string service)
         {
             ServiceController controller = new ServiceController(service);
-            if (controller.CanStop)
-            {
+            if(controller.CanStop) {
                 controller.Stop();
             }
         }

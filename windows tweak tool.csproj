@@ -117,6 +117,7 @@
     <Compile Include="src\policies\CertPolicy.cs" />
     <Compile Include="src\policies\MBRPolicy.cs" />
     <Compile Include="src\policies\NetbiosPolicy.cs" />
+    <Compile Include="src\policies\NetSharePolicy.cs" />
     <Compile Include="src\policies\NTLMPolicy.cs" />
     <Compile Include="src\policies\PolicyType.cs" />
     <Compile Include="src\policies\Policy.cs" />
@@ -127,6 +128,8 @@
     <Compile Include="src\policies\UacPolicy.cs" />
     <Compile Include="src\policies\UpdatePolicy.cs" />
     <Compile Include="src\policies\WscriptPolicy.cs" />
+    <Compile Include="src\utils\BrowserType.cs" />
+    <Compile Include="src\utils\Browser.cs" />
     <Compile Include="src\window.cs">
       <SubType>Form</SubType>
     </Compile>

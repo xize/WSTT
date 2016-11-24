@@ -113,6 +113,9 @@ namespace windows_tweak_tool
             this.mbrfilterlabel = new System.Windows.Forms.LinkLabel();
             this.mbrbtn = new System.Windows.Forms.Button();
             this.mbrprogress = new System.Windows.Forms.ProgressBar();
+            this.label1 = new System.Windows.Forms.Label();
+            this.netsharebtn = new System.Windows.Forms.Button();
+            this.netshareprogress = new System.Windows.Forms.ProgressBar();
             this.panel1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -345,7 +348,7 @@ namespace windows_tweak_tool
             // safeapplybtn
             // 
             this.safeapplybtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.safeapplybtn.Location = new System.Drawing.Point(9, 765);
+            this.safeapplybtn.Location = new System.Drawing.Point(9, 807);
             this.safeapplybtn.Name = "safeapplybtn";
             this.safeapplybtn.Size = new System.Drawing.Size(158, 23);
             this.safeapplybtn.TabIndex = 39;
@@ -358,7 +361,7 @@ namespace windows_tweak_tool
             // undobtn
             // 
             this.undobtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.undobtn.Location = new System.Drawing.Point(417, 765);
+            this.undobtn.Location = new System.Drawing.Point(417, 807);
             this.undobtn.Name = "undobtn";
             this.undobtn.Size = new System.Drawing.Size(75, 23);
             this.undobtn.TabIndex = 40;
@@ -370,7 +373,7 @@ namespace windows_tweak_tool
             // applyforcebtn
             // 
             this.applyforcebtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.applyforcebtn.Location = new System.Drawing.Point(173, 765);
+            this.applyforcebtn.Location = new System.Drawing.Point(173, 807);
             this.applyforcebtn.Name = "applyforcebtn";
             this.applyforcebtn.Size = new System.Drawing.Size(100, 23);
             this.applyforcebtn.TabIndex = 89;
@@ -436,7 +439,7 @@ namespace windows_tweak_tool
             this.panel1.Controls.Add(this.niniteitunescheckbox);
             this.panel1.Controls.Add(this.ninitethunderbirdcheckbox);
             this.panel1.Controls.Add(this.niniteskypecheckbox);
-            this.panel1.Location = new System.Drawing.Point(9, 509);
+            this.panel1.Location = new System.Drawing.Point(9, 550);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(484, 117);
             this.panel1.TabIndex = 68;
@@ -687,7 +690,7 @@ namespace windows_tweak_tool
             | System.Windows.Forms.AnchorStyles.Right)));
             this.optionaloptionslabel.AutoSize = true;
             this.optionaloptionslabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.optionaloptionslabel.Location = new System.Drawing.Point(10, 493);
+            this.optionaloptionslabel.Location = new System.Drawing.Point(10, 534);
             this.optionaloptionslabel.Name = "optionaloptionslabel";
             this.optionaloptionslabel.Size = new System.Drawing.Size(101, 13);
             this.optionaloptionslabel.TabIndex = 69;
@@ -698,7 +701,7 @@ namespace windows_tweak_tool
             this.keepasslabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.keepasslabel.AutoSize = true;
-            this.keepasslabel.Location = new System.Drawing.Point(9, 629);
+            this.keepasslabel.Location = new System.Drawing.Point(9, 670);
             this.keepasslabel.Name = "keepasslabel";
             this.keepasslabel.Size = new System.Drawing.Size(158, 13);
             this.keepasslabel.TabIndex = 72;
@@ -709,7 +712,7 @@ namespace windows_tweak_tool
             this.keepassbtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.keepassbtn.AutoSize = true;
             this.keepassbtn.Enabled = false;
-            this.keepassbtn.Location = new System.Drawing.Point(418, 645);
+            this.keepassbtn.Location = new System.Drawing.Point(418, 686);
             this.keepassbtn.Name = "keepassbtn";
             this.keepassbtn.Size = new System.Drawing.Size(75, 23);
             this.keepassbtn.TabIndex = 71;
@@ -721,7 +724,7 @@ namespace windows_tweak_tool
             this.keepassprogress.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.keepassprogress.Enabled = false;
-            this.keepassprogress.Location = new System.Drawing.Point(9, 645);
+            this.keepassprogress.Location = new System.Drawing.Point(9, 686);
             this.keepassprogress.Name = "keepassprogress";
             this.keepassprogress.Size = new System.Drawing.Size(406, 23);
             this.keepassprogress.TabIndex = 70;
@@ -731,7 +734,7 @@ namespace windows_tweak_tool
             this.chromelabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.chromelabel.AutoSize = true;
-            this.chromelabel.Location = new System.Drawing.Point(9, 671);
+            this.chromelabel.Location = new System.Drawing.Point(9, 712);
             this.chromelabel.Name = "chromelabel";
             this.chromelabel.Size = new System.Drawing.Size(369, 13);
             this.chromelabel.TabIndex = 75;
@@ -742,7 +745,7 @@ namespace windows_tweak_tool
             this.chromebtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.chromebtn.AutoSize = true;
             this.chromebtn.Enabled = false;
-            this.chromebtn.Location = new System.Drawing.Point(418, 687);
+            this.chromebtn.Location = new System.Drawing.Point(418, 728);
             this.chromebtn.Name = "chromebtn";
             this.chromebtn.Size = new System.Drawing.Size(75, 23);
             this.chromebtn.TabIndex = 74;
@@ -754,7 +757,7 @@ namespace windows_tweak_tool
             this.chromeprogress.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.chromeprogress.Enabled = false;
-            this.chromeprogress.Location = new System.Drawing.Point(9, 687);
+            this.chromeprogress.Location = new System.Drawing.Point(9, 728);
             this.chromeprogress.Name = "chromeprogress";
             this.chromeprogress.Size = new System.Drawing.Size(406, 23);
             this.chromeprogress.TabIndex = 73;
@@ -764,7 +767,7 @@ namespace windows_tweak_tool
             this.chromeaddonlabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.chromeaddonlabel.AutoSize = true;
-            this.chromeaddonlabel.Location = new System.Drawing.Point(9, 713);
+            this.chromeaddonlabel.Location = new System.Drawing.Point(9, 754);
             this.chromeaddonlabel.Name = "chromeaddonlabel";
             this.chromeaddonlabel.Size = new System.Drawing.Size(164, 13);
             this.chromeaddonlabel.TabIndex = 78;
@@ -775,7 +778,7 @@ namespace windows_tweak_tool
             this.chromeaddonbtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.chromeaddonbtn.AutoSize = true;
             this.chromeaddonbtn.Enabled = false;
-            this.chromeaddonbtn.Location = new System.Drawing.Point(418, 729);
+            this.chromeaddonbtn.Location = new System.Drawing.Point(418, 770);
             this.chromeaddonbtn.Name = "chromeaddonbtn";
             this.chromeaddonbtn.Size = new System.Drawing.Size(75, 23);
             this.chromeaddonbtn.TabIndex = 77;
@@ -787,7 +790,7 @@ namespace windows_tweak_tool
             this.chromeaddonprogress.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.chromeaddonprogress.Enabled = false;
-            this.chromeaddonprogress.Location = new System.Drawing.Point(9, 729);
+            this.chromeaddonprogress.Location = new System.Drawing.Point(9, 770);
             this.chromeaddonprogress.Name = "chromeaddonprogress";
             this.chromeaddonprogress.Size = new System.Drawing.Size(406, 23);
             this.chromeaddonprogress.TabIndex = 76;
@@ -937,7 +940,7 @@ namespace windows_tweak_tool
             this.mbrfilterlabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.mbrfilterlabel.AutoSize = true;
-            this.mbrfilterlabel.Location = new System.Drawing.Point(10, 445);
+            this.mbrfilterlabel.Location = new System.Drawing.Point(8, 445);
             this.mbrfilterlabel.Name = "mbrfilterlabel";
             this.mbrfilterlabel.Size = new System.Drawing.Size(428, 13);
             this.mbrfilterlabel.TabIndex = 88;
@@ -968,10 +971,45 @@ namespace windows_tweak_tool
             this.mbrprogress.Size = new System.Drawing.Size(190, 23);
             this.mbrprogress.TabIndex = 86;
             // 
+            // label1
+            // 
+            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(13, 487);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(92, 13);
+            this.label1.TabIndex = 92;
+            this.label1.Text = "disable netshares:";
+            // 
+            // netsharebtn
+            // 
+            this.netsharebtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.netsharebtn.AutoSize = true;
+            this.netsharebtn.Location = new System.Drawing.Point(422, 503);
+            this.netsharebtn.Name = "netsharebtn";
+            this.netsharebtn.Size = new System.Drawing.Size(75, 23);
+            this.netsharebtn.TabIndex = 91;
+            this.netsharebtn.Text = "Apply";
+            this.netsharebtn.UseVisualStyleBackColor = true;
+            this.netsharebtn.Click += new System.EventHandler(this.netsharebtn_Click);
+            // 
+            // netshareprogress
+            // 
+            this.netshareprogress.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.netshareprogress.Location = new System.Drawing.Point(13, 503);
+            this.netshareprogress.Name = "netshareprogress";
+            this.netshareprogress.Size = new System.Drawing.Size(406, 23);
+            this.netshareprogress.TabIndex = 90;
+            // 
             // window
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-            this.ClientSize = new System.Drawing.Size(510, 802);
+            this.ClientSize = new System.Drawing.Size(510, 844);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.netsharebtn);
+            this.Controls.Add(this.netshareprogress);
             this.Controls.Add(this.applyforcebtn);
             this.Controls.Add(this.mbrfilterlabel);
             this.Controls.Add(this.mbrbtn);
@@ -1022,7 +1060,7 @@ namespace windows_tweak_tool
             this.Controls.Add(this.menuStrip1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip1;
-            this.MinimumSize = new System.Drawing.Size(526, 841);
+            this.MinimumSize = new System.Drawing.Size(526, 883);
             this.Name = "window";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Windows Security Tweaker Tool 14.0.25420.1b (WSTT)";
@@ -1117,6 +1155,9 @@ namespace windows_tweak_tool
         public Button boguscertbtn;
         public ProgressBar boguscertprogress;
         private LinkLabel boguscertlabel;
+        private Label label1;
+        public Button netsharebtn;
+        public ProgressBar netshareprogress;
     }
 }
 

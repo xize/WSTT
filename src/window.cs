@@ -518,5 +518,17 @@ namespace windows_tweak_tool
         {
 
         }
+
+        private void netsharebtn_Click(object sender, EventArgs e)
+        {
+            Policy p = PolicyType.NETSHARE_POLICY.getPolicy(this);
+            if(p.isEnabled())
+            {
+                p.unapply();
+            } else
+            {
+                p.apply();
+            }
+        }
     }
 }
