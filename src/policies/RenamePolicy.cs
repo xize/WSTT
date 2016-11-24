@@ -59,8 +59,8 @@ namespace windows_tweak_tool.src.policies
             ".mht",
             ".hta"
             //special cases...
-            //".tif",
-            //".tiff" //Tempory disable Tiff remote explotation, see: https://threatpost.com/remote-code-execution-vulnerabilities-plague-libtiff-library/121570/ not sure if this is the correct way of megitation!
+            ".tif",
+            ".tiff" //Tempory disable Tiff remote explotation, see: https://threatpost.com/remote-code-execution-vulnerabilities-plague-libtiff-library/121570/ not sure if this is the correct way of megitation!
         };
 
         public override string getName()
