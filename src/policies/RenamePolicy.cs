@@ -55,6 +55,7 @@ namespace windows_tweak_tool.src.policies
             ".pptm",
             ".xlm",
             ".xlsm",
+            //html and help components
             ".mhtml",
             ".mht",
             ".hta"
