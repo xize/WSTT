@@ -35,6 +35,7 @@ namespace windows_tweak_tool.src.policies
         {
             //scripts, however there are alot more but I lost the article....
             ".js",
+            ".svg",
             ".jse",
             ".vbs",
             ".wsh",
@@ -58,7 +59,7 @@ namespace windows_tweak_tool.src.policies
             //html and help components
             ".mhtml",
             ".mht",
-            ".hta"
+            ".hta",
             //special cases...
             ".tif",
             ".tiff" //Tempory disable Tiff remote explotation, see: https://threatpost.com/remote-code-execution-vulnerabilities-plague-libtiff-library/121570/ not sure if this is the correct way of megitation!
@@ -178,6 +179,10 @@ namespace windows_tweak_tool.src.policies
                     case ".hta":
                         Console.WriteLine("extension: " + extension + @" gets defaulted to: C:\windows\system32\mshta.exe");
                         ftype.Arguments = "/c ftype " + extension.ToUpper() + @"File=C:\windows\system32\mshta.exe";
+                        break;
+                    case ".svg":
+                        Console.WriteLine("extension: " + extension + " gets defaulted to: " + BrowserType.INTERNET_EXPLORE.getPath());
+                        ftype.Arguments = "/c ftype " + extension.ToUpper() + "File=\"" + BrowserType.INTERNET_EXPLORE.getPath() + "\"";
                         break;
                     default:
                         Console.WriteLine("extension: " + extension + " gets defaulted to: " + @"C:\Windows\System32\wscript.exe");
