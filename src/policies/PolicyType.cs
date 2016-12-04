@@ -90,7 +90,7 @@ namespace windows_tweak_tool.src.policies
 
         public bool hasNext()
         {
-            if(index <= this.elements.Length)
+            if(index+1 <= this.elements.Length)
             {
                 return true;
             }
