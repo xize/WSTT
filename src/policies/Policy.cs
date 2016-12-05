@@ -232,11 +232,11 @@ namespace windows_tweak_tool.src.policies
 
         /**
         * <summary>
-        *      <para>returns the version id, this is for internal use only</para>
+        *      <para>returns the version id of windows</para>
         * </summary>
         * <returns>int</returns>
         **/
-        private int getWindowsVersion()
+        public int getWindowsVersion()
         {
             if (version > -1)
             {
