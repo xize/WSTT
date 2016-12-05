@@ -165,25 +165,77 @@ namespace windows_tweak_tool.src.policies
         **/
         public abstract string getName();
 
+        /**
+        * <summary>
+        *      <para>returns the PolicyType  of this policy</para>
+        * </summary>
+        * <returns>PolicyType</returns>
+        **/
         public abstract PolicyType getType();
 
+        /**
+        * <summary>
+        *      <para>returns the description of this policy</para>
+        * </summary>
+        * <returns>string</returns>
+        **/
         public abstract string getDescription();
 
+        /**
+        * <summary>
+        *      <para>returns true if this policy is enabled otherwise false</para>
+        * </summary>
+        * <returns>bool</returns>
+        **/
         public abstract bool isEnabled();
 
+        /**
+        * <summary>
+        *      <para>applies the policy</para>
+        * </summary>
+        **/
         public abstract void apply();
 
+        /**
+        * <summary>
+        *      <para>unapplies the policy</para>
+        * </summary>
+        **/
         public abstract void unapply();
 
+        /**
+        * <summary>
+        *      <para>returns the progress bar from the policy</para>
+        * </summary>
+        * <returns>ProgressBar</returns>
+        **/
         public abstract ProgressBar getProgressbar();
 
+        /**
+        * <summary>
+        *      <para>returns the button from the policy</para>
+        * </summary>
+        * <returns>Button</returns>
+        **/
         public abstract Button getButton();
 
+        /**
+        * <summary>
+        *      <para>returns the installation directory</para>
+        * </summary>
+        * <returns>string</returns>
+        **/
         public string getDataFolder()
         {
             return Config.getConfig().getDataFolder();
         }
 
+        /**
+        * <summary>
+        *      <para>returns the version id, this is for internal use only</para>
+        * </summary>
+        * <returns>int</returns>
+        **/
         private int getWindowsVersion()
         {
             if (version > -1)
