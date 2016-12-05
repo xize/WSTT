@@ -37,7 +37,7 @@ namespace windows_tweak_tool.src.policies
         private int version = -1;
         protected window gui;
 
-        private Policy(){} //don't instance the class :)
+        protected Policy(){} //don't instance the class :)
 
 
         /**
@@ -75,10 +75,28 @@ namespace windows_tweak_tool.src.policies
             p.getButton().Text = "Apply";
         }
 
+        /**
+        * <summary>
+        *      <para>sets the progress to full and the button to unapply</para>
+        * </summary>
+        * <returns>bool</returns>
+        **/
         public abstract bool isUserControlRequired();
 
+        /**
+        * <summary>
+        *      <para>returns true if the policy is secpol depended or not</para>
+        * </summary>
+        * <returns>bool</returns>
+        **/
         public abstract bool isSecpolDepended();
 
+        /**
+        * <summary>
+        *      <para>returns true whenever secpol is enabled on the system!</para>
+        * </summary>
+        * <returns>bool</returns>
+        **/
         public bool isSecpolEnabled()
         {
                 ManagementObjectSearcher search = new ManagementObjectSearcher("SELECT Caption FROM Win32_OperatingSystem");
@@ -102,26 +120,6 @@ namespace windows_tweak_tool.src.policies
                     }
                 }
             return false;
-        }
-
-        public int getWindowsVersion()
-        {
-            if(version > -1)
-            {
-                return version;
-            } else
-            {
-                ManagementObjectSearcher search = new ManagementObjectSearcher("SELECT Caption FROM Win32_OperatingSystem");
-                var name = (from x in search.Get().OfType<ManagementObject>() select x.GetPropertyValue("Caption")).FirstOrDefault();
-                search.Dispose();
-
-                if (name != null)
-                {
-                    string[] OS = name.ToString().Split(' ');
-                    return Convert.ToInt32(OS[2]);
-                }
-            }
-            throw new Exception("Failed to get Windows version, maybe WMI is broken?");
         }
 
         public abstract bool isMacro();
@@ -174,6 +172,27 @@ namespace windows_tweak_tool.src.policies
         public string getDataFolder()
         {
             return Config.getConfig().getDataFolder();
+        }
+
+        private int getWindowsVersion()
+        {
+            if (version > -1)
+            {
+                return version;
+            }
+            else
+            {
+                ManagementObjectSearcher search = new ManagementObjectSearcher("SELECT Caption FROM Win32_OperatingSystem");
+                var name = (from x in search.Get().OfType<ManagementObject>() select x.GetPropertyValue("Caption")).FirstOrDefault();
+                search.Dispose();
+
+                if (name != null)
+                {
+                    string[] OS = name.ToString().Split(' ');
+                    return Convert.ToInt32(OS[2]);
+                }
+            }
+            throw new Exception("Failed to get Windows version, maybe WMI is broken?");
         }
     }
 }
