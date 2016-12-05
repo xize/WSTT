@@ -54,9 +54,6 @@ namespace windows_tweak_tool.src.policies.components
         public void startService(string service)
         {
             ServiceController controller = new ServiceController(service);
-
-            Console.WriteLine("service status: " + controller.Status);
-
             if (controller.CanStop && controller.Status == ServiceControllerStatus.Stopped)
             {
                 controller.Start();
