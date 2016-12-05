@@ -30,7 +30,7 @@ namespace windows_tweak_tool.src
     static class Program
     {
 
-        private static window gui;
+        private static Window gui;
 
         /// <summary>
         /// The main entry point for the application.
@@ -40,11 +40,11 @@ namespace windows_tweak_tool.src
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            gui = new window();
+            gui = new Window();
             Application.Run(gui);
         }
 
-        public static window getGui()
+        public static Window getGui()
         {
             return gui;
         }

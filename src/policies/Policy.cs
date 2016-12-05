@@ -35,7 +35,7 @@ namespace windows_tweak_tool.src.policies
     abstract class Policy : Services
     {
         private int version = -1;
-        protected window gui;
+        protected Window gui;
 
         protected Policy(){} //don't instance the class :)
 
@@ -44,7 +44,7 @@ namespace windows_tweak_tool.src.policies
         *      <para>sets the gui for the first time</para>
         * </summary>
         **/
-        public void setGui(window win)
+        public void setGui(Window win)
         {
             if(this.gui != win)
             {

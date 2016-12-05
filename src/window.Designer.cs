@@ -4,7 +4,7 @@ using windows_tweak_tool.src.policies;
 
 namespace windows_tweak_tool
 {
-    partial class window
+    partial class Window
     {
         /// <summary>
         /// Required designer variable.
@@ -33,7 +33,7 @@ namespace windows_tweak_tool
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(window));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Window));
             this.temp_policy_load = new System.Windows.Forms.ProgressBar();
             this.temp_policy_btn = new System.Windows.Forms.Button();
             this.wscript_btn = new System.Windows.Forms.Button();

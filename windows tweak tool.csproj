@@ -132,16 +132,16 @@
     <Compile Include="src\policies\WscriptPolicy.cs" />
     <Compile Include="src\utils\BrowserType.cs" />
     <Compile Include="src\utils\Browser.cs" />
-    <Compile Include="src\window.cs">
+    <Compile Include="src\Window.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="src\window.Designer.cs">
-      <DependentUpon>window.cs</DependentUpon>
+    <Compile Include="src\Window.Designer.cs">
+      <DependentUpon>Window.cs</DependentUpon>
     </Compile>
     <Compile Include="src\Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="src\window.resx">
-      <DependentUpon>window.cs</DependentUpon>
+    <EmbeddedResource Include="src\Window.resx">
+      <DependentUpon>Window.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
