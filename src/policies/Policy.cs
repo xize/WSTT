@@ -28,19 +28,23 @@ using System.Management;
 using Microsoft.Win32;
 using System.ServiceProcess;
 using AutoIt;
+using windows_tweak_tool.src.policies.components;
 
 namespace windows_tweak_tool.src.policies
 {
-    abstract class Policy
+    abstract class Policy : Services
     {
         private int version = -1;
         protected window gui;
 
-        protected Policy()
-        {
-            
-        }
+        private Policy(){} //don't instance the class :)
 
+
+        /**
+        * <summary>
+        *      <para>sets the gui for the first time</para>
+        * </summary>
+        **/
         public void setGui(window win)
         {
             if(this.gui != win)
@@ -49,95 +53,26 @@ namespace windows_tweak_tool.src.policies
             }
         }
 
+        /**
+        * <summary>
+        *      <para>sets the progress to 100% and the button to unapply.</para>
+        * </summary>
+        **/
         public void setGuiEnabled(Policy p)
         {
             p.getProgressbar().Value = 100;
             p.getButton().Text = "Undo";
         }
 
+        /**
+        * <summary>
+        *      <para>sets the progress to 0% and the button to apply.</para>
+        * </summary>
+        **/
         public void setGuiDisabled(Policy p)
         {
             p.getProgressbar().Value = 0;
             p.getButton().Text = "Apply";
-        }
-
-        public bool isServiceStarted(string service)
-        {
-            ServiceController controller = new ServiceController(service);
-            if(controller.Status == ServiceControllerStatus.Running)
-            {
-                return true;
-            }
-            return false;
-        }
-
-        public void startService(string service)
-        {
-            ServiceController controller = new ServiceController(service);
-            if(controller.CanStop)
-            {
-                controller.Start();
-            }
-        }
-
-        public void stopService(string service)
-        {
-            ServiceController controller = new ServiceController(service);
-            if(controller.CanStop) {
-                controller.Stop();
-            }
-        }
-
-        public void setServiceType(string service, ServiceType type)
-        {
-            int stype = 4;
-            switch(type)
-            {
-                case ServiceType.AUTOMATIC_SLOWED:
-                    stype = 1;
-                    break;
-                case ServiceType.AUTOMATIC:
-                    stype = 2;
-                    break;
-                case ServiceType.MANUAL:
-                    stype = 3;
-                    break;
-                case ServiceType.DISABLED:
-                    stype = 4;
-                    break;
-                default:
-                    stype = 4;
-                    break;
-            }
-            RegistryKey key = getRegistry(@"SYSTEM\CurrentControlSet\Services\"+service, REG.HKLM);
-            key.SetValue("Start", stype);
-            key.Close();
-        }
-
-        public enum ServiceType {
-            AUTOMATIC_SLOWED,
-            AUTOMATIC,
-            MANUAL,
-            DISABLED
-        }
-
-        public ServiceType getServiceStatus(string service)
-        {
-            RegistryKey key = getRegistry(@"SYSTEM\CurrentControlSet\Services\" + service, REG.HKLM);
-            int status = (int)key.GetValue("Start");
-            switch(status)
-            {
-                case 1:
-                    return ServiceType.AUTOMATIC_SLOWED;
-                case 2:
-                    return ServiceType.AUTOMATIC;
-                case 3:
-                    return ServiceType.MANUAL;
-                case 4:
-                    return ServiceType.DISABLED;
-                default:
-                    return ServiceType.MANUAL;
-            }
         }
 
         public abstract bool isUserControlRequired();
@@ -236,51 +171,9 @@ namespace windows_tweak_tool.src.policies
 
         public abstract Button getButton();
 
-        protected String generateGUID()
-        {
-            return "{"+Guid.NewGuid().ToString()+"}";
-        }
-
         public string getDataFolder()
         {
             return Config.getConfig().getDataFolder();
-        }
-
-        public RegistryKey getRegistry(string path, REG reg)
-        {
-            if (path == null)
-            {
-                switch (reg)
-                {
-                    case REG.HKCR:
-                        return (Environment.Is64BitOperatingSystem ? RegistryKey.OpenBaseKey(RegistryHive.ClassesRoot, RegistryView.Registry64) : RegistryKey.OpenBaseKey(RegistryHive.ClassesRoot, RegistryView.Registry32));
-                    case REG.HKCU:
-                        return (Environment.Is64BitOperatingSystem ? RegistryKey.OpenBaseKey(RegistryHive.CurrentUser, RegistryView.Registry64) : RegistryKey.OpenBaseKey(RegistryHive.CurrentUser, RegistryView.Registry32));
-                    case REG.HKLM:
-                        return (Environment.Is64BitOperatingSystem ? RegistryKey.OpenBaseKey(RegistryHive.LocalMachine, RegistryView.Registry64) : RegistryKey.OpenBaseKey(RegistryHive.LocalMachine, RegistryView.Registry32));
-                    default:
-                        return (Environment.Is64BitOperatingSystem ? RegistryKey.OpenBaseKey(RegistryHive.LocalMachine, RegistryView.Registry64) : RegistryKey.OpenBaseKey(RegistryHive.LocalMachine, RegistryView.Registry32));
-                }
-            } else {
-                switch (reg)
-                {
-                    case REG.HKCR:
-                        return (Environment.Is64BitOperatingSystem ? RegistryKey.OpenBaseKey(RegistryHive.ClassesRoot, RegistryView.Registry64) : RegistryKey.OpenBaseKey(RegistryHive.ClassesRoot, RegistryView.Registry32)).OpenSubKey(path, true);
-                    case REG.HKCU:
-                        return (Environment.Is64BitOperatingSystem ? RegistryKey.OpenBaseKey(RegistryHive.CurrentUser, RegistryView.Registry64) : RegistryKey.OpenBaseKey(RegistryHive.CurrentUser, RegistryView.Registry32)).OpenSubKey(path, true);
-                    case REG.HKLM:
-                        return (Environment.Is64BitOperatingSystem ? RegistryKey.OpenBaseKey(RegistryHive.LocalMachine, RegistryView.Registry64) : RegistryKey.OpenBaseKey(RegistryHive.LocalMachine, RegistryView.Registry32)).OpenSubKey(path, true);
-                    default:
-                        return (Environment.Is64BitOperatingSystem ? RegistryKey.OpenBaseKey(RegistryHive.LocalMachine, RegistryView.Registry64) : RegistryKey.OpenBaseKey(RegistryHive.LocalMachine, RegistryView.Registry32)).OpenSubKey(path, true);
-                }
-            }
-        }
-
-       public enum REG
-        {
-            HKLM,
-            HKCU,
-            HKCR
         }
     }
 }
