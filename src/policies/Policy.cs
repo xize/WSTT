@@ -39,7 +39,6 @@ namespace windows_tweak_tool.src.policies
 
         protected Policy(){} //don't instance the class :)
 
-
         /**
         * <summary>
         *      <para>sets the gui for the first time</para>
@@ -121,9 +120,21 @@ namespace windows_tweak_tool.src.policies
                 }
             return false;
         }
-
+        
+        /**
+        * <summary>
+        *      <para>returns true if this policy is macro depended</para>
+        * </summary>
+        * <returns>bool</returns>
+        **/
         public abstract bool isMacro();
 
+        /**
+        * <summary>
+        *      <para>returns true if this policy can be used in environments without breaking the domain controller</para>
+        * </summary>
+        * <returns>bool</returns>
+        **/
         public abstract bool isSafeForBussiness();
 
         /**
@@ -138,21 +149,20 @@ namespace windows_tweak_tool.src.policies
         [Obsolete]
         public abstract bool isLanguageDepended();
 
+        /**
+        * <summary>
+        *      <para>returns true if the said policy has incompatibility issues between different versions of the OS</para>
+        * </summary>
+        * <returns>bool</returns>
+        **/
         public abstract bool hasIncompatibilityIssues();
 
-        public bool isAutoItInstalled()
-        {
-
-            string b32 = Environment.GetFolderPath(Environment.SpecialFolder.ProgramFilesX86) + @"\AutoIt3\AutoItX\AutoItX3.dll";
-            string b64 = Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles) + @"\AutoIt3\AutoItX\AutoItX3.dll";
-
-            if (File.Exists(b32) || File.Exists(b64))
-            {
-                return true;
-            }
-            return false;
-        }
-
+        /**
+        * <summary>
+        *      <para>returns the name of this policy</para>
+        * </summary>
+        * <returns>string</returns>
+        **/
         public abstract string getName();
 
         public abstract PolicyType getType();
