@@ -54,7 +54,7 @@ namespace windows_tweak_tool.src.policies
             return name;
         }
 
-        public Policy getPolicy(window wind)
+        public Policy getPolicy(Window wind)
         {
             pol.setGui(wind);
             return pol;
