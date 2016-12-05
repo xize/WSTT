@@ -1,5 +1,5 @@
-# WTT
-**Windows Tweaker Tool**
+# WSTT
+**Windows Security Tweaker Tool**
 
 a easy way to tweak windows and its security policies.
 
@@ -7,11 +7,15 @@ currently in development.
 
 **IMPORTANT PLEASE READ**
 
-there are a few issues with this program as for now.
-these security tweaks are not safe because windows policy system uses special unique identifiers, these identifiers are hardcoded in this program and not anymore unique.
+some macros are not working correctly, we try our best to make them language independed.
 
-this grants a attacker to change the policy which have been set by this program, because the identifier is no longer unique.
+in order to fill in a bug about the macro system we need to know the following information:
 
-I haven't found a better solution to combat this, but it would be great if someone could sent me a PR.
+OS version (eg; windows 7, windows 8, windows 10):
+OS edition (Proffesional, Ultimate, Home, Home premium, bussiness):
+architecture 32bit or 64bit?:
+language(exact OS language name (such as NL_nl, FR_BE):
+video (to show what the macro does wrong):
+processor:
 
-note: it's my first project in C# so my conventions may are wrong :)
+the reason why we ask this information does only counts when the issue persists on a malfunctioning macro since many systems can differ from each other.
