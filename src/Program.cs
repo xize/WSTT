@@ -48,6 +48,5 @@ namespace windows_tweak_tool.src
         {
             return gui;
         }
-
     }
 }
