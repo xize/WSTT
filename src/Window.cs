@@ -30,7 +30,6 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using windows_tweak_tool;
 using windows_tweak_tool.src;
-using windows_tweak_tool.src.ninite;
 using windows_tweak_tool.src.policies;
 
 namespace windows_tweak_tool
@@ -38,10 +37,16 @@ namespace windows_tweak_tool
     public partial class Window : Form
     {
 
+        private OptionalWindow optionalw;
+
         public Window()
         {
             Config.getConfig().readConfig();
             InitializeComponent();
+            if(this.optionalw == null)
+            {
+               this.optionalw = new OptionalWindow();
+            }
             initializeGuiWithPolicies(); //cannot use this yet because of a issue with instance loading ;-)
             this.Text = String.Format("Windows Security Tweaker Tool {0}b(WSTT)", Application.ProductVersion);
         }
@@ -75,6 +80,11 @@ namespace windows_tweak_tool
                     }
                 }
             }
+        }
+
+        public OptionalWindow getOptionalWindow()
+        {
+            return optionalw;
         }
 
         private void callTempPolicyEvent(object sender, EventArgs e)
@@ -138,12 +148,6 @@ namespace windows_tweak_tool
             {
                 p.apply();
             }
-        }
-
-        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
-        {
-            Process a = Process.Start("https://www.ninite.com/");
-            a.Dispose();
         }
 
         private void versionInformationToolStripMenuItem_Click(object sender, EventArgs e)
@@ -268,17 +272,6 @@ namespace windows_tweak_tool
                     p.getButton().Enabled = true;
                 }
             }
-
-
-            NiniteCreator creator = new NiniteCreator();
-            foreach (NiniteOption ninite in NiniteOption.values())
-            {
-                if (ninite.isEnabled())
-                {
-                    creator.Add(ninite);
-                }
-            }
-            creator.downloadNiniteInstaller(creator.getNiniteURL());
             safeapplybtn.Enabled = true;
             MessageBox.Show("All \"safe\" policies have been applied!", "Policies with success applied!");
         }
@@ -315,16 +308,6 @@ namespace windows_tweak_tool
                     p.getButton().Enabled = true;
                 }
             }
-
-            NiniteCreator creator = new NiniteCreator();
-            foreach (NiniteOption ninite in NiniteOption.values())
-            {
-                if(ninite.isEnabled())
-                {
-                    creator.Add(ninite);
-                }
-            }
-            creator.downloadNiniteInstaller(creator.getNiniteURL());
 
             applyforcebtn.Enabled = true;
             MessageBox.Show("All policies have been applied!, those who are not require user control.", "Policies with success applied!");
@@ -391,123 +374,6 @@ namespace windows_tweak_tool
 
         }
 
-        private void niniteselectallbtn_Click(object sender, EventArgs e)
-        {
-            if(niniteselectallbtn.Text == "Select all")
-            {
-                foreach (NiniteOption option in NiniteOption.values())
-                {
-                    option.getCheckbox().Checked = true;
-                }
-                niniteselectallbtn.Text = "Deselect";
-            } else
-            {
-                foreach (NiniteOption option in NiniteOption.values())
-                {
-                    option.getCheckbox().Checked = false;
-                }
-                niniteselectallbtn.Text = "Select all";
-            }
-        }
-
-        private void niniteinstallbtn_Click(object sender, EventArgs e)
-        {
-            NiniteCreator creator = new NiniteCreator();
-            foreach (NiniteOption option in NiniteOption.values())
-            {
-                if(option.isEnabled())
-                {
-                    creator.Add(option);
-                }
-            }
-            creator.downloadNiniteInstaller(creator.getNiniteURL());
-        }
-
-        private void niniteputtycheckbox_CheckedChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void winscpcheckbox_CheckedChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void ninitenotepadcheckbox_CheckedChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void ninitefilezillacheckbox_CheckedChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void ninitewinrarcheckbox_CheckedChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void ninite7zipcheckbox_CheckedChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void niniteclassiccheckbox_CheckedChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void niniteimgburncheckbox_CheckedChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void ninitegoogledrivecheckbox_CheckedChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void ninitedropboxcheckbox_CheckedChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void ninitembamcheckbox_CheckedChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void niniteessentialscheckbox_CheckedChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void ninitespotifycheckbox_CheckedChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void ninitevlcplayercheckbox_CheckedChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void niniteitunescheckbox_CheckedChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void ninitethunderbirdcheckbox_CheckedChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void niniteskypecheckbox_CheckedChanged(object sender, EventArgs e)
-        {
-
-        }
-
         private void boguscertlabel_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             Process a = Process.Start("https://technet.microsoft.com/en-us/sysinternals/");
@@ -529,6 +395,12 @@ namespace windows_tweak_tool
             {
                 p.apply();
             }
+        }
+
+        private void openOptionalOptionsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            optionalw.Visible = true;
+            openOptionalOptionsToolStripMenuItem.Enabled = false;
         }
     }
 }

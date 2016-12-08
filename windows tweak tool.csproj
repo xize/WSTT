@@ -114,6 +114,9 @@
     <Compile Include="src\ConfigInfo.cs" />
     <Compile Include="src\ninite\NiniteCreator.cs" />
     <Compile Include="src\ninite\NiniteOption.cs" />
+    <Compile Include="src\OptionalWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="src\policies\CertPolicy.cs" />
     <Compile Include="src\policies\components\Registry.cs" />
     <Compile Include="src\policies\components\Services.cs" />
@@ -140,6 +143,9 @@
     </Compile>
     <Compile Include="src\Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="src\OptionalWindow.resx">
+      <DependentUpon>OptionalWindow.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="src\Window.resx">
       <DependentUpon>Window.cs</DependentUpon>
     </EmbeddedResource>

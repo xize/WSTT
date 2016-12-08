@@ -62,37 +62,6 @@ namespace windows_tweak_tool
             this.ntlmlabel = new System.Windows.Forms.Label();
             this.NTLMbtn = new System.Windows.Forms.Button();
             this.NTLMProgress = new System.Windows.Forms.ProgressBar();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.ninitelabel = new System.Windows.Forms.LinkLabel();
-            this.niniteselectallbtn = new System.Windows.Forms.Button();
-            this.niniteinstallbtn = new System.Windows.Forms.Button();
-            this.niniteputtycheckbox = new System.Windows.Forms.CheckBox();
-            this.winscpcheckbox = new System.Windows.Forms.CheckBox();
-            this.ninitenotepadcheckbox = new System.Windows.Forms.CheckBox();
-            this.ninitefilezillacheckbox = new System.Windows.Forms.CheckBox();
-            this.ninitewinrarcheckbox = new System.Windows.Forms.CheckBox();
-            this.ninite7zipcheckbox = new System.Windows.Forms.CheckBox();
-            this.niniteclassiccheckbox = new System.Windows.Forms.CheckBox();
-            this.niniteimgburncheckbox = new System.Windows.Forms.CheckBox();
-            this.ninitegoogledrivecheckbox = new System.Windows.Forms.CheckBox();
-            this.ninitedropboxcheckbox = new System.Windows.Forms.CheckBox();
-            this.ninitembamcheckbox = new System.Windows.Forms.CheckBox();
-            this.niniteessentialscheckbox = new System.Windows.Forms.CheckBox();
-            this.ninitespotifycheckbox = new System.Windows.Forms.CheckBox();
-            this.ninitevlcplayercheckbox = new System.Windows.Forms.CheckBox();
-            this.niniteitunescheckbox = new System.Windows.Forms.CheckBox();
-            this.ninitethunderbirdcheckbox = new System.Windows.Forms.CheckBox();
-            this.niniteskypecheckbox = new System.Windows.Forms.CheckBox();
-            this.optionaloptionslabel = new System.Windows.Forms.Label();
-            this.keepasslabel = new System.Windows.Forms.Label();
-            this.keepassbtn = new System.Windows.Forms.Button();
-            this.keepassprogress = new System.Windows.Forms.ProgressBar();
-            this.chromelabel = new System.Windows.Forms.Label();
-            this.chromebtn = new System.Windows.Forms.Button();
-            this.chromeprogress = new System.Windows.Forms.ProgressBar();
-            this.chromeaddonlabel = new System.Windows.Forms.Label();
-            this.chromeaddonbtn = new System.Windows.Forms.Button();
-            this.chromeaddonprogress = new System.Windows.Forms.ProgressBar();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -119,7 +88,7 @@ namespace windows_tweak_tool
             this.label2 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
-            this.panel1.SuspendLayout();
+            this.openOptionalOptionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -351,7 +320,7 @@ namespace windows_tweak_tool
             // safeapplybtn
             // 
             this.safeapplybtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.safeapplybtn.Location = new System.Drawing.Point(9, 853);
+            this.safeapplybtn.Location = new System.Drawing.Point(9, 585);
             this.safeapplybtn.Name = "safeapplybtn";
             this.safeapplybtn.Size = new System.Drawing.Size(158, 23);
             this.safeapplybtn.TabIndex = 39;
@@ -364,7 +333,7 @@ namespace windows_tweak_tool
             // undobtn
             // 
             this.undobtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.undobtn.Location = new System.Drawing.Point(417, 853);
+            this.undobtn.Location = new System.Drawing.Point(417, 585);
             this.undobtn.Name = "undobtn";
             this.undobtn.Size = new System.Drawing.Size(75, 23);
             this.undobtn.TabIndex = 40;
@@ -376,7 +345,7 @@ namespace windows_tweak_tool
             // applyforcebtn
             // 
             this.applyforcebtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.applyforcebtn.Location = new System.Drawing.Point(173, 853);
+            this.applyforcebtn.Location = new System.Drawing.Point(173, 585);
             this.applyforcebtn.Name = "applyforcebtn";
             this.applyforcebtn.Size = new System.Drawing.Size(100, 23);
             this.applyforcebtn.TabIndex = 89;
@@ -417,387 +386,6 @@ namespace windows_tweak_tool
             this.NTLMProgress.Size = new System.Drawing.Size(403, 23);
             this.NTLMProgress.TabIndex = 64;
             // 
-            // panel1
-            // 
-            this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.panel1.BackColor = System.Drawing.SystemColors.Control;
-            this.panel1.Controls.Add(this.ninitelabel);
-            this.panel1.Controls.Add(this.niniteselectallbtn);
-            this.panel1.Controls.Add(this.niniteinstallbtn);
-            this.panel1.Controls.Add(this.niniteputtycheckbox);
-            this.panel1.Controls.Add(this.winscpcheckbox);
-            this.panel1.Controls.Add(this.ninitenotepadcheckbox);
-            this.panel1.Controls.Add(this.ninitefilezillacheckbox);
-            this.panel1.Controls.Add(this.ninitewinrarcheckbox);
-            this.panel1.Controls.Add(this.ninite7zipcheckbox);
-            this.panel1.Controls.Add(this.niniteclassiccheckbox);
-            this.panel1.Controls.Add(this.niniteimgburncheckbox);
-            this.panel1.Controls.Add(this.ninitegoogledrivecheckbox);
-            this.panel1.Controls.Add(this.ninitedropboxcheckbox);
-            this.panel1.Controls.Add(this.ninitembamcheckbox);
-            this.panel1.Controls.Add(this.niniteessentialscheckbox);
-            this.panel1.Controls.Add(this.ninitespotifycheckbox);
-            this.panel1.Controls.Add(this.ninitevlcplayercheckbox);
-            this.panel1.Controls.Add(this.niniteitunescheckbox);
-            this.panel1.Controls.Add(this.ninitethunderbirdcheckbox);
-            this.panel1.Controls.Add(this.niniteskypecheckbox);
-            this.panel1.Location = new System.Drawing.Point(9, 595);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(484, 117);
-            this.panel1.TabIndex = 68;
-            // 
-            // ninitelabel
-            // 
-            this.ninitelabel.AutoSize = true;
-            this.ninitelabel.Location = new System.Drawing.Point(1, -1);
-            this.ninitelabel.Name = "ninitelabel";
-            this.ninitelabel.Size = new System.Drawing.Size(306, 13);
-            this.ninitelabel.TabIndex = 79;
-            this.ninitelabel.TabStop = true;
-            this.ninitelabel.Text = "ninite installer (for more programs visit https://www.ninite.com/):";
-            this.ninitelabel.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel1_LinkClicked);
-            // 
-            // niniteselectallbtn
-            // 
-            this.niniteselectallbtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.niniteselectallbtn.Location = new System.Drawing.Point(222, 91);
-            this.niniteselectallbtn.Name = "niniteselectallbtn";
-            this.niniteselectallbtn.Size = new System.Drawing.Size(75, 23);
-            this.niniteselectallbtn.TabIndex = 20;
-            this.niniteselectallbtn.Text = "Deselect";
-            this.niniteselectallbtn.UseVisualStyleBackColor = true;
-            this.niniteselectallbtn.Click += new System.EventHandler(this.niniteselectallbtn_Click);
-            // 
-            // niniteinstallbtn
-            // 
-            this.niniteinstallbtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.niniteinstallbtn.Location = new System.Drawing.Point(303, 90);
-            this.niniteinstallbtn.Name = "niniteinstallbtn";
-            this.niniteinstallbtn.Size = new System.Drawing.Size(161, 23);
-            this.niniteinstallbtn.TabIndex = 19;
-            this.niniteinstallbtn.Text = "Install programs with Ninite!";
-            this.niniteinstallbtn.UseVisualStyleBackColor = true;
-            this.niniteinstallbtn.Click += new System.EventHandler(this.niniteinstallbtn_Click);
-            // 
-            // niniteputtycheckbox
-            // 
-            this.niniteputtycheckbox.AutoSize = true;
-            this.niniteputtycheckbox.Checked = true;
-            this.niniteputtycheckbox.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.niniteputtycheckbox.Location = new System.Drawing.Point(95, 91);
-            this.niniteputtycheckbox.Name = "niniteputtycheckbox";
-            this.niniteputtycheckbox.Size = new System.Drawing.Size(50, 17);
-            this.niniteputtycheckbox.TabIndex = 18;
-            this.niniteputtycheckbox.Text = "Putty";
-            this.niniteputtycheckbox.UseVisualStyleBackColor = true;
-            this.niniteputtycheckbox.CheckedChanged += new System.EventHandler(this.niniteputtycheckbox_CheckedChanged);
-            // 
-            // winscpcheckbox
-            // 
-            this.winscpcheckbox.AutoSize = true;
-            this.winscpcheckbox.Location = new System.Drawing.Point(2, 91);
-            this.winscpcheckbox.Name = "winscpcheckbox";
-            this.winscpcheckbox.Size = new System.Drawing.Size(66, 17);
-            this.winscpcheckbox.TabIndex = 17;
-            this.winscpcheckbox.Text = "WinSCP";
-            this.winscpcheckbox.UseVisualStyleBackColor = true;
-            this.winscpcheckbox.CheckedChanged += new System.EventHandler(this.winscpcheckbox_CheckedChanged);
-            // 
-            // ninitenotepadcheckbox
-            // 
-            this.ninitenotepadcheckbox.AutoSize = true;
-            this.ninitenotepadcheckbox.Checked = true;
-            this.ninitenotepadcheckbox.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.ninitenotepadcheckbox.Location = new System.Drawing.Point(389, 68);
-            this.ninitenotepadcheckbox.Name = "ninitenotepadcheckbox";
-            this.ninitenotepadcheckbox.Size = new System.Drawing.Size(79, 17);
-            this.ninitenotepadcheckbox.TabIndex = 16;
-            this.ninitenotepadcheckbox.Text = "Notepad++";
-            this.ninitenotepadcheckbox.UseVisualStyleBackColor = true;
-            this.ninitenotepadcheckbox.CheckedChanged += new System.EventHandler(this.ninitenotepadcheckbox_CheckedChanged);
-            // 
-            // ninitefilezillacheckbox
-            // 
-            this.ninitefilezillacheckbox.AutoSize = true;
-            this.ninitefilezillacheckbox.Checked = true;
-            this.ninitefilezillacheckbox.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.ninitefilezillacheckbox.Location = new System.Drawing.Point(303, 68);
-            this.ninitefilezillacheckbox.Name = "ninitefilezillacheckbox";
-            this.ninitefilezillacheckbox.Size = new System.Drawing.Size(61, 17);
-            this.ninitefilezillacheckbox.TabIndex = 15;
-            this.ninitefilezillacheckbox.Text = "FileZilla";
-            this.ninitefilezillacheckbox.UseVisualStyleBackColor = true;
-            this.ninitefilezillacheckbox.CheckedChanged += new System.EventHandler(this.ninitefilezillacheckbox_CheckedChanged);
-            // 
-            // ninitewinrarcheckbox
-            // 
-            this.ninitewinrarcheckbox.AutoSize = true;
-            this.ninitewinrarcheckbox.Checked = true;
-            this.ninitewinrarcheckbox.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.ninitewinrarcheckbox.Location = new System.Drawing.Point(214, 68);
-            this.ninitewinrarcheckbox.Name = "ninitewinrarcheckbox";
-            this.ninitewinrarcheckbox.Size = new System.Drawing.Size(68, 17);
-            this.ninitewinrarcheckbox.TabIndex = 14;
-            this.ninitewinrarcheckbox.Text = "WinRAR";
-            this.ninitewinrarcheckbox.UseVisualStyleBackColor = true;
-            this.ninitewinrarcheckbox.CheckedChanged += new System.EventHandler(this.ninitewinrarcheckbox_CheckedChanged);
-            // 
-            // ninite7zipcheckbox
-            // 
-            this.ninite7zipcheckbox.AutoSize = true;
-            this.ninite7zipcheckbox.Location = new System.Drawing.Point(95, 68);
-            this.ninite7zipcheckbox.Name = "ninite7zipcheckbox";
-            this.ninite7zipcheckbox.Size = new System.Drawing.Size(48, 17);
-            this.ninite7zipcheckbox.TabIndex = 13;
-            this.ninite7zipcheckbox.Text = "7-zip";
-            this.ninite7zipcheckbox.UseVisualStyleBackColor = true;
-            this.ninite7zipcheckbox.CheckedChanged += new System.EventHandler(this.ninite7zipcheckbox_CheckedChanged);
-            // 
-            // niniteclassiccheckbox
-            // 
-            this.niniteclassiccheckbox.AutoSize = true;
-            this.niniteclassiccheckbox.Checked = true;
-            this.niniteclassiccheckbox.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.niniteclassiccheckbox.Location = new System.Drawing.Point(3, 68);
-            this.niniteclassiccheckbox.Name = "niniteclassiccheckbox";
-            this.niniteclassiccheckbox.Size = new System.Drawing.Size(84, 17);
-            this.niniteclassiccheckbox.TabIndex = 12;
-            this.niniteclassiccheckbox.Text = "Classic Start";
-            this.niniteclassiccheckbox.UseVisualStyleBackColor = true;
-            this.niniteclassiccheckbox.CheckedChanged += new System.EventHandler(this.niniteclassiccheckbox_CheckedChanged);
-            // 
-            // niniteimgburncheckbox
-            // 
-            this.niniteimgburncheckbox.AutoSize = true;
-            this.niniteimgburncheckbox.Checked = true;
-            this.niniteimgburncheckbox.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.niniteimgburncheckbox.Location = new System.Drawing.Point(389, 45);
-            this.niniteimgburncheckbox.Name = "niniteimgburncheckbox";
-            this.niniteimgburncheckbox.Size = new System.Drawing.Size(65, 17);
-            this.niniteimgburncheckbox.TabIndex = 11;
-            this.niniteimgburncheckbox.Text = "ImgBurn";
-            this.niniteimgburncheckbox.UseVisualStyleBackColor = true;
-            this.niniteimgburncheckbox.CheckedChanged += new System.EventHandler(this.niniteimgburncheckbox_CheckedChanged);
-            // 
-            // ninitegoogledrivecheckbox
-            // 
-            this.ninitegoogledrivecheckbox.AutoSize = true;
-            this.ninitegoogledrivecheckbox.Location = new System.Drawing.Point(303, 45);
-            this.ninitegoogledrivecheckbox.Name = "ninitegoogledrivecheckbox";
-            this.ninitegoogledrivecheckbox.Size = new System.Drawing.Size(88, 17);
-            this.ninitegoogledrivecheckbox.TabIndex = 9;
-            this.ninitegoogledrivecheckbox.Text = "Google Drive";
-            this.ninitegoogledrivecheckbox.UseVisualStyleBackColor = true;
-            this.ninitegoogledrivecheckbox.CheckedChanged += new System.EventHandler(this.ninitegoogledrivecheckbox_CheckedChanged);
-            // 
-            // ninitedropboxcheckbox
-            // 
-            this.ninitedropboxcheckbox.AutoSize = true;
-            this.ninitedropboxcheckbox.Location = new System.Drawing.Point(214, 45);
-            this.ninitedropboxcheckbox.Name = "ninitedropboxcheckbox";
-            this.ninitedropboxcheckbox.Size = new System.Drawing.Size(66, 17);
-            this.ninitedropboxcheckbox.TabIndex = 8;
-            this.ninitedropboxcheckbox.Text = "Dropbox";
-            this.ninitedropboxcheckbox.UseVisualStyleBackColor = true;
-            this.ninitedropboxcheckbox.CheckedChanged += new System.EventHandler(this.ninitedropboxcheckbox_CheckedChanged);
-            // 
-            // ninitembamcheckbox
-            // 
-            this.ninitembamcheckbox.AutoSize = true;
-            this.ninitembamcheckbox.Location = new System.Drawing.Point(95, 45);
-            this.ninitembamcheckbox.Name = "ninitembamcheckbox";
-            this.ninitembamcheckbox.Size = new System.Drawing.Size(91, 17);
-            this.ninitembamcheckbox.TabIndex = 7;
-            this.ninitembamcheckbox.Text = "Malwarebytes";
-            this.ninitembamcheckbox.UseVisualStyleBackColor = true;
-            this.ninitembamcheckbox.CheckedChanged += new System.EventHandler(this.ninitembamcheckbox_CheckedChanged);
-            // 
-            // niniteessentialscheckbox
-            // 
-            this.niniteessentialscheckbox.AutoSize = true;
-            this.niniteessentialscheckbox.Location = new System.Drawing.Point(3, 45);
-            this.niniteessentialscheckbox.Name = "niniteessentialscheckbox";
-            this.niniteessentialscheckbox.Size = new System.Drawing.Size(73, 17);
-            this.niniteessentialscheckbox.TabIndex = 6;
-            this.niniteessentialscheckbox.Text = "Essentials";
-            this.niniteessentialscheckbox.UseVisualStyleBackColor = true;
-            this.niniteessentialscheckbox.CheckedChanged += new System.EventHandler(this.niniteessentialscheckbox_CheckedChanged);
-            // 
-            // ninitespotifycheckbox
-            // 
-            this.ninitespotifycheckbox.AutoSize = true;
-            this.ninitespotifycheckbox.Checked = true;
-            this.ninitespotifycheckbox.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.ninitespotifycheckbox.Location = new System.Drawing.Point(389, 22);
-            this.ninitespotifycheckbox.Name = "ninitespotifycheckbox";
-            this.ninitespotifycheckbox.Size = new System.Drawing.Size(58, 17);
-            this.ninitespotifycheckbox.TabIndex = 5;
-            this.ninitespotifycheckbox.Text = "Spotify";
-            this.ninitespotifycheckbox.UseVisualStyleBackColor = true;
-            this.ninitespotifycheckbox.CheckedChanged += new System.EventHandler(this.ninitespotifycheckbox_CheckedChanged);
-            // 
-            // ninitevlcplayercheckbox
-            // 
-            this.ninitevlcplayercheckbox.AutoSize = true;
-            this.ninitevlcplayercheckbox.Location = new System.Drawing.Point(305, 22);
-            this.ninitevlcplayercheckbox.Name = "ninitevlcplayercheckbox";
-            this.ninitevlcplayercheckbox.Size = new System.Drawing.Size(78, 17);
-            this.ninitevlcplayercheckbox.TabIndex = 4;
-            this.ninitevlcplayercheckbox.Text = "VLC Player";
-            this.ninitevlcplayercheckbox.UseVisualStyleBackColor = true;
-            this.ninitevlcplayercheckbox.CheckedChanged += new System.EventHandler(this.ninitevlcplayercheckbox_CheckedChanged);
-            // 
-            // niniteitunescheckbox
-            // 
-            this.niniteitunescheckbox.AutoSize = true;
-            this.niniteitunescheckbox.Checked = true;
-            this.niniteitunescheckbox.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.niniteitunescheckbox.Location = new System.Drawing.Point(214, 22);
-            this.niniteitunescheckbox.Name = "niniteitunescheckbox";
-            this.niniteitunescheckbox.Size = new System.Drawing.Size(55, 17);
-            this.niniteitunescheckbox.TabIndex = 3;
-            this.niniteitunescheckbox.Text = "Itunes";
-            this.niniteitunescheckbox.UseVisualStyleBackColor = true;
-            this.niniteitunescheckbox.CheckedChanged += new System.EventHandler(this.niniteitunescheckbox_CheckedChanged);
-            // 
-            // ninitethunderbirdcheckbox
-            // 
-            this.ninitethunderbirdcheckbox.AutoSize = true;
-            this.ninitethunderbirdcheckbox.Checked = true;
-            this.ninitethunderbirdcheckbox.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.ninitethunderbirdcheckbox.Location = new System.Drawing.Point(95, 22);
-            this.ninitethunderbirdcheckbox.Name = "ninitethunderbirdcheckbox";
-            this.ninitethunderbirdcheckbox.Size = new System.Drawing.Size(83, 17);
-            this.ninitethunderbirdcheckbox.TabIndex = 2;
-            this.ninitethunderbirdcheckbox.Text = "Thunderbird";
-            this.ninitethunderbirdcheckbox.UseVisualStyleBackColor = true;
-            this.ninitethunderbirdcheckbox.CheckedChanged += new System.EventHandler(this.ninitethunderbirdcheckbox_CheckedChanged);
-            // 
-            // niniteskypecheckbox
-            // 
-            this.niniteskypecheckbox.AutoSize = true;
-            this.niniteskypecheckbox.Checked = true;
-            this.niniteskypecheckbox.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.niniteskypecheckbox.Location = new System.Drawing.Point(3, 22);
-            this.niniteskypecheckbox.Name = "niniteskypecheckbox";
-            this.niniteskypecheckbox.Size = new System.Drawing.Size(56, 17);
-            this.niniteskypecheckbox.TabIndex = 1;
-            this.niniteskypecheckbox.Text = "Skype";
-            this.niniteskypecheckbox.UseVisualStyleBackColor = true;
-            this.niniteskypecheckbox.CheckedChanged += new System.EventHandler(this.niniteskypecheckbox_CheckedChanged);
-            // 
-            // optionaloptionslabel
-            // 
-            this.optionaloptionslabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.optionaloptionslabel.AutoSize = true;
-            this.optionaloptionslabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.optionaloptionslabel.Location = new System.Drawing.Point(10, 579);
-            this.optionaloptionslabel.Name = "optionaloptionslabel";
-            this.optionaloptionslabel.Size = new System.Drawing.Size(101, 13);
-            this.optionaloptionslabel.TabIndex = 69;
-            this.optionaloptionslabel.Text = "optional options:";
-            // 
-            // keepasslabel
-            // 
-            this.keepasslabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.keepasslabel.AutoSize = true;
-            this.keepasslabel.Location = new System.Drawing.Point(9, 715);
-            this.keepasslabel.Name = "keepasslabel";
-            this.keepasslabel.Size = new System.Drawing.Size(158, 13);
-            this.keepasslabel.TabIndex = 72;
-            this.keepasslabel.Text = "Install Keepass as Administrator:";
-            // 
-            // keepassbtn
-            // 
-            this.keepassbtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.keepassbtn.AutoSize = true;
-            this.keepassbtn.Enabled = false;
-            this.keepassbtn.Location = new System.Drawing.Point(418, 731);
-            this.keepassbtn.Name = "keepassbtn";
-            this.keepassbtn.Size = new System.Drawing.Size(75, 23);
-            this.keepassbtn.TabIndex = 71;
-            this.keepassbtn.Text = "Apply";
-            this.keepassbtn.UseVisualStyleBackColor = true;
-            // 
-            // keepassprogress
-            // 
-            this.keepassprogress.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.keepassprogress.Enabled = false;
-            this.keepassprogress.Location = new System.Drawing.Point(9, 731);
-            this.keepassprogress.Name = "keepassprogress";
-            this.keepassprogress.Size = new System.Drawing.Size(406, 23);
-            this.keepassprogress.TabIndex = 70;
-            // 
-            // chromelabel
-            // 
-            this.chromelabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.chromelabel.AutoSize = true;
-            this.chromelabel.Location = new System.Drawing.Point(9, 757);
-            this.chromelabel.Name = "chromelabel";
-            this.chromelabel.Size = new System.Drawing.Size(369, 13);
-            this.chromelabel.TabIndex = 75;
-            this.chromelabel.Text = "Google Chrome 64 bit (Work/Bussiness Edition) with extra hardened security:";
-            // 
-            // chromebtn
-            // 
-            this.chromebtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.chromebtn.AutoSize = true;
-            this.chromebtn.Enabled = false;
-            this.chromebtn.Location = new System.Drawing.Point(418, 773);
-            this.chromebtn.Name = "chromebtn";
-            this.chromebtn.Size = new System.Drawing.Size(75, 23);
-            this.chromebtn.TabIndex = 74;
-            this.chromebtn.Text = "Apply";
-            this.chromebtn.UseVisualStyleBackColor = true;
-            // 
-            // chromeprogress
-            // 
-            this.chromeprogress.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.chromeprogress.Enabled = false;
-            this.chromeprogress.Location = new System.Drawing.Point(9, 773);
-            this.chromeprogress.Name = "chromeprogress";
-            this.chromeprogress.Size = new System.Drawing.Size(406, 23);
-            this.chromeprogress.TabIndex = 73;
-            // 
-            // chromeaddonlabel
-            // 
-            this.chromeaddonlabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.chromeaddonlabel.AutoSize = true;
-            this.chromeaddonlabel.Location = new System.Drawing.Point(9, 799);
-            this.chromeaddonlabel.Name = "chromeaddonlabel";
-            this.chromeaddonlabel.Size = new System.Drawing.Size(164, 13);
-            this.chromeaddonlabel.TabIndex = 78;
-            this.chromeaddonlabel.Text = "Install safety addons into chrome:";
-            // 
-            // chromeaddonbtn
-            // 
-            this.chromeaddonbtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.chromeaddonbtn.AutoSize = true;
-            this.chromeaddonbtn.Enabled = false;
-            this.chromeaddonbtn.Location = new System.Drawing.Point(418, 815);
-            this.chromeaddonbtn.Name = "chromeaddonbtn";
-            this.chromeaddonbtn.Size = new System.Drawing.Size(75, 23);
-            this.chromeaddonbtn.TabIndex = 77;
-            this.chromeaddonbtn.Text = "Apply";
-            this.chromeaddonbtn.UseVisualStyleBackColor = true;
-            // 
-            // chromeaddonprogress
-            // 
-            this.chromeaddonprogress.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.chromeaddonprogress.Enabled = false;
-            this.chromeaddonprogress.Location = new System.Drawing.Point(9, 815);
-            this.chromeaddonprogress.Name = "chromeaddonprogress";
-            this.chromeaddonprogress.Size = new System.Drawing.Size(406, 23);
-            this.chromeaddonprogress.TabIndex = 76;
-            // 
             // menuStrip1
             // 
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -828,6 +416,7 @@ namespace windows_tweak_tool
             // connectionSettingsToolStripMenuItem
             // 
             this.connectionSettingsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.openOptionalOptionsToolStripMenuItem,
             this.setAsServerToolStripMenuItem,
             this.setAsClientToolStripMenuItem});
             this.connectionSettingsToolStripMenuItem.Name = "connectionSettingsToolStripMenuItem";
@@ -838,14 +427,14 @@ namespace windows_tweak_tool
             // 
             this.setAsServerToolStripMenuItem.Enabled = false;
             this.setAsServerToolStripMenuItem.Name = "setAsServerToolStripMenuItem";
-            this.setAsServerToolStripMenuItem.Size = new System.Drawing.Size(137, 22);
+            this.setAsServerToolStripMenuItem.Size = new System.Drawing.Size(195, 22);
             this.setAsServerToolStripMenuItem.Text = "set as server";
             // 
             // setAsClientToolStripMenuItem
             // 
             this.setAsClientToolStripMenuItem.Enabled = false;
             this.setAsClientToolStripMenuItem.Name = "setAsClientToolStripMenuItem";
-            this.setAsClientToolStripMenuItem.Size = new System.Drawing.Size(137, 22);
+            this.setAsClientToolStripMenuItem.Size = new System.Drawing.Size(195, 22);
             this.setAsClientToolStripMenuItem.Text = "set as client";
             // 
             // helpToolStripMenuItem
@@ -1039,10 +628,17 @@ namespace windows_tweak_tool
             this.progressBar1.Size = new System.Drawing.Size(406, 23);
             this.progressBar1.TabIndex = 93;
             // 
-            // window
+            // openOptionalOptionsToolStripMenuItem
+            // 
+            this.openOptionalOptionsToolStripMenuItem.Name = "openOptionalOptionsToolStripMenuItem";
+            this.openOptionalOptionsToolStripMenuItem.Size = new System.Drawing.Size(195, 22);
+            this.openOptionalOptionsToolStripMenuItem.Text = "Open Optional options";
+            this.openOptionalOptionsToolStripMenuItem.Click += new System.EventHandler(this.openOptionalOptionsToolStripMenuItem_Click);
+            // 
+            // Window
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-            this.ClientSize = new System.Drawing.Size(510, 890);
+            this.ClientSize = new System.Drawing.Size(510, 622);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.progressBar1);
@@ -1059,17 +655,6 @@ namespace windows_tweak_tool
             this.Controls.Add(this.insecureserviceslabel);
             this.Controls.Add(this.insecureservicesbtn);
             this.Controls.Add(this.insecureserviceprogress);
-            this.Controls.Add(this.chromeaddonlabel);
-            this.Controls.Add(this.chromeaddonbtn);
-            this.Controls.Add(this.chromeaddonprogress);
-            this.Controls.Add(this.chromelabel);
-            this.Controls.Add(this.chromebtn);
-            this.Controls.Add(this.chromeprogress);
-            this.Controls.Add(this.keepasslabel);
-            this.Controls.Add(this.keepassbtn);
-            this.Controls.Add(this.keepassprogress);
-            this.Controls.Add(this.optionaloptionslabel);
-            this.Controls.Add(this.panel1);
             this.Controls.Add(this.ntlmlabel);
             this.Controls.Add(this.NTLMbtn);
             this.Controls.Add(this.NTLMProgress);
@@ -1099,13 +684,11 @@ namespace windows_tweak_tool
             this.Controls.Add(this.menuStrip1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip1;
-            this.MinimumSize = new System.Drawing.Size(526, 883);
-            this.Name = "window";
+            this.MinimumSize = new System.Drawing.Size(526, 661);
+            this.Name = "Window";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Windows Security Tweaker Tool 14.0.25420.1b (WSTT)";
             this.Load += new System.EventHandler(this.window_Load);
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
@@ -1142,20 +725,6 @@ namespace windows_tweak_tool
         private Label ntlmlabel;
         public Button NTLMbtn;
         public ProgressBar NTLMProgress;
-        private Panel panel1;
-        private Button niniteselectallbtn;
-        private Button niniteinstallbtn;
-        private Label optionaloptionslabel;
-        private Label keepasslabel;
-        private Button keepassbtn;
-        private ProgressBar keepassprogress;
-        private Label chromelabel;
-        private Button chromebtn;
-        private ProgressBar chromeprogress;
-        private Label chromeaddonlabel;
-        private Button chromeaddonbtn;
-        private ProgressBar chromeaddonprogress;
-        private LinkLabel ninitelabel;
         private MenuStrip menuStrip1;
         private ToolStripMenuItem fileToolStripMenuItem;
         private ToolStripMenuItem exitToolStripMenuItem;
@@ -1174,23 +743,6 @@ namespace windows_tweak_tool
         public Button mbrbtn;
         public ProgressBar mbrprogress;
         private Button applyforcebtn;
-        public CheckBox niniteskypecheckbox;
-        public CheckBox ninitedropboxcheckbox;
-        public CheckBox ninitembamcheckbox;
-        public CheckBox niniteessentialscheckbox;
-        public CheckBox ninitespotifycheckbox;
-        public CheckBox ninitevlcplayercheckbox;
-        public CheckBox niniteitunescheckbox;
-        public CheckBox ninitethunderbirdcheckbox;
-        public CheckBox niniteclassiccheckbox;
-        public CheckBox niniteimgburncheckbox;
-        public CheckBox ninitegoogledrivecheckbox;
-        public CheckBox ninitewinrarcheckbox;
-        public CheckBox ninite7zipcheckbox;
-        public CheckBox niniteputtycheckbox;
-        public CheckBox winscpcheckbox;
-        public CheckBox ninitenotepadcheckbox;
-        public CheckBox ninitefilezillacheckbox;
         public Button boguscertbtn;
         public ProgressBar boguscertprogress;
         private LinkLabel boguscertlabel;
@@ -1200,5 +752,6 @@ namespace windows_tweak_tool
         private Label label2;
         public Button button1;
         public ProgressBar progressBar1;
+        public ToolStripMenuItem openOptionalOptionsToolStripMenuItem;
     }
 }
