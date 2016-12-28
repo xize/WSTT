@@ -112,8 +112,11 @@
     </Compile>
     <Compile Include="src\Config.cs" />
     <Compile Include="src\ConfigInfo.cs" />
-    <Compile Include="src\ninite\NiniteCreator.cs" />
-    <Compile Include="src\ninite\NiniteOption.cs" />
+    <Compile Include="src\optionalpolicies\NinitePolicy.cs" />
+    <Compile Include="src\optionalpolicies\ninite\NiniteCreator.cs" />
+    <Compile Include="src\optionalpolicies\ninite\NiniteOption.cs" />
+    <Compile Include="src\optionalpolicies\OptionalPolicy.cs" />
+    <Compile Include="src\optionalpolicies\OptionalPolicyType.cs" />
     <Compile Include="src\OptionalWindow.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -124,8 +127,8 @@
     <Compile Include="src\policies\NetbiosPolicy.cs" />
     <Compile Include="src\policies\NetSharePolicy.cs" />
     <Compile Include="src\policies\NTLMPolicy.cs" />
-    <Compile Include="src\policies\PolicyType.cs" />
-    <Compile Include="src\policies\Policy.cs" />
+    <Compile Include="src\policies\SecurityPolicyType.cs" />
+    <Compile Include="src\policies\SecurityPolicy.cs" />
     <Compile Include="src\policies\RDPPolicy.cs" />
     <Compile Include="src\policies\RemoteRegistryPolicy.cs" />
     <Compile Include="src\policies\RenamePolicy.cs" />
