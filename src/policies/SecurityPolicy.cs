@@ -32,12 +32,12 @@ using windows_tweak_tool.src.policies.components;
 
 namespace windows_tweak_tool.src.policies
 {
-    abstract class Policy : Services
+    abstract class SecurityPolicy : Services
     {
         private int version = -1;
         protected Window gui;
 
-        protected Policy(){} //don't instance the class :)
+        protected SecurityPolicy(){} //don't instance the class :)
 
         /**
         * <summary>
@@ -57,7 +57,7 @@ namespace windows_tweak_tool.src.policies
         *      <para>sets the progress to 100% and the button to unapply.</para>
         * </summary>
         **/
-        public void setGuiEnabled(Policy p)
+        public void setGuiEnabled(SecurityPolicy p)
         {
             p.getProgressbar().Value = 100;
             p.getButton().Text = "Undo";
@@ -68,7 +68,7 @@ namespace windows_tweak_tool.src.policies
         *      <para>sets the progress to 0% and the button to apply.</para>
         * </summary>
         **/
-        public void setGuiDisabled(Policy p)
+        public void setGuiDisabled(SecurityPolicy p)
         {
             p.getProgressbar().Value = 0;
             p.getButton().Text = "Apply";
@@ -171,7 +171,7 @@ namespace windows_tweak_tool.src.policies
         * </summary>
         * <returns>PolicyType</returns>
         **/
-        public abstract PolicyType getType();
+        public abstract SecurityPolicyType getType();
 
         /**
         * <summary>

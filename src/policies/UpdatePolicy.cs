@@ -26,7 +26,7 @@ using System.Windows.Forms;
 
 namespace windows_tweak_tool.src.policies
 {
-    class UpdatePolicy : Policy
+    class UpdatePolicy : SecurityPolicy
     {
 
         public override void apply()
@@ -55,9 +55,9 @@ namespace windows_tweak_tool.src.policies
             throw new NotImplementedException();
         }
 
-        public override PolicyType getType()
+        public override SecurityPolicyType getType()
         {
-            return PolicyType.UPDATE_POLICY;
+            return SecurityPolicyType.UPDATE_POLICY;
         }
 
         public override bool hasIncompatibilityIssues()

@@ -27,7 +27,7 @@ using Microsoft.Win32;
 
 namespace windows_tweak_tool.src.policies
 {
-    class NetbiosPolicy : Policy
+    class NetbiosPolicy : SecurityPolicy
     {
 
         public override string getName()
@@ -40,9 +40,9 @@ namespace windows_tweak_tool.src.policies
             return "disable netbios so network viruses have a harder time";
         }
 
-        public override PolicyType getType()
+        public override SecurityPolicyType getType()
         {
-            return PolicyType.NETBIOS_POLICY;
+            return SecurityPolicyType.NETBIOS_POLICY;
         }
 
         public override bool isEnabled()

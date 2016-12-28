@@ -25,7 +25,7 @@ using System.Windows.Forms;
 
 namespace windows_tweak_tool.src.policies
 {
-    class MBRPolicy : Policy
+    class MBRPolicy : SecurityPolicy
     {
 
         public override string getName()
@@ -38,7 +38,7 @@ namespace windows_tweak_tool.src.policies
             return "install MBRFilter to prevent bootloader modification, this will help you against rootkits and ransomware";
         }
 
-        public override PolicyType getType()
+        public override SecurityPolicyType getType()
         {
             return null;
            // return PolicyType.MBR_POLICY;

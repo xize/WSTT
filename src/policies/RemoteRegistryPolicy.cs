@@ -28,7 +28,7 @@ using System.Windows.Forms;
 
 namespace windows_tweak_tool.src.policies
 {
-    class RemoteRegistryPolicy : Policy
+    class RemoteRegistryPolicy : SecurityPolicy
     {
 
         public override string getName()
@@ -41,9 +41,9 @@ namespace windows_tweak_tool.src.policies
             return "disable remote registry so hackers are unable to manage the registry outside your network";
         }
 
-        public override PolicyType getType()
+        public override SecurityPolicyType getType()
         {
-            return PolicyType.REMOTE_REGISTRY_POLICY;
+            return SecurityPolicyType.REMOTE_REGISTRY_POLICY;
         }
 
         public override bool isMacro()

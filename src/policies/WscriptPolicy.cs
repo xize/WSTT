@@ -27,7 +27,7 @@ using System.Windows.Forms;
 
 namespace windows_tweak_tool.src.policies
 {
-    class WscriptPolicy : Policy
+    class WscriptPolicy : SecurityPolicy
     {
 
         public override string getName()
@@ -40,9 +40,9 @@ namespace windows_tweak_tool.src.policies
             return "disables wscript so it's impossible for malware to execute wscript scripts through a webpage :)";
         }
 
-        public override PolicyType getType()
+        public override SecurityPolicyType getType()
         {
-            return PolicyType.WSCRIPT_POLICY;
+            return SecurityPolicyType.WSCRIPT_POLICY;
         }
 
         public override bool isEnabled()

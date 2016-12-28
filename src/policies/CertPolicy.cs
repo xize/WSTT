@@ -1,5 +1,6 @@
 ﻿/*
-    A security toolkit for windows    
+
+A security toolkit for windows    
 
     Copyright(C) 2016 Guido Lucassen
 
@@ -29,7 +30,7 @@ using System.Windows.Forms;
 
 namespace windows_tweak_tool.src.policies
 {
-    class CertPolicy : Policy
+    class CertPolicy : SecurityPolicy
     {
 
         public override string getName()
@@ -42,9 +43,9 @@ namespace windows_tweak_tool.src.policies
             return "makes it easier for people to remove bogus root certificates, however user control is required\nit will open notepad which you can edit the entries you remove will not be removed";
         }
 
-        public override PolicyType getType()
+        public override SecurityPolicyType getType()
         {
-            return PolicyType.CERT_POLICY;
+            return SecurityPolicyType.CERT_POLICY;
         }
 
         public override bool isEnabled()

@@ -25,7 +25,7 @@ using System.Windows.Forms;
 
 namespace windows_tweak_tool.src.policies
 {
-    class UacPolicy : Policy
+    class UacPolicy : SecurityPolicy
     {
 
         public override string getName()
@@ -38,9 +38,9 @@ namespace windows_tweak_tool.src.policies
             return "highers the uac policy from normal to high";
         }
 
-        public override PolicyType getType()
+        public override SecurityPolicyType getType()
         {
-            return PolicyType.UAC_POLICY;
+            return SecurityPolicyType.UAC_POLICY;
         }
 
         public override bool isEnabled()

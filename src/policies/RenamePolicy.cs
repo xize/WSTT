@@ -28,7 +28,7 @@ using windows_tweak_tool.src.utils;
 
 namespace windows_tweak_tool.src.policies
 {
-    class RenamePolicy : Policy
+    class RenamePolicy : SecurityPolicy
     {
 
         private string[] extensions =
@@ -76,9 +76,9 @@ namespace windows_tweak_tool.src.policies
         }
 
 
-        public override PolicyType getType()
+        public override SecurityPolicyType getType()
         {
-            return PolicyType.RENAME_POLICY;
+            return SecurityPolicyType.RENAME_POLICY;
         }
 
         public override bool isEnabled()

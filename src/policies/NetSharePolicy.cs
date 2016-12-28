@@ -25,7 +25,7 @@ using System.Windows.Forms;
 
 namespace windows_tweak_tool.src.policies
 {
-    class NetSharePolicy : Policy
+    class NetSharePolicy : SecurityPolicy
     {
         public override string getName()
         {
@@ -37,9 +37,9 @@ namespace windows_tweak_tool.src.policies
             return "disables netshares so these directories are not shared automaticly anymore";
         }
 
-        public override PolicyType getType()
+        public override SecurityPolicyType getType()
         {
-            return PolicyType.NETSHARE_POLICY;
+            return SecurityPolicyType.NETSHARE_POLICY;
         }
 
         public override bool isEnabled()

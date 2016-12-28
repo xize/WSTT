@@ -26,7 +26,7 @@ using System.Windows.Forms;
 
 namespace windows_tweak_tool.src.policies
 {
-    class RDPPolicy : Policy
+    class RDPPolicy : SecurityPolicy
     {
 
         public override string getName()
@@ -39,9 +39,9 @@ namespace windows_tweak_tool.src.policies
             return "disables remote desktop protocol so people are not able to remotely control your computer";
         }
 
-        public override PolicyType getType()
+        public override SecurityPolicyType getType()
         {
-            return PolicyType.RDP_POLICY;
+            return SecurityPolicyType.RDP_POLICY;
         }
 
         public override bool isEnabled()

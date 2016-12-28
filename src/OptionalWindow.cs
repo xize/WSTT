@@ -24,6 +24,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using windows_tweak_tool.src.ninite;
+using windows_tweak_tool.src.optionalpolicies;
 
 namespace windows_tweak_tool.src
 {
@@ -551,6 +552,10 @@ namespace windows_tweak_tool.src
 
         private void niniteinstallbtn_Click(object sender, EventArgs e)
         {
+            NinitePolicy policy = new NinitePolicy();
+            policy.apply();
+
+            /*
             NiniteCreator creator = new NiniteCreator();
             foreach (NiniteOption option in NiniteOption.values())
             {
@@ -560,7 +565,9 @@ namespace windows_tweak_tool.src
                 }
             }
             creator.downloadNiniteInstaller(creator.getNiniteURL());
-        }
+    */
+            
+    }
 
         private void keepassbtn_Click(object sender, EventArgs e)
         {

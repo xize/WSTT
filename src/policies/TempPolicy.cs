@@ -26,7 +26,7 @@ using System.Windows.Forms;
 
 namespace windows_tweak_tool.src.policies
 {
-    class TempPolicy : Policy
+    class TempPolicy : SecurityPolicy
     {
 
         public override string getName()
@@ -39,9 +39,9 @@ namespace windows_tweak_tool.src.policies
             return "sets the policies to protect known malware directories against malware";
         }
 
-        public override PolicyType getType()
+        public override SecurityPolicyType getType()
         {
-            return PolicyType.TEMP_POLICY;
+            return SecurityPolicyType.TEMP_POLICY;
         }
 
         public override bool isEnabled()
@@ -100,7 +100,7 @@ namespace windows_tweak_tool.src.policies
 
             closeMMCWindow();
 
-            Policy p = PolicyType.UPDATE_POLICY.getPolicy(gui);
+            SecurityPolicy p = SecurityPolicyType.UPDATE_POLICY.getPolicy(gui);
             p.apply();
             Config.getConfig().put("policy-malware-restriction", true);
             setGuiEnabled(this);
@@ -128,7 +128,7 @@ namespace windows_tweak_tool.src.policies
             AutoIt.AutoItX.Send("{ENTER}");
 
             closeMMCWindow();
-            Policy p = PolicyType.UPDATE_POLICY.getPolicy(gui);
+            SecurityPolicy p = SecurityPolicyType.UPDATE_POLICY.getPolicy(gui);
             p.apply();
             Config.getConfig().put("policy-malware-restriction", false);
             setGuiDisabled(this);

@@ -54,11 +54,11 @@ namespace windows_tweak_tool
         private void initializeGuiWithPolicies()
         {
 
-            foreach (PolicyType a in PolicyType.values().getAll())
+            foreach (SecurityPolicyType a in SecurityPolicyType.values())
             {
-                Policy p = a.getPolicy(this);
+                SecurityPolicy p = a.getPolicy(this);
 
-                if(p.getType() != PolicyType.UPDATE_POLICY)
+                if(p.getType() != SecurityPolicyType.UPDATE_POLICY)
                 {
 
                     tooltip.SetToolTip(p.getButton(), p.getDescription());
@@ -89,7 +89,7 @@ namespace windows_tweak_tool
 
         private void callTempPolicyEvent(object sender, EventArgs e)
         {
-            Policy p = PolicyType.TEMP_POLICY.getPolicy(this);
+            SecurityPolicy p = SecurityPolicyType.TEMP_POLICY.getPolicy(this);
 
             if (p.isEnabled())
             {
@@ -102,7 +102,7 @@ namespace windows_tweak_tool
 
         private void callwscriptEvent(object sender, EventArgs e)
         {
-            Policy p = PolicyType.WSCRIPT_POLICY.getPolicy(this);
+            SecurityPolicy p = SecurityPolicyType.WSCRIPT_POLICY.getPolicy(this);
             if (p.isEnabled())
             {
                 p.unapply();
@@ -115,7 +115,7 @@ namespace windows_tweak_tool
 
         private void callUACEvent(object sender, EventArgs e)
         {
-            Policy p = PolicyType.UAC_POLICY.getPolicy(this);
+            SecurityPolicy p = SecurityPolicyType.UAC_POLICY.getPolicy(this);
             if(p.isEnabled())
             {
                 p.unapply();
@@ -127,7 +127,7 @@ namespace windows_tweak_tool
 
         private void callNetbiosEvent(object sender, EventArgs e)
         {
-            Policy p = PolicyType.NETBIOS_POLICY.getPolicy(this);
+            SecurityPolicy p = SecurityPolicyType.NETBIOS_POLICY.getPolicy(this);
             if(p.isEnabled())
             {
                 p.unapply();
@@ -139,7 +139,7 @@ namespace windows_tweak_tool
 
         private void callRenameEvent(object sender, EventArgs e)
         {
-            Policy p = PolicyType.RENAME_POLICY.getPolicy(this);
+            SecurityPolicy p = SecurityPolicyType.RENAME_POLICY.getPolicy(this);
 
             if(p.isEnabled())
             {
@@ -162,7 +162,7 @@ namespace windows_tweak_tool
 
         private void callRemoteRegEvent(object sender, EventArgs e)
         {
-            Policy p = PolicyType.REMOTE_REGISTRY_POLICY.getPolicy(this);
+            SecurityPolicy p = SecurityPolicyType.REMOTE_REGISTRY_POLICY.getPolicy(this);
 
             if (p.isEnabled())
             {
@@ -176,7 +176,7 @@ namespace windows_tweak_tool
 
         private void callRDPEvent(object sender, EventArgs e)
         {
-            Policy p = PolicyType.RDP_POLICY.getPolicy(this);
+            SecurityPolicy p = SecurityPolicyType.RDP_POLICY.getPolicy(this);
 
             if (p.isEnabled())
             {
@@ -190,7 +190,7 @@ namespace windows_tweak_tool
 
         private void callNTLMEvent(object sender, EventArgs e)
         {
-            Policy p = PolicyType.NTLM_POLICY.getPolicy(this);
+            SecurityPolicy p = SecurityPolicyType.NTLM_POLICY.getPolicy(this);
 
             if (p.isEnabled())
             {
@@ -212,7 +212,7 @@ namespace windows_tweak_tool
 
         private void callMBREvent(object sender, EventArgs e)
         {
-            Policy p = null;
+            SecurityPolicy p = null;
 
             DialogResult result = MessageBox.Show("If you plan to use this feature please note that we have not developed MBRFilter\n\nMBRFilter is licensed under the GPLv2 License and maintained by Yves Younan, Cisco Talos at https://github.com/vrtadmin/MBRFilter\n\nby clicking \"yes\" you agree with their license", "Warning Third party driver", MessageBoxButtons.YesNo);
 
@@ -240,20 +240,20 @@ namespace windows_tweak_tool
         private void callSafeApplyEvent(object sender, EventArgs e)
         {
             safeapplybtn.Enabled = false;
-            foreach (PolicyType pt in PolicyType.values().getAll())
+            foreach (SecurityPolicyType pt in SecurityPolicyType.values())
             {
-                if(pt != PolicyType.UPDATE_POLICY)
+                if(pt != SecurityPolicyType.UPDATE_POLICY)
                 {
-                    Policy p = pt.getPolicy(this);
+                    SecurityPolicy p = pt.getPolicy(this);
                     p.getButton().Enabled = false;
                 }
             }
 
-            foreach (PolicyType pt in PolicyType.values().getAll())
+            foreach (SecurityPolicyType pt in SecurityPolicyType.values())
             {
-                if (pt != PolicyType.UPDATE_POLICY)
+                if (pt != SecurityPolicyType.UPDATE_POLICY)
                 {
-                    Policy p = pt.getPolicy(this);
+                    SecurityPolicy p = pt.getPolicy(this);
                     if(p.isSafeForBussiness())
                     {
                         if(!p.isEnabled() && !p.isUserControlRequired())
@@ -264,11 +264,11 @@ namespace windows_tweak_tool
                 }
             }
 
-            foreach (PolicyType pt in PolicyType.values().getAll())
+            foreach (SecurityPolicyType pt in SecurityPolicyType.values())
             {
-                if (pt != PolicyType.UPDATE_POLICY)
+                if (pt != SecurityPolicyType.UPDATE_POLICY)
                 {
-                    Policy p = pt.getPolicy(this);
+                    SecurityPolicy p = pt.getPolicy(this);
                     p.getButton().Enabled = true;
                 }
             }
@@ -279,20 +279,20 @@ namespace windows_tweak_tool
         private void callApplyEvent(object sender, EventArgs e)
         {
             applyforcebtn.Enabled = false;
-            foreach (PolicyType pt in PolicyType.values().getAll())
+            foreach (SecurityPolicyType pt in SecurityPolicyType.values())
             {
-                if (pt != PolicyType.UPDATE_POLICY)
+                if (pt != SecurityPolicyType.UPDATE_POLICY)
                 {
-                    Policy p = pt.getPolicy(this);
+                    SecurityPolicy p = pt.getPolicy(this);
                     p.getButton().Enabled = false;
                 }
             }
 
-            foreach (PolicyType pt in PolicyType.values().getAll())
+            foreach (SecurityPolicyType pt in SecurityPolicyType.values())
             {
-                if (pt != PolicyType.UPDATE_POLICY)
+                if (pt != SecurityPolicyType.UPDATE_POLICY)
                 {
-                    Policy p = pt.getPolicy(this);
+                    SecurityPolicy p = pt.getPolicy(this);
                         if (!p.isEnabled() && !p.isUserControlRequired())
                         {
                             p.apply();
@@ -300,11 +300,11 @@ namespace windows_tweak_tool
                 }
             }
 
-            foreach (PolicyType pt in PolicyType.values().getAll())
+            foreach (SecurityPolicyType pt in SecurityPolicyType.values())
             {
-                if (pt != PolicyType.UPDATE_POLICY)
+                if (pt != SecurityPolicyType.UPDATE_POLICY)
                 {
-                    Policy p = pt.getPolicy(this);
+                    SecurityPolicy p = pt.getPolicy(this);
                     p.getButton().Enabled = true;
                 }
             }
@@ -316,21 +316,21 @@ namespace windows_tweak_tool
         private void callUndoEvent(object sender, EventArgs e)
         {
             undobtn.Enabled = false;
-            foreach (PolicyType pt in PolicyType.values().getAll())
+            foreach (SecurityPolicyType pt in SecurityPolicyType.values())
             {
-                if (pt != PolicyType.UPDATE_POLICY && !pt.getPolicy(this).isUserControlRequired())
+                if (pt != SecurityPolicyType.UPDATE_POLICY && !pt.getPolicy(this).isUserControlRequired())
                 {
-                    Policy p = pt.getPolicy(this);
+                    SecurityPolicy p = pt.getPolicy(this);
                     p.getButton().Enabled = false;
                 }
             }
 
 
-            foreach (PolicyType pt in PolicyType.values().getAll())
+            foreach (SecurityPolicyType pt in SecurityPolicyType.values())
             {
-                if (pt != PolicyType.UPDATE_POLICY)
+                if (pt != SecurityPolicyType.UPDATE_POLICY)
                 {
-                    Policy p = pt.getPolicy(this);
+                    SecurityPolicy p = pt.getPolicy(this);
                     if (p.isEnabled() && !p.isUserControlRequired())
                     {
                         p.unapply();
@@ -338,11 +338,11 @@ namespace windows_tweak_tool
                 }
             }
 
-            foreach (PolicyType pt in PolicyType.values().getAll())
+            foreach (SecurityPolicyType pt in SecurityPolicyType.values())
             {
-                if (pt != PolicyType.UPDATE_POLICY && !pt.getPolicy(this).isUserControlRequired())
+                if (pt != SecurityPolicyType.UPDATE_POLICY && !pt.getPolicy(this).isUserControlRequired())
                 {
-                    Policy p = pt.getPolicy(this);
+                    SecurityPolicy p = pt.getPolicy(this);
                     p.getButton().Enabled = false;
                 }
             }
@@ -357,7 +357,7 @@ namespace windows_tweak_tool
 
         private void callBogusCertEvent(object sender, EventArgs e)
         {
-            Policy p = PolicyType.CERT_POLICY.getPolicy(this);
+            SecurityPolicy p = SecurityPolicyType.CERT_POLICY.getPolicy(this);
 
             if (p.isEnabled())
             {
@@ -387,7 +387,7 @@ namespace windows_tweak_tool
 
         private void netsharebtn_Click(object sender, EventArgs e)
         {
-            Policy p = PolicyType.NETSHARE_POLICY.getPolicy(this);
+            SecurityPolicy p = SecurityPolicyType.NETSHARE_POLICY.getPolicy(this);
             if(p.isEnabled())
             {
                 p.unapply();

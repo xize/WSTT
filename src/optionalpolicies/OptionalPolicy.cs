@@ -21,11 +21,47 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
+using windows_tweak_tool.src.ninite;
 
 namespace windows_tweak_tool.src.optionalpolicies
 {
-    abstract class OptionalPolicy
+    abstract class OptionalPolicy : NiniteCreator
     {
+
+        protected OptionalWindow window;
+
+        public void setGui(OptionalWindow window)
+        {
+            if(this.window == null)
+            {
+                this.window = window;
+            }
+        }
+
+        public abstract string getName();
+
+        public abstract string getDescription();
+
+        public abstract OptionalPolicyType getType();
+
+        public abstract void apply();
+
+        public abstract void unapply();
+
+        public abstract Button getButton();
+
+        public bool hasButton()
+        {
+            return ((getButton() != null) ? true : false);
+        }
+
+        public abstract ProgressBar getProgressbar();
+
+        public bool hasProgressbar()
+        {
+            return ((getProgressbar() != null) ? true : false);
+        }
 
     }
 }

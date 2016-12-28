@@ -26,7 +26,7 @@ using System.Windows.Forms;
 
 namespace windows_tweak_tool.src.policies
 {
-    class NTLMPolicy : Policy
+    class NTLMPolicy : SecurityPolicy
     {
 
         public override string getName()
@@ -39,9 +39,9 @@ namespace windows_tweak_tool.src.policies
             return "disables incomming and outcomming NTLM traffic, since most of the computers have standard Remote Desktop Protocol Enabled and most of the times it is NTLM depended\n\nthis means your computer is vulnerable against hash function cracking and a hacker could enter your remote computer very easily\ndo not use this when you are logged into a domain/bussiness network";
         }
 
-        public override PolicyType getType()
+        public override SecurityPolicyType getType()
         {
-            return PolicyType.NTLM_POLICY;
+            return SecurityPolicyType.NTLM_POLICY;
         }
 
         public override bool isEnabled()
@@ -72,7 +72,7 @@ namespace windows_tweak_tool.src.policies
             addNTLMPolicyOptions();
             closeWindow();
 
-            Policy p = PolicyType.UPDATE_POLICY.getPolicy(gui);
+            SecurityPolicy p = SecurityPolicyType.UPDATE_POLICY.getPolicy(gui);
             p.apply();
             Config.getConfig().put("NTLM-secure", true);
             setGuiEnabled(this);
@@ -97,7 +97,7 @@ namespace windows_tweak_tool.src.policies
             setDefaultOptions();
             closeWindow();
 
-            Policy p = PolicyType.UPDATE_POLICY.getPolicy(gui);
+            SecurityPolicy p = SecurityPolicyType.UPDATE_POLICY.getPolicy(gui);
             p.apply();
             Config.getConfig().put("NTLM-secure", false);
             setGuiDisabled(this);
