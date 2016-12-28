@@ -206,15 +206,11 @@
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <PropertyGroup>
-    <Year>$([System.DateTime]::Now.ToString("yy"))</Year>
-    <Month>$([System.DateTime]::Now.ToString("MM"))</Month>
-    <Date>$([System.DateTime]::Now.ToString("dd"))</Date>
-    <Time>$([System.DateTime]::Now.ToString("HHmm"))</Time>
-    <AssemblyFileVersionAttribute>[assembly:System.Reflection.AssemblyFileVersion("$(Year).$(Month).$(Date).$(Time)")]</AssemblyFileVersionAttribute>
-  </PropertyGroup>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
-    <WriteLinesToFile File="Properties\VersionInfo.cs" Lines="$(AssemblyFileVersionAttribute)" Overwrite="true">
-    </WriteLinesToFile>
   </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
 </Project>
