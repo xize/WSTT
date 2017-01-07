@@ -87,6 +87,7 @@
   </PropertyGroup>
   <PropertyGroup />
   <PropertyGroup />
+  <PropertyGroup />
   <PropertyGroup>
     <ApplicationManifest>app.manifest</ApplicationManifest>
   </PropertyGroup>
@@ -166,6 +167,7 @@
     </EmbeddedResource>
     <None Include="app.manifest">
       <SubType>Designer</SubType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -190,7 +192,9 @@
     <None Include="Resources\sigcheck.exe" />
     <None Include="Resources\sigcheck64.exe" />
     <None Include="Resources\Eula.txt" />
-    <Content Include="windows.ico" />
+    <Content Include="windows.ico">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="test\" />
