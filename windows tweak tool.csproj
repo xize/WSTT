@@ -131,6 +131,7 @@
     <Compile Include="src\policies\CertPolicy.cs" />
     <Compile Include="src\policies\components\Registry.cs" />
     <Compile Include="src\policies\components\Services.cs" />
+    <Compile Include="src\policies\LLMNRPolicy.cs" />
     <Compile Include="src\policies\MBRPolicy.cs" />
     <Compile Include="src\policies\NetbiosPolicy.cs" />
     <Compile Include="src\policies\NetSharePolicy.cs" />

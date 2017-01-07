@@ -66,6 +66,7 @@ namespace windows_tweak_tool
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.connectionSettingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.openOptionalOptionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.setAsServerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.setAsClientToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -86,9 +87,8 @@ namespace windows_tweak_tool
             this.netsharebtn = new System.Windows.Forms.Button();
             this.netshareprogress = new System.Windows.Forms.ProgressBar();
             this.label2 = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
-            this.progressBar1 = new System.Windows.Forms.ProgressBar();
-            this.openOptionalOptionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.llmnrbtn = new System.Windows.Forms.Button();
+            this.llmnrprogress = new System.Windows.Forms.ProgressBar();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -333,7 +333,7 @@ namespace windows_tweak_tool
             // undobtn
             // 
             this.undobtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.undobtn.Location = new System.Drawing.Point(417, 585);
+            this.undobtn.Location = new System.Drawing.Point(419, 585);
             this.undobtn.Name = "undobtn";
             this.undobtn.Size = new System.Drawing.Size(75, 23);
             this.undobtn.TabIndex = 40;
@@ -422,6 +422,13 @@ namespace windows_tweak_tool
             this.connectionSettingsToolStripMenuItem.Name = "connectionSettingsToolStripMenuItem";
             this.connectionSettingsToolStripMenuItem.Size = new System.Drawing.Size(60, 20);
             this.connectionSettingsToolStripMenuItem.Text = "settings";
+            // 
+            // openOptionalOptionsToolStripMenuItem
+            // 
+            this.openOptionalOptionsToolStripMenuItem.Name = "openOptionalOptionsToolStripMenuItem";
+            this.openOptionalOptionsToolStripMenuItem.Size = new System.Drawing.Size(195, 22);
+            this.openOptionalOptionsToolStripMenuItem.Text = "Open Optional options";
+            this.openOptionalOptionsToolStripMenuItem.Click += new System.EventHandler(this.openOptionalOptionsToolStripMenuItem_Click);
             // 
             // setAsServerToolStripMenuItem
             // 
@@ -602,46 +609,38 @@ namespace windows_tweak_tool
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(15, 529);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(151, 13);
+            this.label2.Size = new System.Drawing.Size(155, 13);
             this.label2.TabIndex = 95;
-            this.label2.Text = "add policies to google chrome:";
+            this.label2.Text = "disabling LLMNR broadcasting:";
             // 
-            // button1
+            // llmnrbtn
             // 
-            this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.button1.AutoSize = true;
-            this.button1.Enabled = false;
-            this.button1.Location = new System.Drawing.Point(422, 545);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 94;
-            this.button1.Text = "Apply";
-            this.button1.UseVisualStyleBackColor = true;
+            this.llmnrbtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.llmnrbtn.AutoSize = true;
+            this.llmnrbtn.Location = new System.Drawing.Point(422, 545);
+            this.llmnrbtn.Name = "llmnrbtn";
+            this.llmnrbtn.Size = new System.Drawing.Size(75, 23);
+            this.llmnrbtn.TabIndex = 94;
+            this.llmnrbtn.Text = "Apply";
+            this.llmnrbtn.UseVisualStyleBackColor = true;
+            this.llmnrbtn.Click += new System.EventHandler(this.llmnrbtn_Click);
             // 
-            // progressBar1
+            // llmnrprogress
             // 
-            this.progressBar1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.llmnrprogress.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.progressBar1.Enabled = false;
-            this.progressBar1.Location = new System.Drawing.Point(13, 545);
-            this.progressBar1.Name = "progressBar1";
-            this.progressBar1.Size = new System.Drawing.Size(406, 23);
-            this.progressBar1.TabIndex = 93;
-            // 
-            // openOptionalOptionsToolStripMenuItem
-            // 
-            this.openOptionalOptionsToolStripMenuItem.Name = "openOptionalOptionsToolStripMenuItem";
-            this.openOptionalOptionsToolStripMenuItem.Size = new System.Drawing.Size(195, 22);
-            this.openOptionalOptionsToolStripMenuItem.Text = "Open Optional options";
-            this.openOptionalOptionsToolStripMenuItem.Click += new System.EventHandler(this.openOptionalOptionsToolStripMenuItem_Click);
+            this.llmnrprogress.Location = new System.Drawing.Point(13, 545);
+            this.llmnrprogress.Name = "llmnrprogress";
+            this.llmnrprogress.Size = new System.Drawing.Size(406, 23);
+            this.llmnrprogress.TabIndex = 93;
             // 
             // Window
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.ClientSize = new System.Drawing.Size(510, 622);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.button1);
-            this.Controls.Add(this.progressBar1);
+            this.Controls.Add(this.llmnrbtn);
+            this.Controls.Add(this.llmnrprogress);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.netsharebtn);
             this.Controls.Add(this.netshareprogress);
@@ -750,8 +749,8 @@ namespace windows_tweak_tool
         public Button netsharebtn;
         public ProgressBar netshareprogress;
         private Label label2;
-        public Button button1;
-        public ProgressBar progressBar1;
+        public Button llmnrbtn;
+        public ProgressBar llmnrprogress;
         public ToolStripMenuItem openOptionalOptionsToolStripMenuItem;
     }
 }

@@ -39,6 +39,7 @@ namespace windows_tweak_tool.src.policies
         //public static PolicyType MBR_POLICY = new PolicyType("mbr_policy", new MBRPolicy());
         public static SecurityPolicyType CERT_POLICY = new SecurityPolicyType("cert_policy", new CertPolicy());
         public static SecurityPolicyType NETSHARE_POLICY = new SecurityPolicyType("netshare_policy", new NetSharePolicy());
+        public static SecurityPolicyType LLMNR_POLICY = new SecurityPolicyType("llmnr_policy", new LLMNRPolicy());
 
         private string name;
         private SecurityPolicy pol;

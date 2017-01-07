@@ -402,5 +402,18 @@ namespace windows_tweak_tool
             optionalw.Visible = true;
             openOptionalOptionsToolStripMenuItem.Enabled = false;
         }
+
+        private void llmnrbtn_Click(object sender, EventArgs e)
+        {
+            SecurityPolicy p = SecurityPolicyType.LLMNR_POLICY.getPolicy(this);
+            if (p.isEnabled())
+            {
+                p.unapply();
+            }
+            else
+            {
+                p.apply();
+            }
+        }
     }
 }
