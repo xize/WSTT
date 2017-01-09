@@ -82,7 +82,7 @@ namespace windows_tweak_tool.src.policies
 
         public override bool isSafeForBussiness()
         {
-            return false;
+            return true;
         }
 
         public override bool isSecpolDepended()
