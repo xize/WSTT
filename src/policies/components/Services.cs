@@ -144,5 +144,20 @@ namespace windows_tweak_tool.src.policies.components
             }
         }
 
+        /**
+        * <summary>
+        *      <para>returns true if the service exist otherwise false</para>
+        * </summary>
+        **/
+        public bool doesServiceExist(string service)
+        {
+            RegistryKey key = getRegistry(@"SYSTEM\CurrentControlSet\Services\" + service, REG.HKLM);
+            if(key != null)
+            {
+                return true;
+            }
+            return false;
+        }
+
     }
 }
