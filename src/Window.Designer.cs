@@ -72,11 +72,9 @@ namespace windows_tweak_tool
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.documentationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.insecureserviceslabel = new System.Windows.Forms.Label();
             this.insecureservicesbtn = new System.Windows.Forms.Button();
             this.insecureserviceprogress = new System.Windows.Forms.ProgressBar();
-            this.toolTip2 = new System.Windows.Forms.ToolTip(this.components);
             this.boguscertlabel = new System.Windows.Forms.LinkLabel();
             this.boguscertbtn = new System.Windows.Forms.Button();
             this.boguscertprogress = new System.Windows.Forms.ProgressBar();
@@ -733,11 +731,9 @@ namespace windows_tweak_tool
         private ToolStripMenuItem helpToolStripMenuItem;
         private ToolStripMenuItem documentationToolStripMenuItem;
         private ToolStripMenuItem aboutToolStripMenuItem;
-        private ToolTip toolTip1;
         private Label insecureserviceslabel;
         private Button insecureservicesbtn;
         private ProgressBar insecureserviceprogress;
-        private ToolTip toolTip2;
         private LinkLabel mbrfilterlabel;
         public Button mbrbtn;
         public ProgressBar mbrprogress;
