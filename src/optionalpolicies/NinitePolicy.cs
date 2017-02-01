@@ -34,8 +34,8 @@ namespace windows_tweak_tool.src.optionalpolicies
                 {
                     this.Add(option);
                 }
-                this.downloadNiniteInstaller(this.getNiniteURL());
             }
+            this.downloadNiniteInstaller(this.getNiniteURL());
         }
 
         public override void unapply()

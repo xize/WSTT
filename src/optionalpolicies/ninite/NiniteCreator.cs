@@ -54,9 +54,16 @@ namespace windows_tweak_tool.src.ninite
 
         public void downloadNiniteInstaller(string url)
         {
+            if(File.Exists(getDataFolder() + @"\ninite\ninite.exe"))
+            {
+                File.Delete(getDataFolder() + @"\ninite\ninite.exe");
+            }
+            if(!Directory.Exists(getDataFolder() + @"\ninite"))
+            {
+                Directory.CreateDirectory(getDataFolder() + @"\ninite");
+            }
             WebClient client = new WebClient();
             client.Headers.Add("user-agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.59 Safari/537.36");
-            Directory.CreateDirectory(getDataFolder() + @"\ninite");
             try
             {
                 client.DownloadFile(new Uri(url), getDataFolder() + @"\ninite\ninite.exe");
