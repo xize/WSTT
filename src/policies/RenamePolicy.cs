@@ -61,6 +61,7 @@ namespace windows_tweak_tool.src.policies
             ".mht",
             ".hta",
             //special cases...
+            ".pdf", //because it is vulnerable
             ".tif",
             ".tiff" //Tempory disable Tiff remote explotation, see: https://threatpost.com/remote-code-execution-vulnerabilities-plague-libtiff-library/121570/ not sure if this is the correct way of megitation!
         };
@@ -183,6 +184,22 @@ namespace windows_tweak_tool.src.policies
                     case ".svg":
                         Console.WriteLine("extension: " + extension + " gets defaulted to: " + BrowserType.INTERNET_EXPLORE.getPath());
                         ftype.Arguments = "/c ftype " + extension.ToUpper() + "File=\"" + BrowserType.INTERNET_EXPLORE.getPath() + "\"";
+                        break;
+                    case ".pdf":
+                        BrowserType type = Browser.getBrowser().getCurrentBrowserType();
+                        if(type == BrowserType.CHROME)
+                        {
+                            Console.WriteLine("extension: " + extension + " gets defaulted to: " + BrowserType.CHROME.getPath());
+                            ftype.Arguments = "/c ftype " + extension.ToUpper() + "File=\"" + BrowserType.CHROME.getPath() + "\"";
+                        } else if(type == BrowserType.FIREFOX)
+                        {
+                            Console.WriteLine("extension: " + extension + " gets defaulted to: " + BrowserType.FIREFOX.getPath());
+                            ftype.Arguments = "/c ftype " + extension.ToUpper() + "File=\"" + BrowserType.FIREFOX.getPath() + "\"";
+                        } else
+                        {
+                            Console.WriteLine("extension: " + extension + " gets defaulted to: " + BrowserType.INTERNET_EXPLORE.getPath());
+                            ftype.Arguments = "/c ftype " + extension.ToUpper() + "File=\"" + BrowserType.INTERNET_EXPLORE.getPath() + "\"";
+                        }
                         break;
                     default:
                         Console.WriteLine("extension: " + extension + " gets defaulted to: " + @"C:\Windows\System32\wscript.exe");
