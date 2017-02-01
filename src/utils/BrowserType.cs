@@ -34,6 +34,7 @@ namespace windows_tweak_tool.src.utils
         public static BrowserType FIREFOX = new BrowserType("FirefoxURL", (Environment.Is64BitOperatingSystem ? @"C:\Program Files\Mozilla Firefox\firefox.exe" : @"C:\Program Files (x86)\Mozilla Firefox\firefox.exe"));
         public static BrowserType CHROME = new BrowserType("ChromeHTML", (Environment.Is64BitOperatingSystem ? @"C:\Program Files\Google\Chrome\Application\chrome.exe" : @"C:\Program Files (x86)\Google\Chrome\Application\chrome.exe"));
         public static BrowserType UNKOWN = new BrowserType("Unknown", null);
+        //public static BrowserType DEFAULT_BROWSER = (Browser.getBrowser().getCurrentBrowserType() != BrowserType.UNKOWN ? Browser.getBrowser().getCurrentBrowserType() : BrowserType.INTERNET_EXPLORE);
 
         private string name;
         private string path;
@@ -54,8 +55,7 @@ namespace windows_tweak_tool.src.utils
         {
             if(!File.Exists(path) && Environment.Is64BitOperatingSystem)
             {
-                //fix issues with google to be 32bit even when the 64bit version is installed...
-                return @"C:\Program Files (X86)"+path.Substring(@"C:\Program Files".Length, path.Length);
+                return @"C:\Program Files (x86)\" + path.Substring(@"C:\Program Files\".Length);
             }
             return path;
         }
