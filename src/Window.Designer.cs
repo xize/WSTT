@@ -519,7 +519,7 @@ namespace windows_tweak_tool
             this.boguscertbtn.Name = "boguscertbtn";
             this.boguscertbtn.Size = new System.Drawing.Size(75, 23);
             this.boguscertbtn.TabIndex = 84;
-            this.boguscertbtn.Text = "Apply";
+            this.boguscertbtn.Text = "Run!";
             this.boguscertbtn.UseVisualStyleBackColor = true;
             this.boguscertbtn.Click += new System.EventHandler(this.callBogusCertEvent);
             // 
