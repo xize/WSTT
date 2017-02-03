@@ -39,11 +39,8 @@ namespace windows_tweak_tool.src.policies.components
         public bool isServiceStarted(string service)
         {
             ServiceController controller = new ServiceController(service);
-            if (controller.Status == ServiceControllerStatus.Running)
-            {
-                return true;
-            }
-            return false;
+            controller.Refresh();
+            return controller.Status == ServiceControllerStatus.Running;
         }
 
         /**
@@ -54,6 +51,7 @@ namespace windows_tweak_tool.src.policies.components
         public void startService(string service)
         {
             ServiceController controller = new ServiceController(service);
+            controller.Refresh();
             if (controller.CanStop && controller.Status == ServiceControllerStatus.Stopped)
             {
                 controller.Start();
@@ -69,7 +67,8 @@ namespace windows_tweak_tool.src.policies.components
         public void stopService(string service)
         {
             ServiceController controller = new ServiceController(service);
-            if (controller.Status == ServiceControllerStatus.Running || controller.Status == ServiceControllerStatus.StartPending)
+            controller.Refresh();
+            if (controller.CanStop)
             {
                 controller.Stop();
                 controller.WaitForStatus(ServiceControllerStatus.Stopped);
