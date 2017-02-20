@@ -221,7 +221,8 @@ namespace windows_tweak_tool.src.policies
             AutoIt.AutoItX.Send("{ENTER}");
       
             AutoIt.AutoItX.WinWait("[CLASS:#32770]");
-            AutoIt.AutoItX.WinActivate("[CLASS:#32770]");
+            //do not activate the window probably the main window get triggered!
+            //AutoIt.AutoItX.WinActivate("[CLASS:#32770]");
 
             AutoIt.AutoItX.Sleep(400);
 
