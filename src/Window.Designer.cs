@@ -432,7 +432,7 @@ namespace windows_tweak_tool
             // openOptionalOptionsToolStripMenuItem
             // 
             this.openOptionalOptionsToolStripMenuItem.Name = "openOptionalOptionsToolStripMenuItem";
-            this.openOptionalOptionsToolStripMenuItem.Size = new System.Drawing.Size(195, 22);
+            this.openOptionalOptionsToolStripMenuItem.Size = new System.Drawing.Size(227, 22);
             this.openOptionalOptionsToolStripMenuItem.Text = "Open Optional options";
             this.openOptionalOptionsToolStripMenuItem.Click += new System.EventHandler(this.openOptionalOptionsToolStripMenuItem_Click);
             // 
@@ -440,14 +440,14 @@ namespace windows_tweak_tool
             // 
             this.setAsServerToolStripMenuItem.Enabled = false;
             this.setAsServerToolStripMenuItem.Name = "setAsServerToolStripMenuItem";
-            this.setAsServerToolStripMenuItem.Size = new System.Drawing.Size(195, 22);
+            this.setAsServerToolStripMenuItem.Size = new System.Drawing.Size(227, 22);
             this.setAsServerToolStripMenuItem.Text = "set as server";
             // 
             // setAsClientToolStripMenuItem
             // 
             this.setAsClientToolStripMenuItem.Enabled = false;
             this.setAsClientToolStripMenuItem.Name = "setAsClientToolStripMenuItem";
-            this.setAsClientToolStripMenuItem.Size = new System.Drawing.Size(195, 22);
+            this.setAsClientToolStripMenuItem.Size = new System.Drawing.Size(227, 22);
             this.setAsClientToolStripMenuItem.Text = "set as client";
             // 
             // helpToolStripMenuItem
@@ -709,8 +709,8 @@ namespace windows_tweak_tool
             // resetPoliciesToolStripMenuItem
             // 
             this.resetPoliciesToolStripMenuItem.Name = "resetPoliciesToolStripMenuItem";
-            this.resetPoliciesToolStripMenuItem.Size = new System.Drawing.Size(195, 22);
-            this.resetPoliciesToolStripMenuItem.Text = "reset policies";
+            this.resetPoliciesToolStripMenuItem.Size = new System.Drawing.Size(227, 22);
+            this.resetPoliciesToolStripMenuItem.Text = "reset windows group policies";
             this.resetPoliciesToolStripMenuItem.Click += new System.EventHandler(this.resetPoliciesToolStripMenuItem_Click);
             // 
             // Window
