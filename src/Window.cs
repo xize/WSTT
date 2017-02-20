@@ -394,11 +394,11 @@ namespace windows_tweak_tool
                 File.Delete(Config.getConfig().getDataFolder()+@"\config.txt");
             }
 
-            string[] cmdargs = { "RD /S /Q \"%WinDir%\\System32\\GroupPolicyUsers\"", "RD /S /Q \"%WinDir%\\System32\\GroupPolicy\"" };
+            string[] cmdargs = { "/c RD /S /Q \"%WinDir%\\System32\\GroupPolicyUsers\"", "/c RD /S /Q \"%WinDir%\\System32\\GroupPolicy\"" };
             foreach(string arg in cmdargs)
             {
                 ProcessStartInfo info = new ProcessStartInfo("cmd.exe");
-                info.Arguments = "/c RD /S /Q \"%WinDir%\\System32\\GroupPolicyUsers\"";
+                info.Arguments = arg;
                 Process pr = Process.Start(info);
                 pr.WaitForExit();
                 pr.Dispose();
