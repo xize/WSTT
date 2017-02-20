@@ -133,11 +133,11 @@ namespace windows_tweak_tool.src
             this.chromeaddonbtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.chromeaddonbtn.AutoSize = true;
             this.chromeaddonbtn.Enabled = false;
-            this.chromeaddonbtn.Location = new System.Drawing.Point(420, 245);
+            this.chromeaddonbtn.Location = new System.Drawing.Point(401, 245);
             this.chromeaddonbtn.Name = "chromeaddonbtn";
-            this.chromeaddonbtn.Size = new System.Drawing.Size(75, 23);
+            this.chromeaddonbtn.Size = new System.Drawing.Size(94, 23);
             this.chromeaddonbtn.TabIndex = 88;
-            this.chromeaddonbtn.Text = "Apply";
+            this.chromeaddonbtn.Text = "not implemented";
             this.chromeaddonbtn.UseVisualStyleBackColor = true;
             // 
             // chromeaddonprogress
@@ -166,11 +166,11 @@ namespace windows_tweak_tool.src
             this.chromebtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.chromebtn.AutoSize = true;
             this.chromebtn.Enabled = false;
-            this.chromebtn.Location = new System.Drawing.Point(420, 203);
+            this.chromebtn.Location = new System.Drawing.Point(401, 203);
             this.chromebtn.Name = "chromebtn";
-            this.chromebtn.Size = new System.Drawing.Size(75, 23);
+            this.chromebtn.Size = new System.Drawing.Size(94, 23);
             this.chromebtn.TabIndex = 85;
-            this.chromebtn.Text = "Apply";
+            this.chromebtn.Text = "not implemented";
             this.chromebtn.UseVisualStyleBackColor = true;
             this.chromebtn.Click += new System.EventHandler(this.chromebtn_Click);
             // 
@@ -200,11 +200,11 @@ namespace windows_tweak_tool.src
             this.keepassbtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.keepassbtn.AutoSize = true;
             this.keepassbtn.Enabled = false;
-            this.keepassbtn.Location = new System.Drawing.Point(420, 161);
+            this.keepassbtn.Location = new System.Drawing.Point(401, 161);
             this.keepassbtn.Name = "keepassbtn";
-            this.keepassbtn.Size = new System.Drawing.Size(75, 23);
+            this.keepassbtn.Size = new System.Drawing.Size(94, 23);
             this.keepassbtn.TabIndex = 82;
-            this.keepassbtn.Text = "Apply";
+            this.keepassbtn.Text = "not implemented";
             this.keepassbtn.UseVisualStyleBackColor = true;
             this.keepassbtn.Click += new System.EventHandler(this.keepassbtn_Click);
             // 
@@ -518,11 +518,11 @@ namespace windows_tweak_tool.src
             this.button3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.button3.AutoSize = true;
             this.button3.Enabled = false;
-            this.button3.Location = new System.Drawing.Point(420, 287);
+            this.button3.Location = new System.Drawing.Point(401, 287);
             this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(75, 23);
+            this.button3.Size = new System.Drawing.Size(94, 23);
             this.button3.TabIndex = 97;
-            this.button3.Text = "Apply";
+            this.button3.Text = "not implemented";
             this.button3.UseVisualStyleBackColor = true;
             // 
             // progressBar1

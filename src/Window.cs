@@ -22,6 +22,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Diagnostics;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Runtime.Remoting.Messaging;
 using System.Text;
@@ -284,31 +285,16 @@ namespace windows_tweak_tool
                 if (pt != SecurityPolicyType.UPDATE_POLICY)
                 {
                     SecurityPolicy p = pt.getPolicy(this);
-                    p.getButton().Enabled = false;
-                }
-            }
-
-            foreach (SecurityPolicyType pt in SecurityPolicyType.values())
-            {
-                if (pt != SecurityPolicyType.UPDATE_POLICY)
-                {
-                    SecurityPolicy p = pt.getPolicy(this);
-                        if (!p.isEnabled() && !p.isUserControlRequired())
+                    if(!p.isUserControlRequired() && !p.isEnabled())
+                    {
+                        if(p.isSecpolDepended() && !p.isSecpolEnabled())
                         {
-                            p.apply();
+                            continue;
                         }
+                        p.apply();
+                    }
                 }
             }
-
-            foreach (SecurityPolicyType pt in SecurityPolicyType.values())
-            {
-                if (pt != SecurityPolicyType.UPDATE_POLICY)
-                {
-                    SecurityPolicy p = pt.getPolicy(this);
-                    p.getButton().Enabled = true;
-                }
-            }
-
             applyforcebtn.Enabled = true;
             MessageBox.Show("All policies have been applied!, those who are not require user control.", "Policies with success applied!");
     }
@@ -321,36 +307,20 @@ namespace windows_tweak_tool
                 if (pt != SecurityPolicyType.UPDATE_POLICY && !pt.getPolicy(this).isUserControlRequired())
                 {
                     SecurityPolicy p = pt.getPolicy(this);
-                    p.getButton().Enabled = false;
-                }
-            }
-
-
-            foreach (SecurityPolicyType pt in SecurityPolicyType.values())
-            {
-                if (pt != SecurityPolicyType.UPDATE_POLICY)
-                {
-                    SecurityPolicy p = pt.getPolicy(this);
-                    if (p.isEnabled() && !p.isUserControlRequired())
+                    if (!p.isUserControlRequired() && p.isEnabled())
                     {
+                        if (p.isSecpolDepended() && !p.isSecpolEnabled())
+                        {
+                            continue;
+                        }
                         p.unapply();
                     }
                 }
             }
-
-            foreach (SecurityPolicyType pt in SecurityPolicyType.values())
-            {
-                if (pt != SecurityPolicyType.UPDATE_POLICY && !pt.getPolicy(this).isUserControlRequired())
-                {
-                    SecurityPolicy p = pt.getPolicy(this);
-                    p.getButton().Enabled = false;
-                }
-            }
-
             undobtn.Enabled = true;
         }
 
-        private void callInsecureServicesEvent(object sender, EventArgs e)
+        private void callInsecureServicesEvent(object sender, EventArgs e) 
         {
 
         }
@@ -415,6 +385,32 @@ namespace windows_tweak_tool
             {
                 p.apply();
             }
+        }
+
+        private void resetPoliciesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if(File.Exists(Config.getConfig().getDataFolder()+@"\config.txt"))
+            {
+                File.Delete(Config.getConfig().getDataFolder()+@"\config.txt");
+            }
+
+            string[] cmdargs = { "RD /S /Q \"%WinDir%\\System32\\GroupPolicyUsers\"", "RD /S /Q \"%WinDir%\\System32\\GroupPolicy\"" };
+            foreach(string arg in cmdargs)
+            {
+                ProcessStartInfo info = new ProcessStartInfo("cmd.exe");
+                info.Arguments = "/c RD /S /Q \"%WinDir%\\System32\\GroupPolicyUsers\"";
+                Process pr = Process.Start(info);
+                pr.WaitForExit();
+                pr.Dispose();
+            }
+
+            SecurityPolicy p = SecurityPolicyType.UPDATE_POLICY.getPolicy(this);
+            p.apply();
+
+            MessageBox.Show("WSTT needs to be restarted ;-)");
+
+            Application.Exit();
+
         }
     }
 }
