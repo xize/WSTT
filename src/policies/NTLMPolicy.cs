@@ -125,7 +125,7 @@ namespace windows_tweak_tool.src.policies
             AutoIt.AutoItX.WinWait("[CLASS:#32770]");
             AutoIt.AutoItX.Send("{ENTER}");
             AutoIt.AutoItX.Sleep(400);
-            AutoIt.AutoItX.WinActivate("[CLASS:MMCMainFrame]");
+          //  AutoIt.AutoItX.WinActivate("[CLASS:MMCMainFrame]");
 
             AutoIt.AutoItX.Send("{DOWN}{ENTER}");
             AutoIt.AutoItX.WinWait("[CLASS:#32770]");
@@ -133,7 +133,7 @@ namespace windows_tweak_tool.src.policies
             AutoIt.AutoItX.Sleep(300);
             AutoIt.AutoItX.Send("{ENTER}");
             AutoIt.AutoItX.Sleep(400);
-            AutoIt.AutoItX.WinActivate("[CLASS:MMCMainFrame]");
+         //   AutoIt.AutoItX.WinActivate("[CLASS:MMCMainFrame]");
 
             AutoIt.AutoItX.Send("{DOWN}{ENTER}");
             AutoIt.AutoItX.WinWait("[CLASS:#32770]");
@@ -143,7 +143,7 @@ namespace windows_tweak_tool.src.policies
             AutoIt.AutoItX.WinWait("[CLASS:#32770]");
             AutoIt.AutoItX.Send("{ENTER}");
             AutoIt.AutoItX.Sleep(600);
-            AutoIt.AutoItX.WinActivate("[CLASS:MMCMainFrame]");
+          //  AutoIt.AutoItX.WinActivate("[CLASS:MMCMainFrame]");
 
             AutoIt.AutoItX.Send("{DOWN}{ENTER}");
             AutoIt.AutoItX.WinWait("[CLASS:#32770]");
@@ -151,7 +151,7 @@ namespace windows_tweak_tool.src.policies
             AutoIt.AutoItX.Sleep(300);
             AutoIt.AutoItX.Send("{ENTER}");
             AutoIt.AutoItX.Sleep(400);
-            AutoIt.AutoItX.WinActivate("[CLASS:MMCMainFrame]");
+          //  AutoIt.AutoItX.WinActivate("[CLASS:MMCMainFrame]");
             AutoIt.AutoItX.Sleep(400);
             
             AutoIt.AutoItX.Send("{DOWN}{ENTER}");
@@ -162,7 +162,7 @@ namespace windows_tweak_tool.src.policies
             AutoIt.AutoItX.WinWait("[CLASS:#32770]");
             AutoIt.AutoItX.Send("{ENTER}");
             AutoIt.AutoItX.Sleep(400);
-            AutoIt.AutoItX.WinActivate("[CLASS:MMCMainFrame]");
+          //  AutoIt.AutoItX.WinActivate("[CLASS:MMCMainFrame]");
         }
 
         private void setDefaultOptions()
