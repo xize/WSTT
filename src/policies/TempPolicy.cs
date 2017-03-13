@@ -54,7 +54,7 @@ namespace windows_tweak_tool.src.policies
             getButton().Enabled = false;
             AutoIt.AutoItX.Run("mmc.exe secpol.msc", null, 0);
             AutoIt.AutoItX.WinWait("[CLASS:MMCMainFrame]");
-            AutoIt.AutoItX.WinActivate("[CLASS:MMCMainFrame]");
+            //AutoIt.AutoItX.WinActivate("[CLASS:MMCMainFrame]");
             AutoIt.AutoItX.Sleep(400);
             fixUnhappyTrigger(); //fix a issue whereby windows 10 complains about a missing GEO location file which cause to freezes the automation....
 
@@ -112,7 +112,7 @@ namespace windows_tweak_tool.src.policies
             getButton().Enabled = false;
             AutoIt.AutoItX.Run("mmc.exe secpol.msc", null, 0);
             AutoIt.AutoItX.WinWait("[CLASS:MMCMainFrame]");
-            AutoIt.AutoItX.WinActivate("[CLASS:MMCMainFrame]");
+            //AutoIt.AutoItX.WinActivate("[CLASS:MMCMainFrame]");
             AutoIt.AutoItX.Sleep(400);
             fixUnhappyTrigger(); //fix a issue whereby windows 10 complains about a missing GEO location file which cause to freezes the automation....
             AutoIt.AutoItX.WinActivate("[CLASS:MMCMainFrame]");
