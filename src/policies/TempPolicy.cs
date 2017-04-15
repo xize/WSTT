@@ -91,6 +91,7 @@ namespace windows_tweak_tool.src.policies
             AutoIt.AutoItX.Sleep(600);
 
             addPolicyRule("%temp%");
+            addPolicyRule("%programdata%\\*.*");
             addPolicyRule("%localappdata%\\*.exe");
             addPolicyRule("%localappdata%\\*.dll");
             addPolicyRule("%localappdata%\\*.au3");
