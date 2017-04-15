@@ -33,7 +33,7 @@ namespace windows_tweak_tool.src.utils
         public static BrowserType INTERNET_EXPLORE = new BrowserType("IE.HTTP", (Environment.Is64BitOperatingSystem ? @"C:\Program Files\Internet Explorer\iexplore.exe" : @"C:\Program Files (x86)\Internet Explorer\iexplore.exe"));
         public static BrowserType FIREFOX = new BrowserType("FirefoxURL", (Environment.Is64BitOperatingSystem ? @"C:\Program Files\Mozilla Firefox\firefox.exe" : @"C:\Program Files (x86)\Mozilla Firefox\firefox.exe"));
         public static BrowserType CHROME = new BrowserType("ChromeHTML", (Environment.Is64BitOperatingSystem ? @"C:\Program Files\Google\Chrome\Application\chrome.exe" : @"C:\Program Files (x86)\Google\Chrome\Application\chrome.exe"));
-        public static BrowserType UNKOWN = new BrowserType("Unknown", null);
+        public static BrowserType UNKNOWN = new BrowserType("Unknown", null);
         //public static BrowserType DEFAULT_BROWSER = (Browser.getBrowser().getCurrentBrowserType() != BrowserType.UNKOWN ? Browser.getBrowser().getCurrentBrowserType() : BrowserType.INTERNET_EXPLORE);
 
         private string name;
@@ -74,7 +74,7 @@ namespace windows_tweak_tool.src.utils
                     return type;
                 }
             }
-            return BrowserType.UNKOWN;
+            return BrowserType.UNKNOWN;
         }
 
     }

@@ -37,13 +37,13 @@ namespace windows_tweak_tool.src.utils
             RegistryKey key = RegistryKey.OpenBaseKey(RegistryHive.CurrentUser, (Environment.Is64BitOperatingSystem ? RegistryView.Registry64 : RegistryView.Registry32)).OpenSubKey(@"Software\Microsoft\Windows\Shell\Associations\UrlAssociations\http\UserChoice");
             if(key == null)
             {
-                return BrowserType.UNKOWN;
+                return BrowserType.UNKNOWN;
             }
 
             object progID = key.GetValue("Progid");
             if(progID == null)
             {
-                return BrowserType.UNKOWN;
+                return BrowserType.UNKNOWN;
             }
 
             return BrowserType.valueOf(progID.ToString()); ;
