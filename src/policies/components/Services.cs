@@ -107,12 +107,8 @@ namespace windows_tweak_tool.src.policies.components
             key.SetValue("Start", stype);
             key.Close();
             */
-            ProcessStartInfo info = new ProcessStartInfo("sc.exe");
-            info.Arguments = "config "+ service +" start= "+stype;
-            Process p = Process.Start(info);
-            while (p.HasExited) { }
-            p.Close();
-            p.Dispose();
+
+            this.executeCMD("sc config " + service + " start= " + stype, true);
         }
 
         /**
@@ -165,6 +161,21 @@ namespace windows_tweak_tool.src.policies.components
                 return true;
             }
             return false;
+        }
+
+        public void executeCMD(string arguments, bool ghost)
+        {
+            ProcessStartInfo info = new ProcessStartInfo("cmd.exe");
+            info.Arguments = "/b " + arguments;
+            if (ghost)
+            {
+                info.UseShellExecute = false;
+                info.CreateNoWindow = true;
+            }
+            Process p = Process.Start(info);
+            while (p.HasExited) { }
+            p.Close();
+            p.Dispose();
         }
 
     }

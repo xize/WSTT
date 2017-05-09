@@ -69,6 +69,7 @@ namespace windows_tweak_tool
             this.openOptionalOptionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.setAsServerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.setAsClientToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.resetPoliciesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.documentationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -93,7 +94,6 @@ namespace windows_tweak_tool
             this.label4 = new System.Windows.Forms.Label();
             this.button2 = new System.Windows.Forms.Button();
             this.progressBar2 = new System.Windows.Forms.ProgressBar();
-            this.resetPoliciesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -450,6 +450,13 @@ namespace windows_tweak_tool
             this.setAsClientToolStripMenuItem.Size = new System.Drawing.Size(227, 22);
             this.setAsClientToolStripMenuItem.Text = "set as client";
             // 
+            // resetPoliciesToolStripMenuItem
+            // 
+            this.resetPoliciesToolStripMenuItem.Name = "resetPoliciesToolStripMenuItem";
+            this.resetPoliciesToolStripMenuItem.Size = new System.Drawing.Size(227, 22);
+            this.resetPoliciesToolStripMenuItem.Text = "reset windows group policies";
+            this.resetPoliciesToolStripMenuItem.Click += new System.EventHandler(this.resetPoliciesToolStripMenuItem_Click);
+            // 
             // helpToolStripMenuItem
             // 
             this.helpToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -487,12 +494,11 @@ namespace windows_tweak_tool
             // 
             this.insecureservicesbtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.insecureservicesbtn.AutoSize = true;
-            this.insecureservicesbtn.Enabled = false;
-            this.insecureservicesbtn.Location = new System.Drawing.Point(399, 377);
+            this.insecureservicesbtn.Location = new System.Drawing.Point(420, 377);
             this.insecureservicesbtn.Name = "insecureservicesbtn";
-            this.insecureservicesbtn.Size = new System.Drawing.Size(94, 23);
+            this.insecureservicesbtn.Size = new System.Drawing.Size(73, 23);
             this.insecureservicesbtn.TabIndex = 81;
-            this.insecureservicesbtn.Text = "not implemented";
+            this.insecureservicesbtn.Text = "Apply";
             this.insecureservicesbtn.UseVisualStyleBackColor = true;
             this.insecureservicesbtn.Click += new System.EventHandler(this.callInsecureServicesEvent);
             // 
@@ -500,7 +506,6 @@ namespace windows_tweak_tool
             // 
             this.insecureserviceprogress.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.insecureserviceprogress.Enabled = false;
             this.insecureserviceprogress.Location = new System.Drawing.Point(9, 377);
             this.insecureserviceprogress.Name = "insecureserviceprogress";
             this.insecureserviceprogress.Size = new System.Drawing.Size(406, 23);
@@ -706,13 +711,6 @@ namespace windows_tweak_tool
             this.progressBar2.Size = new System.Drawing.Size(406, 23);
             this.progressBar2.TabIndex = 99;
             // 
-            // resetPoliciesToolStripMenuItem
-            // 
-            this.resetPoliciesToolStripMenuItem.Name = "resetPoliciesToolStripMenuItem";
-            this.resetPoliciesToolStripMenuItem.Size = new System.Drawing.Size(227, 22);
-            this.resetPoliciesToolStripMenuItem.Text = "reset windows group policies";
-            this.resetPoliciesToolStripMenuItem.Click += new System.EventHandler(this.resetPoliciesToolStripMenuItem_Click);
-            // 
             // Window
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -819,8 +817,6 @@ namespace windows_tweak_tool
         private ToolStripMenuItem documentationToolStripMenuItem;
         private ToolStripMenuItem aboutToolStripMenuItem;
         private Label insecureserviceslabel;
-        private Button insecureservicesbtn;
-        private ProgressBar insecureserviceprogress;
         private LinkLabel mbrfilterlabel;
         public Button mbrbtn;
         public ProgressBar mbrprogress;
@@ -842,5 +838,7 @@ namespace windows_tweak_tool
         public Button button2;
         public ProgressBar progressBar2;
         private ToolStripMenuItem resetPoliciesToolStripMenuItem;
+        public ProgressBar insecureserviceprogress;
+        public Button insecureservicesbtn;
     }
 }

@@ -322,7 +322,15 @@ namespace windows_tweak_tool
 
         private void callInsecureServicesEvent(object sender, EventArgs e) 
         {
+            SecurityPolicy p = SecurityPolicyType.IN_SECURE_SERVICES_POLICY.getPolicy(this);
 
+            if(p.isEnabled())
+            {
+                p.unapply();
+            } else
+            {
+                p.apply();
+            }
         }
 
         private void callBogusCertEvent(object sender, EventArgs e)
