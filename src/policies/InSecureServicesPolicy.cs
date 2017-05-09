@@ -92,7 +92,7 @@ namespace windows_tweak_tool.src.policies
             services.Add("WalletService", ServiceType.MANUAL);
             services.Add("WinRM", ServiceType.MANUAL);
             services.Add("workfolderssvc", ServiceType.MANUAL);
-            services.Add("LanmanWorkstation", ServiceType.AUTOMATIC);
+            //services.Add("LanmanWorkstation", ServiceType.AUTOMATIC);
             services.Add("WwanSvc", ServiceType.MANUAL);
             services.Add("XblAuthManager", ServiceType.MANUAL);
         }
