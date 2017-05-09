@@ -67,12 +67,12 @@ namespace windows_tweak_tool.src.policies
             services.Add("RasAuto", ServiceType.MANUAL);
             services.Add("RasMan", ServiceType.MANUAL);
             services.Add("SessionEnv", ServiceType.MANUAL);
-            services.Add("TermService", ServiceType.MANUAL);
+            //services.Add("TermService", ServiceType.MANUAL);
             services.Add("UmRdpService", ServiceType.MANUAL);
-            services.Add("RpcSs", ServiceType.AUTOMATIC);
+            //services.Add("RpcSs", ServiceType.AUTOMATIC);
             services.Add("RpcLocator", ServiceType.MANUAL);
             services.Add("RetailDemo", ServiceType.MANUAL);
-            services.Add("RpcEptMapper", ServiceType.AUTOMATIC);
+            //services.Add("RpcEptMapper", ServiceType.AUTOMATIC);
             services.Add("SstpSvc", ServiceType.MANUAL);
             services.Add("SensorDataService", ServiceType.MANUAL);
             services.Add("SensrSvc", ServiceType.MANUAL);
