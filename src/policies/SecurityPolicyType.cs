@@ -40,7 +40,7 @@ namespace windows_tweak_tool.src.policies
         public static SecurityPolicyType CERT_POLICY = new SecurityPolicyType("cert_policy", new CertPolicy());
         public static SecurityPolicyType NETSHARE_POLICY = new SecurityPolicyType("netshare_policy", new NetSharePolicy());
         public static SecurityPolicyType LLMNR_POLICY = new SecurityPolicyType("llmnr_policy", new LLMNRPolicy());
-        //public static SecurityPolicyType UNSAFE_SERVICE_POLICY = new SecurityPolicyType("unsafe_service_policy", new UnsafeServicePolicy());
+        public static SecurityPolicyType IN_SECURE_SERVICES_POLICY = new SecurityPolicyType("in_secure_services_policy", new InSecureServicesPolicy());
 
         private string name;
         private SecurityPolicy pol;

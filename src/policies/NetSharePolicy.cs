@@ -55,7 +55,7 @@ namespace windows_tweak_tool.src.policies
         {
             getButton().Enabled = false;
             this.stopService("LanmanServer");
-            this.setServiceType("LanmanServer", ServiceType.MANUAL);
+            this.setServiceType("LanmanServer", ServiceType.MANUAL, false);
             this.setGuiEnabled(this);
             getButton().Enabled = true;
         }
@@ -63,7 +63,7 @@ namespace windows_tweak_tool.src.policies
         public override void unapply()
         {
             getButton().Enabled = false;
-            this.setServiceType("LanmanServer", ServiceType.AUTOMATIC);
+            this.setServiceType("LanmanServer", ServiceType.AUTOMATIC, false);
             this.startService("LanmanServer");
             this.setGuiDisabled(this);
             getButton().Enabled = true;
