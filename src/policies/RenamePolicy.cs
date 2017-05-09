@@ -99,22 +99,9 @@ namespace windows_tweak_tool.src.policies
 
             foreach (string extension in extensions)
             {
-                ProcessStartInfo assoc = new ProcessStartInfo("cmd.exe");
-                assoc.Arguments = "/c assoc " + extension+"="+extension.ToUpper()+"File";
-                assoc.CreateNoWindow = true;
-                Process proc1 = Process.Start(assoc);
 
-                while (!proc1.HasExited) { } ////lock the local thread till the process has been ended.
-
-                proc1.Dispose();
-
-                ProcessStartInfo ftype = new ProcessStartInfo("cmd.exe");
-                ftype.Arguments = "/c ftype " + extension.ToUpper() + @"File=C:\windows\system32\notepad.exe";
-                ftype.CreateNoWindow = true;
-                Process proc2 = Process.Start(ftype);
-
-                while (!proc2.HasExited) { } //lock the local thread till the process has been ended.
-                proc2.Dispose();
+                executeCMD("/c assoc " + extension+" = "+extension.ToUpper()+"File", true);
+                executeCMD("/c ftype " + extension.ToUpper() + @"File=C:\windows\system32\notepad.exe", true);
                 Console.WriteLine("extension: " + extension + " has been defaulted to: " + @"C:\windows\system32\notepad.exe");
             }
 
@@ -132,85 +119,76 @@ namespace windows_tweak_tool.src.policies
 
             foreach (string extension in extensions)
             {
-                ProcessStartInfo assoc = new ProcessStartInfo("cmd.exe");
-                assoc.Arguments = "/c assoc " + extension + "=" + extension.ToUpper() + "File";
-                assoc.CreateNoWindow = true;
-                Process proc1 = Process.Start(assoc);
+                executeCMD("/c assoc " + extension + " = " + extension.ToUpper() + "File", true);
 
-                while (!proc1.HasExited) { } ////lock the local thread till the process has been ended.
-                proc1.Dispose();
-
-                ProcessStartInfo ftype = new ProcessStartInfo("cmd.exe");
+                string argument = "";
 
                 switch (extension)
                 {
                     //TODO: figuring out how these macros work..... which program it uses to be exact.
                     case ".docm":
                         Console.WriteLine("extension: "+extension+" gets defaulted to: "+ @"C:\Program Files(x86)\Microsoft Office\root\Office16\winword.exe");
-                        ftype.Arguments = "/c ftype " + extension.ToUpper() + "File=\"C:\\Program Files (x86)\\Microsoft Office\\root\\Office16\\winword.exe\"";
+                        argument = "/c ftype " + extension.ToUpper() + "File=\"C:\\Program Files (x86)\\Microsoft Office\\root\\Office16\\winword.exe\"";
                         break;
                     case ".dotm":
                         Console.WriteLine("extension: " + extension + " gets defaulted to: " + @"C:\Program Files(x86)\Microsoft Office\root\Office16\winword.exe");
-                        ftype.Arguments = "/c ftype " + extension.ToUpper() + "File=\"C:\\Program Files (x86)\\Microsoft Office\\root\\Office16\\winword.exe\"";
+                        argument = "/c ftype " + extension.ToUpper() + "File=\"C:\\Program Files (x86)\\Microsoft Office\\root\\Office16\\winword.exe\"";
                         break;
                     case ".pptm":
                         Console.WriteLine("extension: " + extension + " gets defaulted to: " + @"C:\Program Files(x86)\Microsoft Office\root\Office16\powerpoint.exe");
-                        ftype.Arguments = "/c ftype " + extension.ToUpper() + "File=\"C:\\Program Files (x86)\\Microsoft Office\\root\\Office16\\powerpoint.exe\"";
+                        argument = "/c ftype " + extension.ToUpper() + "File=\"C:\\Program Files (x86)\\Microsoft Office\\root\\Office16\\powerpoint.exe\"";
                         break;
                     case ".xlm":
                         Console.WriteLine("extension: " + extension + " gets defaulted to: " + @"C:\Program Files(x86)\Microsoft Office\root\Office16\Excel.exe");
-                        ftype.Arguments = "/c ftype " + extension.ToUpper() + "File=\"C:\\Program Files (x86)\\Microsoft Office\\root\\Office16\\Excel.exe\"";
+                        argument = "/c ftype " + extension.ToUpper() + "File=\"C:\\Program Files (x86)\\Microsoft Office\\root\\Office16\\Excel.exe\"";
                         break;
                     case ".xlsm":
                         Console.WriteLine("extension: " + extension + " gets defaulted to: " + @"C:\Program Files(x86)\Microsoft Office\root\Office16\Excel.exe");
-                        ftype.Arguments = "/c ftype " + extension.ToUpper() + "File=\"C:\\Program Files (x86)\\Microsoft Office\\root\\Office16\\Excel.exe\"";
+                        argument = "/c ftype " + extension.ToUpper() + "File=\"C:\\Program Files (x86)\\Microsoft Office\\root\\Office16\\Excel.exe\"";
                         break;
                     case ".ps1":
                         Console.WriteLine("extension: " + extension + " gets defaulted to: " + @"C:\windows\system32\notepad.exe");
-                        ftype.Arguments = "/c ftype " + extension.ToUpper() + @"File=C:\Windows\System32\notepad.exe";
+                        argument = "/c ftype " + extension.ToUpper() + @"File=C:\Windows\System32\notepad.exe";
                         break;
                     case ".mhtml":
                         Console.WriteLine("extension: " + extension + " gets defaulted to: " + BrowserType.INTERNET_EXPLORE.getPath());
-                        ftype.Arguments = "/c ftype " + extension.ToUpper() + "File=\"" + BrowserType.INTERNET_EXPLORE.getPath() + "\"";
+                        argument = "/c ftype " + extension.ToUpper() + "File=\"" + BrowserType.INTERNET_EXPLORE.getPath() + "\"";
                         break;
                     case ".mht":
                         Console.WriteLine("extension: " + extension + " gets defaulted to: " + BrowserType.INTERNET_EXPLORE.getPath());
-                        ftype.Arguments = "/c ftype " + extension.ToUpper() + "File=\"" + BrowserType.INTERNET_EXPLORE.getPath() + "\"";
+                        argument = "/c ftype " + extension.ToUpper() + "File=\"" + BrowserType.INTERNET_EXPLORE.getPath() + "\"";
                         break;
                     case ".hta":
                         Console.WriteLine("extension: " + extension + @" gets defaulted to: C:\windows\system32\mshta.exe");
-                        ftype.Arguments = "/c ftype " + extension.ToUpper() + @"File=C:\windows\system32\mshta.exe";
+                        argument = "/c ftype " + extension.ToUpper() + @"File=C:\windows\system32\mshta.exe";
                         break;
                     case ".svg":
                         Console.WriteLine("extension: " + extension + " gets defaulted to: " + BrowserType.INTERNET_EXPLORE.getPath());
-                        ftype.Arguments = "/c ftype " + extension.ToUpper() + "File=\"" + BrowserType.INTERNET_EXPLORE.getPath() + "\"";
+                        argument = "/c ftype " + extension.ToUpper() + "File=\"" + BrowserType.INTERNET_EXPLORE.getPath() + "\"";
                         break;
                     case ".pdf":
                         BrowserType type = Browser.getBrowser().getCurrentBrowserType();
                         if(type == BrowserType.CHROME)
                         {
                             Console.WriteLine("extension: " + extension + " gets defaulted to: " + BrowserType.CHROME.getPath());
-                            ftype.Arguments = "/c ftype " + extension.ToUpper() + "File=\"" + BrowserType.CHROME.getPath() + "\"";
+                            argument = "/c ftype " + extension.ToUpper() + "File=\"" + BrowserType.CHROME.getPath() + "\"";
                         } else if(type == BrowserType.FIREFOX)
                         {
                             Console.WriteLine("extension: " + extension + " gets defaulted to: " + BrowserType.FIREFOX.getPath());
-                            ftype.Arguments = "/c ftype " + extension.ToUpper() + "File=\"" + BrowserType.FIREFOX.getPath() + "\"";
+                            argument = "/c ftype " + extension.ToUpper() + "File=\"" + BrowserType.FIREFOX.getPath() + "\"";
                         } else
                         {
                             Console.WriteLine("extension: " + extension + " gets defaulted to: " + BrowserType.INTERNET_EXPLORE.getPath());
-                            ftype.Arguments = "/c ftype " + extension.ToUpper() + "File=\"" + BrowserType.INTERNET_EXPLORE.getPath() + "\"";
+                            argument = "/c ftype " + extension.ToUpper() + "File=\"" + BrowserType.INTERNET_EXPLORE.getPath() + "\"";
                         }
                         break;
                     default:
                         Console.WriteLine("extension: " + extension + " gets defaulted to: " + @"C:\Windows\System32\wscript.exe");
-                        ftype.Arguments = "/c ftype " + extension.ToUpper() + @"File=C:\Windows\System32\wscript.exe";
+                        argument = "/c ftype " + extension.ToUpper() + @"File=C:\Windows\System32\wscript.exe";
                         break;
                 }
 
-                ftype.CreateNoWindow = true;
-                Process proc2 = Process.Start(ftype);
-                while (!proc2.HasExited) { } //lock the local thread till the process has been ended.
-                proc2.Dispose();
+                executeCMD(argument, true);
             }
             Config.getConfig().put("renamed", false);
             getButton().Enabled = true;
