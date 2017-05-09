@@ -123,12 +123,14 @@ namespace windows_tweak_tool.src.policies
 
         public override Button getButton()
         {
-            return this.gui.llmnrbtn;
+            // return this.gui.llmnrbtn;
+            return null;
         }
 
         public override ProgressBar getProgressbar()
         {
-            return this.gui.llmnrprogress;
+            //return this.gui.llmnrprogress;
+            return null;
         }
     }
 }

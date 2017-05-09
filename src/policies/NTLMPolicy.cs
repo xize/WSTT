@@ -212,12 +212,14 @@ namespace windows_tweak_tool.src.policies
 
         public override Button getButton()
         {
-            return gui.NTLMbtn;
+            //return gui.NTLMbtn;
+            return null;
         }
 
         public override ProgressBar getProgressbar()
         {
-            return gui.NTLMProgress;
+            //return gui.NTLMProgress;
+            return null;
         }
 
         public override bool isMacro()

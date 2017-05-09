@@ -86,12 +86,14 @@ namespace windows_tweak_tool.src.policies
 
         public override ProgressBar getProgressbar()
         {
-            return gui.wscript_progress;
+            //return gui.wscript_progress;
+            return null;
         }
 
         public override Button getButton()
         {
-            return gui.wscript_btn;
+            /// return gui.wscript_btn;
+            return null;
         }
 
         public override bool isSecpolDepended()

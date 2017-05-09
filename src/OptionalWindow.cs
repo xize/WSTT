@@ -568,7 +568,7 @@ namespace windows_tweak_tool.src
         private void onCloseOptionalWindow(object sender, CancelEventArgs e)
         {
             this.Visible = false;
-            Program.getGui().openOptionalOptionsToolStripMenuItem.Enabled = true;
+           // Program.getGui().openOptionalOptionsToolStripMenuItem.Enabled = true;
             e.Cancel = true;
         }
 

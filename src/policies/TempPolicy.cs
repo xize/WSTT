@@ -240,12 +240,14 @@ namespace windows_tweak_tool.src.policies
 
         public override ProgressBar getProgressbar()
         {
-            return gui.temp_policy_load;
+            //return gui.temp_policy_load;
+            return null;
         }
 
         public override Button getButton()
         {
-            return gui.temp_policy_btn;
+            //return gui.temp_policy_btn;
+            return null;
         }
 
         public override bool isSecpolDepended()

@@ -71,12 +71,14 @@ namespace windows_tweak_tool.src.policies
 
         public override Button getButton()
         {
-            return this.gui.netsharebtn;
+            //return this.gui.netsharebtn;
+            return null;
         }
 
         public override ProgressBar getProgressbar()
         {
-            return this.gui.netshareprogress;
+            // return this.gui.netshareprogress;
+            return null;
         }
 
         public override bool hasIncompatibilityIssues()

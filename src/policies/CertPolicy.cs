@@ -183,12 +183,14 @@ namespace windows_tweak_tool.src.policies
 
         public override Button getButton()
         {
-            return gui.boguscertbtn;
+            //  return gui.boguscertbtn;
+            return null;
         }
 
         public override ProgressBar getProgressbar()
         {
-            return gui.boguscertprogress;
+            //return gui.boguscertprogress;
+            return null;
         }
     }
 }

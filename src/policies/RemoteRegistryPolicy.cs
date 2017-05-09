@@ -85,12 +85,14 @@ namespace windows_tweak_tool.src.policies
 
         public override Button getButton()
         {
-            return gui.remoteregbtn;
+            //return gui.remoteregbtn;
+            return null;
         }
 
         public override ProgressBar getProgressbar()
         {
-            return gui.remoteregprogress;
+            //return gui.remoteregprogress;
+            return null;
         }
 
         [Obsolete]

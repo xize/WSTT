@@ -39,21 +39,41 @@ namespace windows_tweak_tool
     {
 
         private OptionalWindow optionalw;
+        private bool mouseDown = false;
+        private Point lastLocation;
 
         public Window()
         {
             Config.getConfig().readConfig();
             InitializeComponent();
-            if(this.optionalw == null)
+            if (this.optionalw == null)
             {
                this.optionalw = new OptionalWindow();
             }
             initializeGuiWithPolicies(); //cannot use this yet because of a issue with instance loading ;-)
             this.Text = String.Format("Windows Security Tweaker Tool {0}b(WSTT)", Application.ProductVersion);
+            makeMoveAbleGui();
+        }
+
+        private void makeMoveAbleGui()
+        {
+            foreach(Control c in this.Controls)
+            {
+                setMoveAble(c);
+                if(c.Controls.Count > 1)
+                {
+                    foreach(Control submodule in c.Controls)
+                    {
+                        setMoveAble(submodule);
+                    }
+                }
+            }
         }
 
         private void initializeGuiWithPolicies()
         {
+
+            /*
 
             foreach (SecurityPolicyType a in SecurityPolicyType.values())
             {
@@ -81,6 +101,29 @@ namespace windows_tweak_tool
                     }
                 }
             }
+            */
+        }
+
+        private void Form1_MouseDown(object sender, MouseEventArgs e)
+        {
+            mouseDown = true;
+            lastLocation = e.Location;
+        }
+
+        private void Form1_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (mouseDown)
+            {
+                this.Location = new Point(
+                    (this.Location.X - lastLocation.X) + e.X, (this.Location.Y - lastLocation.Y) + e.Y);
+
+                this.Update();
+            }
+        }
+
+        private void Form1_MouseUp(object sender, MouseEventArgs e)
+        {
+            mouseDown = false;
         }
 
         public OptionalWindow getOptionalWindow()
@@ -238,6 +281,7 @@ namespace windows_tweak_tool
             proc.Dispose();
         }
 
+        /*
         private void callSafeApplyEvent(object sender, EventArgs e)
         {
             safeapplybtn.Enabled = false;
@@ -319,6 +363,7 @@ namespace windows_tweak_tool
             }
             undobtn.Enabled = true;
         }
+        */
 
         private void callInsecureServicesEvent(object sender, EventArgs e) 
         {
@@ -371,7 +416,7 @@ namespace windows_tweak_tool
         private void openOptionalOptionsToolStripMenuItem_Click(object sender, EventArgs e)
         {
             optionalw.Visible = true;
-            openOptionalOptionsToolStripMenuItem.Enabled = false;
+           // openOptionalOptionsToolStripMenuItem.Enabled = false;
         }
 
         private void llmnrbtn_Click(object sender, EventArgs e)
@@ -410,6 +455,38 @@ namespace windows_tweak_tool
             MessageBox.Show("WSTT needs to be restarted ;-)");
 
             Application.Exit();
+
+        }
+
+        private void panel11_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void securityControl1_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+            this.WindowState = FormWindowState.Minimized;
+        }
+
+        private void setMoveAble(Control c)
+        {
+            c.MouseDown += new MouseEventHandler(Form1_MouseDown);
+            c.MouseMove += new MouseEventHandler(Form1_MouseMove);
+            c.MouseUp += new MouseEventHandler(Form1_MouseUp);
+        }
+
+        private void securityControl_DARK1_Load(object sender, EventArgs e)
+        {
 
         }
     }

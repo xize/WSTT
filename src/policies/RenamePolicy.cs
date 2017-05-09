@@ -230,12 +230,14 @@ namespace windows_tweak_tool.src.policies
 
         public override Button getButton()
         {
-            return gui.renamebtn;
+            //return gui.renamebtn;
+            return null;
         }
 
         public override ProgressBar getProgressbar()
         {
-            return gui.renameprogress;
+            //return gui.renameprogress;
+            return null;
         }
 
         [Obsolete]

@@ -119,6 +119,21 @@
     </Compile>
     <Compile Include="src\Config.cs" />
     <Compile Include="src\ConfigInfo.cs" />
+    <Compile Include="src\controls\FlatButton.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="src\controls\SecurityControl_DARK.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="src\controls\SecurityControl_DARK.Designer.cs">
+      <DependentUpon>SecurityControl_DARK.cs</DependentUpon>
+    </Compile>
+    <Compile Include="src\controls\SecurityControl_LIGHT.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="src\controls\SecurityControl_LIGHT.Designer.cs">
+      <DependentUpon>SecurityControl_LIGHT.cs</DependentUpon>
+    </Compile>
     <Compile Include="src\optionalpolicies\NinitePolicy.cs" />
     <Compile Include="src\optionalpolicies\ninite\NiniteCreator.cs" />
     <Compile Include="src\optionalpolicies\ninite\NiniteOption.cs" />
@@ -154,6 +169,12 @@
     </Compile>
     <Compile Include="src\Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="src\controls\SecurityControl_DARK.resx">
+      <DependentUpon>SecurityControl_DARK.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="src\controls\SecurityControl_LIGHT.resx">
+      <DependentUpon>SecurityControl_LIGHT.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="src\OptionalWindow.resx">
       <DependentUpon>OptionalWindow.cs</DependentUpon>
     </EmbeddedResource>
@@ -192,6 +213,7 @@
     <Content Include="AutoItX3_x64.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <None Include="Resources\logo.png" />
     <Content Include="windows.ico">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

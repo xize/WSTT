@@ -54,7 +54,7 @@ namespace windows_tweak_tool.src.policies
 
         public override void apply()
         {
-            gui.uac_btn.Enabled = false;
+            //gui.uac_btn.Enabled = false;
             AutoIt.AutoItX.Run("UserAccountControlSettings.exe", null, 0);
             AutoIt.AutoItX.WinWait("[CLASS:NativeHWNDHost]");
             AutoIt.AutoItX.WinActivate("[CLASS:NativeHWNDHost]");
@@ -67,12 +67,12 @@ namespace windows_tweak_tool.src.policies
 
             Config.getConfig().put("uac-mode", 4);
             setGuiEnabled(this);
-            gui.uac_btn.Enabled = true;
+           //gui.uac_btn.Enabled = true;
         }
 
         public override void unapply()
         {
-            gui.uac_btn.Enabled = false;
+           // gui.uac_btn.Enabled = false;
             AutoIt.AutoItX.Run("UserAccountControlSettings.exe", null, 0);
             AutoIt.AutoItX.WinWait("[CLASS:NativeHWNDHost]");
             AutoIt.AutoItX.WinActivate("[CLASS:NativeHWNDHost]");
@@ -86,21 +86,24 @@ namespace windows_tweak_tool.src.policies
 
             Config.getConfig().put("uac-mode", 3);
             setGuiDisabled(this);
-            gui.uac_btn.Enabled = true;
+          //  gui.uac_btn.Enabled = true;
         }
 
         public override Button getButton()
         {
-            return gui.uac_btn;
+           // return gui.uac_btn;
+            return null;
         }
 
         public override ProgressBar getProgressbar()
         {
-            return gui.uac_progress;
+            // return gui.uac_progress;
+            return null;
         }
 
         public override bool isSecpolDepended()
         {
+            //  return false;
             return false;
         }
 

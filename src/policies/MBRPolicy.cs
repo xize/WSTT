@@ -137,12 +137,14 @@ namespace windows_tweak_tool.src.policies
 
         public override Button getButton()
         {
-            return gui.mbrbtn;
+            //return gui.mbrbtn;
+            return null;
         }
 
         public override ProgressBar getProgressbar()
         {
-            return gui.mbrprogress;
+            // return gui.mbrprogress;
+            return null;
         }
 
         public override bool isSafeForBussiness()

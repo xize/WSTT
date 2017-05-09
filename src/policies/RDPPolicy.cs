@@ -80,12 +80,14 @@ namespace windows_tweak_tool.src.policies
 
         public override Button getButton()
         {
-            return gui.rdpbtn;
+            //return gui.rdpbtn;
+            return null;
         }
 
         public override ProgressBar getProgressbar()
         {
-            return gui.rdpprogress;
+            //return gui.rdpprogress;
+            return null;
         }
 
         public override bool isMacro()
