@@ -27,7 +27,6 @@ using System.Windows.Forms;
 using System.Management;
 using Microsoft.Win32;
 using System.ServiceProcess;
-using AutoIt;
 using windows_tweak_tool.src.policies.components;
 using System.Diagnostics;
 
