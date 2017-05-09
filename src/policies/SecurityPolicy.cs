@@ -29,6 +29,7 @@ using Microsoft.Win32;
 using System.ServiceProcess;
 using AutoIt;
 using windows_tweak_tool.src.policies.components;
+using System.Diagnostics;
 
 namespace windows_tweak_tool.src.policies
 {
@@ -255,6 +256,21 @@ namespace windows_tweak_tool.src.policies
                 }
             }
             throw new Exception("Failed to get Windows version, maybe WMI is broken?");
+        }
+
+        public void executeCMD(string arguments, bool ghost)
+        {
+            ProcessStartInfo info = new ProcessStartInfo("cmd.exe");
+            info.Arguments = "/b "+arguments;
+            if(ghost)
+            {
+                info.UseShellExecute = false;
+                info.CreateNoWindow = true;
+            }
+            Process p = Process.Start(info);
+            while (p.HasExited) { }
+            p.Close();
+            p.Dispose();
         }
     }
 }
