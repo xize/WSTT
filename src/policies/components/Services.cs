@@ -19,6 +19,7 @@
 using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.ServiceProcess;
 using System.Text;
@@ -80,30 +81,38 @@ namespace windows_tweak_tool.src.policies.components
         *      <para>sets the service type of the called type</para>
         * </summary>
         **/
-        public void setServiceType(string service, ServiceType type)
+        public void setServiceType(string service, ServiceType type, bool useronly)
         {
-            int stype = 4;
+            string stype = "demand";
             switch (type)
             {
                 case ServiceType.AUTOMATIC_SLOWED:
-                    stype = 1;
+                    stype = "delayed-auto";
                     break;
                 case ServiceType.AUTOMATIC:
-                    stype = 2;
+                    stype = "auto";
                     break;
                 case ServiceType.MANUAL:
-                    stype = 3;
+                    stype = "demand";
                     break;
                 case ServiceType.DISABLED:
-                    stype = 4;
+                    stype = "disabled";
                     break;
                 default:
-                    stype = 4;
+                    stype = "demand";
                     break;
             }
-            RegistryKey key = getRegistry(@"SYSTEM\CurrentControlSet\Services\" + service, REG.HKLM);
+            /*
+            RegistryKey key = getRegistry(@"SYSTEM\CurrentControlSet\Services\" + service, (useronly ? REG.HKCU : REG.HKLM));
             key.SetValue("Start", stype);
             key.Close();
+            */
+            ProcessStartInfo info = new ProcessStartInfo("sc.exe");
+            info.Arguments = "config "+ service +" start= "+stype;
+            Process p = Process.Start(info);
+            while (p.HasExited) { }
+            p.Close();
+            p.Dispose();
         }
 
         /**
