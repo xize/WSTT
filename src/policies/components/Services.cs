@@ -81,7 +81,7 @@ namespace windows_tweak_tool.src.policies.components
         *      <para>sets the service type of the called type</para>
         * </summary>
         **/
-        public void setServiceType(string service, ServiceType type, bool useronly)
+        public void setServiceType(string service, ServiceType type)
         {
             string stype = "demand";
             switch (type)
@@ -107,7 +107,6 @@ namespace windows_tweak_tool.src.policies.components
             key.SetValue("Start", stype);
             key.Close();
             */
-
             this.executeCMD("sc config " + service + " start= " + stype, true);
         }
 
@@ -166,7 +165,7 @@ namespace windows_tweak_tool.src.policies.components
         public void executeCMD(string arguments, bool ghost)
         {
             ProcessStartInfo info = new ProcessStartInfo("cmd.exe");
-            info.Arguments = "/b " + arguments;
+            info.Arguments = "/c "+arguments;
             if (ghost)
             {
                 info.UseShellExecute = false;
