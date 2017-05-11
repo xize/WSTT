@@ -31,8 +31,7 @@ namespace windows_tweak_tool.src.policies
 
         public override void apply()
         {
-            Process proc = Process.Start("gpupdate.exe", "/force");
-            while(!proc.HasExited){}
+            this.executeCMD("gpupdate.exe /force", true);
         }
 
         public override Button getButton()

@@ -14,6 +14,7 @@ namespace windows_tweak_tool.src.policies
 
         public InsecureServicePolicy()
         {
+			//TODO: http://hardenwindows8forsecurity.com/Harden%20Windows%208.1%2064bit%20Home.html
             //add standard vanilla values.
             badservices.Add("AJRouter", ServiceType.MANUAL);
             badservices.Add("ALG", ServiceType.MANUAL);
