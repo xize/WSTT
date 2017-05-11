@@ -15,6 +15,9 @@ namespace windows_tweak_tool.src.policies
 
         public InSecureServicesPolicy()
         {
+            services.Add("irmon", ServiceType.MANUAL);
+            services.Add("BthHFSrv", ServiceType.MANUAL);
+            /*
             services.Add("AJRouter", ServiceType.MANUAL);
             services.Add("AppReadiness", ServiceType.MANUAL); //windows store
             services.Add("ALG", ServiceType.MANUAL);
@@ -95,6 +98,7 @@ namespace windows_tweak_tool.src.policies
             //services.Add("LanmanWorkstation", ServiceType.AUTOMATIC);
             services.Add("WwanSvc", ServiceType.MANUAL);
             services.Add("XblAuthManager", ServiceType.MANUAL);
+            */
         }
 
         public override string getName()
