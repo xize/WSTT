@@ -215,7 +215,7 @@
     <Content Include="libs\AutoIT\AutoItX3_x64.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <None Include="Resources\logo.png" />
+    <None Include="Resources\WSTT.png" />
     <Content Include="windows.ico">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

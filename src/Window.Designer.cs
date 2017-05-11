@@ -140,7 +140,7 @@ namespace windows_tweak_tool
             // 
             // panel1
             // 
-            //this.panel1.BackgroundImage = global::windows_tweak_tool.Properties.Resources.logo;
+            this.panel1.BackgroundImage = global::windows_tweak_tool.Properties.Resources.WSTT;
             this.panel1.Controls.Add(this.panel30);
             this.panel1.Controls.Add(this.label2);
             this.panel1.Controls.Add(this.label1);
