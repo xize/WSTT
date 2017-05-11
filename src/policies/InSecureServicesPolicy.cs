@@ -15,90 +15,49 @@ namespace windows_tweak_tool.src.policies
 
         public InSecureServicesPolicy()
         {
-            services.Add("irmon", ServiceType.MANUAL);
-            services.Add("BthHFSrv", ServiceType.MANUAL);
-            /*
-            services.Add("AJRouter", ServiceType.MANUAL);
-            services.Add("AppReadiness", ServiceType.MANUAL); //windows store
-            services.Add("ALG", ServiceType.MANUAL);
-            services.Add("AppXSvc", ServiceType.MANUAL); // windows store
-            services.Add("BthHFSrv", ServiceType.MANUAL); // bluetooth service
-            services.Add("bthserv", ServiceType.MANUAL); // bluetooth service
-            services.Add("PeerDistSvc", ServiceType.MANUAL);
-            
-            //services.Add("CDPUserSvc_*", ServiceType.AUTOMATIC); // unknown
-
-            services.Add("ClipSVC", ServiceType.MANUAL); // windows store
             services.Add("Browser", ServiceType.MANUAL);
-            services.Add("DiagTrack", ServiceType.AUTOMATIC);
-            services.Add("CoreMessagingRegistrar", ServiceType.AUTOMATIC);
-            services.Add("DsSvc", ServiceType.MANUAL);
-            services.Add("DcpSvc", ServiceType.MANUAL);
-            services.Add("DoSvc", ServiceType.AUTOMATIC);
-            services.Add("DsmSvc", ServiceType.MANUAL);
-            services.Add("TrkWks", ServiceType.DISABLED);
-            services.Add("dmwappushservice", ServiceType.MANUAL);
-            services.Add("Dnscache", ServiceType.MANUAL);
-            services.Add("MapsBroker", ServiceType.AUTOMATIC);
-            services.Add("EntAppSvc", ServiceType.MANUAL);
-            services.Add("EapHost", ServiceType.MANUAL);
-            services.Add("Fax", ServiceType.MANUAL);
-            services.Add("fhsvc", ServiceType.MANUAL);
+            services.Add("TrkWks", ServiceType.AUTOMATIC);
+            services.Add("Dnscache", ServiceType.AUTOMATIC);
             services.Add("fdPHost", ServiceType.MANUAL);
             services.Add("FDResPub", ServiceType.MANUAL);
-            services.Add("XblGameSave", ServiceType.MANUAL);
-            services.Add("lfsvc", ServiceType.AUTOMATIC);
             services.Add("HomeGroupProvider", ServiceType.MANUAL);
-            services.Add("irmon", ServiceType.MANUAL);
+            services.Add("SharedAccess", ServiceType.DISABLED);
             services.Add("iphlpsvc", ServiceType.AUTOMATIC);
             services.Add("KtmRm", ServiceType.MANUAL);
             services.Add("lltdsvc", ServiceType.MANUAL);
-            services.Add("smphost", ServiceType.MANUAL);
-            services.Add("SmsRouter", ServiceType.MANUAL);
-            services.Add("diagnosticshub.standardcollector.service", ServiceType.MANUAL);
-            services.Add("XboxNetApiSvc", ServiceType.MANUAL);
+            services.Add("NetTcpPortSharing", ServiceType.DISABLED);
+            services.Add("Netlogon", ServiceType.MANUAL);
             services.Add("NcdAutoSetup", ServiceType.MANUAL);
-            services.Add("ose", ServiceType.MANUAL);
-            services.Add("CscService", ServiceType.MANUAL);
-            services.Add("defragsvc", ServiceType.MANUAL);
+            services.Add("NcaSvc", ServiceType.MANUAL);
             services.Add("PNRPsvc", ServiceType.MANUAL);
             services.Add("p2psvc", ServiceType.MANUAL);
             services.Add("p2pimsvc", ServiceType.MANUAL);
-            services.Add("PhoneSvc", ServiceType.MANUAL);
+            services.Add("PerfHost", ServiceType.MANUAL);
+            services.Add("pla", ServiceType.MANUAL);
             services.Add("PNRPAutoReg", ServiceType.MANUAL);
-            services.Add("RmSvc", ServiceType.MANUAL);
-            services.Add("RasAuto", ServiceType.MANUAL);
+            services.Add("QWAVE", ServiceType.MANUAL);
             services.Add("RasMan", ServiceType.MANUAL);
             services.Add("SessionEnv", ServiceType.MANUAL);
-            //services.Add("TermService", ServiceType.MANUAL);
+            services.Add("TermService", ServiceType.MANUAL);
             services.Add("UmRdpService", ServiceType.MANUAL);
-            //services.Add("RpcSs", ServiceType.AUTOMATIC);
-            //services.Add("RpcLocator", ServiceType.MANUAL);
-            services.Add("RetailDemo", ServiceType.MANUAL);
-            //services.Add("RpcEptMapper", ServiceType.AUTOMATIC);
+            services.Add("RemoteAccess", ServiceType.DISABLED);
+            services.Add("seclogon", ServiceType.MANUAL);
             services.Add("SstpSvc", ServiceType.MANUAL);
-            services.Add("SensorDataService", ServiceType.MANUAL);
-            services.Add("SensrSvc", ServiceType.MANUAL);
-            services.Add("SensorService", ServiceType.MANUAL);
-            services.Add("LanmanServer", ServiceType.MANUAL);
-            services.Add("CDPSvc", ServiceType.AUTOMATIC);
-            services.Add("shpamsvc", ServiceType.DISABLED);
+            services.Add("LanmanServer", ServiceType.AUTOMATIC);
             services.Add("SNMPTRAP", ServiceType.MANUAL);
             services.Add("SSDPSRV", ServiceType.MANUAL);
-            services.Add("StateRepository", ServiceType.MANUAL);
-            services.Add("WiaRpc", ServiceType.MANUAL);
-            services.Add("WpnService", ServiceType.AUTOMATIC);
             services.Add("lmhosts", ServiceType.MANUAL);
             services.Add("TapiSrv", ServiceType.MANUAL);
-            services.Add("Themes", ServiceType.AUTOMATIC);
-            services.Add("WebClient", ServiceType.MANUAL);
-            services.Add("WalletService", ServiceType.MANUAL);
+            services.Add("upnphost", ServiceType.MANUAL);
+            services.Add("WerSvc", ServiceType.MANUAL);
+            services.Add("Wecsvc", ServiceType.MANUAL);
+            services.Add("WMPNetworkSvc", ServiceType.MANUAL);
             services.Add("WinRM", ServiceType.MANUAL);
+            services.Add("wmiApSrv", ServiceType.MANUAL);
             services.Add("workfolderssvc", ServiceType.MANUAL);
-            //services.Add("LanmanWorkstation", ServiceType.AUTOMATIC);
-            services.Add("WwanSvc", ServiceType.MANUAL);
-            services.Add("XblAuthManager", ServiceType.MANUAL);
-            */
+            services.Add("LanmanWorkstation", ServiceType.AUTOMATIC);
+            services.Add("irmon", ServiceType.MANUAL);
+            services.Add("BthHFSrv", ServiceType.MANUAL);
         }
 
         public override string getName()
@@ -131,7 +90,7 @@ namespace windows_tweak_tool.src.policies
                 {
                     this.stopService(service.Key);
                 }
-                    this.setServiceType(service.Key, ServiceType.DISABLED, false);
+                    this.setServiceType(service.Key, ServiceType.DISABLED);
             }
             Config.getConfig().put("insecure-services", true);
             getButton().Enabled = true;
@@ -144,7 +103,7 @@ namespace windows_tweak_tool.src.policies
 
             foreach (KeyValuePair<string, ServiceType> service in services)
             {
-                this.setServiceType(service.Key, service.Value, false);
+                this.setServiceType(service.Key, service.Value);
             }
             Config.getConfig().put("insecure-services", false);
 
