@@ -1,7 +1,7 @@
 ﻿/*
     A security toolkit for windows    
 
-    Copyright(C) 2016 Guido Lucassen
+    Copyright(C) 2017 Guido Lucassen
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -599,6 +599,7 @@ namespace windows_tweak_tool.src
             this.MinimumSize = new System.Drawing.Size(526, 350);
             this.Name = "OptionalWindow";
             this.Text = "Optional options:";
+            this.Load += new System.EventHandler(this.OptionalWindow_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.ResumeLayout(false);
@@ -667,6 +668,11 @@ namespace windows_tweak_tool.src
             OptionalPolicy p = OptionalPolicyType.HP_KEYLOGGER.getPolicy(this);
 
             p.apply();
+
+        }
+
+        private void OptionalWindow_Load(object sender, EventArgs e)
+        {
 
         }
     }
