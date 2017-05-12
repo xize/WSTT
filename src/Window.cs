@@ -420,5 +420,11 @@ namespace windows_tweak_tool
             Application.Exit();
 
         }
+
+        private void unsignedbtn_Click(object sender, EventArgs e)
+        {
+            SecurityPolicy p = SecurityPolicyType.UNSIGNED_POLICY.getPolicy(this);
+            p.apply();
+        }
     }
 }

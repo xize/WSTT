@@ -89,8 +89,8 @@ namespace windows_tweak_tool
             this.llmnrbtn = new System.Windows.Forms.Button();
             this.llmnrprogress = new System.Windows.Forms.ProgressBar();
             this.label4 = new System.Windows.Forms.Label();
-            this.signedbtn = new System.Windows.Forms.Button();
-            this.signedprogress = new System.Windows.Forms.ProgressBar();
+            this.unsignedbtn = new System.Windows.Forms.Button();
+            this.unsignedprogress = new System.Windows.Forms.ProgressBar();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -653,33 +653,34 @@ namespace windows_tweak_tool
             this.label4.TabIndex = 101;
             this.label4.Text = "show all unsigned dll and exe files not signed by Microsoft in C:\\windows";
             // 
-            // signedbtn
+            // unsignedbtn
             // 
-            this.signedbtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.signedbtn.AutoSize = true;
-            this.signedbtn.Location = new System.Drawing.Point(400, 586);
-            this.signedbtn.Name = "signedbtn";
-            this.signedbtn.Size = new System.Drawing.Size(94, 23);
-            this.signedbtn.TabIndex = 100;
-            this.signedbtn.Text = "Run!";
-            this.signedbtn.UseVisualStyleBackColor = true;
+            this.unsignedbtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.unsignedbtn.AutoSize = true;
+            this.unsignedbtn.Location = new System.Drawing.Point(400, 586);
+            this.unsignedbtn.Name = "unsignedbtn";
+            this.unsignedbtn.Size = new System.Drawing.Size(94, 23);
+            this.unsignedbtn.TabIndex = 100;
+            this.unsignedbtn.Text = "Run!";
+            this.unsignedbtn.UseVisualStyleBackColor = true;
+            this.unsignedbtn.Click += new System.EventHandler(this.unsignedbtn_Click);
             // 
-            // signedprogress
+            // unsignedprogress
             // 
-            this.signedprogress.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.unsignedprogress.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.signedprogress.Location = new System.Drawing.Point(10, 586);
-            this.signedprogress.Name = "signedprogress";
-            this.signedprogress.Size = new System.Drawing.Size(384, 23);
-            this.signedprogress.TabIndex = 99;
+            this.unsignedprogress.Location = new System.Drawing.Point(10, 586);
+            this.unsignedprogress.Name = "unsignedprogress";
+            this.unsignedprogress.Size = new System.Drawing.Size(384, 23);
+            this.unsignedprogress.TabIndex = 99;
             // 
             // Window
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.ClientSize = new System.Drawing.Size(510, 663);
             this.Controls.Add(this.label4);
-            this.Controls.Add(this.signedbtn);
-            this.Controls.Add(this.signedprogress);
+            this.Controls.Add(this.unsignedbtn);
+            this.Controls.Add(this.unsignedprogress);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.llmnrbtn);
             this.Controls.Add(this.llmnrprogress);
@@ -791,8 +792,8 @@ namespace windows_tweak_tool
         public ProgressBar llmnrprogress;
         public ToolStripMenuItem openOptionalOptionsToolStripMenuItem;
         private Label label4;
-        public Button signedbtn;
-        public ProgressBar signedprogress;
+        public Button unsignedbtn;
+        public ProgressBar unsignedprogress;
         private ToolStripMenuItem resetPoliciesToolStripMenuItem;
         public ProgressBar insecureserviceprogress;
         public Button insecureservicesbtn;
