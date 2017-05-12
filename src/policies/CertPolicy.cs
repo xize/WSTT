@@ -127,12 +127,12 @@ namespace windows_tweak_tool.src.policies
             
         }
 
-        public bool isInstalled()
+        private bool isInstalled()
         {
             return Directory.Exists(getDataFolder() + @"\sigcheck");
         }
 
-        public void installForFirstTime(string resource)
+        private void installForFirstTime(string resource)
         {
             string path = getDataFolder() + @"\sigcheck";
 
