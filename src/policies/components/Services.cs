@@ -172,7 +172,7 @@ namespace windows_tweak_tool.src.policies.components
                 info.CreateNoWindow = true;
             }
             Process p = Process.Start(info);
-            while (p.HasExited) { }
+            while (!p.HasExited) { }
             p.Close();
             p.Dispose();
         }
