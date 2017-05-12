@@ -120,6 +120,7 @@
     </Compile>
     <Compile Include="src\Config.cs" />
     <Compile Include="src\ConfigInfo.cs" />
+    <Compile Include="src\optionalpolicies\HPKeyloggerPolicy.cs" />
     <Compile Include="src\optionalpolicies\NinitePolicy.cs" />
     <Compile Include="src\optionalpolicies\ninite\NiniteCreator.cs" />
     <Compile Include="src\optionalpolicies\ninite\NiniteOption.cs" />

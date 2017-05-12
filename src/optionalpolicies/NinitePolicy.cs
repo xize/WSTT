@@ -45,7 +45,7 @@ namespace windows_tweak_tool.src.optionalpolicies
 
         public override Button getButton()
         {
-            return window.niniteinstallbtn;
+            return gui.niniteinstallbtn;
         }
 
         public override ProgressBar getProgressbar()

@@ -29,13 +29,13 @@ namespace windows_tweak_tool.src.optionalpolicies
     abstract class OptionalPolicy : NiniteCreator
     {
 
-        protected OptionalWindow window;
+        protected OptionalWindow gui;
 
-        public void setGui(OptionalWindow window)
+        public void setGui(OptionalWindow gui)
         {
-            if(this.window == null)
+            if(this.gui == null)
             {
-                this.window = window;
+                this.gui = gui;
             }
         }
 
@@ -50,6 +50,11 @@ namespace windows_tweak_tool.src.optionalpolicies
         public abstract void unapply();
 
         public abstract Button getButton();
+
+        public virtual bool isEnabled()
+        {
+            return true;
+        }
 
         public bool hasButton()
         {

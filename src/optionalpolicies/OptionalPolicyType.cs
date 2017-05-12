@@ -12,6 +12,7 @@ namespace windows_tweak_tool.src.optionalpolicies
         public static HashSet<OptionalPolicyType> data = new HashSet<OptionalPolicyType>();
 
         public static OptionalPolicyType NINITE = new OptionalPolicyType("ninite", new NinitePolicy());
+        public static OptionalPolicyType HP_KEYLOGGER = new OptionalPolicyType("hp_keylogger", new HPKeyloggerPolicy());
 
         private string name;
         private OptionalPolicy pol;
