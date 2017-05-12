@@ -1,22 +1,4 @@
-﻿-/*
--    A security toolkit for windows    
--
--    Copyright(C) 2017 Guido Lucassen
--
--    This program is free software: you can redistribute it and/or modify
--    it under the terms of the GNU General Public License as published by
--    the Free Software Foundation, either version 3 of the License, or
--    (at your option) any later version.
--
--    This program is distributed in the hope that it will be useful,
--    but WITHOUT ANY WARRANTY; without even the implied warranty of
--    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.See the
--    GNU General Public License for more details.
--
--    You should have received a copy of the GNU General Public License
--    along with this program.If not, see<http://www.gnu.org/licenses/>.
--*/
-using System;
+﻿using System;
 using System.Windows.Forms;
 using windows_tweak_tool.src.policies;
 
@@ -106,12 +88,9 @@ namespace windows_tweak_tool
             this.label2 = new System.Windows.Forms.Label();
             this.llmnrbtn = new System.Windows.Forms.Button();
             this.llmnrprogress = new System.Windows.Forms.ProgressBar();
-            this.label3 = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
-            this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.label4 = new System.Windows.Forms.Label();
-            this.button2 = new System.Windows.Forms.Button();
-            this.progressBar2 = new System.Windows.Forms.ProgressBar();
+            this.signedbtn = new System.Windows.Forms.Button();
+            this.signedprogress = new System.Windows.Forms.ProgressBar();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -343,7 +322,7 @@ namespace windows_tweak_tool
             // safeapplybtn
             // 
             this.safeapplybtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.safeapplybtn.Location = new System.Drawing.Point(9, 668);
+            this.safeapplybtn.Location = new System.Drawing.Point(9, 626);
             this.safeapplybtn.Name = "safeapplybtn";
             this.safeapplybtn.Size = new System.Drawing.Size(158, 23);
             this.safeapplybtn.TabIndex = 39;
@@ -356,7 +335,7 @@ namespace windows_tweak_tool
             // undobtn
             // 
             this.undobtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.undobtn.Location = new System.Drawing.Point(419, 668);
+            this.undobtn.Location = new System.Drawing.Point(419, 626);
             this.undobtn.Name = "undobtn";
             this.undobtn.Size = new System.Drawing.Size(75, 23);
             this.undobtn.TabIndex = 40;
@@ -368,7 +347,7 @@ namespace windows_tweak_tool
             // applyforcebtn
             // 
             this.applyforcebtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.applyforcebtn.Location = new System.Drawing.Point(173, 668);
+            this.applyforcebtn.Location = new System.Drawing.Point(173, 626);
             this.applyforcebtn.Name = "applyforcebtn";
             this.applyforcebtn.Size = new System.Drawing.Size(100, 23);
             this.applyforcebtn.TabIndex = 89;
@@ -663,82 +642,44 @@ namespace windows_tweak_tool
             this.llmnrprogress.Size = new System.Drawing.Size(406, 23);
             this.llmnrprogress.TabIndex = 93;
             // 
-            // label3
-            // 
-            this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(13, 570);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(314, 13);
-            this.label3.TabIndex = 98;
-            this.label3.Text = "show all unsigned exe files not signed by Microsoft in C:\\windows";
-            // 
-            // button1
-            // 
-            this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.button1.AutoSize = true;
-            this.button1.Enabled = false;
-            this.button1.Location = new System.Drawing.Point(401, 586);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(94, 23);
-            this.button1.TabIndex = 97;
-            this.button1.Text = "not implemented";
-            this.button1.UseVisualStyleBackColor = true;
-            // 
-            // progressBar1
-            // 
-            this.progressBar1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.progressBar1.Enabled = false;
-            this.progressBar1.Location = new System.Drawing.Point(11, 586);
-            this.progressBar1.Name = "progressBar1";
-            this.progressBar1.Size = new System.Drawing.Size(406, 23);
-            this.progressBar1.TabIndex = 96;
-            // 
             // label4
             // 
             this.label4.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(12, 611);
+            this.label4.Location = new System.Drawing.Point(12, 570);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(307, 13);
+            this.label4.Size = new System.Drawing.Size(348, 13);
             this.label4.TabIndex = 101;
-            this.label4.Text = "show all unsigned dll files not signed by Microsoft in C:\\windows";
+            this.label4.Text = "show all unsigned dll and exe files not signed by Microsoft in C:\\windows";
             // 
-            // button2
+            // signedbtn
             // 
-            this.button2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.button2.AutoSize = true;
-            this.button2.Enabled = false;
-            this.button2.Location = new System.Drawing.Point(400, 627);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(94, 23);
-            this.button2.TabIndex = 100;
-            this.button2.Text = "not implemented";
-            this.button2.UseVisualStyleBackColor = true;
+            this.signedbtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.signedbtn.AutoSize = true;
+            this.signedbtn.Location = new System.Drawing.Point(400, 586);
+            this.signedbtn.Name = "signedbtn";
+            this.signedbtn.Size = new System.Drawing.Size(94, 23);
+            this.signedbtn.TabIndex = 100;
+            this.signedbtn.Text = "Run!";
+            this.signedbtn.UseVisualStyleBackColor = true;
             // 
-            // progressBar2
+            // signedprogress
             // 
-            this.progressBar2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.signedprogress.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.progressBar2.Enabled = false;
-            this.progressBar2.Location = new System.Drawing.Point(10, 627);
-            this.progressBar2.Name = "progressBar2";
-            this.progressBar2.Size = new System.Drawing.Size(406, 23);
-            this.progressBar2.TabIndex = 99;
+            this.signedprogress.Location = new System.Drawing.Point(10, 586);
+            this.signedprogress.Name = "signedprogress";
+            this.signedprogress.Size = new System.Drawing.Size(384, 23);
+            this.signedprogress.TabIndex = 99;
             // 
             // Window
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-            this.ClientSize = new System.Drawing.Size(510, 705);
+            this.ClientSize = new System.Drawing.Size(510, 663);
             this.Controls.Add(this.label4);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.progressBar2);
-            this.Controls.Add(this.label3);
-            this.Controls.Add(this.button1);
-            this.Controls.Add(this.progressBar1);
+            this.Controls.Add(this.signedbtn);
+            this.Controls.Add(this.signedprogress);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.llmnrbtn);
             this.Controls.Add(this.llmnrprogress);
@@ -784,7 +725,7 @@ namespace windows_tweak_tool
             this.Controls.Add(this.menuStrip1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip1;
-            this.MinimumSize = new System.Drawing.Size(526, 661);
+            this.MinimumSize = new System.Drawing.Size(526, 702);
             this.Name = "Window";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Windows Security Tweaker Tool 14.0.25420.1b (WSTT)";
@@ -849,12 +790,9 @@ namespace windows_tweak_tool
         public Button llmnrbtn;
         public ProgressBar llmnrprogress;
         public ToolStripMenuItem openOptionalOptionsToolStripMenuItem;
-        private Label label3;
-        public Button button1;
-        public ProgressBar progressBar1;
         private Label label4;
-        public Button button2;
-        public ProgressBar progressBar2;
+        public Button signedbtn;
+        public ProgressBar signedprogress;
         private ToolStripMenuItem resetPoliciesToolStripMenuItem;
         public ProgressBar insecureserviceprogress;
         public Button insecureservicesbtn;
