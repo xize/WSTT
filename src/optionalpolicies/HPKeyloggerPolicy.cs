@@ -33,7 +33,7 @@ namespace windows_tweak_tool.src.optionalpolicies
         //for the reference: https://thehackernews.com/2017/05/hp-audio-driver-laptop-keylogger.html
         public override void apply()
         {
-            if(File.Exists(@"C:\Windows\System32\MicTray.exe") || File.Exists(@"C:\Windows\System32\MicTray64.exe"))
+            if (File.Exists(@"C:\Windows\System32\MicTray.exe") || File.Exists(@"C:\Windows\System32\MicTray64.exe"))
             {
                 getButton().Enabled = false;
 
@@ -42,13 +42,13 @@ namespace windows_tweak_tool.src.optionalpolicies
                 File.Delete(@"C:\Windows\System32\MicTray64.exe");
 
                 string maindir = @"C:\Users\";
-                string[] users = Directory.GetDirectories(@"C:\Users");
+                string[] users = Directory.GetDirectories(@"C:\Users\");
 
                 foreach(string user in users)
                 {
-                    if(File.Exists(maindir+user+ @"\MicTray.log"))
+                    if(File.Exists(user+@"\"+ @"MicTray.log"))
                     {
-                        File.Delete(maindir + user + @"\MicTray.log");
+                        File.Delete(user+@"\"+ @"MicTray.log");
                     }
                 }
 
