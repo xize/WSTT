@@ -23,10 +23,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using windows_tweak_tool.src.ninite;
-using windows_tweak_tool.src.optionalpolicies;
+using windows_security_tweak_tool.src.ninite;
+using windows_security_tweak_tool.src.optionalpolicies;
 
-namespace windows_tweak_tool.src
+namespace windows_security_tweak_tool.src
 {
     public class OptionalWindow : Form
     {

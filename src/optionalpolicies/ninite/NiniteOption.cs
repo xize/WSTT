@@ -23,7 +23,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace windows_tweak_tool.src.ninite
+namespace windows_security_tweak_tool.src.ninite
 {
     class NiniteOption
     {

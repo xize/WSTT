@@ -22,9 +22,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using windows_tweak_tool.src.ninite;
+using windows_security_tweak_tool.src.ninite;
 
-namespace windows_tweak_tool.src.optionalpolicies
+namespace windows_security_tweak_tool.src.optionalpolicies
 {
     abstract class OptionalPolicy : NiniteCreator
     {

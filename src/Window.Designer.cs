@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Windows.Forms;
-using windows_tweak_tool.src.policies;
+using windows_security_tweak_tool.src.policies;
 
-namespace windows_tweak_tool
+namespace windows_security_tweak_tool
 {
     partial class Window
     {

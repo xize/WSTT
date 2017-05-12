@@ -25,7 +25,7 @@ using System.Security.Principal;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace windows_tweak_tool.src
+namespace windows_security_tweak_tool.src
 {
     static class Program
     {

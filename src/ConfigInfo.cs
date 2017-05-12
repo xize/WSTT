@@ -22,7 +22,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace windows_tweak_tool.src
+namespace windows_security_tweak_tool.src
 {
     interface ConfigInfo
     {
