@@ -60,12 +60,8 @@ namespace windows_security_tweak_tool.src.policies.components
                 return;
             }
             ServiceController controller = ServiceController.GetServices().FirstOrDefault(serviceController => serviceController.ServiceName == service);
-            controller.Refresh();
-            if (controller.CanStop && controller.Status == ServiceControllerStatus.Stopped)
-            {
-                controller.Start();
-                controller.WaitForStatus(ServiceControllerStatus.Running);
-            }
+            controller.Start();
+            controller.WaitForStatus(ServiceControllerStatus.Running);
         }
 
         /**
@@ -82,12 +78,8 @@ namespace windows_security_tweak_tool.src.policies.components
 
             ServiceController controller = ServiceController.GetServices().FirstOrDefault(serviceController => serviceController.ServiceName == service);
 
-            controller.Refresh();
-            if (controller.CanStop)
-            {
-                controller.Stop();
-                controller.WaitForStatus(ServiceControllerStatus.Stopped);
-            }
+            controller.Stop();
+            controller.WaitForStatus(ServiceControllerStatus.Stopped);
         }
 
         /**
