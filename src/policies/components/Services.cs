@@ -31,7 +31,7 @@ namespace windows_security_tweak_tool.src.policies.components
     abstract class Services : Registry
     {
 
-        private int timeout = 1;
+        private int timeout = 500;
 
         /**
         * <summary>
