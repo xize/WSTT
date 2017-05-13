@@ -39,7 +39,11 @@ namespace windows_security_tweak_tool.src.policies.components
         **/
         public bool isServiceStarted(string service)
         {
-            ServiceController controller = new ServiceController(service);
+            if(!doesServiceExist(service))
+            {
+                return false;
+            }
+            ServiceController controller = ServiceController.GetServices().FirstOrDefault(serviceController => serviceController.ServiceName == service);
             controller.Refresh();
             return controller.Status == ServiceControllerStatus.Running;
         }
@@ -51,7 +55,11 @@ namespace windows_security_tweak_tool.src.policies.components
         **/
         public void startService(string service)
         {
-            ServiceController controller = new ServiceController(service);
+            if (!doesServiceExist(service))
+            {
+                return;
+            }
+            ServiceController controller = ServiceController.GetServices().FirstOrDefault(serviceController => serviceController.ServiceName == service);
             controller.Refresh();
             if (controller.CanStop && controller.Status == ServiceControllerStatus.Stopped)
             {
@@ -67,7 +75,13 @@ namespace windows_security_tweak_tool.src.policies.components
         **/
         public void stopService(string service)
         {
-            ServiceController controller = new ServiceController(service);
+            if (!doesServiceExist(service))
+            {
+                return;
+            }
+
+            ServiceController controller = ServiceController.GetServices().FirstOrDefault(serviceController => serviceController.ServiceName == service);
+
             controller.Refresh();
             if (controller.CanStop)
             {
@@ -83,6 +97,11 @@ namespace windows_security_tweak_tool.src.policies.components
         **/
         public void setServiceType(string service, ServiceType type)
         {
+            if (!doesServiceExist(service))
+            {
+                return;
+            }
+
             string stype = "demand";
             switch (type)
             {
@@ -102,11 +121,7 @@ namespace windows_security_tweak_tool.src.policies.components
                     stype = "demand";
                     break;
             }
-            /*
-            RegistryKey key = getRegistry(@"SYSTEM\CurrentControlSet\Services\" + service, (useronly ? REG.HKCU : REG.HKLM));
-            key.SetValue("Start", stype);
-            key.Close();
-            */
+
             this.executeCMD("sc config " + service + " start= " + stype, true);
         }
 
@@ -130,6 +145,10 @@ namespace windows_security_tweak_tool.src.policies.components
         **/
         public ServiceType getServiceStatus(string service)
         {
+            if (!doesServiceExist(service))
+            {
+                throw new Exception("service "+service+" does not exist, and cannot be called in getServiceStatus()");
+            }
             RegistryKey key = getRegistry(@"SYSTEM\CurrentControlSet\Services\" + service, REG.HKLM);
             int status = (int)key.GetValue("Start");
             switch (status)
@@ -154,12 +173,9 @@ namespace windows_security_tweak_tool.src.policies.components
         **/
         public bool doesServiceExist(string service)
         {
-            RegistryKey key = getRegistry(@"SYSTEM\CurrentControlSet\Services\" + service, REG.HKLM);
-            if(key != null)
-            {
-                return true;
-            }
-            return false;
+            ServiceController c = ServiceController.GetServices().FirstOrDefault(serviceController => serviceController.ServiceName == service);
+
+            return c != null;
         }
 
         public void executeCMD(string arguments, bool ghost)
