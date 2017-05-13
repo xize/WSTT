@@ -698,6 +698,7 @@ namespace windows_security_tweak_tool
             this.smbbtn.TabIndex = 103;
             this.smbbtn.Text = "Apply";
             this.smbbtn.UseVisualStyleBackColor = true;
+            this.smbbtn.Click += new System.EventHandler(this.smbbtn_Click);
             // 
             // smbprogress
             // 

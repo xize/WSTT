@@ -426,5 +426,18 @@ namespace windows_security_tweak_tool
             SecurityPolicy p = SecurityPolicyType.UNSIGNED_POLICY.getPolicy(this);
             p.apply();
         }
+
+        private void smbbtn_Click(object sender, EventArgs e)
+        {
+            SecurityPolicy p = SecurityPolicyType.SMB_SHARING_POLICY.getPolicy(this);
+
+            if(p.isEnabled())
+            {
+                p.unapply();
+            } else
+            {
+                p.apply();
+            }
+        }
     }
 }
