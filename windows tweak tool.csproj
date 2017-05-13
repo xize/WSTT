@@ -99,7 +99,7 @@
     <Reference Include="AutoItX3.Assembly, Version=3.0.0.0, Culture=neutral, PublicKeyToken=a646454c8d475470, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>libs\AutoIT\AutoItX3.Assembly.dll</HintPath>
-      <Private>False</Private>
+      <Private>True</Private>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
@@ -149,6 +149,7 @@
     <Compile Include="src\policies\RDPPolicy.cs" />
     <Compile Include="src\policies\RemoteRegistryPolicy.cs" />
     <Compile Include="src\policies\RenamePolicy.cs" />
+    <Compile Include="src\policies\SMBSharingPolicy.cs" />
     <Compile Include="src\policies\TempPolicy.cs" />
     <Compile Include="src\policies\UacPolicy.cs" />
     <Compile Include="src\policies\UnsignedPolicy.cs" />
@@ -191,18 +192,18 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="libs\AutoIT\AutoItX3.Assembly.dll">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    <Content Include="AutoItX3.Assembly.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="libs\AutoIT\AutoItX3.dll">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    <Content Include="AutoItX3.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="AutoItX3_x64.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <None Include="Resources\sigcheck.exe" />
     <None Include="Resources\sigcheck64.exe" />
     <None Include="Resources\Eula.txt" />
-    <Content Include="libs\AutoIT\AutoItX3_x64.dll">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
     <Content Include="windows.ico">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
