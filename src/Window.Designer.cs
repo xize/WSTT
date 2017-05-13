@@ -92,8 +92,8 @@ namespace windows_security_tweak_tool
             this.unsignedbtn = new System.Windows.Forms.Button();
             this.unsignedprogress = new System.Windows.Forms.ProgressBar();
             this.label3 = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
-            this.progressBar1 = new System.Windows.Forms.ProgressBar();
+            this.smbbtn = new System.Windows.Forms.Button();
+            this.smbprogress = new System.Windows.Forms.ProgressBar();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -688,33 +688,33 @@ namespace windows_security_tweak_tool
             this.label3.TabIndex = 104;
             this.label3.Text = "disable SMB sharing:";
             // 
-            // button1
+            // smbbtn
             // 
-            this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.button1.AutoSize = true;
-            this.button1.Location = new System.Drawing.Point(421, 627);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(71, 23);
-            this.button1.TabIndex = 103;
-            this.button1.Text = "Apply";
-            this.button1.UseVisualStyleBackColor = true;
+            this.smbbtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.smbbtn.AutoSize = true;
+            this.smbbtn.Location = new System.Drawing.Point(421, 627);
+            this.smbbtn.Name = "smbbtn";
+            this.smbbtn.Size = new System.Drawing.Size(71, 23);
+            this.smbbtn.TabIndex = 103;
+            this.smbbtn.Text = "Apply";
+            this.smbbtn.UseVisualStyleBackColor = true;
             // 
-            // progressBar1
+            // smbprogress
             // 
-            this.progressBar1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.smbprogress.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.progressBar1.Location = new System.Drawing.Point(8, 627);
-            this.progressBar1.Name = "progressBar1";
-            this.progressBar1.Size = new System.Drawing.Size(409, 23);
-            this.progressBar1.TabIndex = 102;
+            this.smbprogress.Location = new System.Drawing.Point(8, 627);
+            this.smbprogress.Name = "smbprogress";
+            this.smbprogress.Size = new System.Drawing.Size(409, 23);
+            this.smbprogress.TabIndex = 102;
             // 
             // Window
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.ClientSize = new System.Drawing.Size(510, 706);
             this.Controls.Add(this.label3);
-            this.Controls.Add(this.button1);
-            this.Controls.Add(this.progressBar1);
+            this.Controls.Add(this.smbbtn);
+            this.Controls.Add(this.smbprogress);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.unsignedbtn);
             this.Controls.Add(this.unsignedprogress);
@@ -835,7 +835,7 @@ namespace windows_security_tweak_tool
         public ProgressBar insecureserviceprogress;
         public Button insecureservicesbtn;
         private Label label3;
-        public Button button1;
-        public ProgressBar progressBar1;
+        public Button smbbtn;
+        public ProgressBar smbprogress;
     }
 }
