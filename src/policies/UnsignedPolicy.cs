@@ -52,7 +52,9 @@ namespace windows_security_tweak_tool.src.policies
 
         public override void apply()
         {
-            this.setGuiDisabled(this);
+            //this.setGuiDisabled(this);
+
+            this.getButton().Enabled = false;
 
             if (!isInstalled())
             {
@@ -84,6 +86,9 @@ namespace windows_security_tweak_tool.src.policies
             ProcessStartInfo info = new ProcessStartInfo("notepad.exe");
             info.Arguments = getDataFolder() + @"\sigcheck\unsigned.txt";
             Process p = Process.Start(info);
+
+            this.getButton().Enabled = true;
+            this.getProgressbar().Value = 100;
         }
 
         public override void unapply()
