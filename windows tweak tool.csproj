@@ -189,7 +189,6 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <None Include="windows tweak tool_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="libs\AutoIT\AutoItX3.Assembly.dll">

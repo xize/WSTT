@@ -91,6 +91,9 @@ namespace windows_security_tweak_tool
             this.label4 = new System.Windows.Forms.Label();
             this.unsignedbtn = new System.Windows.Forms.Button();
             this.unsignedprogress = new System.Windows.Forms.ProgressBar();
+            this.label3 = new System.Windows.Forms.Label();
+            this.button1 = new System.Windows.Forms.Button();
+            this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -322,7 +325,7 @@ namespace windows_security_tweak_tool
             // safeapplybtn
             // 
             this.safeapplybtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.safeapplybtn.Location = new System.Drawing.Point(9, 626);
+            this.safeapplybtn.Location = new System.Drawing.Point(9, 669);
             this.safeapplybtn.Name = "safeapplybtn";
             this.safeapplybtn.Size = new System.Drawing.Size(158, 23);
             this.safeapplybtn.TabIndex = 39;
@@ -335,7 +338,7 @@ namespace windows_security_tweak_tool
             // undobtn
             // 
             this.undobtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.undobtn.Location = new System.Drawing.Point(419, 626);
+            this.undobtn.Location = new System.Drawing.Point(419, 669);
             this.undobtn.Name = "undobtn";
             this.undobtn.Size = new System.Drawing.Size(75, 23);
             this.undobtn.TabIndex = 40;
@@ -347,7 +350,7 @@ namespace windows_security_tweak_tool
             // applyforcebtn
             // 
             this.applyforcebtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.applyforcebtn.Location = new System.Drawing.Point(173, 626);
+            this.applyforcebtn.Location = new System.Drawing.Point(173, 669);
             this.applyforcebtn.Name = "applyforcebtn";
             this.applyforcebtn.Size = new System.Drawing.Size(100, 23);
             this.applyforcebtn.TabIndex = 89;
@@ -674,10 +677,44 @@ namespace windows_security_tweak_tool
             this.unsignedprogress.Size = new System.Drawing.Size(384, 23);
             this.unsignedprogress.TabIndex = 99;
             // 
+            // label3
+            // 
+            this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(10, 611);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(106, 13);
+            this.label3.TabIndex = 104;
+            this.label3.Text = "disable SMB sharing:";
+            // 
+            // button1
+            // 
+            this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.button1.AutoSize = true;
+            this.button1.Location = new System.Drawing.Point(421, 627);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(71, 23);
+            this.button1.TabIndex = 103;
+            this.button1.Text = "Apply";
+            this.button1.UseVisualStyleBackColor = true;
+            // 
+            // progressBar1
+            // 
+            this.progressBar1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.progressBar1.Location = new System.Drawing.Point(8, 627);
+            this.progressBar1.Name = "progressBar1";
+            this.progressBar1.Size = new System.Drawing.Size(409, 23);
+            this.progressBar1.TabIndex = 102;
+            // 
             // Window
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-            this.ClientSize = new System.Drawing.Size(510, 663);
+            this.ClientSize = new System.Drawing.Size(510, 706);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.button1);
+            this.Controls.Add(this.progressBar1);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.unsignedbtn);
             this.Controls.Add(this.unsignedprogress);
@@ -726,7 +763,7 @@ namespace windows_security_tweak_tool
             this.Controls.Add(this.menuStrip1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip1;
-            this.MinimumSize = new System.Drawing.Size(526, 702);
+            this.MinimumSize = new System.Drawing.Size(526, 745);
             this.Name = "Window";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Windows Security Tweaker Tool 14.0.25420.1b (WSTT)";
@@ -797,5 +834,8 @@ namespace windows_security_tweak_tool
         private ToolStripMenuItem resetPoliciesToolStripMenuItem;
         public ProgressBar insecureserviceprogress;
         public Button insecureservicesbtn;
+        private Label label3;
+        public Button button1;
+        public ProgressBar progressBar1;
     }
 }
