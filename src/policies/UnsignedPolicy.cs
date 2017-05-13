@@ -52,8 +52,6 @@ namespace windows_security_tweak_tool.src.policies
 
         public override void apply()
         {
-            //this.setGuiDisabled(this);
-
             this.getButton().Enabled = false;
 
             if (!isInstalled())
