@@ -35,9 +35,11 @@ namespace windows_security_tweak_tool.src.policies
     abstract class SecurityPolicy : Services
     {
         private int version = -1;
+
         protected Window gui;
 
-        protected SecurityPolicy(){} //don't instance the class :)
+        //don't instance the class :)
+        protected SecurityPolicy() { }
 
         /**
         * <summary>

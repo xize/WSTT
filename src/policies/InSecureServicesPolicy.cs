@@ -106,13 +106,13 @@ namespace windows_security_tweak_tool.src.policies
             {
                 if(this.isServiceStarted(service.Key))
                 {
-                    this.stopService(service.Key);
+                        this.stopService(service.Key, this);
                 }
                     this.setServiceType(service.Key, ServiceType.DISABLED);
             }
             Config.getConfig().put("insecure-services", true);
-            getButton().Enabled = true;
             setGuiEnabled(this);
+            getButton().Enabled = true;
         }
 
         public override void unapply()

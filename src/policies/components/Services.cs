@@ -24,11 +24,14 @@ using System.Linq;
 using System.ServiceProcess;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace windows_security_tweak_tool.src.policies.components
 {
     abstract class Services : Registry
     {
+
+        private int timeout = 1;
 
         /**
         * <summary>
@@ -53,7 +56,7 @@ namespace windows_security_tweak_tool.src.policies.components
         *      <para>starts the service by using the name</para>
         * </summary>
         **/
-        public void startService(string service)
+        public void startService(string service, SecurityPolicy p)
         {
             if (!doesServiceExist(service))
             {
@@ -61,7 +64,14 @@ namespace windows_security_tweak_tool.src.policies.components
             }
             ServiceController controller = ServiceController.GetServices().FirstOrDefault(serviceController => serviceController.ServiceName == service);
             controller.Start();
-            controller.WaitForStatus(ServiceControllerStatus.Running);
+            try
+            {
+                controller.WaitForStatus(ServiceControllerStatus.Running, new TimeSpan(timeout));
+            } catch(System.ServiceProcess.TimeoutException)
+            {
+                MessageBox.Show("the service " + service + " could not be started timeout!, please try again.", "error!");
+                p.getButton().Enabled = true;
+            }
         }
 
         /**
@@ -69,7 +79,7 @@ namespace windows_security_tweak_tool.src.policies.components
         *      <para>starts the service by using the name</para>
         * </summary>
         **/
-        public void stopService(string service)
+        public void stopService(string service, SecurityPolicy p)
         {
             if (!doesServiceExist(service))
             {
@@ -79,7 +89,14 @@ namespace windows_security_tweak_tool.src.policies.components
             ServiceController controller = ServiceController.GetServices().FirstOrDefault(serviceController => serviceController.ServiceName == service);
 
             controller.Stop();
-            controller.WaitForStatus(ServiceControllerStatus.Stopped);
+            try
+            {
+                controller.WaitForStatus(ServiceControllerStatus.Stopped, new TimeSpan(timeout));
+            } catch(System.ServiceProcess.TimeoutException)
+            {
+                MessageBox.Show("the service " + service + " could not be stopped timeout!, please try again.", "error!");
+                p.getButton().Enabled = true;
+            }
         }
 
         /**

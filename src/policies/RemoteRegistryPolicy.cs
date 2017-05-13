@@ -68,7 +68,7 @@ namespace windows_security_tweak_tool.src.policies
         public override void apply()
         {
             getButton().Enabled = false;
-            stopService("RemoteRegistry");
+            stopService("RemoteRegistry", this);
             setServiceType("RemoteRegistry", ServiceType.DISABLED);
             setGuiEnabled(this);
             getButton().Enabled = true;
@@ -78,7 +78,7 @@ namespace windows_security_tweak_tool.src.policies
         {
             getButton().Enabled = false;
             setServiceType("RemoteRegistry", ServiceType.AUTOMATIC);
-            startService("RemoteRegistry");
+            startService("RemoteRegistry", this);
             setGuiDisabled(this);
             getButton().Enabled = true;
         }
