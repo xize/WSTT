@@ -69,7 +69,7 @@ namespace windows_security_tweak_tool.src.policies
         {
             foreach(SecurityPolicyType type in values())
             {
-                if(type.getName().ToUpper() == name.ToUpper())
+                if(type.startsWith(name.ToUpper(), type.getName().ToUpper()))
                 {
                     return type;
                 }
@@ -80,6 +80,11 @@ namespace windows_security_tweak_tool.src.policies
         public static SecurityPolicyType[] values()
         {
             return types.ToArray();
+        }
+
+        private bool startsWith(string text, string fulltext)
+        {
+            return fulltext.IndexOf(text) > -1;
         }
     }
 }

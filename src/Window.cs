@@ -49,6 +49,7 @@ namespace windows_security_tweak_tool
                this.optionalw = new OptionalWindow();
             }
             initializeGuiWithPolicies(); //cannot use this yet because of a issue with instance loading ;-)
+
             this.Text = String.Format("Windows Security Tweaker Tool {0}b(WSTT)", Application.ProductVersion);
         }
 
