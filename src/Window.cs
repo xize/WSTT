@@ -55,10 +55,14 @@ namespace windows_security_tweak_tool
 
         private void initializeGuiWithPolicies()
         {
-
+            Logger.logTitle("initialize policy components!");
             foreach (SecurityPolicyType a in SecurityPolicyType.values())
             {
                 SecurityPolicy p = a.getPolicy(this);
+
+                DateTime startTime = DateTime.Now;
+
+                Logger.logTitle("===[initializing policy: "+ p.getName()+"]===");
 
                 if(p.getType() != SecurityPolicyType.UPDATE_POLICY)
                 {
@@ -75,12 +79,25 @@ namespace windows_security_tweak_tool
 
                     if (!p.isSecpolEnabled() && p.isSecpolDepended())
                     {
-                            Console.WriteLine("Warning: policy " + p.getName() + " has been disabled unsupported windows edition, no secpol.msc found!");
                             p.getButton().Enabled = false;
                             p.getProgressbar().Enabled = false;
                             p.getButton().Text = "unsupported!";
                     }
                 }
+
+                DateTime endTime = DateTime.Now;
+
+                double ms = (endTime-startTime).TotalMilliseconds;
+
+                Logger.LogTree("is enabled?: "+ (p.isEnabled() ? "yes" : "no"));
+                Logger.LogTree("has incompatibility issues between multiple versions of windows?: "+ (p.hasIncompatibilityIssues() ? "yes" : "no"));
+                Logger.LogTree("is macro depended?: " + (p.isMacro() ? "yes" : "no"));
+                Logger.LogTree("is safe for bussiness?: " + (p.isSafeForBussiness() ? "yes" : "no"));
+                Logger.LogTree("depends on secpol?: " + (p.isSecpolDepended() ? "yes" : "no"));
+                Logger.LogTree("is secpol enabled on this system?: " + (p.isSecpolEnabled() ? "yes" : "no. therefor all policies being depended on secpol are disabled!"));
+                Logger.LogTree("is manual action required for this policy?: " + (p.isUserControlRequired() ? "yes" : "no"));
+                Logger.LogTree("completed at: "+(int)ms+"ms ticks");
+                Logger.LogTreeEnd("===[the policy has been initialized with success!]===");
             }
         }
 

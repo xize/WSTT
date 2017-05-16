@@ -20,8 +20,10 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Security.Principal;
+using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -38,6 +40,7 @@ namespace windows_security_tweak_tool.src
         [STAThread]
         static void Main()
         {
+            Console.Title = "Debugger";
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             gui = new Window();
