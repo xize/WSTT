@@ -18,6 +18,7 @@
 */
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -56,6 +57,10 @@ namespace windows_security_tweak_tool.src.optionalpolicies
                 getButton().Enabled = false;
 
                 MessageBox.Show("we are removing files from your system\nplease note that after a restart you need to check if these files still exist in:\n\nC:\\Windows\\System32\\MicTray.exe\nC:\\Windows\\System32\\MicTray64.exe\n\nif these files exist after reboot please make a issue on our github page!", "Your system is vulnerable!");
+
+                //first kill all processes before removing the files
+                killProcesses();
+
                 File.Delete(@"C:\Windows\System32\MicTray.exe");
                 File.Delete(@"C:\Windows\System32\MicTray64.exe");
 
@@ -74,6 +79,28 @@ namespace windows_security_tweak_tool.src.optionalpolicies
             } else
             {
                 MessageBox.Show("there is no reason to worry about an HP keylogger! :)", "Your pc is safe!");
+            }
+        }
+
+        private void killProcesses()
+        {
+            Process[] p1 = Process.GetProcessesByName("MicTray");
+            Process[] p2 = Process.GetProcessesByName("MicTray64");
+            if(p1 != null)
+            {
+                foreach(Process p in p1)
+                {
+                    p.Close();
+                    p.Dispose();
+                }
+            }
+            if(p2 != null)
+            {
+                foreach (Process p in p1)
+                {
+                    p.Close();
+                    p.Dispose();
+                }
             }
         }
 
