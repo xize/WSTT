@@ -41,6 +41,7 @@ namespace windows_security_tweak_tool.src
         static void Main()
         {
             Console.Title = "Debugger";
+            Logger.getLogoLogger().ShowLogo();
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             gui = new Window();

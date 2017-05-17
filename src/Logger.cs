@@ -26,24 +26,81 @@ namespace windows_security_tweak_tool.src
 {
     class Logger
     {
+        private static SubTreeLogger subtree;
+        private static LogoLogger logo;
 
-        public static void logTitle(string data)
+        public static void log(string msg)
+        {
+            Console.WriteLine(msg);
+        }
+
+        public static SubTreeLogger getSubTreeLogger()
+        {
+            if(subtree == null)
+            {
+                subtree = new SubTreeLogger();
+            }
+            return subtree;
+        }
+
+        public static LogoLogger getLogoLogger()
+        {
+            if(logo == null)
+            {
+                logo = new LogoLogger();
+            }
+            return logo;
+        }
+    }
+
+    class LogoLogger
+    {
+        public void ShowLogo()
+        {
+            writeBar();
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.WriteLine(@" __      __  _______________________________");
+            Console.WriteLine(@"/  \    /  \/   _____/\__    ___/\__    ___/");
+            Console.WriteLine(@"\   \/\/   /\_____  \   |    |     |    |   ");
+            Console.WriteLine(@" \        / /        \  |    |     |    |   ");
+            Console.WriteLine(@"  \__/\  / /_______  /  |____|     |____|   ");
+            Console.WriteLine(@"       \/          \/                       ");
+            writeBar();
+            Console.WriteLine("    © WSTT All rights reserved 2017-2018    ");
+            Console.WriteLine("      Program is licensed under GPLv3       ");
+            writeBar();
+        }
+
+        private void writeBar()
+        {
+            Console.ForegroundColor = ConsoleColor.White;
+            Console.Write("+");
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.Write("==========================================");
+            Console.ForegroundColor = ConsoleColor.White;
+            Console.Write("+\n");
+        }
+    }
+
+    class SubTreeLogger
+    {
+        public void LogTitle(string data)
         {
             Console.ForegroundColor = ConsoleColor.Green;
             Console.Write("\n[+] ");
             Console.ResetColor();
-            Console.Write(data+"\n");
+            Console.Write(data + "\n");
         }
 
-        public static void LogTree(string data)
+        public void LogTree(string data)
         {
             Console.ForegroundColor = ConsoleColor.White;
             Console.Write("   [»] ");
             Console.ResetColor();
-            Console.Write(data+"\n");
+            Console.Write(data + "\n");
         }
 
-        public static void LogTreeEnd(string data)
+        public void LogTreeEnd(string data)
         {
             Console.ForegroundColor = ConsoleColor.Green;
             Console.Write("[+] ");
