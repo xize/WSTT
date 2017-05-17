@@ -35,6 +35,15 @@ namespace windows_security_tweak_tool.src
 
         private Config() { }
 
+        public bool nodeExist(string a)
+        {
+            if(nodes.ContainsKey(a.ToLower()))
+            {
+                return true;
+            }
+            return false;
+        }
+
         public String getString(String node)
         {
             if(!nodes.ContainsKey(node.ToLower()))
