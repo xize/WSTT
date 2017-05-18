@@ -2,7 +2,7 @@
 using System.Windows.Forms;
 using windows_security_tweak_tool.src.policies;
 
-namespace windows_security_tweak_tool
+namespace windows_security_tweak_tool.src
 {
     partial class Window
     {
