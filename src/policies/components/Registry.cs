@@ -1,7 +1,7 @@
 ﻿/*
     A security toolkit for windows    
 
-    Copyright(C) 2016 Guido Lucassen
+    Copyright(C) 2016-2017 Guido Lucassen
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -24,7 +24,7 @@ using System.Security;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace windows_tweak_tool.src.policies.components
+namespace windows_security_tweak_tool.src.policies.components
 {
    abstract class Registry
     {

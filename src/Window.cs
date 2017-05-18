@@ -29,11 +29,11 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using windows_tweak_tool;
-using windows_tweak_tool.src;
-using windows_tweak_tool.src.policies;
+using windows_security_tweak_tool;
+using windows_security_tweak_tool.src;
+using windows_security_tweak_tool.src.policies;
 
-namespace windows_tweak_tool
+namespace windows_security_tweak_tool.src
 {
     public partial class Window : Form
     {
@@ -51,6 +51,7 @@ namespace windows_tweak_tool
                this.optionalw = new OptionalWindow();
             }
             initializeGuiWithPolicies(); //cannot use this yet because of a issue with instance loading ;-)
+
             this.Text = String.Format("Windows Security Tweaker Tool {0}b(WSTT)", Application.ProductVersion);
             makeMoveAbleGui();
         }
@@ -496,6 +497,35 @@ namespace windows_tweak_tool
         private void securityControl_DARK1_Load(object sender, EventArgs e)
         {
 
+        }
+
+        private void unsignedbtn_Click(object sender, EventArgs e)
+        {
+            SecurityPolicy p = SecurityPolicyType.UNSIGNED_POLICY.getPolicy(this);
+            p.apply();
+        }
+
+        private void smbbtn_Click(object sender, EventArgs e)
+        {
+            SecurityPolicy p = SecurityPolicyType.SMB_SHARING_POLICY.getPolicy(this);
+
+            if(p.isEnabled())
+            {
+                p.unapply();
+            } else
+            {
+                p.apply();
+            }
+        }
+
+        private void label5_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
+
+        private void label6_Click(object sender, EventArgs e)
+        {
+            this.WindowState = FormWindowState.Minimized;
         }
     }
 }

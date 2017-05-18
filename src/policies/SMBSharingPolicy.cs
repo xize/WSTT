@@ -16,9 +16,9 @@
     You should have received a copy of the GNU General Public License
     along with this program.If not, see<http://www.gnu.org/licenses/>.
 */
-using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -26,11 +26,8 @@ using System.Windows.Forms;
 
 namespace windows_security_tweak_tool.src.policies
 {
-    class LLMNRPolicy : SecurityPolicy
+    class SMBSharingPolicy : SecurityPolicy
     {
-
-        private string path = @"SOFTWARE\Policies\Microsoft\Windows NT\DNSClient";
-
 
         public override string getName()
         {
@@ -39,23 +36,39 @@ namespace windows_security_tweak_tool.src.policies
 
         public override string getDescription()
         {
-            return "disables broadcasting from the LLMNR protocol, and also blocks a form of dns posioning because it does not longer asks other computers to setup a dns server";
+            return "disable SMB sharing to block ransomware and malware which spreads across networks";
         }
 
         public override SecurityPolicyType getType()
         {
-            return SecurityPolicyType.LLMNR_POLICY;
+            return SecurityPolicyType.SMB_SHARING_POLICY;
         }
 
         public override bool isEnabled()
         {
-            RegistryKey key = getRegistry(path, REG.HKLM);
-            if(key != null)
+            if (Config.getConfig().nodeExist("smb-enabled"))
             {
-                int value = (int)key.GetValue("EnableMulticast");
-                key.Close();
-                key.Dispose();
-                return (value == 0 ? true : false);
+                return Config.getConfig().getBoolean("smb-enabled");
+            }
+            else
+            {
+                ProcessStartInfo info = new ProcessStartInfo("dism.exe");
+                info.Arguments = "/online /Get-FeatureInfo /FeatureName:SMB1Protocol";
+                info.CreateNoWindow = true;
+                info.UseShellExecute = false;
+                info.RedirectStandardOutput = true;
+                Process p = Process.Start(info);
+
+                string output = "";
+                output = p.StandardOutput.ReadToEnd();
+
+                p.WaitForExit();
+                p.Close();
+                p.Dispose();
+                if (output.ToLower().Contains("disable"))
+                {
+                    return true;
+                }
             }
             return false;
         }
@@ -63,31 +76,31 @@ namespace windows_security_tweak_tool.src.policies
         public override void apply()
         {
             getButton().Enabled = false;
-            //check if key Windows NT exist...
-
-            RegistryKey WinNT = this.getRegistry(@"SOFTWARE\Policies\Microsoft\Windows NT\", REG.HKLM);
-            if(WinNT == null)
-            {
-                this.getRegistry(@"SOFTWARE\Policies\Microsoft\", REG.HKLM).CreateSubKey("Windows NT");
-            }
-
-            RegistryKey key = this.getRegistry(@"SOFTWARE\Policies\Microsoft\Windows NT\", REG.HKLM).CreateSubKey("DNSClient");
-            key.SetValue("EnableMulticast", 0);
-            key.Close();
-            key.Dispose();
-            this.setGuiEnabled(this);
+            ProcessStartInfo info = new ProcessStartInfo("dism.exe");
+            info.Arguments = "/Online /Disable-Feature /FeatureName:SMB1Protocol";
+            info.UseShellExecute = false;
+            Process p = Process.Start(info);
+            p.WaitForExit();
+            p.Close();
+            p.Dispose();
+            Config.getConfig().put("smb-enabled", true);
             getButton().Enabled = true;
+            setGuiEnabled(this);
         }
 
         public override void unapply()
         {
             getButton().Enabled = false;
-            RegistryKey key = this.getRegistry(@"SOFTWARE\Policies\Microsoft\Windows NT\", REG.HKLM);
-            key.DeleteSubKey("DNSClient");
-            key.Close();
-            key.Dispose();
-            this.setGuiDisabled(this);
+            ProcessStartInfo info = new ProcessStartInfo("dism.exe");
+            info.Arguments = "/Online /Enable-Feature /FeatureName:SMB1Protocol";
+            info.UseShellExecute = false;
+            Process p = Process.Start(info);
+            p.WaitForExit();
+            p.Close();
+            p.Dispose();
+            Config.getConfig().put("smb-enabled", false);
             getButton().Enabled = true;
+            setGuiDisabled(this);
         }
 
         public override bool hasIncompatibilityIssues()
@@ -118,19 +131,17 @@ namespace windows_security_tweak_tool.src.policies
 
         public override bool isUserControlRequired()
         {
-            return false;
+            return true;
         }
 
         public override Button getButton()
         {
-            // return this.gui.llmnrbtn;
-            return null;
+            return this.gui.smbbtn;
         }
 
         public override ProgressBar getProgressbar()
         {
-            //return this.gui.llmnrprogress;
-            return null;
+            return this.gui.smbprogress;
         }
     }
 }

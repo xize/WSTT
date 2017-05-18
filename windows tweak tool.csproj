@@ -7,8 +7,8 @@
     <ProjectGuid>{8A09E500-4DFA-4A20-B35D-7C7B0237B31A}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>windows_tweak_tool</RootNamespace>
-    <AssemblyName>windows tweak tool</AssemblyName>
+    <RootNamespace>windows_security_tweak_tool</RootNamespace>
+    <AssemblyName>windows security tweak tool</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -29,8 +29,8 @@
     <PublisherName>Windows Tweaker</PublisherName>
     <SuiteName>Windows Tweaker Tool</SuiteName>
     <OpenBrowserOnPublish>false</OpenBrowserOnPublish>
-    <ApplicationRevision>0</ApplicationRevision>
-    <ApplicationVersion>1.0.0.0</ApplicationVersion>
+    <ApplicationRevision>2</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
     <BootstrapperEnabled>true</BootstrapperEnabled>
@@ -41,7 +41,7 @@
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
     <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DefineConstants>TRACE;DEBUG</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <Prefer32Bit>false</Prefer32Bit>
@@ -57,7 +57,7 @@
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup>
-    <StartupObject>windows_tweak_tool.src.Program</StartupObject>
+    <StartupObject>windows_security_tweak_tool.src.Program</StartupObject>
   </PropertyGroup>
   <PropertyGroup>
     <ApplicationIcon>windows.ico</ApplicationIcon>
@@ -67,10 +67,10 @@
     <SignManifests>false</SignManifests>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestCertificateThumbprint>0B765237DF33B78E4374960F69D14224CDA0569E</ManifestCertificateThumbprint>
+    <ManifestCertificateThumbprint>5003E87ABAEE28176C6FD87AF950DA8F002F1DAD</ManifestCertificateThumbprint>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestKeyFile>WTT.pfx</ManifestKeyFile>
+    <ManifestKeyFile>windows tweak tool_TemporaryKey.pfx</ManifestKeyFile>
   </PropertyGroup>
   <PropertyGroup>
     <SignAssembly>false</SignAssembly>
@@ -88,21 +88,27 @@
   <PropertyGroup />
   <PropertyGroup />
   <PropertyGroup />
+  <PropertyGroup />
   <PropertyGroup>
     <ApplicationManifest>app.manifest</ApplicationManifest>
+  </PropertyGroup>
+  <PropertyGroup>
+    <DelaySign>false</DelaySign>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="AutoItX3.Assembly, Version=3.0.0.0, Culture=neutral, PublicKeyToken=a646454c8d475470, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>libs\AutoIT\AutoItX3.Assembly.dll</HintPath>
-      <Private>False</Private>
+      <Private>True</Private>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.IO.Compression" />
     <Reference Include="System.IO.Compression.FileSystem" />
     <Reference Include="System.Management" />
     <Reference Include="System.ServiceProcess" />
+    <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -135,6 +141,7 @@
     <Compile Include="src\controls\SecurityControl_LIGHT.Designer.cs">
       <DependentUpon>SecurityControl_LIGHT.cs</DependentUpon>
     </Compile>
+    <Compile Include="src\optionalpolicies\HPKeyloggerPolicy.cs" />
     <Compile Include="src\optionalpolicies\NinitePolicy.cs" />
     <Compile Include="src\optionalpolicies\ninite\NiniteCreator.cs" />
     <Compile Include="src\optionalpolicies\ninite\NiniteOption.cs" />
@@ -157,8 +164,10 @@
     <Compile Include="src\policies\RDPPolicy.cs" />
     <Compile Include="src\policies\RemoteRegistryPolicy.cs" />
     <Compile Include="src\policies\RenamePolicy.cs" />
+    <Compile Include="src\policies\SMBSharingPolicy.cs" />
     <Compile Include="src\policies\TempPolicy.cs" />
     <Compile Include="src\policies\UacPolicy.cs" />
+    <Compile Include="src\policies\UnsignedPolicy.cs" />
     <Compile Include="src\policies\UpdatePolicy.cs" />
     <Compile Include="src\policies\WscriptPolicy.cs" />
     <Compile Include="src\utils\BrowserType.cs" />
@@ -188,6 +197,7 @@
       <SubType>Designer</SubType>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="app.config" />
     <None Include="app.manifest">
       <SubType>Designer</SubType>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -203,18 +213,18 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="libs\AutoIT\AutoItX3.Assembly.dll">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    <Content Include="AutoItX3.Assembly.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="libs\AutoIT\AutoItX3.dll">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    <Content Include="AutoItX3.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="AutoItX3_x64.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <None Include="Resources\sigcheck.exe" />
     <None Include="Resources\sigcheck64.exe" />
     <None Include="Resources\Eula.txt" />
-    <Content Include="libs\AutoIT\AutoItX3_x64.dll">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
     <None Include="Resources\WSTT.png" />
     <Content Include="windows.ico">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

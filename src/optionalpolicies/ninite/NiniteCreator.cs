@@ -1,7 +1,7 @@
 ﻿/*
     A security toolkit for windows    
 
-    Copyright(C) 2016 Guido Lucassen
+    Copyright(C) 2016-2017 Guido Lucassen
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -27,7 +27,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace windows_tweak_tool.src.ninite
+namespace windows_security_tweak_tool.src.ninite
 {
     class NiniteCreator : HashSet<NiniteOption>
     {

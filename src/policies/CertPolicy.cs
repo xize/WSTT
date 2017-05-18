@@ -1,8 +1,7 @@
 ﻿/*
+    A security toolkit for windows    
 
-A security toolkit for windows    
-
-    Copyright(C) 2016 Guido Lucassen
+    Copyright(C) 2016-2017 Guido Lucassen
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -28,7 +27,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace windows_tweak_tool.src.policies
+namespace windows_security_tweak_tool.src.policies
 {
     class CertPolicy : SecurityPolicy
     {
@@ -127,12 +126,12 @@ namespace windows_tweak_tool.src.policies
             
         }
 
-        public bool isInstalled()
+        private bool isInstalled()
         {
             return Directory.Exists(getDataFolder() + @"\sigcheck");
         }
 
-        public void installForFirstTime(string resource)
+        private void installForFirstTime(string resource)
         {
             string path = getDataFolder() + @"\sigcheck";
 

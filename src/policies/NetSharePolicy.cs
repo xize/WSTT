@@ -1,7 +1,7 @@
 ﻿/*
     A security toolkit for windows    
 
-    Copyright(C) 2016 Guido Lucassen
+    Copyright(C) 2016-2017 Guido Lucassen
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -23,7 +23,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace windows_tweak_tool.src.policies
+namespace windows_security_tweak_tool.src.policies
 {
     class NetSharePolicy : SecurityPolicy
     {
@@ -54,7 +54,7 @@ namespace windows_tweak_tool.src.policies
         public override void apply()
         {
             getButton().Enabled = false;
-            this.stopService("LanmanServer");
+            this.stopService("LanmanServer", this);
             this.setServiceType("LanmanServer", ServiceType.MANUAL);
             this.setGuiEnabled(this);
             getButton().Enabled = true;
@@ -64,7 +64,7 @@ namespace windows_tweak_tool.src.policies
         {
             getButton().Enabled = false;
             this.setServiceType("LanmanServer", ServiceType.AUTOMATIC);
-            this.startService("LanmanServer");
+            this.startService("LanmanServer", this);
             this.setGuiDisabled(this);
             getButton().Enabled = true;
         }

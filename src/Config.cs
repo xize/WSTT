@@ -1,7 +1,7 @@
 ﻿/*
     A security toolkit for windows    
 
-    Copyright(C) 2016 Guido Lucassen
+    Copyright(C) 2016-2017 Guido Lucassen
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -24,7 +24,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
-namespace windows_tweak_tool.src
+namespace windows_security_tweak_tool.src
 {
     class Config : ConfigInfo
     {
@@ -34,6 +34,15 @@ namespace windows_tweak_tool.src
         private Dictionary<String, Object> nodes = new Dictionary<String, Object>();
 
         private Config() { }
+
+        public bool nodeExist(string a)
+        {
+            if(nodes.ContainsKey(a.ToLower()))
+            {
+                return true;
+            }
+            return false;
+        }
 
         public String getString(String node)
         {

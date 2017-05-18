@@ -1,7 +1,7 @@
 ﻿/*
     A security toolkit for windows    
 
-    Copyright(C) 2016 Guido Lucassen
+    Copyright(C) 2016-2017 Guido Lucassen
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -26,7 +26,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace windows_tweak_tool.src.policies
+namespace windows_security_tweak_tool.src.policies
 {
     class RemoteRegistryPolicy : SecurityPolicy
     {
@@ -68,7 +68,7 @@ namespace windows_tweak_tool.src.policies
         public override void apply()
         {
             getButton().Enabled = false;
-            stopService("RemoteRegistry");
+            stopService("RemoteRegistry", this);
             setServiceType("RemoteRegistry", ServiceType.DISABLED);
             setGuiEnabled(this);
             getButton().Enabled = true;
@@ -78,7 +78,7 @@ namespace windows_tweak_tool.src.policies
         {
             getButton().Enabled = false;
             setServiceType("RemoteRegistry", ServiceType.AUTOMATIC);
-            startService("RemoteRegistry");
+            startService("RemoteRegistry", this);
             setGuiDisabled(this);
             getButton().Enabled = true;
         }

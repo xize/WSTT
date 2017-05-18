@@ -1,7 +1,7 @@
 ﻿/*
     A security toolkit for windows    
 
-    Copyright(C) 2016 Guido Lucassen
+    Copyright(C) 2016-2017 Guido Lucassen
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -19,9 +19,9 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using windows_tweak_tool.src.optionalpolicies;
+using windows_security_tweak_tool.src.optionalpolicies;
 
-namespace windows_tweak_tool.src.policies
+namespace windows_security_tweak_tool.src.policies
 {
     class SecurityPolicyType {
 
@@ -41,6 +41,8 @@ namespace windows_tweak_tool.src.policies
         public static SecurityPolicyType NETSHARE_POLICY = new SecurityPolicyType("netshare_policy", new NetSharePolicy());
         public static SecurityPolicyType LLMNR_POLICY = new SecurityPolicyType("llmnr_policy", new LLMNRPolicy());
         public static SecurityPolicyType IN_SECURE_SERVICES_POLICY = new SecurityPolicyType("in_secure_services_policy", new InSecureServicesPolicy());
+        public static SecurityPolicyType UNSIGNED_POLICY = new SecurityPolicyType("unsigned_policy", new UnsignedPolicy());
+        public static SecurityPolicyType SMB_SHARING_POLICY = new SecurityPolicyType("smb_sharing_policy", new SMBSharingPolicy());
 
         private string name;
         private SecurityPolicy pol;
@@ -67,7 +69,7 @@ namespace windows_tweak_tool.src.policies
         {
             foreach(SecurityPolicyType type in values())
             {
-                if(type.getName().ToUpper() == name.ToUpper())
+                if(type.startsWith(name.ToUpper(), type.getName().ToUpper()))
                 {
                     return type;
                 }
@@ -78,6 +80,11 @@ namespace windows_tweak_tool.src.policies
         public static SecurityPolicyType[] values()
         {
             return types.ToArray();
+        }
+
+        private bool startsWith(string text, string fulltext)
+        {
+            return fulltext.IndexOf(text) > -1;
         }
     }
 }

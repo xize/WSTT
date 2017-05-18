@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace windows_tweak_tool.src.controls
+namespace windows_security_tweak_tool.src.controls
 {
     public partial class SecurityControl_DARK : UserControl
     {

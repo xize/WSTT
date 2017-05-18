@@ -1,7 +1,7 @@
 ﻿/*
     A security toolkit for windows    
 
-    Copyright(C) 2016 Guido Lucassen
+    Copyright(C) 2016-2017 Guido Lucassen
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -22,20 +22,20 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using windows_tweak_tool.src.ninite;
+using windows_security_tweak_tool.src.ninite;
 
-namespace windows_tweak_tool.src.optionalpolicies
+namespace windows_security_tweak_tool.src.optionalpolicies
 {
     abstract class OptionalPolicy : NiniteCreator
     {
 
-        protected OptionalWindow window;
+        protected OptionalWindow gui;
 
-        public void setGui(OptionalWindow window)
+        public void setGui(OptionalWindow gui)
         {
-            if(this.window == null)
+            if(this.gui == null)
             {
-                this.window = window;
+                this.gui = gui;
             }
         }
 
@@ -50,6 +50,11 @@ namespace windows_tweak_tool.src.optionalpolicies
         public abstract void unapply();
 
         public abstract Button getButton();
+
+        public virtual bool isEnabled()
+        {
+            return true;
+        }
 
         public bool hasButton()
         {

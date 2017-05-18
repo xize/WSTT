@@ -1,7 +1,7 @@
 ﻿/*
     A security toolkit for windows    
 
-    Copyright(C) 2016 Guido Lucassen
+    Copyright(C) 2016-2017 Guido Lucassen
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -24,11 +24,14 @@ using System.Linq;
 using System.ServiceProcess;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
-namespace windows_tweak_tool.src.policies.components
+namespace windows_security_tweak_tool.src.policies.components
 {
     abstract class Services : Registry
     {
+
+        private int timeout = 500;
 
         /**
         * <summary>
@@ -39,7 +42,11 @@ namespace windows_tweak_tool.src.policies.components
         **/
         public bool isServiceStarted(string service)
         {
-            ServiceController controller = new ServiceController(service);
+            if(!doesServiceExist(service))
+            {
+                return false;
+            }
+            ServiceController controller = ServiceController.GetServices().FirstOrDefault(serviceController => serviceController.ServiceName == service);
             controller.Refresh();
             return controller.Status == ServiceControllerStatus.Running;
         }
@@ -49,14 +56,21 @@ namespace windows_tweak_tool.src.policies.components
         *      <para>starts the service by using the name</para>
         * </summary>
         **/
-        public void startService(string service)
+        public void startService(string service, SecurityPolicy p)
         {
-            ServiceController controller = new ServiceController(service);
-            controller.Refresh();
-            if (controller.CanStop && controller.Status == ServiceControllerStatus.Stopped)
+            if (!doesServiceExist(service))
             {
-                controller.Start();
-                controller.WaitForStatus(ServiceControllerStatus.Running);
+                return;
+            }
+            ServiceController controller = ServiceController.GetServices().FirstOrDefault(serviceController => serviceController.ServiceName == service);
+            controller.Start();
+            try
+            {
+                controller.WaitForStatus(ServiceControllerStatus.Running, new TimeSpan(timeout));
+            } catch(System.ServiceProcess.TimeoutException)
+            {
+                MessageBox.Show("the service " + service + " could not be started timeout!, please try again.", "error!");
+                p.getButton().Enabled = true;
             }
         }
 
@@ -65,14 +79,23 @@ namespace windows_tweak_tool.src.policies.components
         *      <para>starts the service by using the name</para>
         * </summary>
         **/
-        public void stopService(string service)
+        public void stopService(string service, SecurityPolicy p)
         {
-            ServiceController controller = new ServiceController(service);
-            controller.Refresh();
-            if (controller.CanStop)
+            if (!doesServiceExist(service))
             {
-                controller.Stop();
-                controller.WaitForStatus(ServiceControllerStatus.Stopped);
+                return;
+            }
+
+            ServiceController controller = ServiceController.GetServices().FirstOrDefault(serviceController => serviceController.ServiceName == service);
+
+            controller.Stop();
+            try
+            {
+                controller.WaitForStatus(ServiceControllerStatus.Stopped, new TimeSpan(timeout));
+            } catch(System.ServiceProcess.TimeoutException)
+            {
+                MessageBox.Show("the service " + service + " could not be stopped timeout!, please try again.", "error!");
+                p.getButton().Enabled = true;
             }
         }
 
@@ -83,6 +106,11 @@ namespace windows_tweak_tool.src.policies.components
         **/
         public void setServiceType(string service, ServiceType type)
         {
+            if (!doesServiceExist(service))
+            {
+                return;
+            }
+
             string stype = "demand";
             switch (type)
             {
@@ -102,11 +130,7 @@ namespace windows_tweak_tool.src.policies.components
                     stype = "demand";
                     break;
             }
-            /*
-            RegistryKey key = getRegistry(@"SYSTEM\CurrentControlSet\Services\" + service, (useronly ? REG.HKCU : REG.HKLM));
-            key.SetValue("Start", stype);
-            key.Close();
-            */
+
             this.executeCMD("sc config " + service + " start= " + stype, true);
         }
 
@@ -130,6 +154,10 @@ namespace windows_tweak_tool.src.policies.components
         **/
         public ServiceType getServiceStatus(string service)
         {
+            if (!doesServiceExist(service))
+            {
+                throw new Exception("service "+service+" does not exist, and cannot be called in getServiceStatus()");
+            }
             RegistryKey key = getRegistry(@"SYSTEM\CurrentControlSet\Services\" + service, REG.HKLM);
             int status = (int)key.GetValue("Start");
             switch (status)
@@ -154,12 +182,9 @@ namespace windows_tweak_tool.src.policies.components
         **/
         public bool doesServiceExist(string service)
         {
-            RegistryKey key = getRegistry(@"SYSTEM\CurrentControlSet\Services\" + service, REG.HKLM);
-            if(key != null)
-            {
-                return true;
-            }
-            return false;
+            ServiceController c = ServiceController.GetServices().FirstOrDefault(serviceController => serviceController.ServiceName == service);
+
+            return c != null;
         }
 
         public void executeCMD(string arguments, bool ghost)
@@ -172,7 +197,7 @@ namespace windows_tweak_tool.src.policies.components
                 info.CreateNoWindow = true;
             }
             Process p = Process.Start(info);
-            while (p.HasExited) { }
+            while (!p.HasExited) { }
             p.Close();
             p.Dispose();
         }

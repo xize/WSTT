@@ -23,10 +23,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using windows_tweak_tool.src.ninite;
-using windows_tweak_tool.src.optionalpolicies;
+using windows_security_tweak_tool.src.ninite;
+using windows_security_tweak_tool.src.optionalpolicies;
 
-namespace windows_tweak_tool.src
+namespace windows_security_tweak_tool.src
 {
     public class OptionalWindow : Form
     {
@@ -73,6 +73,9 @@ namespace windows_tweak_tool.src
         private Label label2;
         public Button button3;
         public ProgressBar progressBar1;
+        private Label label1;
+        public Button HPCheckbtn;
+        public ProgressBar HPCheckProgress;
         public CheckBox niniteskypecheckbox;
 
         private void InitializeComponent()
@@ -114,6 +117,9 @@ namespace windows_tweak_tool.src
             this.label2 = new System.Windows.Forms.Label();
             this.button3 = new System.Windows.Forms.Button();
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
+            this.label1 = new System.Windows.Forms.Label();
+            this.HPCheckbtn = new System.Windows.Forms.Button();
+            this.HPCheckProgress = new System.Windows.Forms.ProgressBar();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -485,7 +491,7 @@ namespace windows_tweak_tool.src
             // button1
             // 
             this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.button1.Location = new System.Drawing.Point(13, 326);
+            this.button1.Location = new System.Drawing.Point(13, 368);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
             this.button1.TabIndex = 90;
@@ -495,7 +501,7 @@ namespace windows_tweak_tool.src
             // button2
             // 
             this.button2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.button2.Location = new System.Drawing.Point(94, 326);
+            this.button2.Location = new System.Drawing.Point(94, 368);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(75, 23);
             this.button2.TabIndex = 91;
@@ -535,9 +541,44 @@ namespace windows_tweak_tool.src
             this.progressBar1.Size = new System.Drawing.Size(406, 23);
             this.progressBar1.TabIndex = 96;
             // 
+            // label1
+            // 
+            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(13, 313);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(240, 13);
+            this.label1.TabIndex = 101;
+            this.label1.Text = "remove HP keylogger (audio driver) (MicTray.exe)";
+            // 
+            // HPCheckbtn
+            // 
+            this.HPCheckbtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.HPCheckbtn.AutoSize = true;
+            this.HPCheckbtn.Location = new System.Drawing.Point(401, 329);
+            this.HPCheckbtn.Name = "HPCheckbtn";
+            this.HPCheckbtn.Size = new System.Drawing.Size(94, 23);
+            this.HPCheckbtn.TabIndex = 100;
+            this.HPCheckbtn.Text = "check";
+            this.HPCheckbtn.UseVisualStyleBackColor = true;
+            this.HPCheckbtn.Click += new System.EventHandler(this.HPCheckbtn_Click);
+            // 
+            // HPCheckProgress
+            // 
+            this.HPCheckProgress.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.HPCheckProgress.Location = new System.Drawing.Point(11, 329);
+            this.HPCheckProgress.Name = "HPCheckProgress";
+            this.HPCheckProgress.Size = new System.Drawing.Size(406, 23);
+            this.HPCheckProgress.TabIndex = 99;
+            // 
             // OptionalWindow
             // 
-            this.ClientSize = new System.Drawing.Size(510, 361);
+            this.ClientSize = new System.Drawing.Size(510, 403);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.HPCheckbtn);
+            this.Controls.Add(this.HPCheckProgress);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.progressBar1);
@@ -558,6 +599,7 @@ namespace windows_tweak_tool.src
             this.MinimumSize = new System.Drawing.Size(526, 350);
             this.Name = "OptionalWindow";
             this.Text = "Optional options:";
+            this.Load += new System.EventHandler(this.OptionalWindow_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.ResumeLayout(false);
@@ -617,6 +659,19 @@ namespace windows_tweak_tool.src
         }
 
         private void chromebtn_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void HPCheckbtn_Click(object sender, EventArgs e)
+        {
+            OptionalPolicy p = OptionalPolicyType.HP_KEYLOGGER.getPolicy(this);
+
+            p.apply();
+
+        }
+
+        private void OptionalWindow_Load(object sender, EventArgs e)
         {
 
         }

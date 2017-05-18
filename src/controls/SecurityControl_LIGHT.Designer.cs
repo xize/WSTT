@@ -1,4 +1,4 @@
-﻿namespace windows_tweak_tool.src.controls
+﻿namespace windows_security_tweak_tool.src.controls
 {
     partial class SecurityControl_LIGHT
     {
@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.label1 = new System.Windows.Forms.Label();
-            this.flatButton1 = new windows_tweak_tool.src.controls.FlatButton();
+            this.flatButton1 = new windows_security_tweak_tool.src.controls.FlatButton();
             this.SuspendLayout();
             // 
             // label1
