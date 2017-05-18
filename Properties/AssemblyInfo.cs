@@ -9,7 +9,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyDescription("With this tool you can automate security patches, such as policies")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyProduct("Windows Tweak Tool")]
-[assembly: AssemblyCopyright("Copyright ©  2017")]
+[assembly: AssemblyCopyright("Copyright ©  2016-2017")]
 [assembly: AssemblyCulture("")]
 
 // Setting ComVisible to false makes the types in this assembly not visible 
