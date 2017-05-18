@@ -33,7 +33,7 @@ using windows_security_tweak_tool;
 using windows_security_tweak_tool.src;
 using windows_security_tweak_tool.src.policies;
 
-namespace windows_security_tweak_tool
+namespace windows_security_tweak_tool.src
 {
     public partial class Window : Form
     {
