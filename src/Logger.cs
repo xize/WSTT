@@ -1,7 +1,7 @@
 ﻿/*
     A security toolkit for windows    
 
-    Copyright(C) 2017 Guido Lucassen
+    Copyright(C) 2016-2017 Guido Lucassen
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -66,7 +66,7 @@ namespace windows_security_tweak_tool.src
             Console.WriteLine(@"  \__/\  / /_______  /  |____|     |____|   ");
             Console.WriteLine(@"       \/          \/                       ");
             writeBar();
-            Console.WriteLine("    © WSTT All rights reserved 2017-2018    ");
+            Console.WriteLine("    © WSTT All rights reserved 2016-2017    ");
             Console.WriteLine("      Program is licensed under GPLv3       ");
             writeBar();
         }
