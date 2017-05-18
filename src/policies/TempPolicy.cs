@@ -52,12 +52,17 @@ namespace windows_security_tweak_tool.src.policies
         public override void apply()
         {
             getButton().Enabled = false;
+
+            Logger.getSubTreeLogger().LogTitle("starting "+getType().getName()+"...");
+            Logger.getSubTreeLogger().LogTree("waiting till secpol has been started.");
             AutoIt.AutoItX.Run("mmc.exe secpol.msc", null, 0);
             AutoIt.AutoItX.WinWait("[CLASS:MMCMainFrame]");
+            Logger.getSubTreeLogger().LogTree("secpol has been started with success!");
             //AutoIt.AutoItX.WinActivate("[CLASS:MMCMainFrame]");
             AutoIt.AutoItX.Sleep(400);
+            Logger.getSubTreeLogger().LogTree("applying unhappytrigger (reactivating focus on the secpol window since sommetime it is lost due some reason)");
             fixUnhappyTrigger(); //fix a issue whereby windows 10 complains about a missing GEO location file which cause to freezes the automation....
-
+            Logger.getSubTreeLogger().LogTree("unhappytrigger is finished, applying macro.");
             AutoIt.AutoItX.Send("{DOWN}{DOWN}{DOWN}{DOWN}{DOWN}{DOWN}");
             AutoIt.AutoItX.Sleep(400);
 
@@ -77,19 +82,24 @@ namespace windows_security_tweak_tool.src.policies
             AutoIt.AutoItX.Send("{DOWN}{DOWN}{DOWN}{DOWN}");
             AutoIt.AutoItX.Send("{ENTER}");
 
+            Logger.getSubTreeLogger().LogTree("applying setTrustedPolicy()...");
             setTrustedPolicy();
+            Logger.getSubTreeLogger().LogTree("done applying setTrustedPolicy()!");
             AutoIt.AutoItX.Sleep(400);
 
             AutoIt.AutoItX.Send("{UP}{UP}");
             AutoIt.AutoItX.Send("{ENTER}");
 
+            Logger.getSubTreeLogger().LogTree("applying setEnforcementPropertyPolicy()...");
             setEnforcementPropertyPolicy();
+            Logger.getSubTreeLogger().LogTree("done setTrustedPolicy()!");
             AutoIt.AutoItX.Sleep(400);
 
             AutoIt.AutoItX.Send("{UP}");
             AutoIt.AutoItX.Send("{ENTER}");
             AutoIt.AutoItX.Sleep(600);
 
+            Logger.getSubTreeLogger().LogTree("adding the following software restrictions to:");
             addPolicyRule("%temp%");
             addPolicyRule("%programdata%\\*.*");
             addPolicyRule("%localappdata%\\*.exe");
@@ -104,6 +114,7 @@ namespace windows_security_tweak_tool.src.policies
             SecurityPolicy p = SecurityPolicyType.UPDATE_POLICY.getPolicy(gui);
             p.apply();
             Config.getConfig().put("policy-malware-restriction", true);
+            Logger.getSubTreeLogger().LogTreeEnd("done adding software restrictions!");
             setGuiEnabled(this);
             getButton().Enabled = true;
         }
@@ -111,11 +122,18 @@ namespace windows_security_tweak_tool.src.policies
         public override void unapply()
         {
             getButton().Enabled = false;
+
+            Logger.getSubTreeLogger().LogTitle("undoing " + getType().getName() + "...");
+            Logger.getSubTreeLogger().LogTree("waiting till secpol has been started.");
             AutoIt.AutoItX.Run("mmc.exe secpol.msc", null, 0);
+            Logger.getSubTreeLogger().LogTree("secpol has been started with success!");
             AutoIt.AutoItX.WinWait("[CLASS:MMCMainFrame]");
             //AutoIt.AutoItX.WinActivate("[CLASS:MMCMainFrame]");
             AutoIt.AutoItX.Sleep(400);
+            Logger.getSubTreeLogger().LogTree("applying unhappytrigger (reactivating focus on the secpol window since sommetime it is lost due some reason)");
             fixUnhappyTrigger(); //fix a issue whereby windows 10 complains about a missing GEO location file which cause to freezes the automation....
+            Logger.getSubTreeLogger().LogTree("unhappytrigger is finished, applying macro.");
+            Logger.getSubTreeLogger().LogTree("starting macro, and removing the policy...");
             AutoIt.AutoItX.WinActivate("[CLASS:MMCMainFrame]");
 
             AutoIt.AutoItX.Send("{DOWN}{DOWN}{DOWN}{DOWN}{DOWN}{DOWN}");
@@ -132,6 +150,7 @@ namespace windows_security_tweak_tool.src.policies
             SecurityPolicy p = SecurityPolicyType.UPDATE_POLICY.getPolicy(gui);
             p.apply();
             Config.getConfig().put("policy-malware-restriction", false);
+            Logger.getSubTreeLogger().LogTreeEnd("done undoing software restrictions!");
             setGuiDisabled(this);
             getButton().Enabled = true;
         }
@@ -212,6 +231,9 @@ namespace windows_security_tweak_tool.src.policies
 
         private void addPolicyRule(string name)
         {
+
+            Logger.getSubTreeLogger().LogTree("software restriction path: "+name);
+
             AutoIt.AutoItX.Send("{ALT}");
             AutoIt.AutoItX.Sleep(300);
             AutoIt.AutoItX.Send("{TAB}");
