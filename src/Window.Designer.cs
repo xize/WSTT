@@ -563,12 +563,11 @@ namespace windows_security_tweak_tool.src
             // 
             this.mbrbtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.mbrbtn.AutoSize = true;
-            this.mbrbtn.Enabled = false;
-            this.mbrbtn.Location = new System.Drawing.Point(206, 461);
+            this.mbrbtn.Location = new System.Drawing.Point(412, 461);
             this.mbrbtn.Name = "mbrbtn";
-            this.mbrbtn.Size = new System.Drawing.Size(288, 23);
+            this.mbrbtn.Size = new System.Drawing.Size(82, 23);
             this.mbrbtn.TabIndex = 87;
-            this.mbrbtn.Text = "disabled, has no uninstall way without damaging the MBR";
+            this.mbrbtn.Text = "install mbrfilter";
             this.mbrbtn.UseVisualStyleBackColor = true;
             this.mbrbtn.Click += new System.EventHandler(this.callMBREvent);
             // 
@@ -578,7 +577,7 @@ namespace windows_security_tweak_tool.src
             | System.Windows.Forms.AnchorStyles.Right)));
             this.mbrprogress.Location = new System.Drawing.Point(10, 461);
             this.mbrprogress.Name = "mbrprogress";
-            this.mbrprogress.Size = new System.Drawing.Size(190, 23);
+            this.mbrprogress.Size = new System.Drawing.Size(404, 23);
             this.mbrprogress.TabIndex = 86;
             // 
             // label1

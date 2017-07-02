@@ -36,7 +36,7 @@ namespace windows_security_tweak_tool.src.policies
         public static SecurityPolicyType REMOTE_REGISTRY_POLICY = new SecurityPolicyType("remote_registry_policy", new RemoteRegistryPolicy());
         public static SecurityPolicyType RDP_POLICY = new SecurityPolicyType("rdp_policy", new RDPPolicy());
         public static SecurityPolicyType NTLM_POLICY = new SecurityPolicyType("ntlm_policy", new NTLMPolicy());
-        //public static PolicyType MBR_POLICY = new PolicyType("mbr_policy", new MBRPolicy());
+        public static SecurityPolicyType MBR_POLICY = new SecurityPolicyType("mbr_policy", new MBRPolicy());
         public static SecurityPolicyType CERT_POLICY = new SecurityPolicyType("cert_policy", new CertPolicy());
         public static SecurityPolicyType NETSHARE_POLICY = new SecurityPolicyType("netshare_policy", new NetSharePolicy());
         public static SecurityPolicyType LLMNR_POLICY = new SecurityPolicyType("llmnr_policy", new LLMNRPolicy());

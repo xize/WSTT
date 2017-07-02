@@ -214,7 +214,7 @@ namespace windows_security_tweak_tool.src
 
         private void callMBREvent(object sender, EventArgs e)
         {
-            SecurityPolicy p = null;
+            SecurityPolicy p = SecurityPolicyType.MBR_POLICY.getPolicy(this);
 
             DialogResult result = MessageBox.Show("If you plan to use this feature please note that we have not developed MBRFilter\n\nMBRFilter is licensed under the GPLv2 License and maintained by Yves Younan, Cisco Talos at https://github.com/vrtadmin/MBRFilter\n\nby clicking \"yes\" you agree with their license", "Warning Third party driver", MessageBoxButtons.YesNo);
 
