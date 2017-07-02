@@ -51,8 +51,10 @@ namespace windows_security_tweak_tool.src.mbrfilter
 
         public void uninstall()
         {
-            RegistryKey classes = RegistryKey.OpenBaseKey(RegistryHive.LocalMachine, RegistryView.Default).OpenSubKey(@"HKLM\System\CurrentControlSet\Control\Class\{4d36e967-e325-11ce-bfc1-08002be10318}");
-            classes.DeleteSubKey("{4d36e967-e325-11ce-bfc1-08002be10318}");
+            RegistryKey classes = RegistryKey.OpenBaseKey(RegistryHive.LocalMachine, RegistryView.Default).OpenSubKey(@"System\CurrentControlSet\Control\Class\{4d36e967-e325-11ce-bfc1-08002be10318}\", true);
+            List<String> orginal = new List<string>((string[])classes.GetValue("UpperFilters"));
+            orginal.Remove("MBRFilter");
+            classes.SetValue("UpperFilters", orginal.ToArray());
 
             foreach (string a in Directory.GetFiles(Config.getConfig().getDataFolder() + @"\mbrfilter"))
             {
@@ -65,14 +67,9 @@ namespace windows_security_tweak_tool.src.mbrfilter
         {
             try
             {
-                RegistryKey classes = RegistryKey.OpenBaseKey(RegistryHive.LocalMachine, RegistryView.Default).OpenSubKey(@"HKLM\System\CurrentControlSet\Control\Class\{4d36e967-e325-11ce-bfc1-08002be10318}");
-                if (classes != null)
-                {
-                    return true;
-                } else
-                {
-                    return false;
-                }
+                RegistryKey classes = RegistryKey.OpenBaseKey(RegistryHive.LocalMachine, RegistryView.Default).OpenSubKey(@"System\CurrentControlSet\Control\Class\{4d36e967-e325-11ce-bfc1-08002be10318}");
+                List<String> data = new List<string>((String[]) classes.GetValue("UpperFilters"));
+                return data.Contains("MBRFilter");
             }
             catch (Exception){ return false; }
         }

@@ -567,7 +567,7 @@ namespace windows_security_tweak_tool.src
             this.mbrbtn.Name = "mbrbtn";
             this.mbrbtn.Size = new System.Drawing.Size(82, 23);
             this.mbrbtn.TabIndex = 87;
-            this.mbrbtn.Text = "install mbrfilter";
+            this.mbrbtn.Text = "Apply";
             this.mbrbtn.UseVisualStyleBackColor = true;
             this.mbrbtn.Click += new System.EventHandler(this.callMBREvent);
             // 
