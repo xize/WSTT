@@ -106,7 +106,7 @@ namespace windows_security_tweak_tool.src.policies
 
         private void loopToOptions()
         {
-            for (int i = 0; i < 68; i++)
+            for (int i = 0; i < 69; i++)
             {
                 AutoIt.AutoItX.Send("{DOWN}");
             }
@@ -116,7 +116,7 @@ namespace windows_security_tweak_tool.src.policies
         {
 
             loopToOptions();
-
+            
             AutoIt.AutoItX.Send("{ENTER}");
             AutoIt.AutoItX.WinWait("[CLASS:#32770]");
             AutoIt.AutoItX.Send("{RIGHT}{RIGHT}");
