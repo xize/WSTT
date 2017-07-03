@@ -83,6 +83,7 @@ namespace windows_security_tweak_tool.src.ninite
             while(!verifyInstaller())
             {
                 MessageBox.Show("Re-downloading ninite installer since the certificate did not match with the current hash of the certificate!", "warning ninite installer is invalid or being tampered with!");
+                File.Delete(getDataFolder() + @"\ninite\ninite.exe");
                 client.DownloadFile(new Uri(url), getDataFolder() + @"\ninite\ninite.exe");
             }
 
