@@ -109,9 +109,7 @@ namespace windows_security_tweak_tool.src.mbrfilter
         private bool validateMBRFilter(string file)
         {
             byte[] bhash = SHA1.Create().ComputeHash(File.ReadAllBytes(file));
-
             StringBuilder hash = new StringBuilder();
-            
             for(int i = 0; i < bhash.Length;i++)
             {
                 hash.Append(bhash[i].ToString("X2"));
@@ -128,7 +126,5 @@ namespace windows_security_tweak_tool.src.mbrfilter
             }
             return filter;
         }
-
-
     }
 }
