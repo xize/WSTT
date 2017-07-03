@@ -261,7 +261,8 @@ namespace windows_security_tweak_tool.src.policies
 
         public override bool isUserControlRequired()
         {
-            return false;
+            //TODO: set this to false when we figured out what makes it freeze after using the button "apply all"
+            return true;
         }
     }
 }
