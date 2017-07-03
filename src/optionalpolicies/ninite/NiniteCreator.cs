@@ -87,11 +87,8 @@ namespace windows_security_tweak_tool.src.ninite
             }
 
             Process proc = Process.Start(getDataFolder()+@"\ninite\ninite.exe");
-            
-            while(!proc.HasExited)
-            {
-                //lock thread
-            }
+
+            proc.WaitForExit();
             proc.Dispose();
         }
 
