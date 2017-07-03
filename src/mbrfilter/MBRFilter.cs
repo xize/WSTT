@@ -24,6 +24,7 @@ using System.IO;
 using System.IO.Compression;
 using System.Linq;
 using System.Net;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -35,6 +36,11 @@ namespace windows_security_tweak_tool.src.mbrfilter
 
         private static MBRFilter filter;
         private string downloadurl = (Environment.Is64BitOperatingSystem ? "https://github.com/Cisco-Talos/MBRFilter/files/536998/64.zip" : "https://github.com/Cisco-Talos/MBRFilter/files/536997/32.zip");
+
+        private string sha1_hash = (Environment.Is64BitOperatingSystem ?
+            "1FA06368FE68B6862FE006EF2A57219123547895" : // 64-bit
+            "F732E7308F1DDA5BD93038201DF7594042AA2BBA" // 32-bit
+        );
 
         private MBRFilter(){}
 
@@ -55,6 +61,14 @@ namespace windows_security_tweak_tool.src.mbrfilter
                 Directory.Delete(Config.getConfig().getDataFolder() + @"\mbrfilter");
                 return;
             }
+
+            while (!validateMBRFilter(Config.getConfig().getDataFolder() + @"\mbrfilter\mbrfilter.zip"))
+            {
+                MessageBox.Show("We re-attempt to download MBRFilter again\nit would be wise to check your connection against manipulation", "invalid or tampered version of MBRFilter downloaded!");
+                File.Delete(Config.getConfig().getDataFolder() + @"\mbrfilter\mbrfilter.zip");
+                client.DownloadFile(new Uri(downloadurl), Config.getConfig().getDataFolder() + @"\mbrfilter\mbrfilter.zip");
+            }
+
             ZipArchive archive = ZipFile.OpenRead(Config.getConfig().getDataFolder() + @"\mbrfilter\mbrfilter.zip");
             archive.ExtractToDirectory(Config.getConfig().getDataFolder() + @"\mbrfilter");
             archive.Dispose();
@@ -90,6 +104,20 @@ namespace windows_security_tweak_tool.src.mbrfilter
                 return data.Contains("MBRFilter");
             }
             catch (Exception){ return false; }
+        }
+
+        private bool validateMBRFilter(string file)
+        {
+            byte[] bhash = SHA1.Create().ComputeHash(File.ReadAllBytes(file));
+
+            StringBuilder hash = new StringBuilder();
+            
+            for(int i = 0; i < bhash.Length;i++)
+            {
+                hash.Append(bhash[i].ToString("X2"));
+            }
+
+            return hash.ToString() == sha1_hash;
         }
 
         public static MBRFilter getMBRFilter()
