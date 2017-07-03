@@ -149,7 +149,6 @@ namespace windows_security_tweak_tool.src
             this.tempolicylabel.Size = new System.Drawing.Size(371, 13);
             this.tempolicylabel.TabIndex = 2;
             this.tempolicylabel.Text = "protect known malware directories (policies, needs windows ultimate) (macro):";
-            this.tempolicylabel.Click += new System.EventHandler(this.tempolicylabel_Click);
             // 
             // netbioslabel
             // 
