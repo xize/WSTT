@@ -23,9 +23,11 @@ using System.IO;
 using System.IO.Compression;
 using System.Linq;
 using System.Net;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using windows_security_tweak_tool.src.utils;
 
 namespace windows_security_tweak_tool.src.ninite
 {
@@ -78,6 +80,12 @@ namespace windows_security_tweak_tool.src.ninite
                 return;
             }
 
+            while(!verifyInstaller())
+            {
+                MessageBox.Show("Re-downloading ninite installer since the certificate did not match with the current hash of the certificate!", "warning ninite installer is invalid or being tampered with!");
+                client.DownloadFile(new Uri(url), getDataFolder() + @"\ninite\ninite.exe");
+            }
+
             Process proc = Process.Start(getDataFolder()+@"\ninite\ninite.exe");
             
             while(!proc.HasExited)
@@ -90,6 +98,13 @@ namespace windows_security_tweak_tool.src.ninite
         private string getDataFolder()
         {
             return Config.getConfig().getDataFolder();
+        }
+
+        private bool verifyInstaller()
+        {
+            string certhash = "6E46232DB9488A989A0ECB5E386ED751C1522955";
+            X509Certificate cert = X509Certificate.CreateFromSignedFile(getDataFolder() + @"\ninite\ninite.exe");
+            return AuthenticodeTools.IsTrusted(getDataFolder() + @"\ninite\ninite.exe") && certhash == cert.GetCertHashString();
         }
 
     }

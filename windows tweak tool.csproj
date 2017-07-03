@@ -156,6 +156,7 @@
     <Compile Include="src\policies\UnsignedPolicy.cs" />
     <Compile Include="src\policies\UpdatePolicy.cs" />
     <Compile Include="src\policies\WscriptPolicy.cs" />
+    <Compile Include="src\utils\AuthenticodeTools.cs" />
     <Compile Include="src\utils\BrowserType.cs" />
     <Compile Include="src\utils\Browser.cs" />
     <Compile Include="src\Window.cs">
