@@ -431,7 +431,7 @@ namespace windows_security_tweak_tool.src
             // openOptionalOptionsToolStripMenuItem
             // 
             this.openOptionalOptionsToolStripMenuItem.Name = "openOptionalOptionsToolStripMenuItem";
-            this.openOptionalOptionsToolStripMenuItem.Size = new System.Drawing.Size(227, 22);
+            this.openOptionalOptionsToolStripMenuItem.Size = new System.Drawing.Size(254, 22);
             this.openOptionalOptionsToolStripMenuItem.Text = "Open Optional options";
             this.openOptionalOptionsToolStripMenuItem.Click += new System.EventHandler(this.openOptionalOptionsToolStripMenuItem_Click);
             // 
@@ -439,21 +439,21 @@ namespace windows_security_tweak_tool.src
             // 
             this.setAsServerToolStripMenuItem.Enabled = false;
             this.setAsServerToolStripMenuItem.Name = "setAsServerToolStripMenuItem";
-            this.setAsServerToolStripMenuItem.Size = new System.Drawing.Size(227, 22);
+            this.setAsServerToolStripMenuItem.Size = new System.Drawing.Size(254, 22);
             this.setAsServerToolStripMenuItem.Text = "set as server";
             // 
             // setAsClientToolStripMenuItem
             // 
             this.setAsClientToolStripMenuItem.Enabled = false;
             this.setAsClientToolStripMenuItem.Name = "setAsClientToolStripMenuItem";
-            this.setAsClientToolStripMenuItem.Size = new System.Drawing.Size(227, 22);
+            this.setAsClientToolStripMenuItem.Size = new System.Drawing.Size(254, 22);
             this.setAsClientToolStripMenuItem.Text = "set as client";
             // 
             // resetPoliciesToolStripMenuItem
             // 
             this.resetPoliciesToolStripMenuItem.Name = "resetPoliciesToolStripMenuItem";
-            this.resetPoliciesToolStripMenuItem.Size = new System.Drawing.Size(227, 22);
-            this.resetPoliciesToolStripMenuItem.Text = "reset windows group policies";
+            this.resetPoliciesToolStripMenuItem.Size = new System.Drawing.Size(254, 22);
+            this.resetPoliciesToolStripMenuItem.Text = "hard reset windows group policies";
             this.resetPoliciesToolStripMenuItem.Click += new System.EventHandler(this.resetPoliciesToolStripMenuItem_Click);
             // 
             // helpToolStripMenuItem
