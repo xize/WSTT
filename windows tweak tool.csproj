@@ -126,6 +126,12 @@
     </Compile>
     <Compile Include="src\Config.cs" />
     <Compile Include="src\ConfigInfo.cs" />
+    <Compile Include="src\HelpWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="src\HelpWindow.Designer.cs">
+      <DependentUpon>HelpWindow.cs</DependentUpon>
+    </Compile>
     <Compile Include="src\mbrfilter\MBRFilter.cs" />
     <Compile Include="src\optionalpolicies\HPKeyloggerPolicy.cs" />
     <Compile Include="src\optionalpolicies\NinitePolicy.cs" />
@@ -167,6 +173,9 @@
     </Compile>
     <Compile Include="src\Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="src\HelpWindow.resx">
+      <DependentUpon>HelpWindow.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="src\OptionalWindow.resx">
       <DependentUpon>OptionalWindow.cs</DependentUpon>
     </EmbeddedResource>
@@ -205,6 +214,7 @@
     <None Include="Resources\sigcheck.exe" />
     <None Include="Resources\sigcheck64.exe" />
     <None Include="Resources\Eula.txt" />
+    <None Include="Resources\windowslogo.png" />
     <Content Include="windows.ico">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

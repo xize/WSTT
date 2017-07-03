@@ -427,5 +427,11 @@ namespace windows_security_tweak_tool.src
                 p.apply();
             }
         }
+
+        private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            HelpWindow help = new HelpWindow();
+            help.Show();
+        }
     }
 }
