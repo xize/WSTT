@@ -152,11 +152,6 @@ namespace windows_security_tweak_tool.src
             }
         }
 
-        private void versionInformationToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Application.Exit();
@@ -348,21 +343,13 @@ namespace windows_security_tweak_tool.src
             }
         }
 
-        private void tempolicylabel_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void boguscertlabel_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             Process a = Process.Start("https://technet.microsoft.com/en-us/sysinternals/");
             a.Dispose();
         }
 
-        private void window_Load(object sender, EventArgs e)
-        {
-
-        }
+        private void window_Load(object sender, EventArgs e){}
 
         private void netsharebtn_Click(object sender, EventArgs e)
         {
