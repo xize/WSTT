@@ -36,7 +36,7 @@ namespace windows_security_tweak_tool.src.optionalpolicies
 
         public override OptionalPolicyType getType()
         {
-            return OptionalPolicyType.HP_KEYLOGGER;
+            return OptionalPolicyType.HP_KEYLOGGER_POLICY;
         }
 
         public override string getDescription()
