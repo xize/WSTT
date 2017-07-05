@@ -133,6 +133,7 @@
       <DependentUpon>HelpWindow.cs</DependentUpon>
     </Compile>
     <Compile Include="src\mbrfilter\MBRFilter.cs" />
+    <Compile Include="src\optionalpolicies\Chrome64bitPolicy.cs" />
     <Compile Include="src\optionalpolicies\HPKeyloggerPolicy.cs" />
     <Compile Include="src\optionalpolicies\KeepassAdminPolicy.cs" />
     <Compile Include="src\optionalpolicies\NinitePolicy.cs" />

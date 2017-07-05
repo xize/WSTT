@@ -55,8 +55,8 @@ namespace windows_security_tweak_tool.src
         private Button chromeaddonbtn;
         private ProgressBar chromeaddonprogress;
         private Label chromelabel;
-        private Button chromebtn;
-        private ProgressBar chromeprogress;
+        public Button chromebtn;
+        public ProgressBar chromeprogress;
         private Label keepasslabel;
         public Button keepassbtn;
         public ProgressBar keepassprogress;
@@ -188,12 +188,11 @@ namespace windows_security_tweak_tool.src
             // 
             this.chromebtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.chromebtn.AutoSize = true;
-            this.chromebtn.Enabled = false;
             this.chromebtn.Location = new System.Drawing.Point(401, 203);
             this.chromebtn.Name = "chromebtn";
             this.chromebtn.Size = new System.Drawing.Size(94, 23);
             this.chromebtn.TabIndex = 85;
-            this.chromebtn.Text = "not implemented";
+            this.chromebtn.Text = "apply";
             this.chromebtn.UseVisualStyleBackColor = true;
             this.chromebtn.Click += new System.EventHandler(this.chromebtn_Click);
             // 
@@ -201,7 +200,6 @@ namespace windows_security_tweak_tool.src
             // 
             this.chromeprogress.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.chromeprogress.Enabled = false;
             this.chromeprogress.Location = new System.Drawing.Point(11, 203);
             this.chromeprogress.Name = "chromeprogress";
             this.chromeprogress.Size = new System.Drawing.Size(406, 23);
@@ -683,7 +681,15 @@ namespace windows_security_tweak_tool.src
 
         private void chromebtn_Click(object sender, EventArgs e)
         {
+            OptionalPolicy p = OptionalPolicyType.CHROME_64BIT_POLICY.getPolicy(this);
 
+            if(p.isEnabled())
+            {
+                p.unapply();
+            } else
+            {
+                p.apply();
+            }
         }
 
         private void HPCheckbtn_Click(object sender, EventArgs e)
