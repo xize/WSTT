@@ -9,13 +9,12 @@ using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using windows_security_tweak_tool.src.certificates;
 
 namespace windows_security_tweak_tool.src.optionalpolicies
 {
     class Chrome64bitPolicy : OptionalPolicy
     {
-
-        private string certhash = "5A9272CE76A9415A4A3A5002A2589A049312AA40";
 
         public override string getName()
         {
@@ -37,6 +36,16 @@ namespace windows_security_tweak_tool.src.optionalpolicies
            return File.Exists(@"C:\Program Files (x86)\Google\Chrome\Application\Chrome.exe");
         }
 
+        public override bool isCertificateDepended()
+        {
+            return true;
+        }
+
+        public override Certificate getCertificate()
+        {
+            return CertProvider.GOOGLE_CHROME.getCertificate();
+        }
+
         public override void apply()
         {
             getButton().Enabled = false;
@@ -55,7 +64,7 @@ namespace windows_security_tweak_tool.src.optionalpolicies
             archive.Dispose();
 
             X509Certificate cert = X509Certificate.CreateFromSignedFile(Config.getConfig().getDataFolder() + @"\wstt-downloaded\chrome\Installers\GoogleChromeStandaloneEnterprise64.msi");
-            if(cert.GetCertHashString() == certhash)
+            if(cert.GetCertHashString() == getCertificate().getHash())
             {
                 Process p = Process.Start(Config.getConfig().getDataFolder() + @"\wstt-downloaded\chrome\Installers\GoogleChromeStandaloneEnterprise64.msi");
                 p.WaitForExit();

@@ -27,6 +27,7 @@ using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using windows_security_tweak_tool.src.certificates;
 using windows_security_tweak_tool.src.utils;
 
 namespace windows_security_tweak_tool.src.ninite
@@ -100,7 +101,7 @@ namespace windows_security_tweak_tool.src.ninite
 
         private bool verifyInstaller()
         {
-            string certhash = "6E46232DB9488A989A0ECB5E386ED751C1522955";
+            string certhash = CertProvider.NINITE.getCertificate().getHash();
             X509Certificate cert = X509Certificate.CreateFromSignedFile(getDataFolder() + @"\ninite\ninite.exe");
             return AuthenticodeTools.IsTrusted(getDataFolder() + @"\ninite\ninite.exe") && certhash == cert.GetCertHashString();
         }

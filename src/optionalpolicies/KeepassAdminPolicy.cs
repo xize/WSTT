@@ -10,13 +10,12 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using windows_security_tweak_tool.src.certificates;
 
 namespace windows_security_tweak_tool.src.optionalpolicies
 {
     class KeepassAdminPolicy : OptionalPolicy
     {
-
-        private string certificate_hash = "8B602261C22C8855BF5694A6CF742AF27F618930";
 
         public override string getName()
         {
@@ -36,6 +35,16 @@ namespace windows_security_tweak_tool.src.optionalpolicies
         public override bool isEnabled()
         {
             return File.Exists(@"C:\Program Files (x86)\KeePass Password Safe 2\KeePass.exe"); //TODO: make it compatible with more harddrives or force it to be installed on the c: drive.
+        }
+
+        public override bool isCertificateDepended()
+        {
+            return true;
+        }
+
+        public override Certificate getCertificate()
+        {
+            return CertProvider.KEEPASS.getCertificate();
         }
 
         public override void apply()
@@ -61,7 +70,7 @@ namespace windows_security_tweak_tool.src.optionalpolicies
 
                 c.DownloadFile(new Uri(url), Config.getConfig().getDataFolder() + @"\wstt-downloaded\KeePass.exe");
                 X509Certificate cert = X509Certificate.CreateFromSignedFile(Config.getConfig().getDataFolder() + @"\wstt-downloaded\KeePass.exe");
-                if(cert.GetCertHashString() == certificate_hash)
+                if(cert.GetCertHashString() == getCertificate().getHash())
                 {
                     Process p = Process.Start(Config.getConfig().getDataFolder() + @"\wstt-downloaded\KeePass.exe");
                     p.WaitForExit();

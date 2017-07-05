@@ -22,6 +22,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using windows_security_tweak_tool.src.certificates;
 using windows_security_tweak_tool.src.ninite;
 
 namespace windows_security_tweak_tool.src.optionalpolicies
@@ -59,6 +60,11 @@ namespace windows_security_tweak_tool.src.optionalpolicies
         public virtual bool isCertificateDepended()
         {
             return false;
+        }
+
+        public virtual Certificate getCertificate()
+        {
+            return null;
         }
 
         public bool hasButton()

@@ -22,6 +22,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using windows_security_tweak_tool.src.certificates;
 using windows_security_tweak_tool.src.ninite;
 
 namespace windows_security_tweak_tool.src.optionalpolicies
@@ -42,6 +43,16 @@ namespace windows_security_tweak_tool.src.optionalpolicies
         public override OptionalPolicyType getType()
         {
             return OptionalPolicyType.NINITE;
+        }
+
+        public override bool isCertificateDepended()
+        {
+            return true;
+        }
+
+        public override Certificate getCertificate()
+        {
+            return CertProvider.NINITE.getCertificate();
         }
 
         public override void apply()

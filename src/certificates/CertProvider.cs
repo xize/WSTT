@@ -53,39 +53,39 @@ namespace windows_security_tweak_tool.src.certificates
         {
             return providers.ToArray();
         }
+    }
 
-        public class Certificate
+    public class Certificate
+    {
+        private string certhash;
+        private long expirationtime;
+
+        public Certificate(string certhash, long expirationtime)
         {
-            private string certhash;
-            private long expirationtime;
+            this.certhash = certhash;
+            this.expirationtime = expirationtime;
+        }
 
-            public Certificate(string certhash, long expirationtime)
+        public string getHash()
+        {
+            return certhash;
+        }
+
+        public bool match(string certhash)
+        {
+            if (certhash == this.certhash)
             {
-                this.certhash = certhash;
-                this.expirationtime = expirationtime;
+                return true;
             }
+            return false;
+        }
 
-            public string getHash()
-            {
-                return certhash;
-            }
+        public bool isExpired()
+        {
+            DateTime current = new DateTime();
+            DateTime time = new DateTime(expirationtime);
 
-            public bool match(string certhash)
-            {
-                if(certhash == this.certhash)
-                {
-                    return true;
-                }
-                return false;
-            }
-
-            public bool isExpired()
-            {
-                DateTime current = new DateTime();
-                DateTime time = new DateTime(expirationtime);
-
-                return (time-current).TotalMilliseconds <= 0;
-            }
+            return (time - current).TotalMilliseconds <= 0;
         }
     }
 }
