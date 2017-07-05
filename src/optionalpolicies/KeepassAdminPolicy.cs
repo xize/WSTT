@@ -25,7 +25,7 @@ namespace windows_security_tweak_tool.src.optionalpolicies
 
         public override string getDescription()
         {
-            return "downloads Keepass and installs it as administrator to be sure it will count as a better security layer against malware not running under administrator";
+            return "downloads Keepass and modifies Keepass so that it runs as administrator and uses a different SID(Security Identifier) than the default user.\nthis will make it harder to get unauthorized memory access to KeePass when it is open.";
         }
 
         public override OptionalPolicyType getType()

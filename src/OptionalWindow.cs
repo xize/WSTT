@@ -45,6 +45,8 @@ namespace windows_security_tweak_tool.src
                 {
                     p.getProgressbar().Value = 100;
                     p.getButton().Text = "undo";
+                    toolTip1.SetToolTip(p.getButton(), p.getDescription());
+                    toolTip1.SetToolTip(p.getProgressbar(), p.getDescription());
                 }
             }
         }
@@ -87,10 +89,13 @@ namespace windows_security_tweak_tool.src
         private Label label1;
         public Button HPCheckbtn;
         public ProgressBar HPCheckProgress;
+        private ToolTip toolTip1;
+        private IContainer components;
         public CheckBox niniteskypecheckbox;
 
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(OptionalWindow));
             this.chromeaddonlabel = new System.Windows.Forms.Label();
             this.chromeaddonbtn = new System.Windows.Forms.Button();
@@ -131,6 +136,7 @@ namespace windows_security_tweak_tool.src
             this.label1 = new System.Windows.Forms.Label();
             this.HPCheckbtn = new System.Windows.Forms.Button();
             this.HPCheckProgress = new System.Windows.Forms.ProgressBar();
+            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
