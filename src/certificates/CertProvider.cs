@@ -35,7 +35,7 @@ namespace windows_security_tweak_tool.src.certificates
             return this.cert;
         }
 
-        public CertProvider valueOf(string name)
+        public static CertProvider valueOf(string name)
         {
             foreach(CertProvider c in values())
             {
@@ -47,7 +47,7 @@ namespace windows_security_tweak_tool.src.certificates
             return null;
         }
 
-        public CertProvider[] values()
+        public static CertProvider[] values()
         {
             return providers.ToArray();
         }
