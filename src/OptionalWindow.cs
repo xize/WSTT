@@ -36,6 +36,17 @@ namespace windows_security_tweak_tool.src
             InitializeComponent();
             //initialize event since visual studio keeps reseting this...
             this.FormClosing += onCloseOptionalWindow;
+
+            foreach (OptionalPolicyType t in OptionalPolicyType.values())
+            {
+                OptionalPolicy p = t.getPolicy(this);
+
+                if (p.isEnabled())
+                {
+                    p.getProgressbar().Value = 100;
+                    p.getButton().Text = "undo";
+                }
+            }
         }
 
         private Label chromeaddonlabel;
@@ -45,8 +56,8 @@ namespace windows_security_tweak_tool.src
         private Button chromebtn;
         private ProgressBar chromeprogress;
         private Label keepasslabel;
-        private Button keepassbtn;
-        private ProgressBar keepassprogress;
+        public Button keepassbtn;
+        public ProgressBar keepassprogress;
         private Label optionaloptionslabel;
         private Panel panel1;
         private LinkLabel ninitelabel;
@@ -205,12 +216,11 @@ namespace windows_security_tweak_tool.src
             // 
             this.keepassbtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.keepassbtn.AutoSize = true;
-            this.keepassbtn.Enabled = false;
             this.keepassbtn.Location = new System.Drawing.Point(401, 161);
             this.keepassbtn.Name = "keepassbtn";
             this.keepassbtn.Size = new System.Drawing.Size(94, 23);
             this.keepassbtn.TabIndex = 82;
-            this.keepassbtn.Text = "not implemented";
+            this.keepassbtn.Text = "apply";
             this.keepassbtn.UseVisualStyleBackColor = true;
             this.keepassbtn.Click += new System.EventHandler(this.keepassbtn_Click);
             // 
@@ -218,7 +228,6 @@ namespace windows_security_tweak_tool.src
             // 
             this.keepassprogress.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.keepassprogress.Enabled = false;
             this.keepassprogress.Location = new System.Drawing.Point(11, 161);
             this.keepassprogress.Name = "keepassprogress";
             this.keepassprogress.Size = new System.Drawing.Size(406, 23);
@@ -655,7 +664,15 @@ namespace windows_security_tweak_tool.src
 
         private void keepassbtn_Click(object sender, EventArgs e)
         {
+            OptionalPolicy p = OptionalPolicyType.KEEPASS_ADMIN_POLICY.getPolicy(this);
 
+            if(p.isEnabled())
+            {
+                p.unapply();
+            } else
+            {
+                p.apply();
+            }
         }
 
         private void chromebtn_Click(object sender, EventArgs e)
@@ -665,7 +682,7 @@ namespace windows_security_tweak_tool.src
 
         private void HPCheckbtn_Click(object sender, EventArgs e)
         {
-            OptionalPolicy p = OptionalPolicyType.HP_KEYLOGGER.getPolicy(this);
+            OptionalPolicy p = OptionalPolicyType.HP_KEYLOGGER_POLICY.getPolicy(this);
 
             p.apply();
 
@@ -673,7 +690,6 @@ namespace windows_security_tweak_tool.src
 
         private void OptionalWindow_Load(object sender, EventArgs e)
         {
-
         }
     }
 }

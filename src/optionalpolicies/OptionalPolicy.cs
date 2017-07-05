@@ -53,7 +53,7 @@ namespace windows_security_tweak_tool.src.optionalpolicies
 
         public virtual bool isEnabled()
         {
-            return true;
+            return false;
         }
 
         public bool hasButton()

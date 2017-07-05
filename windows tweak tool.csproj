@@ -134,6 +134,7 @@
     </Compile>
     <Compile Include="src\mbrfilter\MBRFilter.cs" />
     <Compile Include="src\optionalpolicies\HPKeyloggerPolicy.cs" />
+    <Compile Include="src\optionalpolicies\KeepassAdminPolicy.cs" />
     <Compile Include="src\optionalpolicies\NinitePolicy.cs" />
     <Compile Include="src\optionalpolicies\ninite\NiniteCreator.cs" />
     <Compile Include="src\optionalpolicies\ninite\NiniteOption.cs" />
