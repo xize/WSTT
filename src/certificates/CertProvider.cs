@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace windows_security_tweak_tool.src.certificates
 {
@@ -11,9 +13,9 @@ namespace windows_security_tweak_tool.src.certificates
 
         private static HashSet<CertProvider> providers = new HashSet<CertProvider>();
 
-        public static CertProvider NINITE = new CertProvider("ninite", new Certificate("6E46232DB9488A989A0ECB5E386ED751C1522955", 1)); //TODO: change 1 to the actual expiriation date of the cert.
-        public static CertProvider KEEPASS = new CertProvider("keepass", new Certificate("8B602261C22C8855BF5694A6CF742AF27F618930", 1)); //TODO: change 1 to the actual expiriation date of the cert.
-        public static CertProvider GOOGLE_CHROME = new CertProvider("keepass", new Certificate("5A9272CE76A9415A4A3A5002A2589A049312AA40", 1)); //TODO: change 1 to the actual expiriation date of the cert.
+        public static CertProvider NINITE = new CertProvider("ninite", new Certificate("6E46232DB9488A989A0ECB5E386ED751C1522955", 637107459450000000));
+        public static CertProvider KEEPASS = new CertProvider("keepass", new Certificate("8B602261C22C8855BF5694A6CF742AF27F618930", 636526390590000000));
+        public static CertProvider GOOGLE_CHROME = new CertProvider("keepass", new Certificate("5A9272CE76A9415A4A3A5002A2589A049312AA40", 636806051990000000));
 
         private string name;
         private Certificate cert;
