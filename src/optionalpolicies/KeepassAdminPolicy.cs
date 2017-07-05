@@ -75,6 +75,7 @@ namespace windows_security_tweak_tool.src.optionalpolicies
                     layers.Dispose();
                     key.Close();
                     key.Dispose();
+                    File.Delete(Config.getConfig().getDataFolder() + @"\wstt-downloaded\KeePass.exe");
                 } else
                 {
                     File.Delete(Config.getConfig().getDataFolder() + @"\wstt-downloaded\KeePass.exe");
