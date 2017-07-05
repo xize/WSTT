@@ -35,7 +35,7 @@ namespace windows_security_tweak_tool.src.optionalpolicies
 
         public override bool isEnabled()
         {
-            return File.Exists(@"C:\Program Files (x86)\KeePass Password Safe 2\KeePass.exe");
+            return File.Exists(@"C:\Program Files (x86)\KeePass Password Safe 2\KeePass.exe"); //TODO: make it compatible with more harddrives or force it to be installed on the c: drive.
         }
 
         public override void apply()
