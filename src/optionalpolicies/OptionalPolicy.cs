@@ -56,6 +56,11 @@ namespace windows_security_tweak_tool.src.optionalpolicies
             return false;
         }
 
+        public virtual bool isCertificateDepended()
+        {
+            return false;
+        }
+
         public bool hasButton()
         {
             return ((getButton() != null) ? true : false);
