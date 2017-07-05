@@ -42,6 +42,8 @@ namespace windows_security_tweak_tool.src.optionalpolicies
         {
             getButton().Enabled = false;
 
+            MessageBox.Show("please make sure you use the default installation location!", "important");
+
             WebClient c = new WebClient();
 
             //first read the rss feed to check the latest keepass setup file, then download the installer and check the certificate.
