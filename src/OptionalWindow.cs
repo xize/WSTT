@@ -62,8 +62,8 @@ namespace windows_security_tweak_tool.src
         }
 
         private Label chromeaddonlabel;
-        private Button chromeaddonbtn;
-        private ProgressBar chromeaddonprogress;
+        public Button chromeaddonbtn;
+        public ProgressBar chromeaddonprogress;
         private Label chromelabel;
         public Button chromebtn;
         public ProgressBar chromeprogress;
@@ -165,13 +165,13 @@ namespace windows_security_tweak_tool.src
             // 
             this.chromeaddonbtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.chromeaddonbtn.AutoSize = true;
-            this.chromeaddonbtn.Enabled = false;
             this.chromeaddonbtn.Location = new System.Drawing.Point(401, 290);
             this.chromeaddonbtn.Name = "chromeaddonbtn";
             this.chromeaddonbtn.Size = new System.Drawing.Size(94, 23);
             this.chromeaddonbtn.TabIndex = 88;
-            this.chromeaddonbtn.Text = "not implemented";
+            this.chromeaddonbtn.Text = "run";
             this.chromeaddonbtn.UseVisualStyleBackColor = true;
+            this.chromeaddonbtn.Click += new System.EventHandler(this.chromeaddonbtn_Click);
             // 
             // chromeaddonprogress
             // 
@@ -715,6 +715,12 @@ namespace windows_security_tweak_tool.src
 
         private void OptionalWindow_Load(object sender, EventArgs e)
         {
+        }
+
+        private void chromeaddonbtn_Click(object sender, EventArgs e)
+        {
+            OptionalPolicy p = OptionalPolicyType.CHROME_ADDON_POLICY.getPolicy(this);
+            p.apply();
         }
     }
 }
