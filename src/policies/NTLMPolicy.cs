@@ -140,7 +140,8 @@ namespace windows_security_tweak_tool.src.policies
             AutoIt.AutoItX.Send("{RIGHT}{RIGHT}{RIGHT}{RIGHT}");
             AutoIt.AutoItX.Sleep(300);
             AutoIt.AutoItX.Send("{ENTER}");
-            AutoIt.AutoItX.WinWait("[CLASS:#32770]");
+            //TODO: observing when the macro gets stuck here on the OK dialog.
+            //AutoIt.AutoItX.WinWait("[CLASS:#32770]");
             AutoIt.AutoItX.Send("{ENTER}");
             AutoIt.AutoItX.Sleep(600);
           //  AutoIt.AutoItX.WinActivate("[CLASS:MMCMainFrame]");
@@ -261,8 +262,7 @@ namespace windows_security_tweak_tool.src.policies
 
         public override bool isUserControlRequired()
         {
-            //TODO: set this to false when we figured out what makes it freeze after using the button "apply all"
-            return true;
+            return false;
         }
     }
 }
