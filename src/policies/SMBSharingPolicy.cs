@@ -16,6 +16,7 @@
     You should have received a copy of the GNU General Public License
     along with this program.If not, see<http://www.gnu.org/licenses/>.
 */
+using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -76,6 +77,20 @@ namespace windows_security_tweak_tool.src.policies
         public override void apply()
         {
             getButton().Enabled = false;
+
+            DialogResult result = MessageBox.Show("if you want to properly secure yourself you need to understand that there is a high chance a NAS or other network related equipment might fail to work properly.\n\nfor this reason we only block SMBv1 (the most vulnerable protocol) instead of SMBv2 and SMBv3 for full protection we recommend to block these ports from WAN to LAN and from LAN to WAN: 137-138/UDP, 139/TCP and 445/TCP", "advice regarding wannacry, and other ransomware", MessageBoxButtons.OKCancel);
+
+            if(result == DialogResult.Cancel)
+            {
+                return;
+            }
+
+            RegistryKey key = getRegistry(@"SYSTEM\CurrentControlSet\Services\LanmanServer\Parameters", REG.HKLM);
+            key.SetValue("SMB1", 0);
+
+            key.Close();
+            key.Dispose();
+
             ProcessStartInfo info = new ProcessStartInfo("dism.exe");
             info.Arguments = "/Online /Disable-Feature /FeatureName:SMB1Protocol";
             info.UseShellExecute = false;
@@ -84,6 +99,7 @@ namespace windows_security_tweak_tool.src.policies
             p.Close();
             p.Dispose();
             Config.getConfig().put("smb-enabled", true);
+
             getButton().Enabled = true;
             setGuiEnabled(this);
         }
@@ -91,6 +107,14 @@ namespace windows_security_tweak_tool.src.policies
         public override void unapply()
         {
             getButton().Enabled = false;
+
+            RegistryKey key = getRegistry(@"SYSTEM\CurrentControlSet\Services\LanmanServer\Parameters", REG.HKLM);
+            key.SetValue("SMB1", 1);
+
+            key.Close();
+            key.Dispose();
+
+
             ProcessStartInfo info = new ProcessStartInfo("dism.exe");
             info.Arguments = "/Online /Enable-Feature /FeatureName:SMB1Protocol";
             info.UseShellExecute = false;
@@ -99,6 +123,7 @@ namespace windows_security_tweak_tool.src.policies
             p.Close();
             p.Dispose();
             Config.getConfig().put("smb-enabled", false);
+
             getButton().Enabled = true;
             setGuiDisabled(this);
         }
