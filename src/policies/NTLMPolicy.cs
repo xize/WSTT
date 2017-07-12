@@ -57,14 +57,17 @@ namespace windows_security_tweak_tool.src.policies
         public override void apply()
         {
             getButton().Enabled = false;
-            
-            AutoIt.AutoItX.Run("mmc.exe secpol.msc", null, 0);
 
+            AutoIt.AutoItX.Run("mmc.exe secpol.msc", null, 0);
             AutoIt.AutoItX.WinWait("[CLASS:MMCMainFrame]");
-            //AutoIt.AutoItX.WinActivate("[CLASS:MMCMainFrame]");
+            AutoIt.AutoItX.WinActivate("[CLASS:MMCMainFrame]");
             AutoIt.AutoItX.Sleep(400);
             //fixUnhappyTrigger();
-            AutoIt.AutoItX.Send("{DOWN}{DOWN}{RIGHT}");
+            AutoIt.AutoItX.Send("{DOWN}");
+            AutoIt.AutoItX.Sleep(300);
+            AutoIt.AutoItX.Send("{DOWN}");
+            AutoIt.AutoItX.Sleep(300);
+            AutoIt.AutoItX.Send("{RIGHT}");
             AutoIt.AutoItX.Sleep(300);
             AutoIt.AutoItX.Send("{DOWN}{DOWN}{DOWN}");
             AutoIt.AutoItX.Sleep(400);
@@ -86,10 +89,15 @@ namespace windows_security_tweak_tool.src.policies
             AutoIt.AutoItX.Run("mmc.exe secpol.msc", null, 0);
 
             AutoIt.AutoItX.WinWait("[CLASS:MMCMainFrame]");
-            //AutoIt.AutoItX.WinActivate("[CLASS:MMCMainFrame]");
+            AutoIt.AutoItX.WinActivate("[CLASS:MMCMainFrame]");
             AutoIt.AutoItX.Sleep(400);
             //fixUnhappyTrigger();
-            AutoIt.AutoItX.Send("{DOWN}{DOWN}{RIGHT}");
+            AutoIt.AutoItX.Send("{DOWN}");
+            AutoIt.AutoItX.Sleep(300);
+            AutoIt.AutoItX.Send("{DOWN}");
+            AutoIt.AutoItX.Sleep(300);
+            AutoIt.AutoItX.Send("{RIGHT}");
+
             AutoIt.AutoItX.Sleep(300);
             AutoIt.AutoItX.Send("{DOWN}{DOWN}{DOWN}");
             AutoIt.AutoItX.Sleep(400);
@@ -118,11 +126,14 @@ namespace windows_security_tweak_tool.src.policies
             loopToOptions();
             
             AutoIt.AutoItX.Send("{ENTER}");
+            AutoIt.AutoItX.Sleep(300);
             AutoIt.AutoItX.WinWait("[CLASS:#32770]");
             AutoIt.AutoItX.Send("{RIGHT}{RIGHT}");
             AutoIt.AutoItX.Sleep(300);
             AutoIt.AutoItX.Send("{ENTER}");
+            AutoIt.AutoItX.Sleep(300);
             AutoIt.AutoItX.WinWait("[CLASS:#32770]");
+            AutoIt.AutoItX.Sleep(300);
             AutoIt.AutoItX.Send("{ENTER}");
             AutoIt.AutoItX.Sleep(400);
           //  AutoIt.AutoItX.WinActivate("[CLASS:MMCMainFrame]");
@@ -135,11 +146,14 @@ namespace windows_security_tweak_tool.src.policies
             AutoIt.AutoItX.Sleep(400);
          //   AutoIt.AutoItX.WinActivate("[CLASS:MMCMainFrame]");
 
-            AutoIt.AutoItX.Send("{DOWN}{ENTER}");
+            AutoIt.AutoItX.Send("{DOWN}");
+            AutoIt.AutoItX.Sleep(300);
+            AutoIt.AutoItX.Send("{ENTER}");
             AutoIt.AutoItX.WinWait("[CLASS:#32770]");
             AutoIt.AutoItX.Send("{RIGHT}{RIGHT}{RIGHT}{RIGHT}");
             AutoIt.AutoItX.Sleep(300);
             AutoIt.AutoItX.Send("{ENTER}");
+            AutoIt.AutoItX.Sleep(400);
             //TODO: observing when the macro gets stuck here on the OK dialog.
             //AutoIt.AutoItX.WinWait("[CLASS:#32770]");
             AutoIt.AutoItX.Send("{ENTER}");
@@ -153,9 +167,10 @@ namespace windows_security_tweak_tool.src.policies
             AutoIt.AutoItX.Send("{ENTER}");
             AutoIt.AutoItX.Sleep(400);
           //  AutoIt.AutoItX.WinActivate("[CLASS:MMCMainFrame]");
-            AutoIt.AutoItX.Sleep(400);
+            //AutoIt.AutoItX.Sleep(400);
             
             AutoIt.AutoItX.Send("{DOWN}{ENTER}");
+            AutoIt.AutoItX.Sleep(300);
             AutoIt.AutoItX.WinWait("[CLASS:#32770]");
             AutoIt.AutoItX.Send("{RIGHT}{RIGHT}{RIGHT}{RIGHT}");
             AutoIt.AutoItX.Sleep(300);
@@ -174,35 +189,41 @@ namespace windows_security_tweak_tool.src.policies
             AutoIt.AutoItX.Send("{ENTER}");
             AutoIt.AutoItX.WinWait("[CLASS:#32770]");
             AutoIt.AutoItX.Send("{LEFT}{LEFT}{ENTER}");
-            AutoIt.AutoItX.WinActivate("[CLASS:MMCMainFrame]");
+            AutoIt.AutoItX.Sleep(300);
+            //AutoIt.AutoItX.WinActivate("[CLASS:MMCMainFrame]");
             AutoIt.AutoItX.WinWait("[CLASS:MMCMainFrame]");
             AutoIt.AutoItX.Send("{DOWN}");
+            AutoIt.AutoItX.Sleep(300);
 
             AutoIt.AutoItX.Send("{ENTER}");
             AutoIt.AutoItX.WinWait("[CLASS:#32770]");
             AutoIt.AutoItX.Send("{LEFT}{LEFT}{ENTER}");
-            AutoIt.AutoItX.WinActivate("[CLASS:MMCMainFrame]");
+            //AutoIt.AutoItX.WinActivate("[CLASS:MMCMainFrame]");
             AutoIt.AutoItX.WinWait("[CLASS:MMCMainFrame]");
             AutoIt.AutoItX.Send("{DOWN}");
+            AutoIt.AutoItX.Sleep(300);
 
             AutoIt.AutoItX.Send("{ENTER}");
             AutoIt.AutoItX.WinWait("[CLASS:#32770]");
             AutoIt.AutoItX.Send("{LEFT}{LEFT}{LEFT}{LEFT}{ENTER}");
-            AutoIt.AutoItX.WinActivate("[CLASS:MMCMainFrame]");
+            //AutoIt.AutoItX.WinActivate("[CLASS:MMCMainFrame]");
             AutoIt.AutoItX.WinWait("[CLASS:MMCMainFrame]");
             AutoIt.AutoItX.Send("{DOWN}");
 
+            AutoIt.AutoItX.Sleep(300);
             AutoIt.AutoItX.Send("{ENTER}");
             AutoIt.AutoItX.WinWait("[CLASS:#32770]");
             AutoIt.AutoItX.Send("{LEFT}{LEFT}{LEFT}{LEFT}{ENTER}");
-            AutoIt.AutoItX.WinActivate("[CLASS:MMCMainFrame]");
+            //AutoIt.AutoItX.WinActivate("[CLASS:MMCMainFrame]");
             AutoIt.AutoItX.WinWait("[CLASS:MMCMainFrame]");
             AutoIt.AutoItX.Send("{DOWN}");
 
+            AutoIt.AutoItX.Sleep(300);
             AutoIt.AutoItX.Send("{ENTER}");
             AutoIt.AutoItX.WinWait("[CLASS:#32770]");
             AutoIt.AutoItX.Send("{LEFT}{LEFT}{ENTER}");
-            AutoIt.AutoItX.WinActivate("[CLASS:MMCMainFrame]");
+            AutoIt.AutoItX.Sleep(300);
+            //AutoIt.AutoItX.WinActivate("[CLASS:MMCMainFrame]");
         }
 
         private void closeWindow()
