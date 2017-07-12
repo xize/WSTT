@@ -124,13 +124,13 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <Compile Include="src\certificates\CertDebugger.cs">
+    <Compile Include="src\libs\certificates\CertDebugger.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="src\certificates\CertDebugger.Designer.cs">
+    <Compile Include="src\libs\certificates\CertDebugger.Designer.cs">
       <DependentUpon>CertDebugger.cs</DependentUpon>
     </Compile>
-    <Compile Include="src\certificates\CertProvider.cs" />
+    <Compile Include="src\libs\certificates\CertProvider.cs" />
     <Compile Include="src\Config.cs" />
     <Compile Include="src\ConfigInfo.cs" />
     <Compile Include="src\HelpWindow.cs">
@@ -139,7 +139,7 @@
     <Compile Include="src\HelpWindow.Designer.cs">
       <DependentUpon>HelpWindow.cs</DependentUpon>
     </Compile>
-    <Compile Include="src\mbrfilter\MBRFilter.cs" />
+    <Compile Include="src\libs\mbrfilter\MBRFilter.cs" />
     <Compile Include="src\optionalpolicies\Chrome64bitPolicy.cs" />
     <Compile Include="src\optionalpolicies\ChromeAddonPolicy.cs" />
     <Compile Include="src\optionalpolicies\HPKeyloggerPolicy.cs" />
@@ -172,9 +172,9 @@
     <Compile Include="src\policies\UnsignedPolicy.cs" />
     <Compile Include="src\policies\UpdatePolicy.cs" />
     <Compile Include="src\policies\WscriptPolicy.cs" />
-    <Compile Include="src\utils\AuthenticodeTools.cs" />
-    <Compile Include="src\utils\BrowserType.cs" />
-    <Compile Include="src\utils\Browser.cs" />
+    <Compile Include="src\libs\authenticodetools\AuthenticodeTools.cs" />
+    <Compile Include="src\libs\browser-api\BrowserType.cs" />
+    <Compile Include="src\libs\browser-api\Browser.cs" />
     <Compile Include="src\Window.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -183,7 +183,7 @@
     </Compile>
     <Compile Include="src\Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="src\certificates\CertDebugger.resx">
+    <EmbeddedResource Include="src\libs\certificates\CertDebugger.resx">
       <DependentUpon>CertDebugger.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="src\HelpWindow.resx">
