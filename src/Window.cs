@@ -79,6 +79,12 @@ namespace windows_security_tweak_tool.src
                             p.getButton().Enabled = false;
                             p.getProgressbar().Enabled = false;
                             p.getButton().Text = "unsupported!";
+                    } else if(p.isMacro() && !(File.Exists("AutoItX3.Assembly.dll") && File.Exists("AutoItX3.dll") && File.Exists("AutoItX3_x64.dll")))
+                    {
+                        Console.WriteLine("Warning: policy " + p.getName() + " has been disabled, no AutoIT files found!");
+                        p.getButton().Enabled = false;
+                        p.getProgressbar().Enabled = false;
+                        p.getButton().Text = "AutoIT dll missing!";
                     }
                 }
             }
