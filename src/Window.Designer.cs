@@ -94,6 +94,9 @@ namespace windows_security_tweak_tool.src
             this.label3 = new System.Windows.Forms.Label();
             this.smbbtn = new System.Windows.Forms.Button();
             this.smbprogress = new System.Windows.Forms.ProgressBar();
+            this.label5 = new System.Windows.Forms.Label();
+            this.autoplaybtn = new System.Windows.Forms.Button();
+            this.autoplayprogress = new System.Windows.Forms.ProgressBar();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -324,7 +327,7 @@ namespace windows_security_tweak_tool.src
             // safeapplybtn
             // 
             this.safeapplybtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.safeapplybtn.Location = new System.Drawing.Point(9, 669);
+            this.safeapplybtn.Location = new System.Drawing.Point(9, 705);
             this.safeapplybtn.Name = "safeapplybtn";
             this.safeapplybtn.Size = new System.Drawing.Size(158, 23);
             this.safeapplybtn.TabIndex = 39;
@@ -337,7 +340,7 @@ namespace windows_security_tweak_tool.src
             // undobtn
             // 
             this.undobtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.undobtn.Location = new System.Drawing.Point(419, 669);
+            this.undobtn.Location = new System.Drawing.Point(419, 705);
             this.undobtn.Name = "undobtn";
             this.undobtn.Size = new System.Drawing.Size(75, 23);
             this.undobtn.TabIndex = 40;
@@ -349,7 +352,7 @@ namespace windows_security_tweak_tool.src
             // applyforcebtn
             // 
             this.applyforcebtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.applyforcebtn.Location = new System.Drawing.Point(173, 669);
+            this.applyforcebtn.Location = new System.Drawing.Point(173, 705);
             this.applyforcebtn.Name = "applyforcebtn";
             this.applyforcebtn.Size = new System.Drawing.Size(100, 23);
             this.applyforcebtn.TabIndex = 89;
@@ -708,10 +711,45 @@ namespace windows_security_tweak_tool.src
             this.smbprogress.Size = new System.Drawing.Size(409, 23);
             this.smbprogress.TabIndex = 102;
             // 
+            // label5
+            // 
+            this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(11, 652);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(86, 13);
+            this.label5.TabIndex = 107;
+            this.label5.Text = "disable autoplay:";
+            // 
+            // autoplaybtn
+            // 
+            this.autoplaybtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.autoplaybtn.AutoSize = true;
+            this.autoplaybtn.Location = new System.Drawing.Point(422, 668);
+            this.autoplaybtn.Name = "autoplaybtn";
+            this.autoplaybtn.Size = new System.Drawing.Size(71, 23);
+            this.autoplaybtn.TabIndex = 106;
+            this.autoplaybtn.Text = "Apply";
+            this.autoplaybtn.UseVisualStyleBackColor = true;
+            this.autoplaybtn.Click += new System.EventHandler(this.autoplaybtn_Click);
+            // 
+            // autoplayprogress
+            // 
+            this.autoplayprogress.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.autoplayprogress.Location = new System.Drawing.Point(9, 668);
+            this.autoplayprogress.Name = "autoplayprogress";
+            this.autoplayprogress.Size = new System.Drawing.Size(409, 23);
+            this.autoplayprogress.TabIndex = 105;
+            // 
             // Window
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-            this.ClientSize = new System.Drawing.Size(510, 706);
+            this.ClientSize = new System.Drawing.Size(510, 742);
+            this.Controls.Add(this.label5);
+            this.Controls.Add(this.autoplaybtn);
+            this.Controls.Add(this.autoplayprogress);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.smbbtn);
             this.Controls.Add(this.smbprogress);
@@ -763,7 +801,7 @@ namespace windows_security_tweak_tool.src
             this.Controls.Add(this.menuStrip1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip1;
-            this.MinimumSize = new System.Drawing.Size(526, 745);
+            this.MinimumSize = new System.Drawing.Size(526, 781);
             this.Name = "Window";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Windows Security Tweaker Tool 14.0.25420.1b (WSTT)";
@@ -837,5 +875,8 @@ namespace windows_security_tweak_tool.src
         private Label label3;
         public Button smbbtn;
         public ProgressBar smbprogress;
+        private Label label5;
+        public Button autoplaybtn;
+        public ProgressBar autoplayprogress;
     }
 }

@@ -152,6 +152,7 @@
     <Compile Include="src\OptionalWindow.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="src\policies\AutoPlayPolicy.cs" />
     <Compile Include="src\policies\CertPolicy.cs" />
     <Compile Include="src\policies\components\Registry.cs" />
     <Compile Include="src\policies\components\Services.cs" />

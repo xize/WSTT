@@ -433,5 +433,19 @@ namespace windows_security_tweak_tool.src
             HelpWindow help = new HelpWindow();
             help.Show();
         }
+
+        private void autoplaybtn_Click(object sender, EventArgs e)
+        {
+            SecurityPolicy p = SecurityPolicyType.AUTOPLAY_POLICY.getPolicy(this);
+
+            if (p.isEnabled())
+            {
+                p.unapply();
+            }
+            else
+            {
+                p.apply();
+            }
+        }
     }
 }
