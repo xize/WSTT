@@ -97,6 +97,9 @@ namespace windows_security_tweak_tool.src
             this.label5 = new System.Windows.Forms.Label();
             this.autoplaybtn = new System.Windows.Forms.Button();
             this.autoplayprogress = new System.Windows.Forms.ProgressBar();
+            this.label6 = new System.Windows.Forms.Label();
+            this.regsvr32btn = new System.Windows.Forms.Button();
+            this.regsvr32progress = new System.Windows.Forms.ProgressBar();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -327,7 +330,7 @@ namespace windows_security_tweak_tool.src
             // safeapplybtn
             // 
             this.safeapplybtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.safeapplybtn.Location = new System.Drawing.Point(9, 705);
+            this.safeapplybtn.Location = new System.Drawing.Point(9, 747);
             this.safeapplybtn.Name = "safeapplybtn";
             this.safeapplybtn.Size = new System.Drawing.Size(158, 23);
             this.safeapplybtn.TabIndex = 39;
@@ -340,7 +343,7 @@ namespace windows_security_tweak_tool.src
             // undobtn
             // 
             this.undobtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.undobtn.Location = new System.Drawing.Point(419, 705);
+            this.undobtn.Location = new System.Drawing.Point(419, 747);
             this.undobtn.Name = "undobtn";
             this.undobtn.Size = new System.Drawing.Size(75, 23);
             this.undobtn.TabIndex = 40;
@@ -352,7 +355,7 @@ namespace windows_security_tweak_tool.src
             // applyforcebtn
             // 
             this.applyforcebtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.applyforcebtn.Location = new System.Drawing.Point(173, 705);
+            this.applyforcebtn.Location = new System.Drawing.Point(173, 747);
             this.applyforcebtn.Name = "applyforcebtn";
             this.applyforcebtn.Size = new System.Drawing.Size(100, 23);
             this.applyforcebtn.TabIndex = 89;
@@ -743,10 +746,44 @@ namespace windows_security_tweak_tool.src
             this.autoplayprogress.Size = new System.Drawing.Size(409, 23);
             this.autoplayprogress.TabIndex = 105;
             // 
+            // label6
+            // 
+            this.label6.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(11, 693);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(99, 13);
+            this.label6.TabIndex = 110;
+            this.label6.Text = "proxy regsvr32.exe:";
+            // 
+            // regsvr32btn
+            // 
+            this.regsvr32btn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.regsvr32btn.AutoSize = true;
+            this.regsvr32btn.Location = new System.Drawing.Point(422, 709);
+            this.regsvr32btn.Name = "regsvr32btn";
+            this.regsvr32btn.Size = new System.Drawing.Size(71, 23);
+            this.regsvr32btn.TabIndex = 109;
+            this.regsvr32btn.Text = "Apply";
+            this.regsvr32btn.UseVisualStyleBackColor = true;
+            // 
+            // regsvr32progress
+            // 
+            this.regsvr32progress.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.regsvr32progress.Location = new System.Drawing.Point(9, 709);
+            this.regsvr32progress.Name = "regsvr32progress";
+            this.regsvr32progress.Size = new System.Drawing.Size(409, 23);
+            this.regsvr32progress.TabIndex = 108;
+            // 
             // Window
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-            this.ClientSize = new System.Drawing.Size(510, 742);
+            this.ClientSize = new System.Drawing.Size(510, 784);
+            this.Controls.Add(this.label6);
+            this.Controls.Add(this.regsvr32btn);
+            this.Controls.Add(this.regsvr32progress);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.autoplaybtn);
             this.Controls.Add(this.autoplayprogress);
@@ -801,7 +838,7 @@ namespace windows_security_tweak_tool.src
             this.Controls.Add(this.menuStrip1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip1;
-            this.MinimumSize = new System.Drawing.Size(526, 781);
+            this.MinimumSize = new System.Drawing.Size(526, 823);
             this.Name = "Window";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Windows Security Tweaker Tool 14.0.25420.1b (WSTT)";
@@ -878,5 +915,8 @@ namespace windows_security_tweak_tool.src
         private Label label5;
         public Button autoplaybtn;
         public ProgressBar autoplayprogress;
+        private Label label6;
+        public Button regsvr32btn;
+        public ProgressBar regsvr32progress;
     }
 }
