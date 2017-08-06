@@ -453,5 +453,18 @@ namespace windows_security_tweak_tool.src
                 p.apply();
             }
         }
+
+        private void regsvr32btn_Click(object sender, EventArgs e)
+        {
+            SecurityPolicy p = SecurityPolicyType.REGSERVR32_PROXY_POLICY.getPolicy(this);
+
+            if(p.isEnabled())
+            {
+                p.unapply();
+            } else
+            {
+                p.apply();
+            }
+        }
     }
 }

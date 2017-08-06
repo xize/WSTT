@@ -1,9 +1,35 @@
-﻿using System;
+﻿/*
+    A security toolkit for windows    
+
+    Copyright(C) 2016-2017 Guido Lucassen
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.If not, see<http://www.gnu.org/licenses/>.
+*/
+using System;
 using System.Collections.Generic;
+using System.Diagnostics;
+using System.DirectoryServices.AccountManagement;
+using System.IO;
 using System.Linq;
+using System.Security.AccessControl;
+using System.Security.Cryptography;
+using System.Security.Principal;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using windows_security_tweak_tool.Properties;
+using windows_security_tweak_tool.src.libs.gzip_api;
 
 namespace windows_security_tweak_tool.src.policies
 {
@@ -11,73 +37,206 @@ namespace windows_security_tweak_tool.src.policies
     {
         public override string getName()
         {
-            throw new NotImplementedException();
+            return getType().getName();
         }
 
         public override string getDescription()
         {
-            throw new NotImplementedException();
+            return "proxies regsvr32 to harden security against registering non dll/exe files";
         }
 
         public override SecurityPolicyType getType()
         {
-            throw new NotImplementedException();
-        }
-
-        public override void apply()
-        {
-            throw new NotImplementedException();
-        }
-
-        public override bool hasIncompatibilityIssues()
-        {
-            throw new NotImplementedException();
+            return SecurityPolicyType.REGSERVR32_PROXY_POLICY;
         }
 
         public override bool isEnabled()
         {
-            throw new NotImplementedException();
+            string customsvr = GetHash(Resources.regsvr32);
+            string orginalsvr = GetHash(@"C:\windows\system32\regsvr32.exe");
+
+            bool match32bit = (customsvr == orginalsvr);
+
+            if (Environment.Is64BitOperatingSystem)
+            {
+                string customsvr64 = GetHash(File.ReadAllBytes(@"C:\windows\syswow64\regsvr32.exe")); // <- never understood Microsoft reasoning to still call it regsvr32 instead of regsvr64
+                bool match64bit = (customsvr == customsvr64);
+
+                return (match32bit && match64bit);
+            } else
+            {
+                return match32bit;
+            }
+        }
+
+        public async override void apply()
+        {
+            getButton().Enabled = false;
+            DialogResult r = MessageBox.Show("this policy is extremely experimental and not recommend to use at any time!\n\nthe reason why this policy is not recommend is because it ends up removing system files\npress OK to continue and cancel to avoid losing system files!","warning!", MessageBoxButtons.OKCancel);
+            if (r == DialogResult.OK)
+            {
+                await Task.Run(() => ApplyAsync());
+                setGuiEnabled(this);
+            }
+            getButton().Enabled = true;
+        }
+
+        private void ApplyAsync()
+        {
+            byte[] key = new byte[18];
+            RNGCryptoServiceProvider rng = new RNGCryptoServiceProvider();
+            rng.GetBytes(key);
+
+            string name = Convert.ToBase64String(key);
+
+            string compress = Gzip.GetGzipApi().Compress(name);
+
+            FileStream fs = File.OpenWrite(getDataFolder() + @"\proxy.dat");
+            fs.Write(Encoding.UTF8.GetBytes(compress), 0, Encoding.UTF8.GetBytes(compress).Length);
+            fs.Close();
+            fs.Dispose();
+
+            Grant(@"c:\windows\system32\regsvr32.exe");
+
+            File.Move(@"c:\windows\system32\regsvr32.exe", @"c:\windows\system32\" + name + ".exe");
+
+            UnGrant(@"c:\windows\system32\" + name + ".exe");
+
+            if (Environment.Is64BitOperatingSystem)
+            {
+                Grant(@"c:\windows\syswow64\regsvr32.exe");
+                File.Move(@"c:\windows\syswow64\regsvr32.exe", @"c:\windows\syswow64\" + name + ".exe");
+                UnGrant(@"c:\windows\syswow64\" + name + ".exe");
+            }
+
+            byte[] proxysvr = Resources.regsvr32;
+
+            FileStream pfs = new FileStream(@"c:\windows\system32\regsvr32.exe", FileMode.CreateNew);
+
+            pfs.Write(proxysvr, 0, proxysvr.Length);
+            pfs.Close();
+            pfs.Dispose();
+
+            UnGrant(@"c:\windows\system32\regsvr32.exe");
+
+            if (Environment.Is64BitOperatingSystem)
+            {
+                FileStream pfs64 = new FileStream(@"c:\windows\syswow64\regsvr32.exe", FileMode.CreateNew);
+
+                pfs64.Write(proxysvr, 0, proxysvr.Length);
+                pfs64.Close();
+                pfs64.Dispose();
+                UnGrant(@"c:\windows\syswow64\regsvr32.exe");
+            }
+        }
+
+        public async override void unapply()
+        {
+            getButton().Enabled = false;
+            await Task.Run(() => UnApplyAsync());
+            setGuiDisabled(this);
+            getButton().Enabled = true;
+        }
+
+        private void UnApplyAsync()
+        {
+            string name = Gzip.GetGzipApi().Decompress(getDataFolder() + @"\proxy.dat");
+
+            File.Delete(@"C:\windows\system32\regsvr32.exe");
+            if (Environment.Is64BitOperatingSystem)
+            {
+                File.Delete(@"C:\windows\syswow64\regsvr32.exe");
+            }
+            File.Move(@"c:\windows\system32\" + name + ".exe", @"c:\windows\system32\regsvr32.exe");
+            if (Environment.Is64BitProcess)
+            {
+                File.Move(@"c:\windows\syswow64\" + name + ".exe", @"c:\windows\syswow64\regsvr32.exe");
+            }
+            File.Delete(getDataFolder() + @"\proxy.dat");
+        }
+
+        private string GetHash(string file)
+        {
+            byte[] hash = SHA512.Create().ComputeHash(File.ReadAllBytes(file));
+            StringBuilder build = new StringBuilder();
+            for(int i = 0; i < hash.Length; i++)
+            {
+                build.Append(hash[i].ToString("X2"));
+            }
+            return build.ToString();
+        }
+
+        private string GetHash(byte[] file)
+        {
+            byte[] hash = SHA512.Create().ComputeHash(file);
+            StringBuilder build = new StringBuilder();
+            for (int i = 0; i < hash.Length; i++)
+            {
+                build.Append(hash[i].ToString("X2"));
+            }
+            return build.ToString();
+        }
+
+        private void Grant(string s)
+        {
+            //icacls c:\Windows\explorer.exe /grant Administrators:f  
+            ProcessStartInfo takeown = new ProcessStartInfo(@"icacls.exe");
+            takeown.Arguments = s+ @" /grant Administrators:f";
+            Process p = Process.Start(takeown);
+            p.WaitForExit();
+            p.Close();
+            p.Dispose();
+        }
+
+        private void UnGrant(string name)
+        {
+            ProcessStartInfo trusted = new ProcessStartInfo(@"icacls");
+            trusted.Arguments = name +" /setowner \"NT SERVICE\\TrustedInstaller\"";
+            Process p = Process.Start(trusted);
+            p.WaitForExit();
+            p.Close();
+            p.Dispose();
+        }
+
+        public override bool hasIncompatibilityIssues()
+        {
+            return false;
         }
 
         [Obsolete]
         public override bool isLanguageDepended()
         {
-            throw new NotImplementedException();
+            return false;
         }
 
         public override bool isMacro()
         {
-            throw new NotImplementedException();
+            return false;
         }
 
         public override bool isSafeForBussiness()
         {
-            throw new NotImplementedException();
+            return false;
         }
 
         public override bool isSecpolDepended()
         {
-            throw new NotImplementedException();
+            return false;
         }
 
         public override bool isUserControlRequired()
         {
-            throw new NotImplementedException();
-        }
-
-        public override void unapply()
-        {
-            throw new NotImplementedException();
+            return true;
         }
 
         public override Button getButton()
         {
-            throw new NotImplementedException();
+            return gui.regsvr32btn;
         }
 
         public override ProgressBar getProgressbar()
         {
-            throw new NotImplementedException();
+            return gui.regsvr32progress;
         }
     }
 }
