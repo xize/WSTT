@@ -766,7 +766,7 @@ namespace windows_security_tweak_tool.src
             this.regsvr32btn.Name = "regsvr32btn";
             this.regsvr32btn.Size = new System.Drawing.Size(71, 23);
             this.regsvr32btn.TabIndex = 109;
-            this.regsvr32btn.Text = "Apply";
+            this.regsvr32btn.Text = "Unsafe";
             this.regsvr32btn.UseVisualStyleBackColor = true;
             this.regsvr32btn.Click += new System.EventHandler(this.regsvr32btn_Click);
             // 
