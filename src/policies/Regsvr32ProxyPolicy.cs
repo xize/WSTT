@@ -181,9 +181,11 @@ namespace windows_security_tweak_tool.src.policies
                 File.Delete(@"C:\windows\syswow64\regsvr32.exe");
             }
             File.Move(@"c:\windows\system32\" + name + ".exe", @"c:\windows\system32\regsvr32.exe");
+            Permission.GetPermissionAPI().RestoreToTrustedInstaller(@"c:\windows\system32\regsvr32.exe");
             if (Environment.Is64BitProcess)
             {
                 File.Move(@"c:\windows\syswow64\" + name + ".exe", @"c:\windows\syswow64\regsvr32.exe");
+                Permission.GetPermissionAPI().RestoreToTrustedInstaller(@"c:\windows\syswow64\regsvr32.exe");
             }
             File.Delete(getDataFolder() + @"\proxy.dat");
         }
