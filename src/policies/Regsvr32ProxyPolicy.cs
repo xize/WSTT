@@ -30,6 +30,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using windows_security_tweak_tool.Properties;
 using windows_security_tweak_tool.src.libs.gzip_api;
+using windows_security_tweak_tool.src.libs.permission_api;
 
 namespace windows_security_tweak_tool.src.policies
 {
@@ -96,11 +97,16 @@ namespace windows_security_tweak_tool.src.policies
 
         private void ApplyAsync()
         {
-            byte[] key = new byte[18];
-            RNGCryptoServiceProvider rng = new RNGCryptoServiceProvider();
-            rng.GetBytes(key);
+            string allowedchars = "abcdefghijklmnopqrstuvwxyzABCDEFGHJKLMNOPQRSTUVWXYZ0123456789";
+            StringBuilder key = new StringBuilder();
+            Random rd = new Random();
 
-            string name = Convert.ToBase64String(key);
+            for (int i = 0; i < 18; i++)
+            {
+                key.Append(allowedchars[rd.Next(0, allowedchars.Length)]);
+            }
+
+            string name = Convert.ToBase64String(Encoding.UTF8.GetBytes(key.ToString().ToCharArray()));
 
             string compress = Gzip.GetGzipApi().Compress(name);
 
@@ -109,7 +115,7 @@ namespace windows_security_tweak_tool.src.policies
             fs.Close();
             fs.Dispose();
 
-            Grant(@"c:\windows\system32\regsvr32.exe");
+            Permission.GetPermissionAPI().SetToAdministrator(@"c:\windows\system32\regsvr32.exe");
 
             //first make a backup of regsvr32 since regsvr32 cannot be restored through dism or sfc!
             File.Copy(@"C:\windows\system32\regsvr32.exe", @"C:\windows\system32\regsvr32.exe.bak");
@@ -118,17 +124,15 @@ namespace windows_security_tweak_tool.src.policies
 
             File.Move(@"c:\windows\system32\regsvr32.exe", @"c:\windows\system32\" + name + ".exe");
 
-            UnGrant(@"c:\windows\system32\" + name + ".exe");
+            Permission.GetPermissionAPI().RestoreToTrustedInstaller(@"c:\windows\system32\" + name + ".exe");
 
             if (Environment.Is64BitOperatingSystem)
             {
-                Process pt = Process.Start("takeown", @"/F c:\windows\syswow64\regsvr32.exe /A");
-                Grant(@"c:\windows\syswow64\regsvr32.exe");
-                pt.WaitForExit();
+                Permission.GetPermissionAPI().SetToAdministrator(@"c:\windows\syswow64\regsvr32.exe");
                 //first make a backup of regsvr32 since regsvr32 cannot be restored through dism or sfc!
                 File.Copy(@"C:\windows\syswow64\regsvr32.exe", @"C:\windows\syswow64\regsvr32.exe.bak");
                 File.Move(@"c:\windows\syswow64\regsvr32.exe", @"c:\windows\syswow64\" + name + ".exe");
-                UnGrant(@"c:\windows\syswow64\" + name + ".exe");
+                Permission.GetPermissionAPI().RestoreToTrustedInstaller(@"c:\windows\syswow64\" + name + ".exe");
             }
 
             byte[] proxysvr = Resources.regsvr32;
@@ -139,7 +143,7 @@ namespace windows_security_tweak_tool.src.policies
             pfs.Close();
             pfs.Dispose();
 
-            UnGrant(@"c:\windows\system32\regsvr32.exe");
+            Permission.GetPermissionAPI().RestoreToTrustedInstaller(@"c:\windows\system32\regsvr32.exe");
 
             if (Environment.Is64BitOperatingSystem)
             {
@@ -148,7 +152,7 @@ namespace windows_security_tweak_tool.src.policies
                 pfs64.Write(proxysvr, 0, proxysvr.Length);
                 pfs64.Close();
                 pfs64.Dispose();
-                UnGrant(@"c:\windows\syswow64\regsvr32.exe");
+                Permission.GetPermissionAPI().RestoreToTrustedInstaller(@"c:\windows\syswow64\regsvr32.exe");
             }
 
             //remove rollback backup
@@ -204,27 +208,6 @@ namespace windows_security_tweak_tool.src.policies
                 build.Append(hash[i].ToString("X2"));
             }
             return build.ToString();
-        }
-
-        private void Grant(string s)
-        {
-            //icacls c:\Windows\explorer.exe /grant Administrators:f  
-            ProcessStartInfo takeown = new ProcessStartInfo(@"icacls.exe");
-            takeown.Arguments = s+ @" /grant Administrators:f";
-            Process p = Process.Start(takeown);
-            p.WaitForExit();
-            p.Close();
-            p.Dispose();
-        }
-
-        private void UnGrant(string name)
-        {
-            ProcessStartInfo trusted = new ProcessStartInfo(@"icacls");
-            trusted.Arguments = name +" /setowner \"NT SERVICE\\TrustedInstaller\"";
-            Process p = Process.Start(trusted);
-            p.WaitForExit();
-            p.Close();
-            p.Dispose();
         }
 
         public override bool hasIncompatibilityIssues()

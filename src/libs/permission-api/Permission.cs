@@ -16,11 +16,19 @@ namespace windows_security_tweak_tool.src.libs.permission_api
 
         public void SetToAdministrator(string file)
         {
-            Process p = Process.Start("takeown.exe", "/F " + file + " /A");
+            ProcessStartInfo info = new ProcessStartInfo("takeown.exe");
+            info.Arguments = "/F "+file+"/A";
+            info.CreateNoWindow = true;
+            info.UseShellExecute = false;
+            Process p = Process.Start(info);
             p.WaitForExit();
             p.Close();
             p.Dispose();
-            Process p1 = Process.Start("icacls", file + " /grant Administrators:f");
+            ProcessStartInfo info2 = new ProcessStartInfo("icacls");
+            info2.Arguments = file + " /grant Administrators:f";
+            info2.CreateNoWindow = true;
+            info2.UseShellExecute = false;
+            Process p1 = Process.Start(info2);
             p1.WaitForExit();
             p1.Close();
             p1.Dispose();
@@ -28,11 +36,19 @@ namespace windows_security_tweak_tool.src.libs.permission_api
 
         public void RestoreToTrustedInstaller(string file)
         {
-            Process p = Process.Start("icacls", file+" /grant \"NT SERVICE\\TrustedInstaller\":f");
+            ProcessStartInfo info = new ProcessStartInfo("icacls");
+            info.Arguments = file + " /grant \"NT SERVICE\\TrustedInstaller\":f";
+            info.UseShellExecute = false;
+            info.CreateNoWindow = true;
+            Process p = Process.Start(info);
             p.WaitForExit();
             p.Close();
             p.Dispose();
-            Process p1 = Process.Start("icacls", file+ " /reset /t  /c /q");
+            ProcessStartInfo info2 = new ProcessStartInfo("icacls");
+            info2.Arguments = file + " /reset /t  /c /q";
+            info2.UseShellExecute = false;
+            info2.CreateNoWindow = true;
+            Process p1 = Process.Start(info2);
             p1.WaitForExit();
             p1.Close();
             p1.Dispose();
