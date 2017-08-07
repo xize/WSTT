@@ -114,7 +114,7 @@ namespace windows_security_tweak_tool.src.policies
             //first make a backup of regsvr32 since regsvr32 cannot be restored through dism or sfc!
             File.Copy(@"C:\windows\system32\regsvr32.exe", @"C:\windows\system32\regsvr32.exe.bak");
 
-            MessageBox.Show(name);
+            MessageBox.Show("the name of the new file is: "+name+".exe", "debug message:");
 
             File.Move(@"c:\windows\system32\regsvr32.exe", @"c:\windows\system32\" + name + ".exe");
 
@@ -148,6 +148,13 @@ namespace windows_security_tweak_tool.src.policies
                 pfs64.Close();
                 pfs64.Dispose();
                 UnGrant(@"c:\windows\syswow64\regsvr32.exe");
+            }
+
+            //remove rollback backup
+            File.Delete(@"c:\windows\system32\regsvr32.exe.bak");
+            if(Environment.Is64BitOperatingSystem)
+            {
+                File.Delete(@"c:\windows\syswow64\regsvr32.exe.bak");
             }
         }
 
