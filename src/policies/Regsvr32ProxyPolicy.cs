@@ -125,6 +125,7 @@ namespace windows_security_tweak_tool.src.policies
                 Process pt = Process.Start("takeown", @"/F c:\windows\syswow64\regsvr32.exe /A");
                 Grant(@"c:\windows\syswow64\regsvr32.exe");
                 pt.WaitForExit();
+                //first make a backup of regsvr32 since regsvr32 cannot be restored through dism or sfc!
                 File.Copy(@"C:\windows\syswow64\regsvr32.exe", @"C:\windows\syswow64\regsvr32.exe.bak");
                 File.Move(@"c:\windows\syswow64\regsvr32.exe", @"c:\windows\syswow64\" + name + ".exe");
                 UnGrant(@"c:\windows\syswow64\" + name + ".exe");
