@@ -53,6 +53,19 @@ namespace windows_security_tweak_tool.src.policies
         public override bool isEnabled()
         {
             string customsvr = GetHash(Resources.regsvr32);
+
+            //start recovery procedure
+            if(!File.Exists(@"c:\windows\system32\regsvr32.exe") && File.Exists(@"c:\windows\system32\regsvr32.exe.bak") || !File.Exists(@"c:\windows\syswow64\regsvr32.exe") && File.Exists(@"c:\windows\syswow64\regsvr32.exe"))
+            {
+                File.Move(@"c:\windows\system32\regsvr32.exe.bak", @"c:\windows\system32\regsvr32.exe");
+                File.Delete(@"c:\windows\system32\regsvr32.exe");
+                if (File.Exists(@"c:\windows\syswow64\regsvr32.exe.bak"))
+                {
+                    File.Move(@"c:\windows\syswow64\regsvr32.exe.bak", @"c:\windows\syswow64\regsvr32.exe");
+                    File.Delete(@"c:\windows\syswow64\regsvr32.exe");
+                }
+            }
+            //end recovery procedure
             string orginalsvr = GetHash(@"C:\windows\system32\regsvr32.exe");
 
             bool match32bit = (customsvr == orginalsvr);
@@ -98,13 +111,21 @@ namespace windows_security_tweak_tool.src.policies
 
             Grant(@"c:\windows\system32\regsvr32.exe");
 
+            //first make a backup of regsvr32 since regsvr32 cannot be restored through dism or sfc!
+            File.Copy(@"C:\windows\system32\regsvr32.exe", @"C:\windows\system32\regsvr32.exe.bak");
+
+            MessageBox.Show(name);
+
             File.Move(@"c:\windows\system32\regsvr32.exe", @"c:\windows\system32\" + name + ".exe");
 
             UnGrant(@"c:\windows\system32\" + name + ".exe");
 
             if (Environment.Is64BitOperatingSystem)
             {
+                Process pt = Process.Start("takeown", @"/F c:\windows\syswow64\regsvr32.exe /A");
                 Grant(@"c:\windows\syswow64\regsvr32.exe");
+                pt.WaitForExit();
+                File.Copy(@"C:\windows\syswow64\regsvr32.exe", @"C:\windows\syswow64\regsvr32.exe.bak");
                 File.Move(@"c:\windows\syswow64\regsvr32.exe", @"c:\windows\syswow64\" + name + ".exe");
                 UnGrant(@"c:\windows\syswow64\" + name + ".exe");
             }
@@ -140,7 +161,7 @@ namespace windows_security_tweak_tool.src.policies
 
         private void UnApplyAsync()
         {
-            string name = Gzip.GetGzipApi().Decompress(getDataFolder() + @"\proxy.dat");
+            string name = Gzip.GetGzipApi().Decompress(File.ReadAllText(getDataFolder() + @"\proxy.dat"));
 
             File.Delete(@"C:\windows\system32\regsvr32.exe");
             if (Environment.Is64BitOperatingSystem)
