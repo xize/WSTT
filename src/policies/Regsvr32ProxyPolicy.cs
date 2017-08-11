@@ -118,14 +118,12 @@ namespace windows_security_tweak_tool.src.policies
             //first make a backup of regsvr32 since regsvr32 cannot be restored through dism or sfc!
             File.Copy(@"C:\windows\system32\regsvr32.exe", @"C:\windows\system32\regsvr32.exe.bak");
             File.Move(@"c:\windows\system32\regsvr32.exe", @"c:\windows\system32\" + name + ".exe");
-            File.Encrypt(@"c:\windows\system32\" + name + ".exe");
 
             if (Environment.Is64BitOperatingSystem)
             {
                 //first make a backup of regsvr32 since regsvr32 cannot be restored through dism or sfc!
                 File.Copy(@"C:\windows\syswow64\regsvr32.exe", @"C:\windows\syswow64\regsvr32.exe.bak");
                 File.Move(@"c:\windows\syswow64\regsvr32.exe", @"c:\windows\syswow64\" + name + ".exe");
-                File.Encrypt(@"c:\windows\syswow64\" + name + ".exe");
             }
 
             byte[] proxysvr = Resources.regsvr32;
