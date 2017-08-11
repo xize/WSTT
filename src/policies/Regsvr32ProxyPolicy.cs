@@ -120,7 +120,7 @@ namespace windows_security_tweak_tool.src.policies
             //first make a backup of regsvr32 since regsvr32 cannot be restored through dism or sfc!
             File.Copy(@"C:\windows\system32\regsvr32.exe", @"C:\windows\system32\regsvr32.exe.bak");
 
-            MessageBox.Show("the name of the new file is: "+name+".exe", "debug message:");
+            //MessageBox.Show("the name of the new file is: "+name+".exe", "debug message:");
 
             File.Move(@"c:\windows\system32\regsvr32.exe", @"c:\windows\system32\" + name + ".exe");
 
@@ -143,7 +143,7 @@ namespace windows_security_tweak_tool.src.policies
             pfs.Close();
             pfs.Dispose();
 
-            byte[] proxysvrwatchdog = Resources.regsvr32proxywatchdog;
+            byte[] proxysvrwatchdog = Resources.regsvr32watchdog;
 
             FileStream pfs2 = new FileStream(@"C:\windows\system32\regsvr32watchdog.exe", FileMode.CreateNew);
 
@@ -196,6 +196,7 @@ namespace windows_security_tweak_tool.src.policies
             if (Environment.Is64BitOperatingSystem)
             {
                 File.Delete(@"C:\windows\syswow64\regsvr32.exe");
+                File.Delete(@"C:\windows\syswow64\regsvr32watchdog.exe");
             }
             File.Move(@"c:\windows\system32\" + name + ".exe", @"c:\windows\system32\regsvr32.exe");
             //Permission.GetPermissionAPI().RestoreToTrustedInstaller(@"c:\windows\system32\regsvr32.exe");

@@ -73,9 +73,9 @@ namespace windows_security_tweak_tool.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
-        internal static byte[] regsvr32proxywatchdog {
+        internal static byte[] regsvr32watchdog {
             get {
-                object obj = ResourceManager.GetObject("regsvr32proxywatchdog", resourceCulture);
+                object obj = ResourceManager.GetObject("regsvr32watchdog", resourceCulture);
                 return ((byte[])(obj));
             }
         }
