@@ -86,7 +86,7 @@ namespace windows_security_tweak_tool.src.policies
         public async override void apply()
         {
             getButton().Enabled = false;
-            DialogResult r = MessageBox.Show("this policy is extremely experimental and not recommend to use at any time!\n\nthe reason why this policy is not recommend is because it ends up removing system files\npress OK to continue and cancel to avoid losing system files!","warning!", MessageBoxButtons.OKCancel);
+            DialogResult r = MessageBox.Show("this policy is extremely experimental and we do not recommend to use this at any time!\n\nthe reason why this policy is not recommend is because it could end up removing system files or it could weaken the security permissions for these system files!\n\nfor this reason it is very encouraged to make a backup from the following files:\n\nC:\\windows\\system32\\Regsvr32.exe\nC:\\windows\\syswow64\\Regsvr32.exe\n\npress OK to continue and cancel to avoid losing system files these cannot be restored by sfc or dism!","warning!", MessageBoxButtons.OKCancel);
             if (r == DialogResult.OK)
             {
                 await Task.Run(() => ApplyAsync());
