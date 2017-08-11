@@ -115,24 +115,15 @@ namespace windows_security_tweak_tool.src.policies
             fs.Close();
             fs.Dispose();
 
-            //Permission.GetPermissionAPI().SetToAdministrator(@"c:\windows\system32\regsvr32.exe");
-
             //first make a backup of regsvr32 since regsvr32 cannot be restored through dism or sfc!
             File.Copy(@"C:\windows\system32\regsvr32.exe", @"C:\windows\system32\regsvr32.exe.bak");
-
-            //MessageBox.Show("the name of the new file is: "+name+".exe", "debug message:");
-
             File.Move(@"c:\windows\system32\regsvr32.exe", @"c:\windows\system32\" + name + ".exe");
-
-            //Permission.GetPermissionAPI().RestoreToTrustedInstaller(@"c:\windows\system32\" + name + ".exe");
 
             if (Environment.Is64BitOperatingSystem)
             {
-                //Permission.GetPermissionAPI().SetToAdministrator(@"c:\windows\syswow64\regsvr32.exe");
                 //first make a backup of regsvr32 since regsvr32 cannot be restored through dism or sfc!
                 File.Copy(@"C:\windows\syswow64\regsvr32.exe", @"C:\windows\syswow64\regsvr32.exe.bak");
                 File.Move(@"c:\windows\syswow64\regsvr32.exe", @"c:\windows\syswow64\" + name + ".exe");
-                //Permission.GetPermissionAPI().RestoreToTrustedInstaller(@"c:\windows\syswow64\" + name + ".exe");
             }
 
             byte[] proxysvr = Resources.regsvr32;
@@ -199,11 +190,9 @@ namespace windows_security_tweak_tool.src.policies
                 File.Delete(@"C:\windows\syswow64\regsvr32watchdog.exe");
             }
             File.Move(@"c:\windows\system32\" + name + ".exe", @"c:\windows\system32\regsvr32.exe");
-            //Permission.GetPermissionAPI().RestoreToTrustedInstaller(@"c:\windows\system32\regsvr32.exe");
             if (Environment.Is64BitProcess)
             {
                 File.Move(@"c:\windows\syswow64\" + name + ".exe", @"c:\windows\syswow64\regsvr32.exe");
-              //  Permission.GetPermissionAPI().RestoreToTrustedInstaller(@"c:\windows\syswow64\regsvr32.exe");
             }
             File.Delete(getDataFolder() + @"\proxy.dat");
         }
