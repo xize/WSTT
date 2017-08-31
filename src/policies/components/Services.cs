@@ -88,9 +88,9 @@ namespace windows_security_tweak_tool.src.policies.components
 
             ServiceController controller = ServiceController.GetServices().FirstOrDefault(serviceController => serviceController.ServiceName == service);
 
-            controller.Stop();
             try
             {
+                controller.Stop();
                 controller.WaitForStatus(ServiceControllerStatus.Stopped, new TimeSpan(timeout));
             } catch(System.ServiceProcess.TimeoutException)
             {
