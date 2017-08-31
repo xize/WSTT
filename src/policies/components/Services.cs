@@ -56,6 +56,7 @@ namespace windows_security_tweak_tool.src.policies.components
                 isStarted = true;
             }
 
+            //make it null so it is marked for GC when it wasn't null already, Dispose method will give a exception because it was already null.
             controller = null;
 
             return isStarted;
@@ -205,6 +206,7 @@ namespace windows_security_tweak_tool.src.policies.components
                 serviceb = true;
             }
 
+            //make it null so it is marked for GC when it wasn't null already, Dispose method will give a exception because it was already null.
             c = null;
 
             return serviceb;
