@@ -48,7 +48,17 @@ namespace windows_security_tweak_tool.src.policies.components
             }
             ServiceController controller = ServiceController.GetServices().FirstOrDefault(serviceController => serviceController.ServiceName == service);
             controller.Refresh();
-            return controller.Status == ServiceControllerStatus.Running;
+
+            bool isStarted = false;
+
+            if(controller.Status == ServiceControllerStatus.Running)
+            {
+                isStarted = true;
+            }
+
+            controller = null;
+
+            return isStarted;
         }
 
         /**
@@ -72,6 +82,8 @@ namespace windows_security_tweak_tool.src.policies.components
                 MessageBox.Show("the service " + service + " could not be started timeout!, please try again.", "error!");
                 p.getButton().Enabled = true;
             }
+
+            controller.Dispose();
         }
 
         /**
@@ -97,6 +109,8 @@ namespace windows_security_tweak_tool.src.policies.components
                 MessageBox.Show("the service " + service + " could not be stopped timeout!, please try again.", "error!");
                 p.getButton().Enabled = true;
             }
+
+            controller.Dispose();
         }
 
         /**
@@ -184,7 +198,16 @@ namespace windows_security_tweak_tool.src.policies.components
         {
             ServiceController c = ServiceController.GetServices().FirstOrDefault(serviceController => serviceController.ServiceName == service);
 
-            return c != null;
+            bool serviceb = false;
+
+            if(c != null)
+            {
+                serviceb = true;
+            }
+
+            c = null;
+
+            return serviceb;
         }
 
         public void executeCMD(string arguments, bool ghost)
