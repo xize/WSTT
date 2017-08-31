@@ -17,39 +17,39 @@ namespace windows_security_tweak_tool.src.optionalpolicies
     class KeepassAdminPolicy : OptionalPolicy
     {
 
-        public override string getName()
+        public override string GetName()
         {
-            return getType().getName();
+            return GetOptionalPolicyType().GetName();
         }
 
-        public override string getDescription()
+        public override string GetDescription()
         {
             return "downloads Keepass and modifies Keepass so that it runs as administrator and uses a different SID(Security Identifier) than the default user.\nthis will make it harder to get unauthorized memory access to KeePass when it is open.";
         }
 
-        public override OptionalPolicyType getType()
+        public override OptionalPolicyType GetOptionalPolicyType()
         {
             return OptionalPolicyType.KEEPASS_ADMIN_POLICY;
         }
 
-        public override bool isEnabled()
+        public override bool IsEnabled()
         {
             return File.Exists(@"C:\Program Files (x86)\KeePass Password Safe 2\KeePass.exe"); //TODO: make it compatible with more harddrives or force it to be installed on the c: drive.
         }
 
-        public override bool isCertificateDepended()
+        public override bool IsCertificateDepended()
         {
             return true;
         }
 
-        public override Certificate getCertificate()
+        public override Certificate GetCertificate()
         {
             return CertProvider.KEEPASS.getCertificate();
         }
 
-        public override void apply()
+        public override void Apply()
         {
-            getButton().Enabled = false;
+            GetButton().Enabled = false;
 
             MessageBox.Show("please make sure you use the default installation location!", "important");
 
@@ -70,7 +70,7 @@ namespace windows_security_tweak_tool.src.optionalpolicies
 
                 c.DownloadFile(new Uri(url), Config.GetConfig().GetDataFolder() + @"\wstt-downloaded\KeePass.exe");
                 X509Certificate cert = X509Certificate.CreateFromSignedFile(Config.GetConfig().GetDataFolder() + @"\wstt-downloaded\KeePass.exe");
-                if(cert.GetCertHashString() == getCertificate().getHash())
+                if(cert.GetCertHashString() == GetCertificate().getHash())
                 {
                     Process p = Process.Start(Config.GetConfig().GetDataFolder() + @"\wstt-downloaded\KeePass.exe");
                     p.WaitForExit();
@@ -91,19 +91,19 @@ namespace windows_security_tweak_tool.src.optionalpolicies
                 {
                     File.Delete(Config.GetConfig().GetDataFolder() + @"\wstt-downloaded\KeePass.exe");
                     MessageBox.Show("Failed to download keepass the certificate did not match!", "invalid certificate!");
-                    getButton().Enabled = true;
+                    GetButton().Enabled = true;
                     return;
                 }
             }
 
-            getButton().Enabled = true;
-            getButton().Text = "undo";
-            getProgressbar().Value = 100;
+            GetButton().Enabled = true;
+            GetButton().Text = "undo";
+            GetProgressbar().Value = 100;
         }
 
-        public override void unapply()
+        public override void Unapply()
         {
-            getButton().Enabled = false;
+            GetButton().Enabled = false;
             Process p = Process.Start(@"C:\Program Files (x86)\KeePass Password Safe 2\unins000.exe");
             p.WaitForExit();
             p.Dispose();
@@ -112,17 +112,17 @@ namespace windows_security_tweak_tool.src.optionalpolicies
             key.Close();
             key.Dispose();
 
-            getButton().Enabled = true;
-            getButton().Text = "apply";
-            getProgressbar().Value = 0;
+            GetButton().Enabled = true;
+            GetButton().Text = "apply";
+            GetProgressbar().Value = 0;
         }
 
-        public override Button getButton()
+        public override Button GetButton()
         {
             return gui.keepassbtn;
         }
 
-        public override ProgressBar getProgressbar()
+        public override ProgressBar GetProgressbar()
         {
             return gui.keepassprogress;
         }

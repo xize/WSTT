@@ -45,19 +45,19 @@ namespace windows_security_tweak_tool.src.optionalpolicies
             data.Add(this);
         }
 
-        public string getName()
+        public string GetName()
         {
             return this.name;
         }
 
-        public OptionalPolicy getPolicy(OptionalWindow wind)
+        public OptionalPolicy GetPolicy(OptionalWindow wind)
         {
-            this.pol.setGui(wind);
+            this.pol.SetGui(wind);
             return this.pol;
         }
 
 
-        public static OptionalPolicyType[] values()
+        public static OptionalPolicyType[] Values()
         {
             return data.ToArray();
         }

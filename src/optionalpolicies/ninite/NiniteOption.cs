@@ -58,26 +58,26 @@ namespace windows_security_tweak_tool.src.ninite
             data.Add(this);
         }
 
-        public string getName()
+        public string GetName()
         {
             return name;
         }
 
-        public CheckBox getCheckbox()
+        public CheckBox GetCheckbox()
         {
             return box;
         }
 
-        public bool isEnabled()
+        public bool IsEnabled()
         {
             return box.Checked;
         }
 
-        public static NiniteOption valueOf(string name)
+        public static NiniteOption ValueOf(string name)
         {
-            foreach(NiniteOption option in values())
+            foreach(NiniteOption option in Values())
             {
-                if(name.ToLower().StartsWith(option.getName().ToLower()))
+                if(name.ToLower().StartsWith(option.GetName().ToLower()))
                 {
                     return option;
                 }
@@ -85,7 +85,7 @@ namespace windows_security_tweak_tool.src.ninite
             throw new ArgumentNullException("cannot find "+name.ToLower()+" as option");
         }
 
-        public static NiniteOption[] values()
+        public static NiniteOption[] Values()
         {
             return data.ToArray();
         }

@@ -28,31 +28,31 @@ namespace windows_security_tweak_tool.src.optionalpolicies
             new ChromeAddon("wheretodeleteanaccount", "hfpofkfbabpbbmchmiekfnlcgaedbgcf"),
         }.ToList();
 
-        public override string getName()
+        public override string GetName()
         {
-            return getType().getName();
+            return GetOptionalPolicyType().GetName();
         }
 
-        public override string getDescription()
+        public override string GetDescription()
         {
             return "installs safety addons into google chrome!";
         }
 
-        public override OptionalPolicyType getType()
+        public override OptionalPolicyType GetOptionalPolicyType()
         {
             return OptionalPolicyType.CHROME_ADDON_POLICY;
         }
 
-        public override void apply()
+        public override void Apply()
         {
-            getButton().Enabled = false;
+            GetButton().Enabled = false;
 
             foreach(ChromeAddon addon in addons)
             {
-               addon.download();
+               addon.Download();
             }
 
-            cleanupProcesses();
+            CleanupProcesses();
 
             Process p = Process.Start("explorer.exe", Config.GetConfig().GetDataFolder() + @"\wstt-downloaded\");
             DialogResult r = MessageBox.Show("please start chrome and paste this url:\n" + "chrome://extensions/" + "\nthen select a single file in this folder and drag it into the page!\n\npress OK when you are done!", "please read!");
@@ -68,13 +68,13 @@ namespace windows_security_tweak_tool.src.optionalpolicies
                 {
                     f.Delete();
                 }
-                cleanupProcesses();
-                getButton().Enabled = true;
-                getProgressbar().Value = 100;
+                CleanupProcesses();
+                GetButton().Enabled = true;
+                GetProgressbar().Value = 100;
             }
         }
 
-        private void cleanupProcesses()
+        private void CleanupProcesses()
         {
 
             if (Process.GetProcessesByName("explorer").Length > 0)
@@ -86,17 +86,17 @@ namespace windows_security_tweak_tool.src.optionalpolicies
             }
         }
 
-        public override void unapply()
+        public override void Unapply()
         {
             throw new NotImplementedException();
         }
 
-        public override Button getButton()
+        public override Button GetButton()
         {
             return gui.chromeaddonbtn;
         }
 
-        public override ProgressBar getProgressbar()
+        public override ProgressBar GetProgressbar()
         {
             return gui.chromeaddonprogress;
         }
@@ -115,17 +115,17 @@ namespace windows_security_tweak_tool.src.optionalpolicies
             this.id = id;
         }
 
-        public string getName()
+        public string GetName()
         {
             return this.name;
         }
 
-        public string getID()
+        public string GetID()
         {
             return this.id;
         }
 
-        public string download()
+        public string Download()
         {
             WebClient client = new WebClient();
             if(!Directory.Exists(Config.GetConfig().GetDataFolder()+@"\wstt-downloaded"))

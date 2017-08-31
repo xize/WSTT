@@ -32,7 +32,7 @@ namespace windows_security_tweak_tool.src.optionalpolicies
 
         protected OptionalWindow gui;
 
-        public void setGui(OptionalWindow gui)
+        public void SetGui(OptionalWindow gui)
         {
             if(this.gui == null)
             {
@@ -40,43 +40,43 @@ namespace windows_security_tweak_tool.src.optionalpolicies
             }
         }
 
-        public abstract string getName();
+        public abstract string GetName();
 
-        public abstract string getDescription();
+        public abstract string GetDescription();
 
-        public abstract OptionalPolicyType getType();
+        public abstract OptionalPolicyType GetOptionalPolicyType();
 
-        public abstract void apply();
+        public abstract void Apply();
 
-        public abstract void unapply();
+        public abstract void Unapply();
 
-        public abstract Button getButton();
+        public abstract Button GetButton();
 
-        public virtual bool isEnabled()
+        public virtual bool IsEnabled()
         {
             return false;
         }
 
-        public virtual bool isCertificateDepended()
+        public virtual bool IsCertificateDepended()
         {
             return false;
         }
 
-        public virtual Certificate getCertificate()
+        public virtual Certificate GetCertificate()
         {
             return null;
         }
 
-        public bool hasButton()
+        public bool HasButton()
         {
-            return ((getButton() != null) ? true : false);
+            return ((GetButton() != null) ? true : false);
         }
 
-        public abstract ProgressBar getProgressbar();
+        public abstract ProgressBar GetProgressbar();
 
-        public bool hasProgressbar()
+        public bool HasProgressbar()
         {
-            return ((getProgressbar() != null) ? true : false);
+            return ((GetProgressbar() != null) ? true : false);
         }
 
     }

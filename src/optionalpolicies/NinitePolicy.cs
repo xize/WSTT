@@ -30,54 +30,54 @@ namespace windows_security_tweak_tool.src.optionalpolicies
     class NinitePolicy : OptionalPolicy
     {
 
-        public override string getName()
+        public override string GetName()
         {
-            return getType().getName();
+            return GetOptionalPolicyType().GetName();
         }
 
-        public override string getDescription()
+        public override string GetDescription()
         {
             return "install applications by using third party installer called ninite.";
         }
 
-        public override OptionalPolicyType getType()
+        public override OptionalPolicyType GetOptionalPolicyType()
         {
             return OptionalPolicyType.NINITE;
         }
 
-        public override bool isCertificateDepended()
+        public override bool IsCertificateDepended()
         {
             return true;
         }
 
-        public override Certificate getCertificate()
+        public override Certificate GetCertificate()
         {
             return CertProvider.NINITE.getCertificate();
         }
 
-        public override void apply()
+        public override void Apply()
         {
-            foreach(NiniteOption option in NiniteOption.values())
+            foreach(NiniteOption option in NiniteOption.Values())
             {
-                if(option.isEnabled())
+                if(option.IsEnabled())
                 {
                     this.Add(option);
                 }
             }
-            this.downloadNiniteInstaller(this.getNiniteURL());
+            this.DownloadNiniteInstaller(this.GetNiniteURL());
         }
 
-        public override void unapply()
+        public override void Unapply()
         {
             //not supported   
         }
 
-        public override Button getButton()
+        public override Button GetButton()
         {
             return gui.niniteinstallbtn;
         }
 
-        public override ProgressBar getProgressbar()
+        public override ProgressBar GetProgressbar()
         {
             return null;
         }

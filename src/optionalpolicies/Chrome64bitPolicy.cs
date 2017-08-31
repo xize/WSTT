@@ -16,39 +16,39 @@ namespace windows_security_tweak_tool.src.optionalpolicies
     class Chrome64bitPolicy : OptionalPolicy
     {
 
-        public override string getName()
+        public override string GetName()
         {
-            return getType().getName();
+            return GetOptionalPolicyType().GetName();
         }
 
-        public override string getDescription()
+        public override string GetDescription()
         {
             return "installs a more hardened version of google chrome";
         }
 
-        public override OptionalPolicyType getType()
+        public override OptionalPolicyType GetOptionalPolicyType()
         {
             return OptionalPolicyType.CHROME_64BIT_POLICY;
         }
 
-        public override bool isEnabled()
+        public override bool IsEnabled()
         {
            return File.Exists(@"C:\Program Files (x86)\Google\Chrome\Application\Chrome.exe");
         }
 
-        public override bool isCertificateDepended()
+        public override bool IsCertificateDepended()
         {
             return true;
         }
 
-        public override Certificate getCertificate()
+        public override Certificate GetCertificate()
         {
             return CertProvider.GOOGLE_CHROME.getCertificate();
         }
 
-        public override void apply()
+        public override void Apply()
         {
-            getButton().Enabled = false;
+            GetButton().Enabled = false;
             if(!Directory.Exists(Config.GetConfig().GetDataFolder() + @"\wstt-downloaded"))
             {
                 Directory.CreateDirectory(Config.GetConfig().GetDataFolder() + @"\wstt-downloaded");
@@ -64,15 +64,15 @@ namespace windows_security_tweak_tool.src.optionalpolicies
             archive.Dispose();
 
             X509Certificate cert = X509Certificate.CreateFromSignedFile(Config.GetConfig().GetDataFolder() + @"\wstt-downloaded\chrome\Installers\GoogleChromeStandaloneEnterprise64.msi");
-            if(cert.GetCertHashString() == getCertificate().getHash())
+            if(cert.GetCertHashString() == GetCertificate().getHash())
             {
                 Process p = Process.Start(Config.GetConfig().GetDataFolder() + @"\wstt-downloaded\chrome\Installers\GoogleChromeStandaloneEnterprise64.msi");
                 p.WaitForExit();
                 p.Dispose();
                 if (File.Exists(@"C:\Program Files (x86)\Google\Chrome\Application\Chrome.exe"))
                 {
-                    getButton().Text = "undo";
-                    getProgressbar().Value = 100;
+                    GetButton().Text = "undo";
+                    GetProgressbar().Value = 100;
                 }
                 Directory.Delete(Config.GetConfig().GetDataFolder() + @"\wstt-downloaded\chrome", true);
                 File.Delete(Config.GetConfig().GetDataFolder() + @"\wstt-downloaded\chrome.zip");
@@ -82,12 +82,12 @@ namespace windows_security_tweak_tool.src.optionalpolicies
                File.Delete(Config.GetConfig().GetDataFolder() + @"\wstt-downloaded\chrome.zip");
                 MessageBox.Show("The signed certificate did not match with the downloaded file!", "Invalid certificate or revoked!");
             }
-            getButton().Enabled = true;
+            GetButton().Enabled = true;
         }
 
-        public override void unapply()
+        public override void Unapply()
         {
-            getButton().Enabled = false;
+            GetButton().Enabled = false;
             ProcessStartInfo info = new ProcessStartInfo("wmic.exe");
             info.CreateNoWindow = true;
             info.UseShellExecute = false;
@@ -95,17 +95,17 @@ namespace windows_security_tweak_tool.src.optionalpolicies
             Process p = Process.Start(info);
             p.WaitForExit();
             p.Dispose();
-            getButton().Text = "apply";
-            getProgressbar().Value = 0;
-            getButton().Enabled = true;
+            GetButton().Text = "apply";
+            GetProgressbar().Value = 0;
+            GetButton().Enabled = true;
         }
 
-        public override Button getButton()
+        public override Button GetButton()
         {
             return gui.chromebtn;
         }
 
-        public override ProgressBar getProgressbar()
+        public override ProgressBar GetProgressbar()
         {
             return gui.chromeprogress;
         }

@@ -37,24 +37,24 @@ namespace windows_security_tweak_tool.src
             //initialize event since visual studio keeps reseting this...
             this.FormClosing += onCloseOptionalWindow;
 
-            foreach (OptionalPolicyType t in OptionalPolicyType.values())
+            foreach (OptionalPolicyType t in OptionalPolicyType.Values())
             {
-                OptionalPolicy p = t.getPolicy(this);
+                OptionalPolicy p = t.GetPolicy(this);
 
-                if (p.isEnabled())
+                if (p.IsEnabled())
                 {
-                    p.getProgressbar().Value = 100;
-                    p.getButton().Text = "undo";
-                    toolTip1.SetToolTip(p.getButton(), p.getDescription());
-                    toolTip1.SetToolTip(p.getProgressbar(), p.getDescription());
+                    p.GetProgressbar().Value = 100;
+                    p.GetButton().Text = "undo";
+                    toolTip1.SetToolTip(p.GetButton(), p.GetDescription());
+                    toolTip1.SetToolTip(p.GetProgressbar(), p.GetDescription());
                 } else
                 {
-                    if (p.isCertificateDepended())
+                    if (p.IsCertificateDepended())
                     {
-                        if (p.getCertificate().isExpired())
+                        if (p.GetCertificate().isExpired())
                         {
-                            p.getButton().Text = "Disabled, expired certificate please update WSTT!";
-                            p.getButton().Enabled = false;
+                            p.GetButton().Text = "Disabled, expired certificate please update WSTT!";
+                            p.GetButton().Enabled = false;
                         }
                     }
                 }
@@ -644,17 +644,17 @@ namespace windows_security_tweak_tool.src
         {
             if (niniteselectallbtn.Text == "Select all")
             {
-                foreach (NiniteOption option in NiniteOption.values())
+                foreach (NiniteOption option in NiniteOption.Values())
                 {
-                    option.getCheckbox().Checked = true;
+                    option.GetCheckbox().Checked = true;
                 }
                 niniteselectallbtn.Text = "Deselect";
             }
             else
             {
-                foreach (NiniteOption option in NiniteOption.values())
+                foreach (NiniteOption option in NiniteOption.Values())
                 {
-                    option.getCheckbox().Checked = false;
+                    option.GetCheckbox().Checked = false;
                 }
                 niniteselectallbtn.Text = "Select all";
             }
@@ -663,7 +663,7 @@ namespace windows_security_tweak_tool.src
         private void niniteinstallbtn_Click(object sender, EventArgs e)
         {
             NinitePolicy policy = new NinitePolicy();
-            policy.apply();
+            policy.Apply();
 
             /*
             NiniteCreator creator = new NiniteCreator();
@@ -681,35 +681,35 @@ namespace windows_security_tweak_tool.src
 
         private void keepassbtn_Click(object sender, EventArgs e)
         {
-            OptionalPolicy p = OptionalPolicyType.KEEPASS_ADMIN_POLICY.getPolicy(this);
+            OptionalPolicy p = OptionalPolicyType.KEEPASS_ADMIN_POLICY.GetPolicy(this);
 
-            if(p.isEnabled())
+            if(p.IsEnabled())
             {
-                p.unapply();
+                p.Unapply();
             } else
             {
-                p.apply();
+                p.Apply();
             }
         }
 
         private void chromebtn_Click(object sender, EventArgs e)
         {
-            OptionalPolicy p = OptionalPolicyType.CHROME_64BIT_POLICY.getPolicy(this);
+            OptionalPolicy p = OptionalPolicyType.CHROME_64BIT_POLICY.GetPolicy(this);
 
-            if(p.isEnabled())
+            if(p.IsEnabled())
             {
-                p.unapply();
+                p.Unapply();
             } else
             {
-                p.apply();
+                p.Apply();
             }
         }
 
         private void HPCheckbtn_Click(object sender, EventArgs e)
         {
-            OptionalPolicy p = OptionalPolicyType.HP_KEYLOGGER_POLICY.getPolicy(this);
+            OptionalPolicy p = OptionalPolicyType.HP_KEYLOGGER_POLICY.GetPolicy(this);
 
-            p.apply();
+            p.Apply();
 
         }
 
@@ -719,8 +719,8 @@ namespace windows_security_tweak_tool.src
 
         private void chromeaddonbtn_Click(object sender, EventArgs e)
         {
-            OptionalPolicy p = OptionalPolicyType.CHROME_ADDON_POLICY.getPolicy(this);
-            p.apply();
+            OptionalPolicy p = OptionalPolicyType.CHROME_ADDON_POLICY.GetPolicy(this);
+            p.Apply();
         }
     }
 }
