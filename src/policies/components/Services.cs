@@ -40,9 +40,9 @@ namespace windows_security_tweak_tool.src.policies.components
         *
         * <returns>bool</returns>
         **/
-        public bool isServiceStarted(string service)
+        public bool IsServiceStarted(string service)
         {
-            if(!doesServiceExist(service))
+            if(!DoesServiceExist(service))
             {
                 return false;
             }
@@ -67,9 +67,9 @@ namespace windows_security_tweak_tool.src.policies.components
         *      <para>starts the service by using the name</para>
         * </summary>
         **/
-        public void startService(string service, SecurityPolicy p)
+        public void StartService(string service, SecurityPolicy p)
         {
-            if (!doesServiceExist(service))
+            if (!DoesServiceExist(service))
             {
                 return;
             }
@@ -92,9 +92,9 @@ namespace windows_security_tweak_tool.src.policies.components
         *      <para>starts the service by using the name</para>
         * </summary>
         **/
-        public void stopService(string service, SecurityPolicy p)
+        public void StopService(string service, SecurityPolicy p)
         {
-            if (!doesServiceExist(service))
+            if (!DoesServiceExist(service))
             {
                 return;
             }
@@ -119,9 +119,9 @@ namespace windows_security_tweak_tool.src.policies.components
         *      <para>sets the service type of the called type</para>
         * </summary>
         **/
-        public void setServiceType(string service, ServiceType type)
+        public void SetServiceType(string service, ServiceType type)
         {
-            if (!doesServiceExist(service))
+            if (!DoesServiceExist(service))
             {
                 return;
             }
@@ -146,7 +146,7 @@ namespace windows_security_tweak_tool.src.policies.components
                     break;
             }
 
-            this.executeCMD("sc config " + service + " start= " + stype, true);
+            this.ExecuteCMD("sc config " + service + " start= " + stype, true);
         }
 
         /**
@@ -167,9 +167,9 @@ namespace windows_security_tweak_tool.src.policies.components
         *      <para>returns the service type</para>
         * </summary>
         **/
-        public ServiceType getServiceStatus(string service)
+        public ServiceType GetServiceStatus(string service)
         {
-            if (!doesServiceExist(service))
+            if (!DoesServiceExist(service))
             {
                 throw new Exception("service "+service+" does not exist, and cannot be called in getServiceStatus()");
             }
@@ -195,7 +195,7 @@ namespace windows_security_tweak_tool.src.policies.components
         *      <para>returns true if the service exist otherwise false</para>
         * </summary>
         **/
-        public bool doesServiceExist(string service)
+        public bool DoesServiceExist(string service)
         {
             ServiceController c = ServiceController.GetServices().FirstOrDefault(serviceController => serviceController.ServiceName == service);
 
@@ -212,7 +212,7 @@ namespace windows_security_tweak_tool.src.policies.components
             return serviceb;
         }
 
-        public void executeCMD(string arguments, bool ghost)
+        public void ExecuteCMD(string arguments, bool ghost)
         {
             ProcessStartInfo info = new ProcessStartInfo("cmd.exe");
             info.Arguments = "/c "+arguments;

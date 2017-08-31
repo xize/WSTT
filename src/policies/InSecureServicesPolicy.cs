@@ -104,11 +104,11 @@ namespace windows_security_tweak_tool.src.policies
 
             foreach (KeyValuePair<string, ServiceType> service in services)
             {
-                if(this.isServiceStarted(service.Key))
+                if(this.IsServiceStarted(service.Key))
                 {
-                        this.stopService(service.Key, this);
+                        this.StopService(service.Key, this);
                 }
-                    this.setServiceType(service.Key, ServiceType.DISABLED);
+                    this.SetServiceType(service.Key, ServiceType.DISABLED);
             }
             Config.getConfig().put("insecure-services", true);
             setGuiEnabled(this);
@@ -121,7 +121,7 @@ namespace windows_security_tweak_tool.src.policies
 
             foreach (KeyValuePair<string, ServiceType> service in services)
             {
-                this.setServiceType(service.Key, service.Value);
+                this.SetServiceType(service.Key, service.Value);
             }
             Config.getConfig().put("insecure-services", false);
 

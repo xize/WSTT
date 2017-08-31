@@ -31,7 +31,7 @@ namespace windows_security_tweak_tool.src.policies
 
         public override void apply()
         {
-            this.executeCMD("gpupdate.exe /force", true);
+            this.ExecuteCMD("gpupdate.exe /force", true);
         }
 
         public override Button getButton()

@@ -44,7 +44,7 @@ namespace windows_security_tweak_tool.src.policies
 
         public override bool isEnabled()
         {
-            if(!isServiceStarted("LanmanServer"))
+            if(!IsServiceStarted("LanmanServer"))
             {
                 return true;
             }
@@ -54,8 +54,8 @@ namespace windows_security_tweak_tool.src.policies
         public override void apply()
         {
             getButton().Enabled = false;
-            this.stopService("LanmanServer", this);
-            this.setServiceType("LanmanServer", ServiceType.MANUAL);
+            this.StopService("LanmanServer", this);
+            this.SetServiceType("LanmanServer", ServiceType.MANUAL);
             this.setGuiEnabled(this);
             getButton().Enabled = true;
         }
@@ -63,8 +63,8 @@ namespace windows_security_tweak_tool.src.policies
         public override void unapply()
         {
             getButton().Enabled = false;
-            this.setServiceType("LanmanServer", ServiceType.AUTOMATIC);
-            this.startService("LanmanServer", this);
+            this.SetServiceType("LanmanServer", ServiceType.AUTOMATIC);
+            this.StartService("LanmanServer", this);
             this.setGuiDisabled(this);
             getButton().Enabled = true;
         }

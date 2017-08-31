@@ -58,7 +58,7 @@ namespace windows_security_tweak_tool.src.policies
 
         public override bool isEnabled()
         {
-            if(getServiceStatus("RemoteRegistry") == ServiceType.DISABLED)
+            if(GetServiceStatus("RemoteRegistry") == ServiceType.DISABLED)
             {
                 return true;
             }
@@ -68,8 +68,8 @@ namespace windows_security_tweak_tool.src.policies
         public override void apply()
         {
             getButton().Enabled = false;
-            stopService("RemoteRegistry", this);
-            setServiceType("RemoteRegistry", ServiceType.DISABLED);
+            StopService("RemoteRegistry", this);
+            SetServiceType("RemoteRegistry", ServiceType.DISABLED);
             setGuiEnabled(this);
             getButton().Enabled = true;
         }
@@ -77,8 +77,8 @@ namespace windows_security_tweak_tool.src.policies
         public override void unapply()
         {
             getButton().Enabled = false;
-            setServiceType("RemoteRegistry", ServiceType.AUTOMATIC);
-            startService("RemoteRegistry", this);
+            SetServiceType("RemoteRegistry", ServiceType.AUTOMATIC);
+            StartService("RemoteRegistry", this);
             setGuiDisabled(this);
             getButton().Enabled = true;
         }

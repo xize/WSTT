@@ -99,8 +99,8 @@ namespace windows_security_tweak_tool.src.policies
 
             foreach (string extension in extensions)
             {
-                executeCMD("assoc " + extension+" = "+extension.ToUpper()+"File", true);
-                executeCMD("ftype " + extension.ToUpper() + @"File=C:\windows\system32\notepad.exe", true);
+                ExecuteCMD("assoc " + extension+" = "+extension.ToUpper()+"File", true);
+                ExecuteCMD("ftype " + extension.ToUpper() + @"File=C:\windows\system32\notepad.exe", true);
                 Console.WriteLine("extension: " + extension + " has been defaulted to: " + @"C:\windows\system32\notepad.exe");
             }
 
@@ -118,7 +118,7 @@ namespace windows_security_tweak_tool.src.policies
 
             foreach (string extension in extensions)
             {
-                executeCMD("assoc " + extension + " = " + extension.ToUpper() + "File", true);
+                ExecuteCMD("assoc " + extension + " = " + extension.ToUpper() + "File", true);
 
                 string argument = "";
 
@@ -187,7 +187,7 @@ namespace windows_security_tweak_tool.src.policies
                         break;
                 }
 
-                executeCMD(argument, true);
+                ExecuteCMD(argument, true);
             }
             Config.getConfig().put("renamed", false);
             getButton().Enabled = true;
