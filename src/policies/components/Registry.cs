@@ -35,7 +35,7 @@ namespace windows_security_tweak_tool.src.policies.components
         * </summary>
         * <returns>RegistryKey</returns>
         **/
-        public RegistryKey getRegistry(string path, REG reg)
+        public RegistryKey GetRegistry(string path, REG reg)
         {
             if (path == null)
             {

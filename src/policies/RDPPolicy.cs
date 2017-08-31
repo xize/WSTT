@@ -46,7 +46,7 @@ namespace windows_security_tweak_tool.src.policies
 
         public override bool isEnabled()
         {
-            RegistryKey key = getRegistry(@"SYSTEM\CurrentControlSet\Control\Remote Assistance", REG.HKLM);
+            RegistryKey key = GetRegistry(@"SYSTEM\CurrentControlSet\Control\Remote Assistance", REG.HKLM);
             object denyconnections = key.GetValue("fAllowToGetHelp");
             bool state = (int)denyconnections != 0;
             if(state)
@@ -61,7 +61,7 @@ namespace windows_security_tweak_tool.src.policies
         public override void apply()
         {
             getButton().Enabled = false;
-            RegistryKey key = getRegistry(@"SYSTEM\CurrentControlSet\Control\Remote Assistance", REG.HKLM);
+            RegistryKey key = GetRegistry(@"SYSTEM\CurrentControlSet\Control\Remote Assistance", REG.HKLM);
             key.SetValue("fAllowToGetHelp", 1);
             key.Close();
             setGuiEnabled(this);
@@ -71,7 +71,7 @@ namespace windows_security_tweak_tool.src.policies
         public override void unapply()
         {
             getButton().Enabled = false;
-            RegistryKey key = getRegistry(@"SYSTEM\CurrentControlSet\Control\Remote Assistance", REG.HKLM);
+            RegistryKey key = GetRegistry(@"SYSTEM\CurrentControlSet\Control\Remote Assistance", REG.HKLM);
             key.SetValue("fAllowToGetHelp", 0);
             key.Close();
             setGuiDisabled(this);

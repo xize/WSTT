@@ -48,7 +48,7 @@ namespace windows_security_tweak_tool.src.policies
         public override bool isEnabled()
         {
 
-            RegistryKey key = getRegistry(@"SOFTWARE\Microsoft\Windows Script Host\Settings", REG.HKLM);
+            RegistryKey key = GetRegistry(@"SOFTWARE\Microsoft\Windows Script Host\Settings", REG.HKLM);
 
             if(key.GetValue("Enabled") != null)
             {
@@ -67,7 +67,7 @@ namespace windows_security_tweak_tool.src.policies
         public override void apply()
         {
             getButton().Enabled = false;
-            RegistryKey key = getRegistry(@"SOFTWARE\Microsoft\Windows Script Host\Settings", REG.HKLM);
+            RegistryKey key = GetRegistry(@"SOFTWARE\Microsoft\Windows Script Host\Settings", REG.HKLM);
             key.SetValue("Enabled", 0);
             key.Close();
             setGuiEnabled(this);
@@ -77,7 +77,7 @@ namespace windows_security_tweak_tool.src.policies
         public override void unapply()
         {
             getButton().Enabled = false;
-            RegistryKey key = getRegistry(@"SOFTWARE\Microsoft\Windows Script Host\Settings", REG.HKLM);
+            RegistryKey key = GetRegistry(@"SOFTWARE\Microsoft\Windows Script Host\Settings", REG.HKLM);
             key.SetValue("Enabled", 1);
             key.Close();
             setGuiDisabled(this);

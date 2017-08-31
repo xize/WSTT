@@ -49,7 +49,7 @@ namespace windows_security_tweak_tool.src.policies
 
         public override bool isEnabled()
         {
-            RegistryKey key = getRegistry(path, REG.HKLM);
+            RegistryKey key = GetRegistry(path, REG.HKLM);
             if(key != null)
             {
                 int value = (int)key.GetValue("EnableMulticast");
@@ -65,13 +65,13 @@ namespace windows_security_tweak_tool.src.policies
             getButton().Enabled = false;
             //check if key Windows NT exist...
 
-            RegistryKey WinNT = this.getRegistry(@"SOFTWARE\Policies\Microsoft\Windows NT\", REG.HKLM);
+            RegistryKey WinNT = this.GetRegistry(@"SOFTWARE\Policies\Microsoft\Windows NT\", REG.HKLM);
             if(WinNT == null)
             {
-                this.getRegistry(@"SOFTWARE\Policies\Microsoft\", REG.HKLM).CreateSubKey("Windows NT");
+                this.GetRegistry(@"SOFTWARE\Policies\Microsoft\", REG.HKLM).CreateSubKey("Windows NT");
             }
 
-            RegistryKey key = this.getRegistry(@"SOFTWARE\Policies\Microsoft\Windows NT\", REG.HKLM).CreateSubKey("DNSClient");
+            RegistryKey key = this.GetRegistry(@"SOFTWARE\Policies\Microsoft\Windows NT\", REG.HKLM).CreateSubKey("DNSClient");
             key.SetValue("EnableMulticast", 0);
             key.Close();
             key.Dispose();
@@ -82,7 +82,7 @@ namespace windows_security_tweak_tool.src.policies
         public override void unapply()
         {
             getButton().Enabled = false;
-            RegistryKey key = this.getRegistry(@"SOFTWARE\Policies\Microsoft\Windows NT\", REG.HKLM);
+            RegistryKey key = this.GetRegistry(@"SOFTWARE\Policies\Microsoft\Windows NT\", REG.HKLM);
             key.DeleteSubKey("DNSClient");
             key.Close();
             key.Dispose();

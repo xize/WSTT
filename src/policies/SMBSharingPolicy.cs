@@ -85,7 +85,7 @@ namespace windows_security_tweak_tool.src.policies
                 return;
             }
 
-            RegistryKey key = getRegistry(@"SYSTEM\CurrentControlSet\Services\LanmanServer\Parameters", REG.HKLM);
+            RegistryKey key = GetRegistry(@"SYSTEM\CurrentControlSet\Services\LanmanServer\Parameters", REG.HKLM);
             key.SetValue("SMB1", 0);
 
             key.Close();
@@ -108,7 +108,7 @@ namespace windows_security_tweak_tool.src.policies
         {
             getButton().Enabled = false;
 
-            RegistryKey key = getRegistry(@"SYSTEM\CurrentControlSet\Services\LanmanServer\Parameters", REG.HKLM);
+            RegistryKey key = GetRegistry(@"SYSTEM\CurrentControlSet\Services\LanmanServer\Parameters", REG.HKLM);
             key.SetValue("SMB1", 1);
 
             key.Close();

@@ -46,7 +46,7 @@ namespace windows_security_tweak_tool.src.policies
         public override void apply()
         {
             getButton().Enabled = false;
-            RegistryKey key = getRegistry(@"Software\Microsoft\Windows\CurrentVersion\policies\Explorer\", REG.HKLM);
+            RegistryKey key = GetRegistry(@"Software\Microsoft\Windows\CurrentVersion\policies\Explorer\", REG.HKLM);
             key.SetValue("NoDriveTypeAutoRun", 0x00);
             key.Close();
             key.Dispose();
@@ -57,7 +57,7 @@ namespace windows_security_tweak_tool.src.policies
         public override void unapply()
         {
             getButton().Enabled = false;
-            RegistryKey key = getRegistry(@"Software\Microsoft\Windows\CurrentVersion\policies\Explorer\", REG.HKLM);
+            RegistryKey key = GetRegistry(@"Software\Microsoft\Windows\CurrentVersion\policies\Explorer\", REG.HKLM);
             key.SetValue("NoDriveTypeAutoRun", 0xFF);
             key.Close();
             key.Dispose();
@@ -72,7 +72,7 @@ namespace windows_security_tweak_tool.src.policies
 
         public override bool isEnabled()
         {
-            RegistryKey key = getRegistry(@"Software\Microsoft\Windows\CurrentVersion\policies\Explorer\", REG.HKLM);
+            RegistryKey key = GetRegistry(@"Software\Microsoft\Windows\CurrentVersion\policies\Explorer\", REG.HKLM);
             try
             {
                 var value = key.GetValue("NoDriveTypeAutoRun");

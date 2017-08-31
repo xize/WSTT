@@ -47,7 +47,7 @@ namespace windows_security_tweak_tool.src.policies
 
         public override bool isEnabled()
         {
-            RegistryKey key = getRegistry(@"SYSTEM\CurrentControlSet\services\NetBT\Parameters\Interfaces", REG.HKLM);
+            RegistryKey key = GetRegistry(@"SYSTEM\CurrentControlSet\services\NetBT\Parameters\Interfaces", REG.HKLM);
             string[] adapters = key.GetSubKeyNames();
 
             foreach (string adapter in adapters)
@@ -73,7 +73,7 @@ namespace windows_security_tweak_tool.src.policies
         {
             Console.WriteLine("{== Applying " + getType().getName().ToUpper() + " ==}");
             getButton().Enabled = false;
-            RegistryKey key = getRegistry(@"SYSTEM\CurrentControlSet\services\NetBT\Parameters\Interfaces", REG.HKLM);
+            RegistryKey key = GetRegistry(@"SYSTEM\CurrentControlSet\services\NetBT\Parameters\Interfaces", REG.HKLM);
             string[] adapters = key.GetSubKeyNames();
 
             foreach(string adapter in adapters)
@@ -101,7 +101,7 @@ namespace windows_security_tweak_tool.src.policies
         {
             Console.WriteLine("{== Unapplying " + getType().getName().ToUpper() + " ==}");
             getButton().Enabled = false;
-            RegistryKey key = getRegistry(@"SYSTEM\CurrentControlSet\services\NetBT\Parameters\Interfaces", REG.HKLM);
+            RegistryKey key = GetRegistry(@"SYSTEM\CurrentControlSet\services\NetBT\Parameters\Interfaces", REG.HKLM);
 
             string[] adapters = key.GetSubKeyNames();
 

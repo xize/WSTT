@@ -173,7 +173,7 @@ namespace windows_security_tweak_tool.src.policies.components
             {
                 throw new Exception("service "+service+" does not exist, and cannot be called in getServiceStatus()");
             }
-            RegistryKey key = getRegistry(@"SYSTEM\CurrentControlSet\Services\" + service, REG.HKLM);
+            RegistryKey key = GetRegistry(@"SYSTEM\CurrentControlSet\Services\" + service, REG.HKLM);
             int status = (int)key.GetValue("Start");
             switch (status)
             {
