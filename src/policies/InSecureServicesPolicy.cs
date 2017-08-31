@@ -78,29 +78,29 @@ namespace windows_security_tweak_tool.src.policies
             services.Add("BthHFSrv", ServiceType.MANUAL);
         }
 
-        public override string getName()
+        public override string GetName()
         {
-            return getType().GetName();
+            return GetPolicyType().GetName();
         }
 
-        public override SecurityPolicyType getType()
+        public override SecurityPolicyType GetPolicyType()
         {
             return SecurityPolicyType.IN_SECURE_SERVICES_POLICY;
         }
 
-        public override string getDescription()
+        public override string GetDescription()
         {
             return "disables all the services not needed by Windows";
         }
 
-        public override bool isEnabled()
+        public override bool IsEnabled()
         {
             return Config.getConfig().getBoolean("insecure-services");
         }
 
-        public override void apply()
+        public override void Apply()
         {
-            getButton().Enabled = false;
+            GetButton().Enabled = false;
 
             foreach (KeyValuePair<string, ServiceType> service in services)
             {
@@ -111,13 +111,13 @@ namespace windows_security_tweak_tool.src.policies
                     this.SetServiceType(service.Key, ServiceType.DISABLED);
             }
             Config.getConfig().put("insecure-services", true);
-            setGuiEnabled(this);
-            getButton().Enabled = true;
+            SetGuiEnabled(this);
+            GetButton().Enabled = true;
         }
 
-        public override void unapply()
+        public override void Unapply()
         {
-            getButton().Enabled = false;
+            GetButton().Enabled = false;
 
             foreach (KeyValuePair<string, ServiceType> service in services)
             {
@@ -125,48 +125,48 @@ namespace windows_security_tweak_tool.src.policies
             }
             Config.getConfig().put("insecure-services", false);
 
-            getButton().Enabled = true;
-            setGuiDisabled(this);
+            GetButton().Enabled = true;
+            SetGuiDisabled(this);
 
         }
 
-        public override bool hasIncompatibilityIssues()
+        public override bool HasIncompatibilityIssues()
         {
             return false;
         }
 
         [Obsolete]
-        public override bool isLanguageDepended()
+        public override bool IsLanguageDepended()
         {
             return false;
         }
 
-        public override bool isMacro()
+        public override bool IsMacro()
         {
             return false;
         }
 
-        public override bool isSafeForBussiness()
+        public override bool IsSafeForBussiness()
         {
             return true;
         }
 
-        public override bool isSecpolDepended()
+        public override bool IsSecpolDepended()
         {
             return false;
         }
 
-        public override bool isUserControlRequired()
+        public override bool IsUserControlRequired()
         {
             return false;
         }
 
-        public override Button getButton()
+        public override Button GetButton()
         {
             return gui.insecureservicesbtn;
         }
 
-        public override ProgressBar getProgressbar()
+        public override ProgressBar GetProgressbar()
         {
             return gui.insecureserviceprogress;
         }

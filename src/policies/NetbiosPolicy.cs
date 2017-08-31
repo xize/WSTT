@@ -30,22 +30,22 @@ namespace windows_security_tweak_tool.src.policies
     class NetbiosPolicy : SecurityPolicy
     {
 
-        public override string getName()
+        public override string GetName()
         {
-            return getType().GetName();
+            return GetPolicyType().GetName();
         }
 
-        public override string getDescription()
+        public override string GetDescription()
         {
             return "disable netbios so network viruses have a harder time";
         }
 
-        public override SecurityPolicyType getType()
+        public override SecurityPolicyType GetPolicyType()
         {
             return SecurityPolicyType.NETBIOS_POLICY;
         }
 
-        public override bool isEnabled()
+        public override bool IsEnabled()
         {
             RegistryKey key = GetRegistry(@"SYSTEM\CurrentControlSet\services\NetBT\Parameters\Interfaces", REG.HKLM);
             string[] adapters = key.GetSubKeyNames();
@@ -69,10 +69,9 @@ namespace windows_security_tweak_tool.src.policies
             return false;
         }
 
-        public override void apply()
+        public override void Apply()
         {
-            Console.WriteLine("{== Applying " + getType().GetName().ToUpper() + " ==}");
-            getButton().Enabled = false;
+            GetButton().Enabled = false;
             RegistryKey key = GetRegistry(@"SYSTEM\CurrentControlSet\services\NetBT\Parameters\Interfaces", REG.HKLM);
             string[] adapters = key.GetSubKeyNames();
 
@@ -88,28 +87,22 @@ namespace windows_security_tweak_tool.src.policies
                 if (options != null)
                 {
                     adaptersetting.SetValue("NetbiosOptions", 2);
-                    Console.WriteLine("writing to adapter: " + adapter + " values have been set to 2!");
                 }
             }
             key.Close();
-            setGuiEnabled(this);
-            getButton().Enabled = true;
-            Console.WriteLine("{== " + getType().GetName().ToUpper() + " has been applied ==}");
+            SetGuiEnabled(this);
+            GetButton().Enabled = true;
         }
 
-        public override void unapply()
+        public override void Unapply()
         {
-            Console.WriteLine("{== Unapplying " + getType().GetName().ToUpper() + " ==}");
-            getButton().Enabled = false;
+            GetButton().Enabled = false;
             RegistryKey key = GetRegistry(@"SYSTEM\CurrentControlSet\services\NetBT\Parameters\Interfaces", REG.HKLM);
 
             string[] adapters = key.GetSubKeyNames();
 
             foreach (string adapter in adapters)
             {
-
-                Console.WriteLine("writing to adapter: " + adapter + " setting netbios to value 0");
-
                 RegistryKey adaptersetting = key.OpenSubKey(adapter, true);
 
                 object options = adaptersetting.GetValue("NetbiosOptions");
@@ -117,52 +110,50 @@ namespace windows_security_tweak_tool.src.policies
                 if (options != null)
                 {
                     adaptersetting.SetValue("NetbiosOptions", 0);
-                    Console.WriteLine("writing to adapter: " + adapter + " values have been set to 0!");
                 }
             }
             key.Close();
-            getButton().Enabled = true;
-            setGuiDisabled(this);
-            Console.WriteLine("{== " + getType().GetName().ToUpper() + " has been unapplied ==}");
+            GetButton().Enabled = true;
+            SetGuiDisabled(this);
         }
 
-        public override bool isMacro()
+        public override bool IsMacro()
         {
             return false;
         }
 
-        public override bool isSecpolDepended()
+        public override bool IsSecpolDepended()
         {
             return false;
         }
 
-        public override Button getButton()
+        public override Button GetButton()
         {
             return gui.netbiosbtn;
         }
 
-        public override ProgressBar getProgressbar()
+        public override ProgressBar GetProgressbar()
         {
             return gui.netbiosprogress;
         }
 
         [Obsolete]
-        public override bool isLanguageDepended()
+        public override bool IsLanguageDepended()
         {
             return false;
         }
 
-        public override bool hasIncompatibilityIssues()
+        public override bool HasIncompatibilityIssues()
         {
             return false;
         }
 
-        public override bool isSafeForBussiness()
+        public override bool IsSafeForBussiness()
         {
             return true;
         }
 
-        public override bool isUserControlRequired()
+        public override bool IsUserControlRequired()
         {
             return false;
         }

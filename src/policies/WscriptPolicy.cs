@@ -30,22 +30,22 @@ namespace windows_security_tweak_tool.src.policies
     class WscriptPolicy : SecurityPolicy
     {
 
-        public override string getName()
+        public override string GetName()
         {
-            return getType().GetName();
+            return GetPolicyType().GetName();
         }
 
-        public override string getDescription()
+        public override string GetDescription()
         {
             return "disables wscript so it's impossible for malware to execute wscript scripts through a webpage :)";
         }
 
-        public override SecurityPolicyType getType()
+        public override SecurityPolicyType GetPolicyType()
         {
             return SecurityPolicyType.WSCRIPT_POLICY;
         }
 
-        public override bool isEnabled()
+        public override bool IsEnabled()
         {
 
             RegistryKey key = GetRegistry(@"SOFTWARE\Microsoft\Windows Script Host\Settings", REG.HKLM);
@@ -64,63 +64,63 @@ namespace windows_security_tweak_tool.src.policies
             return false;
         }
 
-        public override void apply()
+        public override void Apply()
         {
-            getButton().Enabled = false;
+            GetButton().Enabled = false;
             RegistryKey key = GetRegistry(@"SOFTWARE\Microsoft\Windows Script Host\Settings", REG.HKLM);
             key.SetValue("Enabled", 0);
             key.Close();
-            setGuiEnabled(this);
-            getButton().Enabled = true;
+            SetGuiEnabled(this);
+            GetButton().Enabled = true;
         }
 
-        public override void unapply()
+        public override void Unapply()
         {
-            getButton().Enabled = false;
+            GetButton().Enabled = false;
             RegistryKey key = GetRegistry(@"SOFTWARE\Microsoft\Windows Script Host\Settings", REG.HKLM);
             key.SetValue("Enabled", 1);
             key.Close();
-            setGuiDisabled(this);
-            getButton().Enabled = true;
+            SetGuiDisabled(this);
+            GetButton().Enabled = true;
         }
 
-        public override ProgressBar getProgressbar()
+        public override ProgressBar GetProgressbar()
         {
             return gui.wscript_progress;
         }
 
-        public override Button getButton()
+        public override Button GetButton()
         {
             return gui.wscript_btn;
         }
 
-        public override bool isSecpolDepended()
+        public override bool IsSecpolDepended()
         {
             return false;
         }
 
-        public override bool isMacro()
+        public override bool IsMacro()
         {
             return false;
         }
 
         [Obsolete]
-        public override bool isLanguageDepended()
+        public override bool IsLanguageDepended()
         {
             return false;
         }
 
-        public override bool hasIncompatibilityIssues()
+        public override bool HasIncompatibilityIssues()
         {
             return false;
         }
 
-        public override bool isSafeForBussiness()
+        public override bool IsSafeForBussiness()
         {
             return true;
         }
 
-        public override bool isUserControlRequired()
+        public override bool IsUserControlRequired()
         {
             return false;
         }

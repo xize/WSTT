@@ -36,22 +36,22 @@ namespace windows_security_tweak_tool.src.policies
 {
     class Regsvr32ProxyPolicy : SecurityPolicy
     {
-        public override string getName()
+        public override string GetName()
         {
-            return getType().GetName();
+            return GetPolicyType().GetName();
         }
 
-        public override string getDescription()
+        public override string GetDescription()
         {
             return "proxies regsvr32 to harden security against registering non dll/exe files";
         }
 
-        public override SecurityPolicyType getType()
+        public override SecurityPolicyType GetPolicyType()
         {
             return SecurityPolicyType.REGSERVR32_PROXY_POLICY;
         }
 
-        public override bool isEnabled()
+        public override bool IsEnabled()
         {
             string customsvr = GetHash(Resources.regsvr32);
 
@@ -83,16 +83,16 @@ namespace windows_security_tweak_tool.src.policies
             }
         }
 
-        public async override void apply()
+        public async override void Apply()
         {
-            getButton().Enabled = false;
+            GetButton().Enabled = false;
             DialogResult r = MessageBox.Show("this policy is extremely experimental and we do not recommend to use this at any time!\n\nthe reason why this policy is not recommend is because it could end up removing system files or it could weaken the security permissions for these system files!\n\nfor this reason it is very encouraged to make a backup from the following files:\n\nC:\\windows\\system32\\Regsvr32.exe\nC:\\windows\\syswow64\\Regsvr32.exe\n\npress OK to continue and cancel to avoid losing system files these cannot be restored by sfc or dism!","warning!", MessageBoxButtons.OKCancel);
             if (r == DialogResult.OK)
             {
                 await Task.Run(() => ApplyAsync());
-                setGuiEnabled(this);
+                SetGuiEnabled(this);
             }
-            getButton().Enabled = true;
+            GetButton().Enabled = true;
         }
 
         private void ApplyAsync()
@@ -110,7 +110,7 @@ namespace windows_security_tweak_tool.src.policies
 
             string compress = Gzip.GetGzipApi().Compress(name);
 
-            FileStream fs = File.OpenWrite(getDataFolder() + @"\proxy.dat");
+            FileStream fs = File.OpenWrite(GetDataFolder() + @"\proxy.dat");
             fs.Write(Encoding.UTF8.GetBytes(compress), 0, Encoding.UTF8.GetBytes(compress).Length);
             fs.Close();
             fs.Dispose();
@@ -170,17 +170,17 @@ namespace windows_security_tweak_tool.src.policies
             }
         }
 
-        public async override void unapply()
+        public async override void Unapply()
         {
-            getButton().Enabled = false;
+            GetButton().Enabled = false;
             await Task.Run(() => UnApplyAsync());
-            setGuiDisabled(this);
-            getButton().Enabled = true;
+            SetGuiDisabled(this);
+            GetButton().Enabled = true;
         }
 
         private void UnApplyAsync()
         {
-            string name = Gzip.GetGzipApi().Decompress(File.ReadAllText(getDataFolder() + @"\proxy.dat"));
+            string name = Gzip.GetGzipApi().Decompress(File.ReadAllText(GetDataFolder() + @"\proxy.dat"));
 
             File.Delete(@"C:\windows\system32\regsvr32.exe");
             File.Delete(@"C:\windows\system32\regsvr32watchdog.exe");
@@ -194,7 +194,7 @@ namespace windows_security_tweak_tool.src.policies
             {
                 File.Move(@"c:\windows\syswow64\" + name + ".exe", @"c:\windows\syswow64\regsvr32.exe");
             }
-            File.Delete(getDataFolder() + @"\proxy.dat");
+            File.Delete(GetDataFolder() + @"\proxy.dat");
         }
 
         private string GetHash(string file)
@@ -219,43 +219,43 @@ namespace windows_security_tweak_tool.src.policies
             return build.ToString();
         }
 
-        public override bool hasIncompatibilityIssues()
+        public override bool HasIncompatibilityIssues()
         {
             return false;
         }
 
         [Obsolete]
-        public override bool isLanguageDepended()
+        public override bool IsLanguageDepended()
         {
             return false;
         }
 
-        public override bool isMacro()
+        public override bool IsMacro()
         {
             return false;
         }
 
-        public override bool isSafeForBussiness()
+        public override bool IsSafeForBussiness()
         {
             return false;
         }
 
-        public override bool isSecpolDepended()
+        public override bool IsSecpolDepended()
         {
             return false;
         }
 
-        public override bool isUserControlRequired()
+        public override bool IsUserControlRequired()
         {
             return true;
         }
 
-        public override Button getButton()
+        public override Button GetButton()
         {
             return gui.regsvr32btn;
         }
 
-        public override ProgressBar getProgressbar()
+        public override ProgressBar GetProgressbar()
         {
             return gui.regsvr32progress;
         }

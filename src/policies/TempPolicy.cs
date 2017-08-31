@@ -29,34 +29,34 @@ namespace windows_security_tweak_tool.src.policies
     class TempPolicy : SecurityPolicy
     {
 
-        public override string getName()
+        public override string GetName()
         {
-            return getType().GetName();
+            return GetPolicyType().GetName();
         }
 
-        public override string getDescription()
+        public override string GetDescription()
         {
             return "sets the policies to protect known malware directories against malware";
         }
 
-        public override SecurityPolicyType getType()
+        public override SecurityPolicyType GetPolicyType()
         {
             return SecurityPolicyType.TEMP_POLICY;
         }
 
-        public override bool isEnabled()
+        public override bool IsEnabled()
         {
             return Config.getConfig().getBoolean("policy-malware-restriction");
         }
 
-        public override void apply()
+        public override void Apply()
         {
-            getButton().Enabled = false;
+            GetButton().Enabled = false;
             AutoIt.AutoItX.Run("mmc.exe secpol.msc", null, 0);
             AutoIt.AutoItX.WinWait("[CLASS:MMCMainFrame]");
             //AutoIt.AutoItX.WinActivate("[CLASS:MMCMainFrame]");
             AutoIt.AutoItX.Sleep(400);
-            fixUnhappyTrigger(); //fix a issue whereby windows 10 complains about a missing GEO location file which cause to freezes the automation....
+            FixUnhappyTrigger(); //fix a issue whereby windows 10 complains about a missing GEO location file which cause to freezes the automation....
 
             AutoIt.AutoItX.Send("{DOWN}{DOWN}{DOWN}{DOWN}{DOWN}{DOWN}");
             AutoIt.AutoItX.Sleep(400);
@@ -77,45 +77,45 @@ namespace windows_security_tweak_tool.src.policies
             AutoIt.AutoItX.Send("{DOWN}{DOWN}{DOWN}{DOWN}");
             AutoIt.AutoItX.Send("{ENTER}");
 
-            setTrustedPolicy();
+            SetTrustedPolicy();
             AutoIt.AutoItX.Sleep(400);
 
             AutoIt.AutoItX.Send("{UP}{UP}");
             AutoIt.AutoItX.Send("{ENTER}");
 
-            setEnforcementPropertyPolicy();
+            SetEnforcementPropertyPolicy();
             AutoIt.AutoItX.Sleep(400);
 
             AutoIt.AutoItX.Send("{UP}");
             AutoIt.AutoItX.Send("{ENTER}");
             AutoIt.AutoItX.Sleep(600);
 
-            addPolicyRule("%temp%");
-            addPolicyRule("%programdata%\\*.*");
-            addPolicyRule("%localappdata%\\*.exe");
-            addPolicyRule("%localappdata%\\*.dll");
-            addPolicyRule("%localappdata%\\*.au3");
-            addPolicyRule("%systemdir%\\system32\\WindowsPowershell\\*\\*.exe");
-            addPolicyRule("%systemdir%\\syswow64\\WindowsPowershell\\*\\*.exe");
+            AddPolicyRule("%temp%");
+            AddPolicyRule("%programdata%\\*.*");
+            AddPolicyRule("%localappdata%\\*.exe");
+            AddPolicyRule("%localappdata%\\*.dll");
+            AddPolicyRule("%localappdata%\\*.au3");
+            AddPolicyRule("%systemdir%\\system32\\WindowsPowershell\\*\\*.exe");
+            AddPolicyRule("%systemdir%\\syswow64\\WindowsPowershell\\*\\*.exe");
             AutoIt.AutoItX.Sleep(400);
 
-            closeMMCWindow();
+            CloseMMCWindow();
 
             SecurityPolicy p = SecurityPolicyType.UPDATE_POLICY.GetPolicy(gui);
-            p.apply();
+            p.Apply();
             Config.getConfig().put("policy-malware-restriction", true);
-            setGuiEnabled(this);
-            getButton().Enabled = true;
+            SetGuiEnabled(this);
+            GetButton().Enabled = true;
         }
 
-        public override void unapply()
+        public override void Unapply()
         {
-            getButton().Enabled = false;
+            GetButton().Enabled = false;
             AutoIt.AutoItX.Run("mmc.exe secpol.msc", null, 0);
             AutoIt.AutoItX.WinWait("[CLASS:MMCMainFrame]");
             //AutoIt.AutoItX.WinActivate("[CLASS:MMCMainFrame]");
             AutoIt.AutoItX.Sleep(400);
-            fixUnhappyTrigger(); //fix a issue whereby windows 10 complains about a missing GEO location file which cause to freezes the automation....
+            FixUnhappyTrigger(); //fix a issue whereby windows 10 complains about a missing GEO location file which cause to freezes the automation....
             AutoIt.AutoItX.WinActivate("[CLASS:MMCMainFrame]");
 
             AutoIt.AutoItX.Send("{DOWN}{DOWN}{DOWN}{DOWN}{DOWN}{DOWN}");
@@ -128,15 +128,15 @@ namespace windows_security_tweak_tool.src.policies
             AutoIt.AutoItX.Sleep(400);
             AutoIt.AutoItX.Send("{ENTER}");
 
-            closeMMCWindow();
+            CloseMMCWindow();
             SecurityPolicy p = SecurityPolicyType.UPDATE_POLICY.GetPolicy(gui);
-            p.apply();
+            p.Apply();
             Config.getConfig().put("policy-malware-restriction", false);
-            setGuiDisabled(this);
-            getButton().Enabled = true;
+            SetGuiDisabled(this);
+            GetButton().Enabled = true;
         }
 
-        private void fixUnhappyTrigger()
+        private void FixUnhappyTrigger()
         {
             AutoIt.AutoItX.Sleep(300);
             AutoIt.AutoItX.WinActivate("Beheersjablonen"); //TODO: find class name of this window
@@ -148,12 +148,12 @@ namespace windows_security_tweak_tool.src.policies
             AutoIt.AutoItX.Send("{ENTER}");
         }
 
-        private void pressOK(string windowtitle)
+        private void PressOK(string windowtitle)
         {
             AutoIt.AutoItX.Send("{ENTER}");
         }
 
-        private void setTrustedPolicy()
+        private void SetTrustedPolicy()
         {
             AutoIt.AutoItX.WinWait("[CLASS:#32770]");
 
@@ -172,18 +172,18 @@ namespace windows_security_tweak_tool.src.policies
             AutoIt.AutoItX.Sleep(300);
             AutoIt.AutoItX.Send("{TAB}");
             AutoIt.AutoItX.Sleep(300);
-            if (hasIncompatibilityIssues())
+            if (HasIncompatibilityIssues())
             {
-                if (getWindowsVersion() < 10)
+                if (GetWindowsVersion() < 10)
                 {
                     AutoIt.AutoItX.Send("{TAB}");
                 }
             }
             AutoIt.AutoItX.Sleep(300);
-            pressOK("[CLASS:#32770]");
+            PressOK("[CLASS:#32770]");
         }
 
-        private void setEnforcementPropertyPolicy()
+        private void SetEnforcementPropertyPolicy()
         {
             AutoIt.AutoItX.WinWait("[CLASS:#32770]");
 
@@ -199,18 +199,18 @@ namespace windows_security_tweak_tool.src.policies
             AutoIt.AutoItX.Sleep(300);
             AutoIt.AutoItX.Send("{TAB}");
             AutoIt.AutoItX.Sleep(300);
-            if (hasIncompatibilityIssues())
+            if (HasIncompatibilityIssues())
             {
-                if (getWindowsVersion() < 10)
+                if (GetWindowsVersion() < 10)
                 {
                     AutoIt.AutoItX.Send("{TAB}");
                 }
             }
             AutoIt.AutoItX.Sleep(300);
-            pressOK("[CLASS:#32770]");
+            PressOK("[CLASS:#32770]");
         }
 
-        private void addPolicyRule(string name)
+        private void AddPolicyRule(string name)
         {
             AutoIt.AutoItX.Send("{ALT}");
             AutoIt.AutoItX.Sleep(300);
@@ -232,51 +232,51 @@ namespace windows_security_tweak_tool.src.policies
             AutoIt.AutoItX.Sleep(400);
         }
 
-        private void closeMMCWindow()
+        private void CloseMMCWindow()
         {
             AutoIt.AutoItX.WinActivate("[CLASS:MMCMainFrame]");
             AutoIt.AutoItX.WinClose("[CLASS:MMCMainFrame]");
         }
 
-        public override ProgressBar getProgressbar()
+        public override ProgressBar GetProgressbar()
         {
             return gui.temp_policy_load;
         }
 
-        public override Button getButton()
+        public override Button GetButton()
         {
             return gui.temp_policy_btn;
         }
 
-        public override bool isSecpolDepended()
+        public override bool IsSecpolDepended()
         {
             return true;
         }
 
-        public override bool isMacro()
+        public override bool IsMacro()
         {
             return true;
         }
 
         [Obsolete]
-        public override bool isLanguageDepended()
+        public override bool IsLanguageDepended()
         {
             return true;
         }
 
-        public override bool hasIncompatibilityIssues()
+        public override bool HasIncompatibilityIssues()
         {
             //windows 7 and lower have an extra help url inside the windows in setTrustedPolicy() and setEnforcementPropertyPolicy() which means there needs to be one extra tab to be pressed.
             //therefor newer versions don't seem to have those links to the helpcenter....
             return true;
         }
 
-        public override bool isSafeForBussiness()
+        public override bool IsSafeForBussiness()
         {
             return true;
         }
 
-        public override bool isUserControlRequired()
+        public override bool IsUserControlRequired()
         {
             return false;
         }

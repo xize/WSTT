@@ -60,31 +60,31 @@ namespace windows_security_tweak_tool.src
             {
                 SecurityPolicy p = a.GetPolicy(this);
 
-                if(p.getType() != SecurityPolicyType.UPDATE_POLICY)
+                if(p.GetPolicyType() != SecurityPolicyType.UPDATE_POLICY)
                 {
 
-                    tooltip.SetToolTip(p.getButton(), p.getDescription());
-                    tooltip.SetToolTip(p.getProgressbar(), p.getDescription());
+                    tooltip.SetToolTip(p.GetButton(), p.GetDescription());
+                    tooltip.SetToolTip(p.GetProgressbar(), p.GetDescription());
 
-                    if (p.isEnabled())
+                    if (p.IsEnabled())
                     {
-                        p.getButton().Text = "Undo";
-                        p.getProgressbar().Value = 100;
+                        p.GetButton().Text = "Undo";
+                        p.GetProgressbar().Value = 100;
                     }
 
 
-                    if (!p.isSecpolEnabled() && p.isSecpolDepended())
+                    if (!p.IsSecpolEnabled() && p.IsSecpolDepended())
                     {
-                            Console.WriteLine("Warning: policy " + p.getName() + " has been disabled unsupported windows edition, no secpol.msc found!");
-                            p.getButton().Enabled = false;
-                            p.getProgressbar().Enabled = false;
-                            p.getButton().Text = "unsupported!";
-                    } else if(p.isMacro() && !(File.Exists("AutoItX3.Assembly.dll") && File.Exists("AutoItX3.dll") && File.Exists("AutoItX3_x64.dll")))
+                            Console.WriteLine("Warning: policy " + p.GetName() + " has been disabled unsupported windows edition, no secpol.msc found!");
+                            p.GetButton().Enabled = false;
+                            p.GetProgressbar().Enabled = false;
+                            p.GetButton().Text = "unsupported!";
+                    } else if(p.IsMacro() && !(File.Exists("AutoItX3.Assembly.dll") && File.Exists("AutoItX3.dll") && File.Exists("AutoItX3_x64.dll")))
                     {
-                        Console.WriteLine("Warning: policy " + p.getName() + " has been disabled, no AutoIT files found!");
-                        p.getButton().Enabled = false;
-                        p.getProgressbar().Enabled = false;
-                        p.getButton().Text = "AutoIT dll missing!";
+                        Console.WriteLine("Warning: policy " + p.GetName() + " has been disabled, no AutoIT files found!");
+                        p.GetButton().Enabled = false;
+                        p.GetProgressbar().Enabled = false;
+                        p.GetButton().Text = "AutoIT dll missing!";
                     }
                 }
             }
@@ -99,49 +99,49 @@ namespace windows_security_tweak_tool.src
         {
             SecurityPolicy p = SecurityPolicyType.TEMP_POLICY.GetPolicy(this);
 
-            if (p.isEnabled())
+            if (p.IsEnabled())
             {
-                p.unapply();
+                p.Unapply();
             } else
             {
-                p.apply();
+                p.Apply();
             }
         }
 
         private void callwscriptEvent(object sender, EventArgs e)
         {
             SecurityPolicy p = SecurityPolicyType.WSCRIPT_POLICY.GetPolicy(this);
-            if (p.isEnabled())
+            if (p.IsEnabled())
             {
-                p.unapply();
+                p.Unapply();
             }
             else
             {
-                p.apply();
+                p.Apply();
             }
         }
 
         private void callUACEvent(object sender, EventArgs e)
         {
             SecurityPolicy p = SecurityPolicyType.UAC_POLICY.GetPolicy(this);
-            if(p.isEnabled())
+            if(p.IsEnabled())
             {
-                p.unapply();
+                p.Unapply();
             } else
             {
-                p.apply();
+                p.Apply();
             }
         }
 
         private void callNetbiosEvent(object sender, EventArgs e)
         {
             SecurityPolicy p = SecurityPolicyType.NETBIOS_POLICY.GetPolicy(this);
-            if(p.isEnabled())
+            if(p.IsEnabled())
             {
-                p.unapply();
+                p.Unapply();
             } else
             {
-                p.apply();
+                p.Apply();
             }
         }
 
@@ -149,12 +149,12 @@ namespace windows_security_tweak_tool.src
         {
             SecurityPolicy p = SecurityPolicyType.RENAME_POLICY.GetPolicy(this);
 
-            if(p.isEnabled())
+            if(p.IsEnabled())
             {
-                p.unapply();
+                p.Unapply();
             } else
             {
-                p.apply();
+                p.Apply();
             }
         }
 
@@ -167,13 +167,13 @@ namespace windows_security_tweak_tool.src
         {
             SecurityPolicy p = SecurityPolicyType.REMOTE_REGISTRY_POLICY.GetPolicy(this);
 
-            if (p.isEnabled())
+            if (p.IsEnabled())
             {
-                p.unapply();
+                p.Unapply();
             }
             else
             {
-                p.apply();
+                p.Apply();
             }
         }
 
@@ -181,13 +181,13 @@ namespace windows_security_tweak_tool.src
         {
             SecurityPolicy p = SecurityPolicyType.RDP_POLICY.GetPolicy(this);
 
-            if (p.isEnabled())
+            if (p.IsEnabled())
             {
-                p.unapply();
+                p.Unapply();
             }
             else
             {
-                p.apply();
+                p.Apply();
             }
         }
 
@@ -195,9 +195,9 @@ namespace windows_security_tweak_tool.src
         {
             SecurityPolicy p = SecurityPolicyType.NTLM_POLICY.GetPolicy(this);
 
-            if (p.isEnabled())
+            if (p.IsEnabled())
             {
-                p.unapply();
+                p.Unapply();
             }
             else
             {
@@ -209,7 +209,7 @@ namespace windows_security_tweak_tool.src
                     return;
                 }
 
-                p.apply();
+                p.Apply();
             }
         }
 
@@ -224,13 +224,13 @@ namespace windows_security_tweak_tool.src
                 return;
             }
 
-            if (p.isEnabled())
+            if (p.IsEnabled())
             {
-                p.unapply();
+                p.Unapply();
             }
             else
             {
-                p.apply();
+                p.Apply();
             }
         }
 
@@ -248,7 +248,7 @@ namespace windows_security_tweak_tool.src
                 if(pt != SecurityPolicyType.UPDATE_POLICY)
                 {
                     SecurityPolicy p = pt.GetPolicy(this);
-                    p.getButton().Enabled = false;
+                    p.GetButton().Enabled = false;
                 }
             }
 
@@ -257,11 +257,11 @@ namespace windows_security_tweak_tool.src
                 if (pt != SecurityPolicyType.UPDATE_POLICY)
                 {
                     SecurityPolicy p = pt.GetPolicy(this);
-                    if(p.isSafeForBussiness())
+                    if(p.IsSafeForBussiness())
                     {
-                        if(!p.isEnabled() && !p.isUserControlRequired())
+                        if(!p.IsEnabled() && !p.IsUserControlRequired())
                         {
-                            p.apply();
+                            p.Apply();
                         }
                     }
                 }
@@ -272,7 +272,7 @@ namespace windows_security_tweak_tool.src
                 if (pt != SecurityPolicyType.UPDATE_POLICY)
                 {
                     SecurityPolicy p = pt.GetPolicy(this);
-                    p.getButton().Enabled = true;
+                    p.GetButton().Enabled = true;
                 }
             }
             safeapplybtn.Enabled = true;
@@ -287,13 +287,13 @@ namespace windows_security_tweak_tool.src
                 if (pt != SecurityPolicyType.UPDATE_POLICY)
                 {
                     SecurityPolicy p = pt.GetPolicy(this);
-                    if(!p.isUserControlRequired() && !p.isEnabled())
+                    if(!p.IsUserControlRequired() && !p.IsEnabled())
                     {
-                        if(p.isSecpolDepended() && !p.isSecpolEnabled())
+                        if(p.IsSecpolDepended() && !p.IsSecpolEnabled())
                         {
                             continue;
                         }
-                        p.apply();
+                        p.Apply();
                     }
                 }
             }
@@ -306,16 +306,16 @@ namespace windows_security_tweak_tool.src
             undobtn.Enabled = false;
             foreach (SecurityPolicyType pt in SecurityPolicyType.Values())
             {
-                if (pt != SecurityPolicyType.UPDATE_POLICY && !pt.GetPolicy(this).isUserControlRequired())
+                if (pt != SecurityPolicyType.UPDATE_POLICY && !pt.GetPolicy(this).IsUserControlRequired())
                 {
                     SecurityPolicy p = pt.GetPolicy(this);
-                    if (!p.isUserControlRequired() && p.isEnabled())
+                    if (!p.IsUserControlRequired() && p.IsEnabled())
                     {
-                        if (p.isSecpolDepended() && !p.isSecpolEnabled())
+                        if (p.IsSecpolDepended() && !p.IsSecpolEnabled())
                         {
                             continue;
                         }
-                        p.unapply();
+                        p.Unapply();
                     }
                 }
             }
@@ -326,12 +326,12 @@ namespace windows_security_tweak_tool.src
         {
             SecurityPolicy p = SecurityPolicyType.IN_SECURE_SERVICES_POLICY.GetPolicy(this);
 
-            if(p.isEnabled())
+            if(p.IsEnabled())
             {
-                p.unapply();
+                p.Unapply();
             } else
             {
-                p.apply();
+                p.Apply();
             }
         }
 
@@ -339,13 +339,13 @@ namespace windows_security_tweak_tool.src
         {
             SecurityPolicy p = SecurityPolicyType.CERT_POLICY.GetPolicy(this);
 
-            if (p.isEnabled())
+            if (p.IsEnabled())
             {
-                p.unapply();
+                p.Unapply();
             }
             else
             {
-                p.apply();
+                p.Apply();
             }
         }
 
@@ -361,12 +361,12 @@ namespace windows_security_tweak_tool.src
         {
             SecurityPolicy p = SecurityPolicyType.NETSHARE_POLICY.GetPolicy(this);
 
-            if (p.isEnabled())
+            if (p.IsEnabled())
             {
-                p.unapply();
+                p.Unapply();
             } else
             {
-                p.apply();
+                p.Apply();
             }
         }
 
@@ -379,13 +379,13 @@ namespace windows_security_tweak_tool.src
         private void llmnrbtn_Click(object sender, EventArgs e)
         {
             SecurityPolicy p = SecurityPolicyType.LLMNR_POLICY.GetPolicy(this);
-            if (p.isEnabled())
+            if (p.IsEnabled())
             {
-                p.unapply();
+                p.Unapply();
             }
             else
             {
-                p.apply();
+                p.Apply();
             }
         }
 
@@ -407,7 +407,7 @@ namespace windows_security_tweak_tool.src
             }
 
             SecurityPolicy p = SecurityPolicyType.UPDATE_POLICY.GetPolicy(this);
-            p.apply();
+            p.Apply();
 
             MessageBox.Show("WSTT needs to be restarted ;-)");
 
@@ -418,19 +418,19 @@ namespace windows_security_tweak_tool.src
         private void unsignedbtn_Click(object sender, EventArgs e)
         {
             SecurityPolicy p = SecurityPolicyType.UNSIGNED_POLICY.GetPolicy(this);
-            p.apply();
+            p.Apply();
         }
 
         private void smbbtn_Click(object sender, EventArgs e)
         {
             SecurityPolicy p = SecurityPolicyType.SMB_SHARING_POLICY.GetPolicy(this);
 
-            if(p.isEnabled())
+            if(p.IsEnabled())
             {
-                p.unapply();
+                p.Unapply();
             } else
             {
-                p.apply();
+                p.Apply();
             }
         }
 
@@ -444,13 +444,13 @@ namespace windows_security_tweak_tool.src
         {
             SecurityPolicy p = SecurityPolicyType.AUTOPLAY_POLICY.GetPolicy(this);
 
-            if (p.isEnabled())
+            if (p.IsEnabled())
             {
-                p.unapply();
+                p.Unapply();
             }
             else
             {
-                p.apply();
+                p.Apply();
             }
         }
 
@@ -458,12 +458,12 @@ namespace windows_security_tweak_tool.src
         {
             SecurityPolicy p = SecurityPolicyType.REGSERVR32_PROXY_POLICY.GetPolicy(this);
 
-            if(p.isEnabled())
+            if(p.IsEnabled())
             {
-                p.unapply();
+                p.Unapply();
             } else
             {
-                p.apply();
+                p.Apply();
             }
         }
     }

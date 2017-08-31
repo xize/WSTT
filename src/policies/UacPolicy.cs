@@ -28,22 +28,22 @@ namespace windows_security_tweak_tool.src.policies
     class UacPolicy : SecurityPolicy
     {
 
-        public override string getName()
+        public override string GetName()
         {
             return "UAC Policy";
         }
 
-        public override string getDescription()
+        public override string GetDescription()
         {
             return "highers the uac policy from normal to high";
         }
 
-        public override SecurityPolicyType getType()
+        public override SecurityPolicyType GetPolicyType()
         {
             return SecurityPolicyType.UAC_POLICY;
         }
 
-        public override bool isEnabled()
+        public override bool IsEnabled()
         {
             if(Config.getConfig().getInt("uac-mode") == 4)
             {
@@ -52,7 +52,7 @@ namespace windows_security_tweak_tool.src.policies
             return false;
         }
 
-        public override void apply()
+        public override void Apply()
         {
             gui.uac_btn.Enabled = false;
             AutoIt.AutoItX.Run("UserAccountControlSettings.exe", null, 0);
@@ -66,11 +66,11 @@ namespace windows_security_tweak_tool.src.policies
             AutoIt.AutoItX.Send("{ENTER}");
 
             Config.getConfig().put("uac-mode", 4);
-            setGuiEnabled(this);
+            SetGuiEnabled(this);
             gui.uac_btn.Enabled = true;
         }
 
-        public override void unapply()
+        public override void Unapply()
         {
             gui.uac_btn.Enabled = false;
             AutoIt.AutoItX.Run("UserAccountControlSettings.exe", null, 0);
@@ -85,47 +85,47 @@ namespace windows_security_tweak_tool.src.policies
             AutoIt.AutoItX.Send("{ENTER}");
 
             Config.getConfig().put("uac-mode", 3);
-            setGuiDisabled(this);
+            SetGuiDisabled(this);
             gui.uac_btn.Enabled = true;
         }
 
-        public override Button getButton()
+        public override Button GetButton()
         {
             return gui.uac_btn;
         }
 
-        public override ProgressBar getProgressbar()
+        public override ProgressBar GetProgressbar()
         {
             return gui.uac_progress;
         }
 
-        public override bool isSecpolDepended()
+        public override bool IsSecpolDepended()
         {
             return false;
         }
 
-        public override bool isMacro()
+        public override bool IsMacro()
         {
             return true;
         }
 
         [Obsolete]
-        public override bool isLanguageDepended()
+        public override bool IsLanguageDepended()
         {
             return true;
         }
 
-        public override bool hasIncompatibilityIssues()
+        public override bool HasIncompatibilityIssues()
         {
             return false;
         }
 
-        public override bool isSafeForBussiness()
+        public override bool IsSafeForBussiness()
         {
             return true;
         }
 
-        public override bool isUserControlRequired()
+        public override bool IsUserControlRequired()
         {
             return true;
         }

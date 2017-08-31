@@ -29,79 +29,79 @@ namespace windows_security_tweak_tool.src.policies
     class MBRPolicy : SecurityPolicy
     {
 
-        public override string getName()
+        public override string GetName()
         {
-            return getType().GetName();
+            return GetPolicyType().GetName();
         }
 
-        public override string getDescription()
+        public override string GetDescription()
         {
             return "install MBRFilter to prevent bootloader modification, this will help you against rootkits and ransomware";
         }
 
-        public override SecurityPolicyType getType()
+        public override SecurityPolicyType GetPolicyType()
         {
             return SecurityPolicyType.MBR_POLICY;
         }
 
-        public override bool isEnabled()
+        public override bool IsEnabled()
         {
             return MBRFilter.getMBRFilter().isInstalled();
         }
 
-        public override void apply()
+        public override void Apply()
         {
-            getButton().Enabled = false;
+            GetButton().Enabled = false;
             MBRFilter.getMBRFilter().install();
-            setGuiEnabled(this);
-            getButton().Enabled = true;
+            SetGuiEnabled(this);
+            GetButton().Enabled = true;
         }
 
-        public override void unapply()
+        public override void Unapply()
         {
-            getButton().Enabled = false;
+            GetButton().Enabled = false;
             MBRFilter.getMBRFilter().uninstall();
-            setGuiDisabled(this);
-            getButton().Enabled = true;
+            SetGuiDisabled(this);
+            GetButton().Enabled = true;
         }
 
-        public override bool hasIncompatibilityIssues()
+        public override bool HasIncompatibilityIssues()
         {
             return false;
         }
 
         [Obsolete]
-        public override bool isLanguageDepended()
+        public override bool IsLanguageDepended()
         {
             return false;
         }
 
-        public override bool isMacro()
+        public override bool IsMacro()
         {
             return false;
         }
 
-        public override bool isSecpolDepended()
+        public override bool IsSecpolDepended()
         {
             return false;
         }
 
-        public override Button getButton()
+        public override Button GetButton()
         {
             return gui.mbrbtn;
         }
 
-        public override ProgressBar getProgressbar()
+        public override ProgressBar GetProgressbar()
         {
             return gui.mbrprogress;
         }
 
-        public override bool isSafeForBussiness()
+        public override bool IsSafeForBussiness()
         {
             return false;
         }
 
-        public override bool isUserControlRequired()
+        public override bool IsUserControlRequired()
         {
             return true;
         }

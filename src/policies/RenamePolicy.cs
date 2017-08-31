@@ -66,23 +66,23 @@ namespace windows_security_tweak_tool.src.policies
             ".tiff" //Tempory disable Tiff remote explotation, see: https://threatpost.com/remote-code-execution-vulnerabilities-plague-libtiff-library/121570/ not sure if this is the correct way of megitation!
         };
 
-        public override string getName()
+        public override string GetName()
         {
-            return getType().GetName();
+            return GetPolicyType().GetName();
         }
 
-        public override string getDescription()
+        public override string GetDescription()
         {
             return "renames the default program for the following extensions:\n"+string.Join(",", extensions)+"\n\nthis megitates code what can be load from javascript as a vbs script, this also disables macros";
         }
 
 
-        public override SecurityPolicyType getType()
+        public override SecurityPolicyType GetPolicyType()
         {
             return SecurityPolicyType.RENAME_POLICY;
         }
 
-        public override bool isEnabled()
+        public override bool IsEnabled()
         {
             if(Config.getConfig().getBoolean("renamed"))
             {
@@ -91,30 +91,24 @@ namespace windows_security_tweak_tool.src.policies
             return false;
         }
 
-        public override void apply()
+        public override void Apply()
         {
-            getButton().Enabled = false;
-
-            Console.WriteLine("{== Applying " + getType().GetName().ToUpper() + " ==}");
+            GetButton().Enabled = false;
 
             foreach (string extension in extensions)
             {
                 ExecuteCMD("assoc " + extension+" = "+extension.ToUpper()+"File", true);
                 ExecuteCMD("ftype " + extension.ToUpper() + @"File=C:\windows\system32\notepad.exe", true);
-                Console.WriteLine("extension: " + extension + " has been defaulted to: " + @"C:\windows\system32\notepad.exe");
             }
 
             Config.getConfig().put("renamed", true);
-            setGuiEnabled(this);
-            getButton().Enabled = true;
-            Console.WriteLine("{== " + getType().GetName().ToUpper() + " has been applied ==}");
+            SetGuiEnabled(this);
+            GetButton().Enabled = true;
         }
 
-        public override void unapply()
+        public override void Unapply()
         {
-            getButton().Enabled = false;
-
-            Console.WriteLine("{== Unapplying Policy " + getType().GetName().ToUpper() + " ==}");
+            GetButton().Enabled = false;
 
             foreach (string extension in extensions)
             {
@@ -190,48 +184,47 @@ namespace windows_security_tweak_tool.src.policies
                 ExecuteCMD(argument, true);
             }
             Config.getConfig().put("renamed", false);
-            getButton().Enabled = true;
-            setGuiDisabled(this);
-            Console.WriteLine("{== "+getType().GetName().ToUpper()+" has been unapplied ==}");
+            GetButton().Enabled = true;
+            SetGuiDisabled(this);
         }
 
-        public override bool isMacro()
+        public override bool IsMacro()
         {
             return false;
         }
 
-        public override bool isSecpolDepended()
+        public override bool IsSecpolDepended()
         {
             return false;
         }
 
-        public override Button getButton()
+        public override Button GetButton()
         {
             return gui.renamebtn;
         }
 
-        public override ProgressBar getProgressbar()
+        public override ProgressBar GetProgressbar()
         {
             return gui.renameprogress;
         }
 
         [Obsolete]
-        public override bool isLanguageDepended()
+        public override bool IsLanguageDepended()
         {
             return false;
         }
 
-        public override bool hasIncompatibilityIssues()
+        public override bool HasIncompatibilityIssues()
         {
             return false;
         }
 
-        public override bool isSafeForBussiness()
+        public override bool IsSafeForBussiness()
         {
             return true;
         }
 
-        public override bool isUserControlRequired()
+        public override bool IsUserControlRequired()
         {
             return false;
         }

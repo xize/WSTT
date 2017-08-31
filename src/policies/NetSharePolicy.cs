@@ -27,22 +27,22 @@ namespace windows_security_tweak_tool.src.policies
 {
     class NetSharePolicy : SecurityPolicy
     {
-        public override string getName()
+        public override string GetName()
         {
-            return getType().GetName();
+            return GetPolicyType().GetName();
         }
 
-        public override string getDescription()
+        public override string GetDescription()
         {
             return "disables netshares so these directories are not shared automaticly anymore";
         }
 
-        public override SecurityPolicyType getType()
+        public override SecurityPolicyType GetPolicyType()
         {
             return SecurityPolicyType.NETSHARE_POLICY;
         }
 
-        public override bool isEnabled()
+        public override bool IsEnabled()
         {
             if(!IsServiceStarted("LanmanServer"))
             {
@@ -51,61 +51,61 @@ namespace windows_security_tweak_tool.src.policies
             return false;
         }
 
-        public override void apply()
+        public override void Apply()
         {
-            getButton().Enabled = false;
+            GetButton().Enabled = false;
             this.StopService("LanmanServer", this);
             this.SetServiceType("LanmanServer", ServiceType.MANUAL);
-            this.setGuiEnabled(this);
-            getButton().Enabled = true;
+            this.SetGuiEnabled(this);
+            GetButton().Enabled = true;
         }
 
-        public override void unapply()
+        public override void Unapply()
         {
-            getButton().Enabled = false;
+            GetButton().Enabled = false;
             this.SetServiceType("LanmanServer", ServiceType.AUTOMATIC);
             this.StartService("LanmanServer", this);
-            this.setGuiDisabled(this);
-            getButton().Enabled = true;
+            this.SetGuiDisabled(this);
+            GetButton().Enabled = true;
         }
 
-        public override Button getButton()
+        public override Button GetButton()
         {
             return this.gui.netsharebtn;
         }
 
-        public override ProgressBar getProgressbar()
+        public override ProgressBar GetProgressbar()
         {
             return this.gui.netshareprogress;
         }
 
-        public override bool hasIncompatibilityIssues()
+        public override bool HasIncompatibilityIssues()
         {
             return false;
         }
 
         [Obsolete]
-        public override bool isLanguageDepended()
+        public override bool IsLanguageDepended()
         {
             return false;
         }
 
-        public override bool isMacro()
+        public override bool IsMacro()
         {
             return false;
         }
 
-        public override bool isSafeForBussiness()
+        public override bool IsSafeForBussiness()
         {
             return false;
         }
 
-        public override bool isSecpolDepended()
+        public override bool IsSecpolDepended()
         {
             return false;
         }
 
-        public override bool isUserControlRequired()
+        public override bool IsUserControlRequired()
         {
             return false;
         }

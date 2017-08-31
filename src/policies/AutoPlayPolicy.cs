@@ -28,49 +28,49 @@ namespace windows_security_tweak_tool.src.policies
 {
     class AutoPlayPolicy : SecurityPolicy
     {
-        public override string getName()
+        public override string GetName()
         {
-            return getType().GetName();
+            return GetPolicyType().GetName();
         }
 
-        public override string getDescription()
+        public override string GetDescription()
         {
             return "disables auto play so removable devices cannot auto run programs on the computer";
         }
 
-        public override SecurityPolicyType getType()
+        public override SecurityPolicyType GetPolicyType()
         {
             return SecurityPolicyType.AUTOPLAY_POLICY;
         }
 
-        public override void apply()
+        public override void Apply()
         {
-            getButton().Enabled = false;
+            GetButton().Enabled = false;
             RegistryKey key = GetRegistry(@"Software\Microsoft\Windows\CurrentVersion\policies\Explorer\", REG.HKLM);
             key.SetValue("NoDriveTypeAutoRun", 0x00);
             key.Close();
             key.Dispose();
-            setGuiEnabled(this);
-            getButton().Enabled = true;
+            SetGuiEnabled(this);
+            GetButton().Enabled = true;
         }
 
-        public override void unapply()
+        public override void Unapply()
         {
-            getButton().Enabled = false;
+            GetButton().Enabled = false;
             RegistryKey key = GetRegistry(@"Software\Microsoft\Windows\CurrentVersion\policies\Explorer\", REG.HKLM);
             key.SetValue("NoDriveTypeAutoRun", 0xFF);
             key.Close();
             key.Dispose();
-            setGuiDisabled(this);
-            getButton().Enabled = true;
+            SetGuiDisabled(this);
+            GetButton().Enabled = true;
         }
 
-        public override bool hasIncompatibilityIssues()
+        public override bool HasIncompatibilityIssues()
         {
             return false;
         }
 
-        public override bool isEnabled()
+        public override bool IsEnabled()
         {
             RegistryKey key = GetRegistry(@"Software\Microsoft\Windows\CurrentVersion\policies\Explorer\", REG.HKLM);
             try
@@ -86,37 +86,37 @@ namespace windows_security_tweak_tool.src.policies
         }
 
         [Obsolete]
-        public override bool isLanguageDepended()
+        public override bool IsLanguageDepended()
         {
             return false;
         }
 
-        public override bool isMacro()
+        public override bool IsMacro()
         {
             return false;
         }
 
-        public override bool isSafeForBussiness()
+        public override bool IsSafeForBussiness()
         {
             return true;
         }
 
-        public override bool isSecpolDepended()
+        public override bool IsSecpolDepended()
         {
             return false;
         }
 
-        public override bool isUserControlRequired()
+        public override bool IsUserControlRequired()
         {
             return false;
         }
 
-        public override Button getButton()
+        public override Button GetButton()
         {
             return gui.autoplaybtn;
         }
 
-        public override ProgressBar getProgressbar()
+        public override ProgressBar GetProgressbar()
         {
             return gui.autoplayprogress;
         }

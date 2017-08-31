@@ -29,22 +29,22 @@ namespace windows_security_tweak_tool.src.policies
     class NTLMPolicy : SecurityPolicy
     {
 
-        public override string getName()
+        public override string GetName()
         {
-            return getType().GetName();
+            return GetPolicyType().GetName();
         }
 
-        public override string getDescription()
+        public override string GetDescription()
         {
             return "disables incomming and outcomming NTLM traffic, since most of the computers have standard Remote Desktop Protocol Enabled and most of the times it is NTLM depended\n\nthis means your computer is vulnerable against hash function cracking and a hacker could enter your remote computer very easily\ndo not use this when you are logged into a domain/bussiness network";
         }
 
-        public override SecurityPolicyType getType()
+        public override SecurityPolicyType GetPolicyType()
         {
             return SecurityPolicyType.NTLM_POLICY;
         }
 
-        public override bool isEnabled()
+        public override bool IsEnabled()
         {
             bool bol = Config.getConfig().getBoolean("NTLM-secure");
             if(bol)
@@ -54,9 +54,9 @@ namespace windows_security_tweak_tool.src.policies
             return false;
         }
 
-        public override void apply()
+        public override void Apply()
         {
-            getButton().Enabled = false;
+            GetButton().Enabled = false;
 
             AutoIt.AutoItX.Run("mmc.exe secpol.msc", null, 0);
             AutoIt.AutoItX.WinWait("[CLASS:MMCMainFrame]");
@@ -72,19 +72,19 @@ namespace windows_security_tweak_tool.src.policies
             AutoIt.AutoItX.Send("{DOWN}{DOWN}{DOWN}");
             AutoIt.AutoItX.Sleep(400);
             AutoIt.AutoItX.Send("{TAB}");
-            addNTLMPolicyOptions();
+            AddNTLMPolicyOptions();
             closeWindow();
 
             SecurityPolicy p = SecurityPolicyType.UPDATE_POLICY.GetPolicy(gui);
-            p.apply();
+            p.Apply();
             Config.getConfig().put("NTLM-secure", true);
-            setGuiEnabled(this);
-            getButton().Enabled = true;
+            SetGuiEnabled(this);
+            GetButton().Enabled = true;
         }
 
-        public override void unapply()
+        public override void Unapply()
         {
-            getButton().Enabled = false;
+            GetButton().Enabled = false;
 
             AutoIt.AutoItX.Run("mmc.exe secpol.msc", null, 0);
 
@@ -106,13 +106,13 @@ namespace windows_security_tweak_tool.src.policies
             closeWindow();
 
             SecurityPolicy p = SecurityPolicyType.UPDATE_POLICY.GetPolicy(gui);
-            p.apply();
+            p.Apply();
             Config.getConfig().put("NTLM-secure", false);
-            setGuiDisabled(this);
-            getButton().Enabled = true;
+            SetGuiDisabled(this);
+            GetButton().Enabled = true;
         }
 
-        private void loopToOptions()
+        private void LoopToOptions()
         {
             for (int i = 0; i < 69; i++)
             {
@@ -120,10 +120,10 @@ namespace windows_security_tweak_tool.src.policies
             }
         }
 
-        private void addNTLMPolicyOptions()
+        private void AddNTLMPolicyOptions()
         {
 
-            loopToOptions();
+            LoopToOptions();
             
             AutoIt.AutoItX.Send("{ENTER}");
             AutoIt.AutoItX.Sleep(300);
@@ -184,7 +184,7 @@ namespace windows_security_tweak_tool.src.policies
         private void setDefaultOptions()
         {
 
-            loopToOptions();
+            LoopToOptions();
 
             AutoIt.AutoItX.Send("{ENTER}");
             AutoIt.AutoItX.WinWait("[CLASS:#32770]");
@@ -232,22 +232,22 @@ namespace windows_security_tweak_tool.src.policies
             AutoIt.AutoItX.WinClose("[CLASS:MMCMainFrame]");
         }
 
-        public override Button getButton()
+        public override Button GetButton()
         {
             return gui.NTLMbtn;
         }
 
-        public override ProgressBar getProgressbar()
+        public override ProgressBar GetProgressbar()
         {
             return gui.NTLMProgress;
         }
 
-        public override bool isMacro()
+        public override bool IsMacro()
         {
             return true;
         }
 
-        public override bool isSecpolDepended()
+        public override bool IsSecpolDepended()
         {
             return true;
         }
@@ -265,23 +265,23 @@ namespace windows_security_tweak_tool.src.policies
         }
 
         [Obsolete]
-        public override bool isLanguageDepended()
+        public override bool IsLanguageDepended()
         {
             return true;
         }
 
-        public override bool hasIncompatibilityIssues()
+        public override bool HasIncompatibilityIssues()
         {
             //needs to be checked
             return false;
         }
 
-        public override bool isSafeForBussiness()
+        public override bool IsSafeForBussiness()
         {
             return false;
         }
 
-        public override bool isUserControlRequired()
+        public override bool IsUserControlRequired()
         {
             return false;
         }

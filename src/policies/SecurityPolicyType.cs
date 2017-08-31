@@ -63,7 +63,7 @@ namespace windows_security_tweak_tool.src.policies
 
         public SecurityPolicy GetPolicy(Window wind)
         {
-            pol.setGui(wind);
+            pol.SetGui(wind);
             return pol;
         }
 
