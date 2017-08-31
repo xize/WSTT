@@ -32,7 +32,7 @@ namespace windows_security_tweak_tool.src.policies
 
         public override string getName()
         {
-            return getType().getName();
+            return getType().GetName();
         }
 
         public override string getDescription()
@@ -71,7 +71,7 @@ namespace windows_security_tweak_tool.src.policies
 
         public override void apply()
         {
-            Console.WriteLine("{== Applying " + getType().getName().ToUpper() + " ==}");
+            Console.WriteLine("{== Applying " + getType().GetName().ToUpper() + " ==}");
             getButton().Enabled = false;
             RegistryKey key = GetRegistry(@"SYSTEM\CurrentControlSet\services\NetBT\Parameters\Interfaces", REG.HKLM);
             string[] adapters = key.GetSubKeyNames();
@@ -94,12 +94,12 @@ namespace windows_security_tweak_tool.src.policies
             key.Close();
             setGuiEnabled(this);
             getButton().Enabled = true;
-            Console.WriteLine("{== " + getType().getName().ToUpper() + " has been applied ==}");
+            Console.WriteLine("{== " + getType().GetName().ToUpper() + " has been applied ==}");
         }
 
         public override void unapply()
         {
-            Console.WriteLine("{== Unapplying " + getType().getName().ToUpper() + " ==}");
+            Console.WriteLine("{== Unapplying " + getType().GetName().ToUpper() + " ==}");
             getButton().Enabled = false;
             RegistryKey key = GetRegistry(@"SYSTEM\CurrentControlSet\services\NetBT\Parameters\Interfaces", REG.HKLM);
 
@@ -123,7 +123,7 @@ namespace windows_security_tweak_tool.src.policies
             key.Close();
             getButton().Enabled = true;
             setGuiDisabled(this);
-            Console.WriteLine("{== " + getType().getName().ToUpper() + " has been unapplied ==}");
+            Console.WriteLine("{== " + getType().GetName().ToUpper() + " has been unapplied ==}");
         }
 
         public override bool isMacro()

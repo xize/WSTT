@@ -31,7 +31,7 @@ namespace windows_security_tweak_tool.src.policies
 
         public override string getName()
         {
-            return getType().getName();
+            return getType().GetName();
         }
 
         public override string getDescription()
@@ -75,7 +75,7 @@ namespace windows_security_tweak_tool.src.policies
             addNTLMPolicyOptions();
             closeWindow();
 
-            SecurityPolicy p = SecurityPolicyType.UPDATE_POLICY.getPolicy(gui);
+            SecurityPolicy p = SecurityPolicyType.UPDATE_POLICY.GetPolicy(gui);
             p.apply();
             Config.getConfig().put("NTLM-secure", true);
             setGuiEnabled(this);
@@ -105,7 +105,7 @@ namespace windows_security_tweak_tool.src.policies
             setDefaultOptions();
             closeWindow();
 
-            SecurityPolicy p = SecurityPolicyType.UPDATE_POLICY.getPolicy(gui);
+            SecurityPolicy p = SecurityPolicyType.UPDATE_POLICY.GetPolicy(gui);
             p.apply();
             Config.getConfig().put("NTLM-secure", false);
             setGuiDisabled(this);

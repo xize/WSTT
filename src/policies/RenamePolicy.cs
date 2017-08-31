@@ -68,7 +68,7 @@ namespace windows_security_tweak_tool.src.policies
 
         public override string getName()
         {
-            return getType().getName();
+            return getType().GetName();
         }
 
         public override string getDescription()
@@ -95,7 +95,7 @@ namespace windows_security_tweak_tool.src.policies
         {
             getButton().Enabled = false;
 
-            Console.WriteLine("{== Applying " + getType().getName().ToUpper() + " ==}");
+            Console.WriteLine("{== Applying " + getType().GetName().ToUpper() + " ==}");
 
             foreach (string extension in extensions)
             {
@@ -107,14 +107,14 @@ namespace windows_security_tweak_tool.src.policies
             Config.getConfig().put("renamed", true);
             setGuiEnabled(this);
             getButton().Enabled = true;
-            Console.WriteLine("{== " + getType().getName().ToUpper() + " has been applied ==}");
+            Console.WriteLine("{== " + getType().GetName().ToUpper() + " has been applied ==}");
         }
 
         public override void unapply()
         {
             getButton().Enabled = false;
 
-            Console.WriteLine("{== Unapplying Policy " + getType().getName().ToUpper() + " ==}");
+            Console.WriteLine("{== Unapplying Policy " + getType().GetName().ToUpper() + " ==}");
 
             foreach (string extension in extensions)
             {
@@ -192,7 +192,7 @@ namespace windows_security_tweak_tool.src.policies
             Config.getConfig().put("renamed", false);
             getButton().Enabled = true;
             setGuiDisabled(this);
-            Console.WriteLine("{== "+getType().getName().ToUpper()+" has been unapplied ==}");
+            Console.WriteLine("{== "+getType().GetName().ToUpper()+" has been unapplied ==}");
         }
 
         public override bool isMacro()

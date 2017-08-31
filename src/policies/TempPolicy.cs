@@ -31,7 +31,7 @@ namespace windows_security_tweak_tool.src.policies
 
         public override string getName()
         {
-            return getType().getName();
+            return getType().GetName();
         }
 
         public override string getDescription()
@@ -101,7 +101,7 @@ namespace windows_security_tweak_tool.src.policies
 
             closeMMCWindow();
 
-            SecurityPolicy p = SecurityPolicyType.UPDATE_POLICY.getPolicy(gui);
+            SecurityPolicy p = SecurityPolicyType.UPDATE_POLICY.GetPolicy(gui);
             p.apply();
             Config.getConfig().put("policy-malware-restriction", true);
             setGuiEnabled(this);
@@ -129,7 +129,7 @@ namespace windows_security_tweak_tool.src.policies
             AutoIt.AutoItX.Send("{ENTER}");
 
             closeMMCWindow();
-            SecurityPolicy p = SecurityPolicyType.UPDATE_POLICY.getPolicy(gui);
+            SecurityPolicy p = SecurityPolicyType.UPDATE_POLICY.GetPolicy(gui);
             p.apply();
             Config.getConfig().put("policy-malware-restriction", false);
             setGuiDisabled(this);

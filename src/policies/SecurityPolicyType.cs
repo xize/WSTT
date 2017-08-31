@@ -56,22 +56,22 @@ namespace windows_security_tweak_tool.src.policies
             this.pol = pol;
         }
 
-        public string getName()
+        public string GetName()
         {
             return name;
         }
 
-        public SecurityPolicy getPolicy(Window wind)
+        public SecurityPolicy GetPolicy(Window wind)
         {
             pol.setGui(wind);
             return pol;
         }
 
-        public static SecurityPolicyType valueOf(string name)
+        public static SecurityPolicyType ValueOf(string name)
         {
-            foreach(SecurityPolicyType type in values())
+            foreach(SecurityPolicyType type in Values())
             {
-                if(type.startsWith(name.ToUpper(), type.getName().ToUpper()))
+                if(type.startsWith(name.ToUpper(), type.GetName().ToUpper()))
                 {
                     return type;
                 }
@@ -79,7 +79,7 @@ namespace windows_security_tweak_tool.src.policies
             return null;
         }
 
-        public static SecurityPolicyType[] values()
+        public static SecurityPolicyType[] Values()
         {
             return types.ToArray();
         }

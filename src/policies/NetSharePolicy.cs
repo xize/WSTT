@@ -29,7 +29,7 @@ namespace windows_security_tweak_tool.src.policies
     {
         public override string getName()
         {
-            return getType().getName();
+            return getType().GetName();
         }
 
         public override string getDescription()
