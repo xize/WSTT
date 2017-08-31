@@ -46,7 +46,7 @@ namespace windows_security_tweak_tool.src.policies
 
         public override bool IsEnabled()
         {
-            bool bol = Config.getConfig().getBoolean("NTLM-secure");
+            bool bol = Config.GetConfig().GetBoolean("NTLM-secure");
             if(bol)
             {
                 return true;
@@ -77,7 +77,7 @@ namespace windows_security_tweak_tool.src.policies
 
             SecurityPolicy p = SecurityPolicyType.UPDATE_POLICY.GetPolicy(gui);
             p.Apply();
-            Config.getConfig().put("NTLM-secure", true);
+            Config.GetConfig().Put("NTLM-secure", true);
             SetGuiEnabled(this);
             GetButton().Enabled = true;
         }
@@ -107,7 +107,7 @@ namespace windows_security_tweak_tool.src.policies
 
             SecurityPolicy p = SecurityPolicyType.UPDATE_POLICY.GetPolicy(gui);
             p.Apply();
-            Config.getConfig().put("NTLM-secure", false);
+            Config.GetConfig().Put("NTLM-secure", false);
             SetGuiDisabled(this);
             GetButton().Enabled = true;
         }

@@ -84,7 +84,7 @@ namespace windows_security_tweak_tool.src.policies
 
         public override bool IsEnabled()
         {
-            if(Config.getConfig().getBoolean("renamed"))
+            if(Config.GetConfig().GetBoolean("renamed"))
             {
                 return true;
             }
@@ -101,7 +101,7 @@ namespace windows_security_tweak_tool.src.policies
                 ExecuteCMD("ftype " + extension.ToUpper() + @"File=C:\windows\system32\notepad.exe", true);
             }
 
-            Config.getConfig().put("renamed", true);
+            Config.GetConfig().Put("renamed", true);
             SetGuiEnabled(this);
             GetButton().Enabled = true;
         }
@@ -183,7 +183,7 @@ namespace windows_security_tweak_tool.src.policies
 
                 ExecuteCMD(argument, true);
             }
-            Config.getConfig().put("renamed", false);
+            Config.GetConfig().Put("renamed", false);
             GetButton().Enabled = true;
             SetGuiDisabled(this);
         }

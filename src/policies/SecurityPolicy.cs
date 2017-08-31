@@ -229,7 +229,7 @@ namespace windows_security_tweak_tool.src.policies
         **/
         public string GetDataFolder()
         {
-            return Config.getConfig().getDataFolder();
+            return Config.GetConfig().GetDataFolder();
         }
 
         /**

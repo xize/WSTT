@@ -35,7 +35,7 @@ namespace windows_security_tweak_tool.src
 
         private Config() { }
 
-        public bool nodeExist(string a)
+        public bool NodeExist(string a)
         {
             if(nodes.ContainsKey(a.ToLower()))
             {
@@ -44,42 +44,42 @@ namespace windows_security_tweak_tool.src
             return false;
         }
 
-        public String getString(String node)
+        public String GetString(String node)
         {
             if(!nodes.ContainsKey(node.ToLower()))
             {
                 return null;
             }
-            return get<String>(node);
+            return Get<String>(node);
         }
         
-        public int getInt(String node)
+        public int GetInt(String node)
         {
             if(!nodes.ContainsKey((node.ToLower())))
             {
                 return 0;
             }
-            return get<int>(node);
+            return Get<int>(node);
         }
 
-        public double getDouble(String node)
+        public double GetDouble(String node)
         {
             if(!nodes.ContainsKey(node.ToLower()))
             {
                 return 0.0;
             }
-            return get<double>(node);
+            return Get<double>(node);
         }
 
-        public bool getBoolean(string node) {
+        public bool GetBoolean(string node) {
             if(!nodes.ContainsKey(node.ToLower()))
             {
                 return false;
             }
-            return get<bool>(node);
+            return Get<bool>(node);
         }
 
-        public void put(String node, Object obj)
+        public void Put(String node, Object obj)
         {
             if(!nodes.ContainsKey(node.ToLower()))
             {
@@ -89,26 +89,26 @@ namespace windows_security_tweak_tool.src
                 nodes.Remove(node.ToLower());
                 nodes.Add(node.ToLower(), obj);
             }
-            reloadConfig();
+            ReloadConfig();
         }
 
-        public void reloadConfig()
+        public void ReloadConfig()
         {
-            saveConfig();
-            readConfig();
+            SaveConfig();
+            ReadConfig();
         }
 
-        private T get<T>(string node)
+        private T Get<T>(string node)
         {
             Object obj = null;
             obj = nodes[node.ToLower()];
             return (T)obj;
         }
 
-        private void saveConfig()
+        private void SaveConfig()
         {
 
-            string path = getDataFolder();
+            string path = GetDataFolder();
 
             if(!Directory.Exists(path))
             {
@@ -130,10 +130,10 @@ namespace windows_security_tweak_tool.src
             fs.Close();
         }
 
-        public void readConfig()
+        public void ReadConfig()
         {
 
-            string path = getDataFolder();
+            string path = GetDataFolder();
 
             if (!Directory.Exists(path))
             {
@@ -185,7 +185,7 @@ namespace windows_security_tweak_tool.src
             reader.Close();
         }
 
-        public string getDataFolder()
+        public string GetDataFolder()
         {
             string appdata = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
 
@@ -223,7 +223,7 @@ namespace windows_security_tweak_tool.src
         }
 
 
-        public static Config getConfig()
+        public static Config GetConfig()
         {
             if(cfg == null)
             {

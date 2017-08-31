@@ -96,7 +96,7 @@ namespace windows_security_tweak_tool.src.ninite
 
         private string getDataFolder()
         {
-            return Config.getConfig().getDataFolder();
+            return Config.GetConfig().GetDataFolder();
         }
 
         private bool verifyInstaller()

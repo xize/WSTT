@@ -95,7 +95,7 @@ namespace windows_security_tweak_tool.src.policies
 
         public override bool IsEnabled()
         {
-            return Config.getConfig().getBoolean("insecure-services");
+            return Config.GetConfig().GetBoolean("insecure-services");
         }
 
         public override void Apply()
@@ -110,7 +110,7 @@ namespace windows_security_tweak_tool.src.policies
                 }
                     this.SetServiceType(service.Key, ServiceType.DISABLED);
             }
-            Config.getConfig().put("insecure-services", true);
+            Config.GetConfig().Put("insecure-services", true);
             SetGuiEnabled(this);
             GetButton().Enabled = true;
         }
@@ -123,7 +123,7 @@ namespace windows_security_tweak_tool.src.policies
             {
                 this.SetServiceType(service.Key, service.Value);
             }
-            Config.getConfig().put("insecure-services", false);
+            Config.GetConfig().Put("insecure-services", false);
 
             GetButton().Enabled = true;
             SetGuiDisabled(this);

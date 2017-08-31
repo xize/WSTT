@@ -54,7 +54,7 @@ namespace windows_security_tweak_tool.src.optionalpolicies
 
             cleanupProcesses();
 
-            Process p = Process.Start("explorer.exe", Config.getConfig().getDataFolder() + @"\wstt-downloaded\");
+            Process p = Process.Start("explorer.exe", Config.GetConfig().GetDataFolder() + @"\wstt-downloaded\");
             DialogResult r = MessageBox.Show("please start chrome and paste this url:\n" + "chrome://extensions/" + "\nthen select a single file in this folder and drag it into the page!\n\npress OK when you are done!", "please read!");
             Clipboard.SetText("chrome://extensions/");
 
@@ -63,7 +63,7 @@ namespace windows_security_tweak_tool.src.optionalpolicies
 
             if(r == DialogResult.OK)
             {
-                DirectoryInfo dir = new DirectoryInfo(Config.getConfig().getDataFolder() + @"\wstt-downloaded\");
+                DirectoryInfo dir = new DirectoryInfo(Config.GetConfig().GetDataFolder() + @"\wstt-downloaded\");
                 foreach(var f in dir.EnumerateFiles("*.crx"))
                 {
                     f.Delete();
@@ -128,13 +128,13 @@ namespace windows_security_tweak_tool.src.optionalpolicies
         public string download()
         {
             WebClient client = new WebClient();
-            if(!Directory.Exists(Config.getConfig().getDataFolder()+@"\wstt-downloaded"))
+            if(!Directory.Exists(Config.GetConfig().GetDataFolder()+@"\wstt-downloaded"))
             {
-                Directory.CreateDirectory(Config.getConfig().getDataFolder() + @"\wstt-downloaded");
+                Directory.CreateDirectory(Config.GetConfig().GetDataFolder() + @"\wstt-downloaded");
             }
-            client.DownloadFile(api_string.Replace("{id}", id), Config.getConfig().getDataFolder() + @"\wstt-downloaded\"+name+".crx");
+            client.DownloadFile(api_string.Replace("{id}", id), Config.GetConfig().GetDataFolder() + @"\wstt-downloaded\"+name+".crx");
 
-            return Config.getConfig().getDataFolder() + @"\wstt-downloaded\" + name + ".crx";
+            return Config.GetConfig().GetDataFolder() + @"\wstt-downloaded\" + name + ".crx";
         }
     }
 }

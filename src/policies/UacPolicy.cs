@@ -45,7 +45,7 @@ namespace windows_security_tweak_tool.src.policies
 
         public override bool IsEnabled()
         {
-            if(Config.getConfig().getInt("uac-mode") == 4)
+            if(Config.GetConfig().GetInt("uac-mode") == 4)
             {
                 return true;
             }
@@ -65,7 +65,7 @@ namespace windows_security_tweak_tool.src.policies
             AutoIt.AutoItX.Send("{TAB}");
             AutoIt.AutoItX.Send("{ENTER}");
 
-            Config.getConfig().put("uac-mode", 4);
+            Config.GetConfig().Put("uac-mode", 4);
             SetGuiEnabled(this);
             gui.uac_btn.Enabled = true;
         }
@@ -84,7 +84,7 @@ namespace windows_security_tweak_tool.src.policies
             AutoIt.AutoItX.Send("{TAB}");
             AutoIt.AutoItX.Send("{ENTER}");
 
-            Config.getConfig().put("uac-mode", 3);
+            Config.GetConfig().Put("uac-mode", 3);
             SetGuiDisabled(this);
             gui.uac_btn.Enabled = true;
         }

@@ -46,7 +46,7 @@ namespace windows_security_tweak_tool.src.policies
 
         public override bool IsEnabled()
         {
-            return Config.getConfig().getBoolean("policy-malware-restriction");
+            return Config.GetConfig().GetBoolean("policy-malware-restriction");
         }
 
         public override void Apply()
@@ -103,7 +103,7 @@ namespace windows_security_tweak_tool.src.policies
 
             SecurityPolicy p = SecurityPolicyType.UPDATE_POLICY.GetPolicy(gui);
             p.Apply();
-            Config.getConfig().put("policy-malware-restriction", true);
+            Config.GetConfig().Put("policy-malware-restriction", true);
             SetGuiEnabled(this);
             GetButton().Enabled = true;
         }
@@ -131,7 +131,7 @@ namespace windows_security_tweak_tool.src.policies
             CloseMMCWindow();
             SecurityPolicy p = SecurityPolicyType.UPDATE_POLICY.GetPolicy(gui);
             p.Apply();
-            Config.getConfig().put("policy-malware-restriction", false);
+            Config.GetConfig().Put("policy-malware-restriction", false);
             SetGuiDisabled(this);
             GetButton().Enabled = true;
         }

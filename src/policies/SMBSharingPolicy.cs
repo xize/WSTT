@@ -47,9 +47,9 @@ namespace windows_security_tweak_tool.src.policies
 
         public override bool IsEnabled()
         {
-            if (Config.getConfig().nodeExist("smb-enabled"))
+            if (Config.GetConfig().NodeExist("smb-enabled"))
             {
-                return Config.getConfig().getBoolean("smb-enabled");
+                return Config.GetConfig().GetBoolean("smb-enabled");
             }
             else
             {
@@ -98,7 +98,7 @@ namespace windows_security_tweak_tool.src.policies
             p.WaitForExit();
             p.Close();
             p.Dispose();
-            Config.getConfig().put("smb-enabled", true);
+            Config.GetConfig().Put("smb-enabled", true);
 
             GetButton().Enabled = true;
             SetGuiEnabled(this);
@@ -122,7 +122,7 @@ namespace windows_security_tweak_tool.src.policies
             p.WaitForExit();
             p.Close();
             p.Dispose();
-            Config.getConfig().put("smb-enabled", false);
+            Config.GetConfig().Put("smb-enabled", false);
 
             GetButton().Enabled = true;
             SetGuiDisabled(this);

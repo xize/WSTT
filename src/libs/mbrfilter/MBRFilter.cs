@@ -49,33 +49,33 @@ namespace windows_security_tweak_tool.src.mbrfilter
         {
             WebClient client = new WebClient();
             client.Headers.Add("user-agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.59 Safari/537.36");
-            Directory.CreateDirectory(Config.getConfig().getDataFolder() + @"\mbrfilter");
+            Directory.CreateDirectory(Config.GetConfig().GetDataFolder() + @"\mbrfilter");
             try
             {
-                client.DownloadFile(new Uri(downloadurl), Config.getConfig().getDataFolder() + @"\mbrfilter\mbrfilter.zip");
+                client.DownloadFile(new Uri(downloadurl), Config.GetConfig().GetDataFolder() + @"\mbrfilter\mbrfilter.zip");
             }
             catch (Exception e)
             {
                 Console.WriteLine(e.Message);
                 MessageBox.Show("Unable to download  MBRFilter, perhaps the file has been removed?\nplease visit: " + downloadurl);
-                Directory.Delete(Config.getConfig().getDataFolder() + @"\mbrfilter");
+                Directory.Delete(Config.GetConfig().GetDataFolder() + @"\mbrfilter");
                 return;
             }
 
-            while (!validateMBRFilter(Config.getConfig().getDataFolder() + @"\mbrfilter\mbrfilter.zip"))
+            while (!validateMBRFilter(Config.GetConfig().GetDataFolder() + @"\mbrfilter\mbrfilter.zip"))
             {
                 MessageBox.Show("We re-attempt to download MBRFilter again\nit would be wise to check your connection against manipulation", "invalid or tampered version of MBRFilter downloaded!");
-                File.Delete(Config.getConfig().getDataFolder() + @"\mbrfilter\mbrfilter.zip");
-                client.DownloadFile(new Uri(downloadurl), Config.getConfig().getDataFolder() + @"\mbrfilter\mbrfilter.zip");
+                File.Delete(Config.GetConfig().GetDataFolder() + @"\mbrfilter\mbrfilter.zip");
+                client.DownloadFile(new Uri(downloadurl), Config.GetConfig().GetDataFolder() + @"\mbrfilter\mbrfilter.zip");
             }
 
-            ZipArchive archive = ZipFile.OpenRead(Config.getConfig().getDataFolder() + @"\mbrfilter\mbrfilter.zip");
-            archive.ExtractToDirectory(Config.getConfig().getDataFolder() + @"\mbrfilter");
+            ZipArchive archive = ZipFile.OpenRead(Config.GetConfig().GetDataFolder() + @"\mbrfilter\mbrfilter.zip");
+            archive.ExtractToDirectory(Config.GetConfig().GetDataFolder() + @"\mbrfilter");
             archive.Dispose();
-            File.Delete(Config.getConfig().getDataFolder() + @"\mbrfilter\mbrfilter.zip");
+            File.Delete(Config.GetConfig().GetDataFolder() + @"\mbrfilter\mbrfilter.zip");
 
             ProcessStartInfo proci = new ProcessStartInfo("infdefaultinstall.exe");
-            proci.Arguments = "\"" + Config.getConfig().getDataFolder() + @"\mbrfilter\" + (Environment.Is64BitOperatingSystem ? "64" : "32") + @"\MBRFilter.inf" + "\"";
+            proci.Arguments = "\"" + Config.GetConfig().GetDataFolder() + @"\mbrfilter\" + (Environment.Is64BitOperatingSystem ? "64" : "32") + @"\MBRFilter.inf" + "\"";
             Process proc = Process.Start(proci);
             proc.WaitForExit();
             proc.Dispose();
@@ -88,11 +88,11 @@ namespace windows_security_tweak_tool.src.mbrfilter
             orginal.Remove("MBRFilter");
             classes.SetValue("UpperFilters", orginal.ToArray());
 
-            foreach (string a in Directory.GetFiles(Config.getConfig().getDataFolder() + @"\mbrfilter"))
+            foreach (string a in Directory.GetFiles(Config.GetConfig().GetDataFolder() + @"\mbrfilter"))
             {
                 File.Delete(a);
             }
-            Directory.Delete(Config.getConfig().getDataFolder() + @"\mbrfilter", true);
+            Directory.Delete(Config.GetConfig().GetDataFolder() + @"\mbrfilter", true);
         }
 
         public bool isInstalled()

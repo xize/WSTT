@@ -63,16 +63,16 @@ namespace windows_security_tweak_tool.src.optionalpolicies
             {
                 string url = regex.Matches(body).OfType<Match>().Select(m => m.Groups[0].Value).ToArray()[0].Replace("<link>", "").Replace("</link>", "");
 
-                if (!Directory.Exists(Config.getConfig().getDataFolder() + @"\wstt-downloaded\KeePass.exe"))
+                if (!Directory.Exists(Config.GetConfig().GetDataFolder() + @"\wstt-downloaded\KeePass.exe"))
                 {
-                    Directory.CreateDirectory(Config.getConfig().getDataFolder() + @"\wstt-downloaded");
+                    Directory.CreateDirectory(Config.GetConfig().GetDataFolder() + @"\wstt-downloaded");
                 }
 
-                c.DownloadFile(new Uri(url), Config.getConfig().getDataFolder() + @"\wstt-downloaded\KeePass.exe");
-                X509Certificate cert = X509Certificate.CreateFromSignedFile(Config.getConfig().getDataFolder() + @"\wstt-downloaded\KeePass.exe");
+                c.DownloadFile(new Uri(url), Config.GetConfig().GetDataFolder() + @"\wstt-downloaded\KeePass.exe");
+                X509Certificate cert = X509Certificate.CreateFromSignedFile(Config.GetConfig().GetDataFolder() + @"\wstt-downloaded\KeePass.exe");
                 if(cert.GetCertHashString() == getCertificate().getHash())
                 {
-                    Process p = Process.Start(Config.getConfig().getDataFolder() + @"\wstt-downloaded\KeePass.exe");
+                    Process p = Process.Start(Config.GetConfig().GetDataFolder() + @"\wstt-downloaded\KeePass.exe");
                     p.WaitForExit();
                     p.Dispose();
                     RegistryKey key = RegistryKey.OpenBaseKey(RegistryHive.LocalMachine, RegistryView.Default).OpenSubKey(@"SOFTWARE\Microsoft\Windows NT\CurrentVersion\AppCompatFlags\", true);
@@ -86,10 +86,10 @@ namespace windows_security_tweak_tool.src.optionalpolicies
                     layers.Dispose();
                     key.Close();
                     key.Dispose();
-                    File.Delete(Config.getConfig().getDataFolder() + @"\wstt-downloaded\KeePass.exe");
+                    File.Delete(Config.GetConfig().GetDataFolder() + @"\wstt-downloaded\KeePass.exe");
                 } else
                 {
-                    File.Delete(Config.getConfig().getDataFolder() + @"\wstt-downloaded\KeePass.exe");
+                    File.Delete(Config.GetConfig().GetDataFolder() + @"\wstt-downloaded\KeePass.exe");
                     MessageBox.Show("Failed to download keepass the certificate did not match!", "invalid certificate!");
                     getButton().Enabled = true;
                     return;

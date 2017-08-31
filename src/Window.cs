@@ -42,7 +42,7 @@ namespace windows_security_tweak_tool.src
 
         public Window()
         {
-            Config.getConfig().readConfig();
+            Config.GetConfig().ReadConfig();
             InitializeComponent();
             if(this.optionalw == null)
             {
@@ -391,9 +391,9 @@ namespace windows_security_tweak_tool.src
 
         private void resetPoliciesToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if(File.Exists(Config.getConfig().getDataFolder()+@"\config.txt"))
+            if(File.Exists(Config.GetConfig().GetDataFolder()+@"\config.txt"))
             {
-                File.Delete(Config.getConfig().getDataFolder()+@"\config.txt");
+                File.Delete(Config.GetConfig().GetDataFolder()+@"\config.txt");
             }
 
             string[] cmdargs = { "/c RD /S /Q \"%WinDir%\\System32\\GroupPolicyUsers\"", "/c RD /S /Q \"%WinDir%\\System32\\GroupPolicy\"" };
