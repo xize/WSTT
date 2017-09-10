@@ -91,25 +91,39 @@ namespace windows_security_tweak_tool.src.policies
             return false;
         }
 
-        public override void Apply()
+        public async override void Apply()
         {
             GetButton().Enabled = false;
 
-            foreach (string extension in extensions)
-            {
-                ExecuteCMD("assoc " + extension+" = "+extension.ToUpper()+"File", true);
-                ExecuteCMD("ftype " + extension.ToUpper() + @"File=C:\windows\system32\notepad.exe", true);
-            }
+            await Task.Run(() => ApplyAsync());
 
-            Config.GetConfig().Put("renamed", true);
             SetGuiEnabled(this);
             GetButton().Enabled = true;
         }
 
-        public override void Unapply()
+        public void ApplyAsync()
+        {
+            foreach (string extension in extensions)
+            {
+                ExecuteCMD("assoc " + extension + " = " + extension.ToUpper() + "File", true);
+                ExecuteCMD("ftype " + extension.ToUpper() + @"File=C:\windows\system32\notepad.exe", true);
+            }
+
+            Config.GetConfig().Put("renamed", true);
+        }
+
+        public async override void Unapply()
         {
             GetButton().Enabled = false;
 
+            await Task.Run(() => UnapplyAsync());
+
+            GetButton().Enabled = true;
+            SetGuiDisabled(this);
+        }
+
+        public void UnapplyAsync()
+        {
             foreach (string extension in extensions)
             {
                 ExecuteCMD("assoc " + extension + " = " + extension.ToUpper() + "File", true);
@@ -120,7 +134,7 @@ namespace windows_security_tweak_tool.src.policies
                 {
                     //TODO: figuring out how these macros work..... which program it uses to be exact.
                     case ".docm":
-                        Console.WriteLine("extension: "+extension+" gets defaulted to: "+ @"C:\Program Files(x86)\Microsoft Office\root\Office16\winword.exe");
+                        Console.WriteLine("extension: " + extension + " gets defaulted to: " + @"C:\Program Files(x86)\Microsoft Office\root\Office16\winword.exe");
                         argument = "ftype " + extension.ToUpper() + "File=\"C:\\Program Files (x86)\\Microsoft Office\\root\\Office16\\winword.exe\"";
                         break;
                     case ".dotm":
@@ -161,15 +175,17 @@ namespace windows_security_tweak_tool.src.policies
                         break;
                     case ".pdf":
                         BrowserType type = Browser.getBrowser().getCurrentBrowserType();
-                        if(type == BrowserType.CHROME)
+                        if (type == BrowserType.CHROME)
                         {
                             Console.WriteLine("extension: " + extension + " gets defaulted to: " + BrowserType.CHROME.getPath());
                             argument = "ftype " + extension.ToUpper() + "File=\"" + BrowserType.CHROME.getPath() + "\"";
-                        } else if(type == BrowserType.FIREFOX)
+                        }
+                        else if (type == BrowserType.FIREFOX)
                         {
                             Console.WriteLine("extension: " + extension + " gets defaulted to: " + BrowserType.FIREFOX.getPath());
                             argument = "ftype " + extension.ToUpper() + "File=\"" + BrowserType.FIREFOX.getPath() + "\"";
-                        } else
+                        }
+                        else
                         {
                             Console.WriteLine("extension: " + extension + " gets defaulted to: " + BrowserType.INTERNET_EXPLORE.getPath());
                             argument = "ftype " + extension.ToUpper() + "File=\"" + BrowserType.INTERNET_EXPLORE.getPath() + "\"";
@@ -184,8 +200,6 @@ namespace windows_security_tweak_tool.src.policies
                 ExecuteCMD(argument, true);
             }
             Config.GetConfig().Put("renamed", false);
-            GetButton().Enabled = true;
-            SetGuiDisabled(this);
         }
 
         public override bool IsMacro()

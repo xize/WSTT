@@ -60,13 +60,21 @@ namespace windows_security_tweak_tool.src.policies
             return false;
         }
 
-        public override void Apply()
+        public async override void Apply()
         {
             GetButton().Enabled = false;
             //check if key Windows NT exist...
 
+           await Task.Run(()=> ApplyAsync());
+
+            this.SetGuiEnabled(this);
+            GetButton().Enabled = true;
+        }
+
+        public void ApplyAsync()
+        {
             RegistryKey WinNT = this.GetRegistry(@"SOFTWARE\Policies\Microsoft\Windows NT\", REG.HKLM);
-            if(WinNT == null)
+            if (WinNT == null)
             {
                 this.GetRegistry(@"SOFTWARE\Policies\Microsoft\", REG.HKLM).CreateSubKey("Windows NT");
             }
@@ -75,19 +83,24 @@ namespace windows_security_tweak_tool.src.policies
             key.SetValue("EnableMulticast", 0);
             key.Close();
             key.Dispose();
-            this.SetGuiEnabled(this);
+        }
+
+        public async override void Unapply()
+        {
+            GetButton().Enabled = false;
+
+            await Task.Run(() => UnapplyAsync());
+
+            this.SetGuiDisabled(this);
             GetButton().Enabled = true;
         }
 
-        public override void Unapply()
+        public void UnapplyAsync()
         {
-            GetButton().Enabled = false;
             RegistryKey key = this.GetRegistry(@"SOFTWARE\Policies\Microsoft\Windows NT\", REG.HKLM);
             key.DeleteSubKey("DNSClient");
             key.Close();
             key.Dispose();
-            this.SetGuiDisabled(this);
-            GetButton().Enabled = true;
         }
 
         public override bool HasIncompatibilityIssues()

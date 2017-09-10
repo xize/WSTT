@@ -50,10 +50,18 @@ namespace windows_security_tweak_tool.src.policies
             return SecurityPolicyType.UNSIGNED_POLICY;
         }
 
-        public override void Apply()
+        public async override void Apply()
         {
             this.GetButton().Enabled = false;
 
+            await Task.Run(() => ApplyAsync());
+
+            this.GetButton().Enabled = true;
+            this.GetProgressbar().Value = 100;
+        }
+
+        public void ApplyAsync()
+        {
             if (!IsInstalled())
             {
                 Directory.CreateDirectory(GetDataFolder() + @"\sigcheck");
@@ -84,9 +92,6 @@ namespace windows_security_tweak_tool.src.policies
             ProcessStartInfo info = new ProcessStartInfo("notepad.exe");
             info.Arguments = GetDataFolder() + @"\sigcheck\unsigned.txt";
             Process p = Process.Start(info);
-
-            this.GetButton().Enabled = true;
-            this.GetProgressbar().Value = 100;
         }
 
         public override void Unapply()

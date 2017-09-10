@@ -43,26 +43,36 @@ namespace windows_security_tweak_tool.src.policies
             return SecurityPolicyType.AUTOPLAY_POLICY;
         }
 
-        public override void Apply()
+        public async override void Apply()
         {
             GetButton().Enabled = false;
-            RegistryKey key = GetRegistry(@"Software\Microsoft\Windows\CurrentVersion\policies\Explorer\", REG.HKLM);
-            key.SetValue("NoDriveTypeAutoRun", 0x00);
-            key.Close();
-            key.Dispose();
+            await Task.Run(()=>ApplyAsync());
             SetGuiEnabled(this);
             GetButton().Enabled = true;
         }
 
-        public override void Unapply()
+        public void ApplyAsync()
+        {
+            RegistryKey key = GetRegistry(@"Software\Microsoft\Windows\CurrentVersion\policies\Explorer\", REG.HKLM);
+            key.SetValue("NoDriveTypeAutoRun", 0x00);
+            key.Close();
+            key.Dispose();
+        }
+
+        public async override void Unapply()
         {
             GetButton().Enabled = false;
+            await Task.Run(()=>UnapplyAsync());
+            SetGuiDisabled(this);
+            GetButton().Enabled = true;
+        }
+
+        public void UnapplyAsync()
+        {
             RegistryKey key = GetRegistry(@"Software\Microsoft\Windows\CurrentVersion\policies\Explorer\", REG.HKLM);
             key.SetValue("NoDriveTypeAutoRun", 0xFF);
             key.Close();
             key.Dispose();
-            SetGuiDisabled(this);
-            GetButton().Enabled = true;
         }
 
         public override bool HasIncompatibilityIssues()

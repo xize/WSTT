@@ -51,22 +51,36 @@ namespace windows_security_tweak_tool.src.policies
             return false;
         }
 
-        public override void Apply()
+        public async override void Apply()
         {
             GetButton().Enabled = false;
-            this.StopService("LanmanServer", this);
-            this.SetServiceType("LanmanServer", ServiceType.MANUAL);
+
+            await Task.Run(() => ApplyAsync());
+
             this.SetGuiEnabled(this);
             GetButton().Enabled = true;
         }
 
-        public override void Unapply()
+        public void ApplyAsync()
+        {
+            this.StopService("LanmanServer", this);
+            this.SetServiceType("LanmanServer", ServiceType.MANUAL);
+        }
+
+        public async override void Unapply()
         {
             GetButton().Enabled = false;
-            this.SetServiceType("LanmanServer", ServiceType.AUTOMATIC);
-            this.StartService("LanmanServer", this);
+
+            await Task.Run(() => UnapplyAsync());
+
             this.SetGuiDisabled(this);
             GetButton().Enabled = true;
+        }
+
+        public void UnapplyAsync()
+        {
+            this.SetServiceType("LanmanServer", ServiceType.AUTOMATIC);
+            this.StartService("LanmanServer", this);
         }
 
         public override Button GetButton()

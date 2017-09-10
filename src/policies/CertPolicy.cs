@@ -52,10 +52,17 @@ namespace windows_security_tweak_tool.src.policies
             return false;
         }
 
-        public override void Apply()
+        public async override void Apply()
         {
             GetButton().Enabled = false;
-            if(!IsInstalled())
+            await Task.Run(() => ApplyAsync());
+            GetProgressbar().Value = 100;
+            GetButton().Enabled = true;
+        }
+
+        public void ApplyAsync()
+        {
+            if (!IsInstalled())
             {
                 Directory.CreateDirectory(GetDataFolder() + @"\sigcheck");
                 InstallForFirstTime("sigcheck");
@@ -65,27 +72,28 @@ namespace windows_security_tweak_tool.src.policies
 
             Process proc;
 
-            if(Environment.Is64BitOperatingSystem)
+            if (Environment.Is64BitOperatingSystem)
             {
                 ProcessStartInfo sinfo = new ProcessStartInfo("cmd.exe");
                 sinfo.Arguments = "/c " + GetDataFolder() + @"\sigcheck\sigcheck.exe -tv > " + GetDataFolder() + @"\sigcheck\badcerts.txt";
                 proc = Process.Start(sinfo);
-            } else
+            }
+            else
             {
                 ProcessStartInfo sinfo = new ProcessStartInfo("cmd.exe");
-                sinfo.Arguments = "/c "+GetDataFolder() + @"\sigcheck\sigcheck.exe -tv > "+GetDataFolder()+@"\sigcheck\badcerts.txt";
+                sinfo.Arguments = "/c " + GetDataFolder() + @"\sigcheck\sigcheck.exe -tv > " + GetDataFolder() + @"\sigcheck\badcerts.txt";
                 proc = Process.Start(sinfo);
             }
 
             while (!proc.HasExited) { } //lock the thread
 
             ProcessStartInfo notepad = new ProcessStartInfo("notepad.exe");
-            notepad.Arguments = GetDataFolder()+@"\sigcheck\badcerts.txt";
+            notepad.Arguments = GetDataFolder() + @"\sigcheck\badcerts.txt";
 
             DialogResult result = MessageBox.Show("Please remove the entries which you don't want to be removed.\n\nall the following certificates in this notepad are untrusted root certificates or root certificates not signed by Microsoft.\n\nthings like \"DELL\", \"Anti Virus\", should be removed this will increase your security against man in the middle attacks however some anti virus solutions use it to scan encrypted connections.\n\n do this at your own risk you cannot undo this option!", "Important please read!", MessageBoxButtons.OKCancel);
             if (result == DialogResult.Cancel)
             {
-                if(File.Exists(GetDataFolder() + @"\sigcheck\badcerts.txt"))
+                if (File.Exists(GetDataFolder() + @"\sigcheck\badcerts.txt"))
                 {
                     File.Delete(GetDataFolder() + @"\sigcheck\badcerts.txt");
                 }
@@ -94,20 +102,20 @@ namespace windows_security_tweak_tool.src.policies
 
             Process notepadproc = Process.Start(notepad);
 
-            while(!notepadproc.HasExited) {} //lock
+            while (!notepadproc.HasExited) { } //lock
 
             IEnumerable<string> lines = File.ReadLines(GetDataFolder() + @"\sigcheck\badcerts.txt");
             string linestext = "";
             foreach (string line in lines)
             {
-                if(line.Contains("   ")) //3 spaces... I don't understand why: ^([\w\s]{3})+[a-zA-Z0-9\\\/\-]$ does not work....
+                if (line.Contains("   ")) //3 spaces... I don't understand why: ^([\w\s]{3})+[a-zA-Z0-9\\\/\-]$ does not work....
                 {
-                    string strippedline = line.Substring(2, line.Length-2);
-                    linestext += strippedline+"\n";
+                    string strippedline = line.Substring(2, line.Length - 2);
+                    linestext += strippedline + "\n";
                     ProcessStartInfo certutilinfo = new ProcessStartInfo("certutil.exe");
-                    certutilinfo.Arguments = "-delstore Root " +"\""+strippedline+"\"";
+                    certutilinfo.Arguments = "-delstore Root " + "\"" + strippedline + "\"";
                     Process certutil = Process.Start(certutilinfo);
-                    while(!certutil.HasExited){} //lock the thread
+                    while (!certutil.HasExited) { } //lock the thread
                     certutil.Dispose();
                 }
             }
@@ -117,8 +125,6 @@ namespace windows_security_tweak_tool.src.policies
             notepadproc.Dispose();
 
             MessageBox.Show("success the following certificates have been removed.\n=====================================================\n" + linestext);
-            GetProgressbar().Value = 100;
-            GetButton().Enabled = true;
         }
 
         public override void Unapply()

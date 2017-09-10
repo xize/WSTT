@@ -74,13 +74,21 @@ namespace windows_security_tweak_tool.src.policies
             return false;
         }
 
-        public override void Apply()
+        public async override void Apply()
         {
             GetButton().Enabled = false;
 
+            await Task.Run(() => ApplyAsync());
+
+            GetButton().Enabled = true;
+            SetGuiEnabled(this);
+        }
+
+        public void ApplyAsync()
+        {
             DialogResult result = MessageBox.Show("if you want to properly secure yourself you need to understand that there is a high chance a NAS or other network related equipment might fail to work properly.\n\nfor this reason we only block SMBv1 (the most vulnerable protocol) instead of SMBv2 and SMBv3 for full protection we recommend to block these ports from WAN to LAN and from LAN to WAN: 137-138/UDP, 139/TCP and 445/TCP", "advice regarding wannacry, and other ransomware", MessageBoxButtons.OKCancel);
 
-            if(result == DialogResult.Cancel)
+            if (result == DialogResult.Cancel)
             {
                 return;
             }
@@ -99,15 +107,20 @@ namespace windows_security_tweak_tool.src.policies
             p.Close();
             p.Dispose();
             Config.GetConfig().Put("smb-enabled", true);
-
-            GetButton().Enabled = true;
-            SetGuiEnabled(this);
         }
 
-        public override void Unapply()
+        public async override void Unapply()
         {
             GetButton().Enabled = false;
 
+            await Task.Run(() => UnapplyAsync());
+
+            GetButton().Enabled = true;
+            SetGuiDisabled(this);
+        }
+
+        public void UnapplyAsync()
+        {
             RegistryKey key = GetRegistry(@"SYSTEM\CurrentControlSet\Services\LanmanServer\Parameters", REG.HKLM);
             key.SetValue("SMB1", 1);
 
@@ -123,9 +136,6 @@ namespace windows_security_tweak_tool.src.policies
             p.Close();
             p.Dispose();
             Config.GetConfig().Put("smb-enabled", false);
-
-            GetButton().Enabled = true;
-            SetGuiDisabled(this);
         }
 
         public override bool HasIncompatibilityIssues()
