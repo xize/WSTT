@@ -663,6 +663,7 @@ namespace windows_security_tweak_tool.src
         private void niniteinstallbtn_Click(object sender, EventArgs e)
         {
             NinitePolicy policy = new NinitePolicy();
+            policy.SetGui(this);
             policy.Apply();
 
             /*

@@ -5,6 +5,7 @@ using System.IO;
 using System.Linq;
 using System.Net;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -43,39 +44,53 @@ namespace windows_security_tweak_tool.src.optionalpolicies
             return OptionalPolicyType.CHROME_ADDON_POLICY;
         }
 
-        public override void Apply()
+        public async override void Apply()
         {
             GetButton().Enabled = false;
 
-            foreach(ChromeAddon addon in addons)
+            await Task.Run(() => ApplyAsync());
+
+            GetButton().Enabled = true;
+            GetProgressbar().Value = 100;
+        }
+
+        public void ApplyAsync()
+        {
+            foreach (ChromeAddon addon in addons)
             {
-               addon.Download();
+                addon.Download();
             }
 
             CleanupProcesses();
 
-            Process p = Process.Start("explorer.exe", Config.GetConfig().GetDataFolder() + @"\wstt-downloaded\");
+            Process p = Process.Start("explorer.exe", Config.GetConfig().GetDataFolder() + @"\wstt-downloaded\chrome-addons");
             DialogResult r = MessageBox.Show("please start chrome and paste this url:\n" + "chrome://extensions/" + "\nthen select a single file in this folder and drag it into the page!\n\npress OK when you are done!", "please read!");
-            Clipboard.SetText("chrome://extensions/");
+
+
+            Thread thread = new Thread(() => Clipboard.SetText("chrome://extensions/"));
+            thread.SetApartmentState(ApartmentState.STA); //Set the thread to STA
+            thread.Start();
+            thread.Join();
 
             p.WaitForExit();
             p.Dispose();
 
-            if(r == DialogResult.OK)
+            if (r == DialogResult.OK)
             {
-                DirectoryInfo dir = new DirectoryInfo(Config.GetConfig().GetDataFolder() + @"\wstt-downloaded\");
-                foreach(var f in dir.EnumerateFiles("*.crx"))
+                DirectoryInfo dir = new DirectoryInfo(Config.GetConfig().GetDataFolder() + @"\wstt-downloaded\chrome-addons");
+                foreach (var f in dir.EnumerateFiles("*.crx"))
                 {
                     f.Delete();
                 }
-                CleanupProcesses();
-                GetButton().Enabled = true;
-                GetProgressbar().Value = 100;
+                //CleanupProcesses();
             }
         }
 
         private void CleanupProcesses()
         {
+
+            //not sure why I needed to close and restart all explorer windows seems rather pointless since I can't figure out why I do this because it doesn't need to hook into explorer at all....
+            //only cleanup for first explorer run so the new explorer window gets spawned in front of the user.
 
             if (Process.GetProcessesByName("explorer").Length > 0)
             {
@@ -132,9 +147,13 @@ namespace windows_security_tweak_tool.src.optionalpolicies
             {
                 Directory.CreateDirectory(Config.GetConfig().GetDataFolder() + @"\wstt-downloaded");
             }
-            client.DownloadFile(api_string.Replace("{id}", id), Config.GetConfig().GetDataFolder() + @"\wstt-downloaded\"+name+".crx");
+            if (!Directory.Exists(Config.GetConfig().GetDataFolder() + @"\wstt-downloaded\chrome-addons"))
+            {
+                Directory.CreateDirectory(Config.GetConfig().GetDataFolder() + @"\wstt-downloaded\chrome-addons");
+            }
+            client.DownloadFile(api_string.Replace("{id}", id), Config.GetConfig().GetDataFolder() + @"\wstt-downloaded\chrome-addons\"+name+".crx");
 
-            return Config.GetConfig().GetDataFolder() + @"\wstt-downloaded\" + name + ".crx";
+            return Config.GetConfig().GetDataFolder() + @"\wstt-downloaded\chrome-addons\" + name + ".crx";
         }
     }
 }

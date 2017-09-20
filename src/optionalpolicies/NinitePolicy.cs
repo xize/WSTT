@@ -20,6 +20,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using windows_security_tweak_tool.src.certificates;
@@ -55,16 +56,36 @@ namespace windows_security_tweak_tool.src.optionalpolicies
             return CertProvider.NINITE.getCertificate();
         }
 
-        public override void Apply()
+        public async override void Apply()
         {
-            foreach(NiniteOption option in NiniteOption.Values())
+            GetButton().Enabled = false;
+
+            await Task.Run(() => ApplyAsync());
+
+            GetButton().Enabled = true;
+        }
+
+        public void ApplyAsync()
+        {
+            foreach (NiniteOption option in NiniteOption.Values())
             {
-                if(option.IsEnabled())
+                if (option.IsEnabled())
                 {
+                    //make the gui elements run synchronized.
+                    Thread single = new Thread(()=>sync(option));
+                    single.SetApartmentState(ApartmentState.STA);
+                    single.Start();
+                    single.Join();
+                    //end synchronizing.
                     this.Add(option);
                 }
             }
             this.DownloadNiniteInstaller(this.GetNiniteURL());
+        }
+
+        public void sync(NiniteOption option)
+        {
+            option.GetCheckbox().Enabled = false;
         }
 
         public override void Unapply()
