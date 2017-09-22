@@ -100,6 +100,9 @@ namespace windows_security_tweak_tool.src
             this.label6 = new System.Windows.Forms.Label();
             this.regsvr32btn = new System.Windows.Forms.Button();
             this.regsvr32progress = new System.Windows.Forms.ProgressBar();
+            this.label7 = new System.Windows.Forms.Label();
+            this.powershellbtn = new System.Windows.Forms.Button();
+            this.powershellprogress = new System.Windows.Forms.ProgressBar();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -330,7 +333,7 @@ namespace windows_security_tweak_tool.src
             // safeapplybtn
             // 
             this.safeapplybtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.safeapplybtn.Location = new System.Drawing.Point(9, 747);
+            this.safeapplybtn.Location = new System.Drawing.Point(9, 790);
             this.safeapplybtn.Name = "safeapplybtn";
             this.safeapplybtn.Size = new System.Drawing.Size(158, 23);
             this.safeapplybtn.TabIndex = 39;
@@ -343,7 +346,7 @@ namespace windows_security_tweak_tool.src
             // undobtn
             // 
             this.undobtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.undobtn.Location = new System.Drawing.Point(419, 747);
+            this.undobtn.Location = new System.Drawing.Point(419, 790);
             this.undobtn.Name = "undobtn";
             this.undobtn.Size = new System.Drawing.Size(75, 23);
             this.undobtn.TabIndex = 40;
@@ -355,7 +358,7 @@ namespace windows_security_tweak_tool.src
             // applyforcebtn
             // 
             this.applyforcebtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.applyforcebtn.Location = new System.Drawing.Point(173, 747);
+            this.applyforcebtn.Location = new System.Drawing.Point(173, 790);
             this.applyforcebtn.Name = "applyforcebtn";
             this.applyforcebtn.Size = new System.Drawing.Size(100, 23);
             this.applyforcebtn.TabIndex = 89;
@@ -778,10 +781,45 @@ namespace windows_security_tweak_tool.src
             this.regsvr32progress.Size = new System.Drawing.Size(409, 23);
             this.regsvr32progress.TabIndex = 108;
             // 
+            // label7
+            // 
+            this.label7.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(13, 735);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(96, 13);
+            this.label7.TabIndex = 113;
+            this.label7.Text = "disable powershell:";
+            // 
+            // powershellbtn
+            // 
+            this.powershellbtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.powershellbtn.AutoSize = true;
+            this.powershellbtn.Location = new System.Drawing.Point(424, 751);
+            this.powershellbtn.Name = "powershellbtn";
+            this.powershellbtn.Size = new System.Drawing.Size(71, 23);
+            this.powershellbtn.TabIndex = 112;
+            this.powershellbtn.Text = "Apply";
+            this.powershellbtn.UseVisualStyleBackColor = true;
+            this.powershellbtn.Click += new System.EventHandler(this.powershellbtn_Click);
+            // 
+            // powershellprogress
+            // 
+            this.powershellprogress.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.powershellprogress.Location = new System.Drawing.Point(11, 751);
+            this.powershellprogress.Name = "powershellprogress";
+            this.powershellprogress.Size = new System.Drawing.Size(409, 23);
+            this.powershellprogress.TabIndex = 111;
+            // 
             // Window
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-            this.ClientSize = new System.Drawing.Size(510, 784);
+            this.ClientSize = new System.Drawing.Size(510, 827);
+            this.Controls.Add(this.label7);
+            this.Controls.Add(this.powershellbtn);
+            this.Controls.Add(this.powershellprogress);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.regsvr32btn);
             this.Controls.Add(this.regsvr32progress);
@@ -919,5 +957,8 @@ namespace windows_security_tweak_tool.src
         private Label label6;
         public Button regsvr32btn;
         public ProgressBar regsvr32progress;
+        private Label label7;
+        public Button powershellbtn;
+        public ProgressBar powershellprogress;
     }
 }

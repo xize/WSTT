@@ -468,5 +468,18 @@ namespace windows_security_tweak_tool.src
                 p.Apply();
             }
         }
+
+        private void powershellbtn_Click(object sender, EventArgs e)
+        {
+            SecurityPolicy p = SecurityPolicyType.POWERSHELL_POLICY.GetPolicy(this);
+
+            if(p.IsEnabled())
+            {
+                p.Unapply();
+            } else
+            {
+                p.Apply();
+            }
+        }
     }
 }
