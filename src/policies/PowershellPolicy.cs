@@ -19,7 +19,7 @@ namespace windows_security_tweak_tool.src.policies
 
         public override string GetDescription()
         {
-            return "disables powershell for being able to execute";
+            return "disables powershell for being able to execute\n\nhowever in this version of wstt it only blocks powershell 2.0 and not the default powershell 1.0!";
         }
 
         public override SecurityPolicyType GetPolicyType()
