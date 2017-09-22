@@ -45,6 +45,7 @@ namespace windows_security_tweak_tool.src.policies
         public static SecurityPolicyType SMB_SHARING_POLICY = new SecurityPolicyType("smb_sharing_policy", new SMBSharingPolicy());
         public static SecurityPolicyType AUTOPLAY_POLICY = new SecurityPolicyType("autoplay_policy", new AutoPlayPolicy());
         public static SecurityPolicyType REGSERVR32_PROXY_POLICY = new SecurityPolicyType("regsvr32_proxy_policy", new Regsvr32ProxyPolicy());
+        public static SecurityPolicyType POWERSHELL_POLICY = new SecurityPolicyType("powershell_policy", new PowershellPolicy());
 
         private string name;
         private SecurityPolicy pol;
