@@ -165,6 +165,7 @@
     <Compile Include="src\policies\NetbiosPolicy.cs" />
     <Compile Include="src\policies\NetSharePolicy.cs" />
     <Compile Include="src\policies\NTLMPolicy.cs" />
+    <Compile Include="src\policies\PowershellPolicy.cs" />
     <Compile Include="src\policies\Regsvr32ProxyPolicy.cs" />
     <Compile Include="src\policies\SecurityPolicyType.cs" />
     <Compile Include="src\policies\SecurityPolicy.cs" />
