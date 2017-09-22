@@ -58,6 +58,7 @@ namespace windows_security_tweak_tool.src
 
             foreach (SecurityPolicyType a in SecurityPolicyType.Values())
             {
+
                 SecurityPolicy p = a.GetPolicy(this);
 
                 if(p.GetPolicyType() != SecurityPolicyType.UPDATE_POLICY)
@@ -287,7 +288,8 @@ namespace windows_security_tweak_tool.src
                 if (pt != SecurityPolicyType.UPDATE_POLICY)
                 {
                     SecurityPolicy p = pt.GetPolicy(this);
-                    if(!p.IsUserControlRequired() && !p.IsEnabled())
+
+                    if (!p.IsUserControlRequired() && !p.IsEnabled())
                     {
                         if(p.IsSecpolDepended() && !p.IsSecpolEnabled())
                         {

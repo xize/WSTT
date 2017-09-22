@@ -191,6 +191,11 @@ namespace windows_security_tweak_tool.src.policies
         **/
         public abstract bool IsEnabled();
 
+        public virtual bool isAsync()
+        {
+            return (IsMacro() ? false : true);
+        }
+
         /**
         * <summary>
         *      <para>applies the policy</para>

@@ -64,24 +64,38 @@ namespace windows_security_tweak_tool.src.policies
             return false;
         }
 
-        public override void Apply()
+        public async override void Apply()
         {
             GetButton().Enabled = false;
-            RegistryKey key = GetRegistry(@"SOFTWARE\Microsoft\Windows Script Host\Settings", REG.HKLM);
-            key.SetValue("Enabled", 0);
-            key.Close();
+
+            await Task.Run(()=>ApplyAsync());
+
             SetGuiEnabled(this);
             GetButton().Enabled = true;
         }
 
-        public override void Unapply()
+        public void ApplyAsync()
+        {
+            RegistryKey key = GetRegistry(@"SOFTWARE\Microsoft\Windows Script Host\Settings", REG.HKLM);
+            key.SetValue("Enabled", 0);
+            key.Close();
+        }
+
+        public async override void Unapply()
         {
             GetButton().Enabled = false;
+
+            await Task.Run(()=>UnapplyAsync());
+
+            SetGuiDisabled(this);
+            GetButton().Enabled = true;
+        }
+
+        public void UnapplyAsync()
+        {
             RegistryKey key = GetRegistry(@"SOFTWARE\Microsoft\Windows Script Host\Settings", REG.HKLM);
             key.SetValue("Enabled", 1);
             key.Close();
-            SetGuiDisabled(this);
-            GetButton().Enabled = true;
         }
 
         public override ProgressBar GetProgressbar()

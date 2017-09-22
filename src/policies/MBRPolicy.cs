@@ -21,6 +21,7 @@ using System.Diagnostics;
 using System.IO;
 using System.IO.Compression;
 using System.Net;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 using windows_security_tweak_tool.src.mbrfilter;
 
@@ -49,20 +50,30 @@ namespace windows_security_tweak_tool.src.policies
             return MBRFilter.getMBRFilter().isInstalled();
         }
 
-        public override void Apply()
+        public async override void Apply()
         {
             GetButton().Enabled = false;
-            MBRFilter.getMBRFilter().install();
+            await Task.Run(() => ApplyAsync());
             SetGuiEnabled(this);
             GetButton().Enabled = true;
         }
 
-        public override void Unapply()
+        public void ApplyAsync()
+        {
+            MBRFilter.getMBRFilter().install();
+        }
+
+        public async override void Unapply()
         {
             GetButton().Enabled = false;
-            MBRFilter.getMBRFilter().uninstall();
+            await Task.Run(() => UnapplyAsync());
             SetGuiDisabled(this);
             GetButton().Enabled = true;
+        }
+
+        public void UnapplyAsync()
+        {
+            MBRFilter.getMBRFilter().uninstall();
         }
 
         public override bool HasIncompatibilityIssues()

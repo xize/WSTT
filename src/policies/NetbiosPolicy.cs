@@ -69,16 +69,25 @@ namespace windows_security_tweak_tool.src.policies
             return false;
         }
 
-        public override void Apply()
+        public async override void Apply()
         {
             GetButton().Enabled = false;
+
+            await Task.Run(() => ApplyAsync());
+
+            SetGuiEnabled(this);
+            GetButton().Enabled = true;
+        }
+
+        public void ApplyAsync()
+        {
             RegistryKey key = GetRegistry(@"SYSTEM\CurrentControlSet\services\NetBT\Parameters\Interfaces", REG.HKLM);
             string[] adapters = key.GetSubKeyNames();
 
-            foreach(string adapter in adapters)
+            foreach (string adapter in adapters)
             {
 
-                Console.WriteLine("writing to adapter: "+adapter + " setting netbios to value 2");
+                Console.WriteLine("writing to adapter: " + adapter + " setting netbios to value 2");
 
                 RegistryKey adaptersetting = key.OpenSubKey(adapter, true);
 
@@ -90,13 +99,20 @@ namespace windows_security_tweak_tool.src.policies
                 }
             }
             key.Close();
-            SetGuiEnabled(this);
-            GetButton().Enabled = true;
         }
 
-        public override void Unapply()
+        public async override void Unapply()
         {
             GetButton().Enabled = false;
+
+            await Task.Run(() => UnapplyAsync());
+
+            GetButton().Enabled = true;
+            SetGuiDisabled(this);
+        }
+
+        public void UnapplyAsync()
+        {
             RegistryKey key = GetRegistry(@"SYSTEM\CurrentControlSet\services\NetBT\Parameters\Interfaces", REG.HKLM);
 
             string[] adapters = key.GetSubKeyNames();
@@ -113,8 +129,6 @@ namespace windows_security_tweak_tool.src.policies
                 }
             }
             key.Close();
-            GetButton().Enabled = true;
-            SetGuiDisabled(this);
         }
 
         public override bool IsMacro()

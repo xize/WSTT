@@ -98,36 +98,47 @@ namespace windows_security_tweak_tool.src.policies
             return Config.GetConfig().GetBoolean("insecure-services");
         }
 
-        public override void Apply()
+        public async override void Apply()
         {
             GetButton().Enabled = false;
 
-            foreach (KeyValuePair<string, ServiceType> service in services)
-            {
-                if(this.IsServiceStarted(service.Key))
-                {
-                        this.StopService(service.Key, this);
-                }
-                    this.SetServiceType(service.Key, ServiceType.DISABLED);
-            }
-            Config.GetConfig().Put("insecure-services", true);
+            await Task.Run(() => ApplyAsync());
+
             SetGuiEnabled(this);
             GetButton().Enabled = true;
         }
 
-        public override void Unapply()
+        public void ApplyAsync()
+        {
+            foreach (KeyValuePair<string, ServiceType> service in services)
+            {
+                if (this.IsServiceStarted(service.Key))
+                {
+                    this.StopService(service.Key, this);
+                }
+                this.SetServiceType(service.Key, ServiceType.DISABLED);
+            }
+            Config.GetConfig().Put("insecure-services", true);
+        }
+
+        public async override void Unapply()
         {
             GetButton().Enabled = false;
 
+            await Task.Run(() => UnapplyAsync());
+
+            GetButton().Enabled = true;
+            SetGuiDisabled(this);
+
+        }
+
+        public void UnapplyAsync()
+        {
             foreach (KeyValuePair<string, ServiceType> service in services)
             {
                 this.SetServiceType(service.Key, service.Value);
             }
             Config.GetConfig().Put("insecure-services", false);
-
-            GetButton().Enabled = true;
-            SetGuiDisabled(this);
-
         }
 
         public override bool HasIncompatibilityIssues()

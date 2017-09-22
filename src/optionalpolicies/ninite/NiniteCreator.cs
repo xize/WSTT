@@ -34,7 +34,7 @@ namespace windows_security_tweak_tool.src.ninite
 {
     class NiniteCreator : HashSet<NiniteOption>
     {
-        
+
         public string GetNiniteURL()
         {
             string url = "https://ninite.com/";
@@ -57,7 +57,7 @@ namespace windows_security_tweak_tool.src.ninite
 
         public void DownloadNiniteInstaller(string url)
         {
-            if(!Directory.Exists(GetDataFolder() + @"\ninite"))
+            if (!Directory.Exists(GetDataFolder() + @"\ninite"))
             {
                 Directory.CreateDirectory(GetDataFolder() + @"\ninite");
             }
@@ -81,14 +81,14 @@ namespace windows_security_tweak_tool.src.ninite
                 return;
             }
 
-            while(!VerifyInstaller())
+            while (!VerifyInstaller())
             {
                 MessageBox.Show("Re-downloading ninite installer since the certificate did not match with the current hash of the certificate!", "warning ninite installer is invalid or being tampered with!");
                 File.Delete(GetDataFolder() + @"\ninite\ninite.exe");
                 client.DownloadFile(new Uri(url), GetDataFolder() + @"\ninite\ninite.exe");
             }
 
-            Process proc = Process.Start(GetDataFolder()+@"\ninite\ninite.exe");
+            Process proc = Process.Start(GetDataFolder() + @"\ninite\ninite.exe");
 
             proc.WaitForExit();
             proc.Dispose();

@@ -29,9 +29,9 @@ namespace windows_security_tweak_tool.src.policies
     class UpdatePolicy : SecurityPolicy
     {
 
-        public override void Apply()
+        public async override void Apply()
         {
-            this.ExecuteCMD("gpupdate.exe /force", true);
+            await Task.Run(()=>this.ExecuteCMD("gpupdate.exe /force", true));
         }
 
         public override Button GetButton()

@@ -47,10 +47,24 @@ namespace windows_security_tweak_tool.src.optionalpolicies
             return CertProvider.KEEPASS.getCertificate();
         }
 
-        public override void Apply()
+        public async override void Apply()
         {
             GetButton().Enabled = false;
 
+            bool status = await Task.Run(() => ApplyAsync());
+
+            if(status)
+            {
+                GetProgressbar().Value = 100;
+                GetButton().Text = "undo";
+            }
+
+            GetButton().Enabled = true;
+
+        }
+
+        public bool ApplyAsync()
+        {
             MessageBox.Show("please make sure you use the default installation location!", "important");
 
             WebClient c = new WebClient();
@@ -59,7 +73,7 @@ namespace windows_security_tweak_tool.src.optionalpolicies
             string body = c.DownloadString("https://sourceforge.net/projects/keepass/rss?path=/KeePass%202.x");
             Regex regex = new Regex("<link>https://sourceforge.net/projects/keepass/files/KeePass%202.x/(.*?)/KeePass-(.*?)-Setup.exe/download</link>");
 
-            if(regex.IsMatch(body))
+            if (regex.IsMatch(body))
             {
                 string url = regex.Matches(body).OfType<Match>().Select(m => m.Groups[0].Value).ToArray()[0].Replace("<link>", "").Replace("</link>", "");
 
@@ -70,16 +84,16 @@ namespace windows_security_tweak_tool.src.optionalpolicies
 
                 c.DownloadFile(new Uri(url), Config.GetConfig().GetDataFolder() + @"\wstt-downloaded\KeePass.exe");
                 X509Certificate cert = X509Certificate.CreateFromSignedFile(Config.GetConfig().GetDataFolder() + @"\wstt-downloaded\KeePass.exe");
-                if(cert.GetCertHashString() == GetCertificate().getHash())
+                if (cert.GetCertHashString() == GetCertificate().getHash())
                 {
                     Process p = Process.Start(Config.GetConfig().GetDataFolder() + @"\wstt-downloaded\KeePass.exe");
                     p.WaitForExit();
                     p.Dispose();
                     RegistryKey key = RegistryKey.OpenBaseKey(RegistryHive.LocalMachine, RegistryView.Default).OpenSubKey(@"SOFTWARE\Microsoft\Windows NT\CurrentVersion\AppCompatFlags\", true);
                     RegistryKey layers = key.OpenSubKey("layers", true);
-                    if(layers == null)
+                    if (layers == null)
                     {
-                       layers = key.CreateSubKey("layers");
+                        layers = key.CreateSubKey("layers");
                     }
                     layers.SetValue(@"C:\Program Files (x86)\KeePass Password Safe 2\KeePass.exe", "~ RUNASADMIN");
                     layers.Close();
@@ -87,23 +101,31 @@ namespace windows_security_tweak_tool.src.optionalpolicies
                     key.Close();
                     key.Dispose();
                     File.Delete(Config.GetConfig().GetDataFolder() + @"\wstt-downloaded\KeePass.exe");
-                } else
+                    return true;
+                }
+                else
                 {
                     File.Delete(Config.GetConfig().GetDataFolder() + @"\wstt-downloaded\KeePass.exe");
                     MessageBox.Show("Failed to download keepass the certificate did not match!", "invalid certificate!");
                     GetButton().Enabled = true;
-                    return;
                 }
             }
-
-            GetButton().Enabled = true;
-            GetButton().Text = "undo";
-            GetProgressbar().Value = 100;
+            return false;
         }
 
-        public override void Unapply()
+        public async override void Unapply()
         {
             GetButton().Enabled = false;
+
+            await Task.Run(() => UnapplyAsync());
+
+            GetButton().Enabled = true;
+            GetButton().Text = "apply";
+            GetProgressbar().Value = 0;
+        }
+
+        public void UnapplyAsync()
+        {
             Process p = Process.Start(@"C:\Program Files (x86)\KeePass Password Safe 2\unins000.exe");
             p.WaitForExit();
             p.Dispose();
@@ -111,10 +133,6 @@ namespace windows_security_tweak_tool.src.optionalpolicies
             key.DeleteValue(@"C:\Program Files (x86)\KeePass Password Safe 2\KeePass.exe");
             key.Close();
             key.Dispose();
-
-            GetButton().Enabled = true;
-            GetButton().Text = "apply";
-            GetProgressbar().Value = 0;
         }
 
         public override Button GetButton()

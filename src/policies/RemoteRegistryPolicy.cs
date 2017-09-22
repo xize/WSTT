@@ -65,22 +65,36 @@ namespace windows_security_tweak_tool.src.policies
             return false;
         }
 
-        public override void Apply()
+        public async override void Apply()
         {
             GetButton().Enabled = false;
-            StopService("RemoteRegistry", this);
-            SetServiceType("RemoteRegistry", ServiceType.DISABLED);
+
+            await Task.Run(() => ApplyAsync());
+
             SetGuiEnabled(this);
             GetButton().Enabled = true;
         }
 
-        public override void Unapply()
+        public void ApplyAsync()
+        {
+            StopService("RemoteRegistry", this);
+            SetServiceType("RemoteRegistry", ServiceType.DISABLED);
+        }
+
+        public async override void Unapply()
         {
             GetButton().Enabled = false;
-            SetServiceType("RemoteRegistry", ServiceType.AUTOMATIC);
-            StartService("RemoteRegistry", this);
+
+            await Task.Run(() => UnapplyAsync());
+
             SetGuiDisabled(this);
             GetButton().Enabled = true;
+        }
+
+        public void UnapplyAsync()
+        {
+            SetServiceType("RemoteRegistry", ServiceType.AUTOMATIC);
+            StartService("RemoteRegistry", this);
         }
 
         public override Button GetButton()

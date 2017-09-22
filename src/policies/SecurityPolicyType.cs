@@ -19,6 +19,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Windows.Forms;
 using windows_security_tweak_tool.src.optionalpolicies;
 
 namespace windows_security_tweak_tool.src.policies
@@ -49,12 +50,16 @@ namespace windows_security_tweak_tool.src.policies
 
         private string name;
         private SecurityPolicy pol;
+        private int priority = 1;
 
         public SecurityPolicyType(string name, SecurityPolicy pol)
         {
             types.Add(this);
             this.name = name;
             this.pol = pol;
+
+            this.priority = (this.pol.isAsync() ? 1 : 0);
+
         }
 
         public string GetName()
@@ -66,6 +71,11 @@ namespace windows_security_tweak_tool.src.policies
         {
             pol.SetGui(wind);
             return pol;
+        }
+
+        public int GetPriority()
+        {
+            return this.priority;
         }
 
         public static SecurityPolicyType ValueOf(string name)
@@ -82,7 +92,9 @@ namespace windows_security_tweak_tool.src.policies
 
         public static SecurityPolicyType[] Values()
         {
-            return types.ToArray();
+            SecurityPolicyType[] t = types.ToArray();
+            Array.Sort(t, new PolicyComparable());
+            return t;
         }
 
         private bool startsWith(string text, string fulltext)
@@ -90,4 +102,19 @@ namespace windows_security_tweak_tool.src.policies
             return fulltext.IndexOf(text) > -1;
         }
     }
+
+    class PolicyComparable : IComparer<SecurityPolicyType>
+    {
+        public int Compare(SecurityPolicyType a, SecurityPolicyType b)
+        {
+            //higher the priority for policies which are not macros and are async and does not need user control.
+            return (a.GetPriority() as IComparable).CompareTo(b.GetPriority());
+        }
+
+        public int GetHashCode(SecurityPolicyType obj)
+        {
+            return StringComparer.InvariantCultureIgnoreCase.GetHashCode(obj.GetName());
+        }
+    }
+
 }

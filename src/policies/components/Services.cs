@@ -81,7 +81,6 @@ namespace windows_security_tweak_tool.src.policies.components
             } catch(System.ServiceProcess.TimeoutException)
             {
                 MessageBox.Show("the service " + service + " could not be started timeout!, please try again.", "error!");
-                p.GetButton().Enabled = true;
             }
 
             controller.Dispose();
@@ -108,7 +107,6 @@ namespace windows_security_tweak_tool.src.policies.components
             } catch(System.ServiceProcess.TimeoutException)
             {
                 MessageBox.Show("the service " + service + " could not be stopped timeout!, please try again.", "error!");
-                p.GetButton().Enabled = true;
             }
 
             controller.Dispose();
