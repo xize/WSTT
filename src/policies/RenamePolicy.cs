@@ -60,6 +60,7 @@ namespace windows_security_tweak_tool.src.policies
             ".mhtml",
             ".mht",
             ".hta",
+            ".cfm",
             //special cases...
             ".pdf", //because it is vulnerable
             ".tif",
