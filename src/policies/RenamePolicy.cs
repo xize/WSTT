@@ -131,6 +131,8 @@ namespace windows_security_tweak_tool.src.policies
 
                 string argument = "";
 
+                BrowserType type = this.GetBrowser();
+
                 switch (extension)
                 {
                     //TODO: figuring out how these macros work..... which program it uses to be exact.
@@ -175,7 +177,23 @@ namespace windows_security_tweak_tool.src.policies
                         argument = "ftype " + extension.ToUpper() + "File=\"" + BrowserType.INTERNET_EXPLORE.getPath() + "\"";
                         break;
                     case ".pdf":
-                        BrowserType type = Browser.getBrowser().getCurrentBrowserType();
+                        if (type == BrowserType.CHROME)
+                        {
+                            Console.WriteLine("extension: " + extension + " gets defaulted to: " + BrowserType.CHROME.getPath());
+                            argument = "ftype " + extension.ToUpper() + "File=\"" + BrowserType.CHROME.getPath() + "\"";
+                        }
+                        else if (type == BrowserType.FIREFOX)
+                        {
+                            Console.WriteLine("extension: " + extension + " gets defaulted to: " + BrowserType.FIREFOX.getPath());
+                            argument = "ftype " + extension.ToUpper() + "File=\"" + BrowserType.FIREFOX.getPath() + "\"";
+                        }
+                        else
+                        {
+                            Console.WriteLine("extension: " + extension + " gets defaulted to: " + BrowserType.INTERNET_EXPLORE.getPath());
+                            argument = "ftype " + extension.ToUpper() + "File=\"" + BrowserType.INTERNET_EXPLORE.getPath() + "\"";
+                        }
+                        break;
+                    case ".cfm":
                         if (type == BrowserType.CHROME)
                         {
                             Console.WriteLine("extension: " + extension + " gets defaulted to: " + BrowserType.CHROME.getPath());

@@ -29,6 +29,7 @@ using Microsoft.Win32;
 using System.ServiceProcess;
 using windows_security_tweak_tool.src.policies.components;
 using System.Diagnostics;
+using windows_security_tweak_tool.src.utils;
 
 namespace windows_security_tweak_tool.src.policies
 {
@@ -263,5 +264,11 @@ namespace windows_security_tweak_tool.src.policies
             }
             throw new Exception("Failed to get Windows version, maybe WMI is broken?");
         }
+
+        public BrowserType GetBrowser()
+        {
+            return Browser.getBrowser().getCurrentBrowserType();
+        }
+
     }
 }
