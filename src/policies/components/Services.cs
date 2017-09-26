@@ -40,15 +40,26 @@ namespace windows_security_tweak_tool.src.policies.components
         *
         * <returns>bool</returns>
         **/
-        public bool isServiceStarted(string service)
+        public bool IsServiceStarted(string service)
         {
-            if(!doesServiceExist(service))
+            if(!DoesServiceExist(service))
             {
                 return false;
             }
             ServiceController controller = ServiceController.GetServices().FirstOrDefault(serviceController => serviceController.ServiceName == service);
             controller.Refresh();
-            return controller.Status == ServiceControllerStatus.Running;
+
+            bool isStarted = false;
+
+            if(controller.Status == ServiceControllerStatus.Running)
+            {
+                isStarted = true;
+            }
+
+            //make it null so it is marked for GC when it wasn't null already, Dispose method will give a exception because it was already null.
+            controller = null;
+
+            return isStarted;
         }
 
         /**
@@ -56,9 +67,9 @@ namespace windows_security_tweak_tool.src.policies.components
         *      <para>starts the service by using the name</para>
         * </summary>
         **/
-        public void startService(string service, SecurityPolicy p)
+        public void StartService(string service, SecurityPolicy p)
         {
-            if (!doesServiceExist(service))
+            if (!DoesServiceExist(service))
             {
                 return;
             }
@@ -70,8 +81,9 @@ namespace windows_security_tweak_tool.src.policies.components
             } catch(System.ServiceProcess.TimeoutException)
             {
                 MessageBox.Show("the service " + service + " could not be started timeout!, please try again.", "error!");
-                p.getButton().Enabled = true;
             }
+
+            controller.Dispose();
         }
 
         /**
@@ -79,24 +91,25 @@ namespace windows_security_tweak_tool.src.policies.components
         *      <para>starts the service by using the name</para>
         * </summary>
         **/
-        public void stopService(string service, SecurityPolicy p)
+        public void StopService(string service, SecurityPolicy p)
         {
-            if (!doesServiceExist(service))
+            if (!DoesServiceExist(service))
             {
                 return;
             }
 
             ServiceController controller = ServiceController.GetServices().FirstOrDefault(serviceController => serviceController.ServiceName == service);
 
-            controller.Stop();
             try
             {
+                controller.Stop();
                 controller.WaitForStatus(ServiceControllerStatus.Stopped, new TimeSpan(timeout));
             } catch(System.ServiceProcess.TimeoutException)
             {
                 MessageBox.Show("the service " + service + " could not be stopped timeout!, please try again.", "error!");
-                p.getButton().Enabled = true;
             }
+
+            controller.Dispose();
         }
 
         /**
@@ -104,9 +117,9 @@ namespace windows_security_tweak_tool.src.policies.components
         *      <para>sets the service type of the called type</para>
         * </summary>
         **/
-        public void setServiceType(string service, ServiceType type)
+        public void SetServiceType(string service, ServiceType type)
         {
-            if (!doesServiceExist(service))
+            if (!DoesServiceExist(service))
             {
                 return;
             }
@@ -131,7 +144,7 @@ namespace windows_security_tweak_tool.src.policies.components
                     break;
             }
 
-            this.executeCMD("sc config " + service + " start= " + stype, true);
+            this.ExecuteCMD("sc config " + service + " start= " + stype, true);
         }
 
         /**
@@ -152,13 +165,13 @@ namespace windows_security_tweak_tool.src.policies.components
         *      <para>returns the service type</para>
         * </summary>
         **/
-        public ServiceType getServiceStatus(string service)
+        public ServiceType GetServiceStatus(string service)
         {
-            if (!doesServiceExist(service))
+            if (!DoesServiceExist(service))
             {
                 throw new Exception("service "+service+" does not exist, and cannot be called in getServiceStatus()");
             }
-            RegistryKey key = getRegistry(@"SYSTEM\CurrentControlSet\Services\" + service, REG.HKLM);
+            RegistryKey key = GetRegistry(@"SYSTEM\CurrentControlSet\Services\" + service, REG.HKLM);
             int status = (int)key.GetValue("Start");
             switch (status)
             {
@@ -180,14 +193,24 @@ namespace windows_security_tweak_tool.src.policies.components
         *      <para>returns true if the service exist otherwise false</para>
         * </summary>
         **/
-        public bool doesServiceExist(string service)
+        public bool DoesServiceExist(string service)
         {
             ServiceController c = ServiceController.GetServices().FirstOrDefault(serviceController => serviceController.ServiceName == service);
 
-            return c != null;
+            bool serviceb = false;
+
+            if(c != null)
+            {
+                serviceb = true;
+            }
+
+            //make it null so it is marked for GC when it wasn't null already, Dispose method will give a exception because it was already null.
+            c = null;
+
+            return serviceb;
         }
 
-        public void executeCMD(string arguments, bool ghost)
+        public void ExecuteCMD(string arguments, bool ghost)
         {
             ProcessStartInfo info = new ProcessStartInfo("cmd.exe");
             info.Arguments = "/c "+arguments;

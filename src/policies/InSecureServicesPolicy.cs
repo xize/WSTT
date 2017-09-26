@@ -78,95 +78,106 @@ namespace windows_security_tweak_tool.src.policies
             services.Add("BthHFSrv", ServiceType.MANUAL);
         }
 
-        public override string getName()
+        public override string GetName()
         {
-            return getType().getName();
+            return GetPolicyType().GetName();
         }
 
-        public override SecurityPolicyType getType()
+        public override SecurityPolicyType GetPolicyType()
         {
             return SecurityPolicyType.IN_SECURE_SERVICES_POLICY;
         }
 
-        public override string getDescription()
+        public override string GetDescription()
         {
             return "disables all the services not needed by Windows";
         }
 
-        public override bool isEnabled()
+        public override bool IsEnabled()
         {
-            return Config.getConfig().getBoolean("insecure-services");
+            return Config.GetConfig().GetBoolean("insecure-services");
         }
 
-        public override void apply()
+        public async override void Apply()
         {
-            getButton().Enabled = false;
+            GetButton().Enabled = false;
 
+            await Task.Run(() => ApplyAsync());
+
+            SetGuiEnabled(this);
+            GetButton().Enabled = true;
+        }
+
+        public void ApplyAsync()
+        {
             foreach (KeyValuePair<string, ServiceType> service in services)
             {
-                if(this.isServiceStarted(service.Key))
+                if (this.IsServiceStarted(service.Key))
                 {
-                        this.stopService(service.Key, this);
+                    this.StopService(service.Key, this);
                 }
-                    this.setServiceType(service.Key, ServiceType.DISABLED);
+                this.SetServiceType(service.Key, ServiceType.DISABLED);
             }
-            Config.getConfig().put("insecure-services", true);
-            setGuiEnabled(this);
-            getButton().Enabled = true;
+            Config.GetConfig().Put("insecure-services", true);
         }
 
-        public override void unapply()
+        public async override void Unapply()
         {
-            getButton().Enabled = false;
+            GetButton().Enabled = false;
 
+            await Task.Run(() => UnapplyAsync());
+
+            GetButton().Enabled = true;
+            SetGuiDisabled(this);
+
+        }
+
+        public void UnapplyAsync()
+        {
             foreach (KeyValuePair<string, ServiceType> service in services)
             {
-                this.setServiceType(service.Key, service.Value);
+                this.SetServiceType(service.Key, service.Value);
             }
-            Config.getConfig().put("insecure-services", false);
-
-            getButton().Enabled = true;
-            setGuiDisabled(this);
-
+            Config.GetConfig().Put("insecure-services", false);
         }
 
-        public override bool hasIncompatibilityIssues()
+        public override bool HasIncompatibilityIssues()
         {
             return false;
         }
 
         [Obsolete]
-        public override bool isLanguageDepended()
+        public override bool IsLanguageDepended()
         {
             return false;
         }
 
-        public override bool isMacro()
+        public override bool IsMacro()
         {
             return false;
         }
 
-        public override bool isSafeForBussiness()
+        public override bool IsSafeForBussiness()
         {
             return true;
         }
 
-        public override bool isSecpolDepended()
+        public override bool IsSecpolDepended()
         {
             return false;
         }
 
-        public override bool isUserControlRequired()
+        public override bool IsUserControlRequired()
         {
             return false;
         }
 
-        public override Button getButton()
+        public override Button GetButton()
         {
             return gui.insecureservicesbtn;
         }
 
-        public override ProgressBar getProgressbar()
+        public override ProgressBar GetProgressbar()
         {
             return gui.insecureserviceprogress;
         }

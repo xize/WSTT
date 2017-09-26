@@ -104,6 +104,7 @@
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
+    <Reference Include="System.DirectoryServices.AccountManagement" />
     <Reference Include="System.IO.Compression" />
     <Reference Include="System.IO.Compression.FileSystem" />
     <Reference Include="System.Management" />
@@ -124,10 +125,29 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Include="src\libs\certificates\CertDebugger.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="src\libs\certificates\CertDebugger.Designer.cs">
+      <DependentUpon>CertDebugger.cs</DependentUpon>
+    </Compile>
+    <Compile Include="src\libs\certificates\CertProvider.cs" />
     <Compile Include="src\Config.cs" />
     <Compile Include="src\ConfigInfo.cs" />
     <Compile Include="src\Logger.cs" />
+    <Compile Include="src\HelpWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="src\HelpWindow.Designer.cs">
+      <DependentUpon>HelpWindow.cs</DependentUpon>
+    </Compile>
+    <Compile Include="src\libs\gzip-api\Gzip.cs" />
+    <Compile Include="src\libs\mbrfilter\MBRFilter.cs" />
+    <Compile Include="src\libs\permission-api\Permission.cs" />
+    <Compile Include="src\optionalpolicies\Chrome64bitPolicy.cs" />
+    <Compile Include="src\optionalpolicies\ChromeAddonPolicy.cs" />
     <Compile Include="src\optionalpolicies\HPKeyloggerPolicy.cs" />
+    <Compile Include="src\optionalpolicies\KeepassAdminPolicy.cs" />
     <Compile Include="src\optionalpolicies\NinitePolicy.cs" />
     <Compile Include="src\optionalpolicies\ninite\NiniteCreator.cs" />
     <Compile Include="src\optionalpolicies\ninite\NiniteOption.cs" />
@@ -136,6 +156,7 @@
     <Compile Include="src\OptionalWindow.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="src\policies\AutoPlayPolicy.cs" />
     <Compile Include="src\policies\CertPolicy.cs" />
     <Compile Include="src\policies\components\Registry.cs" />
     <Compile Include="src\policies\components\Services.cs" />
@@ -145,6 +166,8 @@
     <Compile Include="src\policies\NetbiosPolicy.cs" />
     <Compile Include="src\policies\NetSharePolicy.cs" />
     <Compile Include="src\policies\NTLMPolicy.cs" />
+    <Compile Include="src\policies\PowershellPolicy.cs" />
+    <Compile Include="src\policies\Regsvr32ProxyPolicy.cs" />
     <Compile Include="src\policies\SecurityPolicyType.cs" />
     <Compile Include="src\policies\SecurityPolicy.cs" />
     <Compile Include="src\policies\RDPPolicy.cs" />
@@ -156,8 +179,9 @@
     <Compile Include="src\policies\UnsignedPolicy.cs" />
     <Compile Include="src\policies\UpdatePolicy.cs" />
     <Compile Include="src\policies\WscriptPolicy.cs" />
-    <Compile Include="src\utils\BrowserType.cs" />
-    <Compile Include="src\utils\Browser.cs" />
+    <Compile Include="src\libs\authenticodetools\AuthenticodeTools.cs" />
+    <Compile Include="src\libs\browser-api\BrowserType.cs" />
+    <Compile Include="src\libs\browser-api\Browser.cs" />
     <Compile Include="src\Window.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -166,6 +190,12 @@
     </Compile>
     <Compile Include="src\Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="src\libs\certificates\CertDebugger.resx">
+      <DependentUpon>CertDebugger.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="src\HelpWindow.resx">
+      <DependentUpon>HelpWindow.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="src\OptionalWindow.resx">
       <DependentUpon>OptionalWindow.cs</DependentUpon>
     </EmbeddedResource>
@@ -177,7 +207,6 @@
       <SubType>Designer</SubType>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <None Include="app.config" />
     <None Include="app.manifest">
       <SubType>Designer</SubType>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -205,6 +234,9 @@
     <None Include="Resources\sigcheck.exe" />
     <None Include="Resources\sigcheck64.exe" />
     <None Include="Resources\Eula.txt" />
+    <None Include="Resources\windowslogo.png" />
+    <None Include="Resources\regsvr32.exe" />
+    <None Include="Resources\regsvr32watchdog.exe" />
     <Content Include="windows.ico">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

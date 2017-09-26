@@ -30,36 +30,44 @@ namespace windows_security_tweak_tool.src.policies
     class UnsignedPolicy : SecurityPolicy
     {
 
-        public override string getName()
+        public override string GetName()
         {
-            return getType().getName();
+            return GetPolicyType().GetName();
         }
 
-        public override string getDescription()
+        public override string GetDescription()
         {
             return "scans through every .exe and .dll file and checks if it has been signed with a certificate";
         }
 
-        public override bool isEnabled()
+        public override bool IsEnabled()
         {
             return false;
         }
 
-        public override SecurityPolicyType getType()
+        public override SecurityPolicyType GetPolicyType()
         {
             return SecurityPolicyType.UNSIGNED_POLICY;
         }
 
-        public override void apply()
+        public async override void Apply()
         {
-            this.getButton().Enabled = false;
+            this.GetButton().Enabled = false;
 
-            if (!isInstalled())
+            await Task.Run(() => ApplyAsync());
+
+            this.GetButton().Enabled = true;
+            this.GetProgressbar().Value = 100;
+        }
+
+        public void ApplyAsync()
+        {
+            if (!IsInstalled())
             {
-                Directory.CreateDirectory(getDataFolder() + @"\sigcheck");
-                installForFirstTime("sigcheck");
-                installForFirstTime("sigcheck64");
-                installForFirstTime("sigcheckeula");
+                Directory.CreateDirectory(GetDataFolder() + @"\sigcheck");
+                InstallForFirstTime("sigcheck");
+                InstallForFirstTime("sigcheck64");
+                InstallForFirstTime("sigcheckeula");
             }
 
             Process proc;
@@ -67,13 +75,13 @@ namespace windows_security_tweak_tool.src.policies
             if (Environment.Is64BitOperatingSystem)
             {
                 ProcessStartInfo sinfo = new ProcessStartInfo("cmd.exe");
-                sinfo.Arguments = "/c " + getDataFolder() + @"\sigcheck\sigcheck.exe -a -s -u -e C:\windows\system32 > " + getDataFolder() + @"\sigcheck\unsigned.txt";
+                sinfo.Arguments = "/c " + GetDataFolder() + @"\sigcheck\sigcheck.exe -a -s -u -e C:\windows\system32 > " + GetDataFolder() + @"\sigcheck\unsigned.txt";
                 proc = Process.Start(sinfo);
             }
             else
             {
                 ProcessStartInfo sinfo = new ProcessStartInfo("cmd.exe");
-                sinfo.Arguments = "/c " + getDataFolder() + @"\sigcheck\sigcheck.exe -a -s -u -e C:\windows\system32 > " + getDataFolder() + @"\sigcheck\unsigned.txt";
+                sinfo.Arguments = "/c " + GetDataFolder() + @"\sigcheck\sigcheck.exe -a -s -u -e C:\windows\system32 > " + GetDataFolder() + @"\sigcheck\unsigned.txt";
                 proc = Process.Start(sinfo);
             }
 
@@ -82,58 +90,55 @@ namespace windows_security_tweak_tool.src.policies
             proc.Dispose();
 
             ProcessStartInfo info = new ProcessStartInfo("notepad.exe");
-            info.Arguments = getDataFolder() + @"\sigcheck\unsigned.txt";
+            info.Arguments = GetDataFolder() + @"\sigcheck\unsigned.txt";
             Process p = Process.Start(info);
-
-            this.getButton().Enabled = true;
-            this.getProgressbar().Value = 100;
         }
 
-        public override void unapply()
+        public override void Unapply()
         {
             throw new NotImplementedException();
         }
 
 
-        public override bool hasIncompatibilityIssues()
+        public override bool HasIncompatibilityIssues()
         {
             return false;
         }
 
         [Obsolete]
-        public override bool isLanguageDepended()
+        public override bool IsLanguageDepended()
         {
             return false;
         }
 
-        public override bool isMacro()
+        public override bool IsMacro()
         {
             return false;
         }
 
-        public override bool isSafeForBussiness()
+        public override bool IsSafeForBussiness()
         {
             return true;
         }
 
-        public override bool isSecpolDepended()
+        public override bool IsSecpolDepended()
         {
             return false;
         }
 
-        public override bool isUserControlRequired()
+        public override bool IsUserControlRequired()
         {
             return true;
         }
 
-        private bool isInstalled()
+        private bool IsInstalled()
         {
-            return Directory.Exists(getDataFolder() + @"\sigcheck");
+            return Directory.Exists(GetDataFolder() + @"\sigcheck");
         }
 
-        private void installForFirstTime(string resource)
+        private void InstallForFirstTime(string resource)
         {
-            string path = getDataFolder() + @"\sigcheck";
+            string path = GetDataFolder() + @"\sigcheck";
 
             switch (resource)
             {
@@ -149,12 +154,12 @@ namespace windows_security_tweak_tool.src.policies
             }
         }
 
-        public override Button getButton()
+        public override Button GetButton()
         {
             return this.gui.unsignedbtn;
         }
 
-        public override ProgressBar getProgressbar()
+        public override ProgressBar GetProgressbar()
         {
             return this.gui.unsignedprogress;
         }

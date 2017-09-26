@@ -23,16 +23,19 @@ using System.IO;
 using System.IO.Compression;
 using System.Linq;
 using System.Net;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using windows_security_tweak_tool.src.certificates;
+using windows_security_tweak_tool.src.utils;
 
 namespace windows_security_tweak_tool.src.ninite
 {
     class NiniteCreator : HashSet<NiniteOption>
     {
-        
-        public string getNiniteURL()
+
+        public string GetNiniteURL()
         {
             string url = "https://ninite.com/";
             NiniteOption[] options = this.ToArray();
@@ -42,31 +45,31 @@ namespace windows_security_tweak_tool.src.ninite
                 if(index == (options.Length-1))
                 {
                     NiniteOption option = options[index];
-                    url += ((NiniteOption)option).getName();
+                    url += ((NiniteOption)option).GetName();
                 } else
                 {
                     NiniteOption option = options[index];
-                    url += ((NiniteOption)option).getName()+"-";
+                    url += ((NiniteOption)option).GetName()+"-";
                 }
             }
             return url+"/ninite.exe";
         }
 
-        public void downloadNiniteInstaller(string url)
+        public void DownloadNiniteInstaller(string url)
         {
-            if(!Directory.Exists(getDataFolder() + @"\ninite"))
+            if (!Directory.Exists(GetDataFolder() + @"\ninite"))
             {
-                Directory.CreateDirectory(getDataFolder() + @"\ninite");
+                Directory.CreateDirectory(GetDataFolder() + @"\ninite");
             }
-            if (File.Exists(getDataFolder() + @"\ninite\ninite.exe"))
+            if (File.Exists(GetDataFolder() + @"\ninite\ninite.exe"))
             {
-                File.Delete(getDataFolder() + @"\ninite\ninite.exe");
+                File.Delete(GetDataFolder() + @"\ninite\ninite.exe");
             }
             WebClient client = new WebClient();
             client.Headers.Add("user-agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.59 Safari/537.36");
             try
             {
-                client.DownloadFile(new Uri(url), getDataFolder() + @"\ninite\ninite.exe");
+                client.DownloadFile(new Uri(url), GetDataFolder() + @"\ninite\ninite.exe");
             }
             catch (Exception e)
             {
@@ -74,22 +77,33 @@ namespace windows_security_tweak_tool.src.ninite
                 MessageBox.Show("Unable to download ninite!, perhaps the file has been removed?\nplease visit: " + url);
                 Process proc1 = Process.Start(url);
                 proc1.Dispose();
-                Directory.Delete(getDataFolder() + @"\ninite");
+                Directory.Delete(GetDataFolder() + @"\ninite");
                 return;
             }
 
-            Process proc = Process.Start(getDataFolder()+@"\ninite\ninite.exe");
-            
-            while(!proc.HasExited)
+            while (!VerifyInstaller())
             {
-                //lock thread
+                MessageBox.Show("Re-downloading ninite installer since the certificate did not match with the current hash of the certificate!", "warning ninite installer is invalid or being tampered with!");
+                File.Delete(GetDataFolder() + @"\ninite\ninite.exe");
+                client.DownloadFile(new Uri(url), GetDataFolder() + @"\ninite\ninite.exe");
             }
+
+            Process proc = Process.Start(GetDataFolder() + @"\ninite\ninite.exe");
+
+            proc.WaitForExit();
             proc.Dispose();
         }
 
-        private string getDataFolder()
+        private string GetDataFolder()
         {
-            return Config.getConfig().getDataFolder();
+            return Config.GetConfig().GetDataFolder();
+        }
+
+        private bool VerifyInstaller()
+        {
+            string certhash = CertProvider.NINITE.getCertificate().getHash();
+            X509Certificate cert = X509Certificate.CreateFromSignedFile(GetDataFolder() + @"\ninite\ninite.exe");
+            return AuthenticodeTools.IsTrusted(GetDataFolder() + @"\ninite\ninite.exe") && certhash == cert.GetCertHashString();
         }
 
     }

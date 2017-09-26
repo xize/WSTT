@@ -22,6 +22,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using windows_security_tweak_tool.src.certificates;
 using windows_security_tweak_tool.src.ninite;
 
 namespace windows_security_tweak_tool.src.optionalpolicies
@@ -31,7 +32,7 @@ namespace windows_security_tweak_tool.src.optionalpolicies
 
         protected OptionalWindow gui;
 
-        public void setGui(OptionalWindow gui)
+        public void SetGui(OptionalWindow gui)
         {
             if(this.gui == null)
             {
@@ -39,33 +40,43 @@ namespace windows_security_tweak_tool.src.optionalpolicies
             }
         }
 
-        public abstract string getName();
+        public abstract string GetName();
 
-        public abstract string getDescription();
+        public abstract string GetDescription();
 
-        public abstract OptionalPolicyType getType();
+        public abstract OptionalPolicyType GetOptionalPolicyType();
 
-        public abstract void apply();
+        public abstract void Apply();
 
-        public abstract void unapply();
+        public abstract void Unapply();
 
-        public abstract Button getButton();
+        public abstract Button GetButton();
 
-        public virtual bool isEnabled()
+        public virtual bool IsEnabled()
         {
-            return true;
+            return false;
         }
 
-        public bool hasButton()
+        public virtual bool IsCertificateDepended()
         {
-            return ((getButton() != null) ? true : false);
+            return false;
         }
 
-        public abstract ProgressBar getProgressbar();
-
-        public bool hasProgressbar()
+        public virtual Certificate GetCertificate()
         {
-            return ((getProgressbar() != null) ? true : false);
+            return null;
+        }
+
+        public bool HasButton()
+        {
+            return ((GetButton() != null) ? true : false);
+        }
+
+        public abstract ProgressBar GetProgressbar();
+
+        public bool HasProgressbar()
+        {
+            return ((GetProgressbar() != null) ? true : false);
         }
 
     }

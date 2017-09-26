@@ -16,6 +16,7 @@
     You should have received a copy of the GNU General Public License
     along with this program.If not, see<http://www.gnu.org/licenses/>.
 */
+using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -29,26 +30,26 @@ namespace windows_security_tweak_tool.src.policies
     class SMBSharingPolicy : SecurityPolicy
     {
 
-        public override string getName()
+        public override string GetName()
         {
-            return getType().getName();
+            return GetPolicyType().GetName();
         }
 
-        public override string getDescription()
+        public override string GetDescription()
         {
             return "disable SMB sharing to block ransomware and malware which spreads across networks";
         }
 
-        public override SecurityPolicyType getType()
+        public override SecurityPolicyType GetPolicyType()
         {
             return SecurityPolicyType.SMB_SHARING_POLICY;
         }
 
-        public override bool isEnabled()
+        public override bool IsEnabled()
         {
-            if (Config.getConfig().nodeExist("smb-enabled"))
+            if (Config.GetConfig().NodeExist("smb-enabled"))
             {
-                return Config.getConfig().getBoolean("smb-enabled");
+                return Config.GetConfig().GetBoolean("smb-enabled");
             }
             else
             {
@@ -73,9 +74,31 @@ namespace windows_security_tweak_tool.src.policies
             return false;
         }
 
-        public override void apply()
+        public async override void Apply()
         {
-            getButton().Enabled = false;
+            GetButton().Enabled = false;
+
+            await Task.Run(() => ApplyAsync());
+
+            GetButton().Enabled = true;
+            SetGuiEnabled(this);
+        }
+
+        public void ApplyAsync()
+        {
+            DialogResult result = MessageBox.Show("if you want to properly secure yourself you need to understand that there is a high chance a NAS or other network related equipment might fail to work properly.\n\nfor this reason we only block SMBv1 (the most vulnerable protocol) instead of SMBv2 and SMBv3 for full protection we recommend to block these ports from WAN to LAN and from LAN to WAN: 137-138/UDP, 139/TCP and 445/TCP", "advice regarding wannacry, and other ransomware", MessageBoxButtons.OKCancel);
+
+            if (result == DialogResult.Cancel)
+            {
+                return;
+            }
+
+            RegistryKey key = GetRegistry(@"SYSTEM\CurrentControlSet\Services\LanmanServer\Parameters", REG.HKLM);
+            key.SetValue("SMB1", 0);
+
+            key.Close();
+            key.Dispose();
+
             ProcessStartInfo info = new ProcessStartInfo("dism.exe");
             info.Arguments = "/Online /Disable-Feature /FeatureName:SMB1Protocol";
             info.UseShellExecute = false;
@@ -83,14 +106,28 @@ namespace windows_security_tweak_tool.src.policies
             p.WaitForExit();
             p.Close();
             p.Dispose();
-            Config.getConfig().put("smb-enabled", true);
-            getButton().Enabled = true;
-            setGuiEnabled(this);
+            Config.GetConfig().Put("smb-enabled", true);
         }
 
-        public override void unapply()
+        public async override void Unapply()
         {
-            getButton().Enabled = false;
+            GetButton().Enabled = false;
+
+            await Task.Run(() => UnapplyAsync());
+
+            GetButton().Enabled = true;
+            SetGuiDisabled(this);
+        }
+
+        public void UnapplyAsync()
+        {
+            RegistryKey key = GetRegistry(@"SYSTEM\CurrentControlSet\Services\LanmanServer\Parameters", REG.HKLM);
+            key.SetValue("SMB1", 1);
+
+            key.Close();
+            key.Dispose();
+
+
             ProcessStartInfo info = new ProcessStartInfo("dism.exe");
             info.Arguments = "/Online /Enable-Feature /FeatureName:SMB1Protocol";
             info.UseShellExecute = false;
@@ -98,48 +135,46 @@ namespace windows_security_tweak_tool.src.policies
             p.WaitForExit();
             p.Close();
             p.Dispose();
-            Config.getConfig().put("smb-enabled", false);
-            getButton().Enabled = true;
-            setGuiDisabled(this);
+            Config.GetConfig().Put("smb-enabled", false);
         }
 
-        public override bool hasIncompatibilityIssues()
+        public override bool HasIncompatibilityIssues()
         {
             return false;
         }
 
         [Obsolete]
-        public override bool isLanguageDepended()
+        public override bool IsLanguageDepended()
         {
             return false;
         }
 
-        public override bool isMacro()
+        public override bool IsMacro()
         {
             return false;
         }
 
-        public override bool isSafeForBussiness()
+        public override bool IsSafeForBussiness()
         {
             return true;
         }
 
-        public override bool isSecpolDepended()
+        public override bool IsSecpolDepended()
         {
             return false;
         }
 
-        public override bool isUserControlRequired()
+        public override bool IsUserControlRequired()
         {
             return true;
         }
 
-        public override Button getButton()
+        public override Button GetButton()
         {
             return this.gui.smbbtn;
         }
 
-        public override ProgressBar getProgressbar()
+        public override ProgressBar GetProgressbar()
         {
             return this.gui.smbprogress;
         }

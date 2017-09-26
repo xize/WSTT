@@ -94,6 +94,15 @@ namespace windows_security_tweak_tool.src
             this.label3 = new System.Windows.Forms.Label();
             this.smbbtn = new System.Windows.Forms.Button();
             this.smbprogress = new System.Windows.Forms.ProgressBar();
+            this.label5 = new System.Windows.Forms.Label();
+            this.autoplaybtn = new System.Windows.Forms.Button();
+            this.autoplayprogress = new System.Windows.Forms.ProgressBar();
+            this.label6 = new System.Windows.Forms.Label();
+            this.regsvr32btn = new System.Windows.Forms.Button();
+            this.regsvr32progress = new System.Windows.Forms.ProgressBar();
+            this.label7 = new System.Windows.Forms.Label();
+            this.powershellbtn = new System.Windows.Forms.Button();
+            this.powershellprogress = new System.Windows.Forms.ProgressBar();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -149,7 +158,6 @@ namespace windows_security_tweak_tool.src
             this.tempolicylabel.Size = new System.Drawing.Size(371, 13);
             this.tempolicylabel.TabIndex = 2;
             this.tempolicylabel.Text = "protect known malware directories (policies, needs windows ultimate) (macro):";
-            this.tempolicylabel.Click += new System.EventHandler(this.tempolicylabel_Click);
             // 
             // netbioslabel
             // 
@@ -325,7 +333,7 @@ namespace windows_security_tweak_tool.src
             // safeapplybtn
             // 
             this.safeapplybtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.safeapplybtn.Location = new System.Drawing.Point(9, 669);
+            this.safeapplybtn.Location = new System.Drawing.Point(9, 790);
             this.safeapplybtn.Name = "safeapplybtn";
             this.safeapplybtn.Size = new System.Drawing.Size(158, 23);
             this.safeapplybtn.TabIndex = 39;
@@ -338,7 +346,7 @@ namespace windows_security_tweak_tool.src
             // undobtn
             // 
             this.undobtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.undobtn.Location = new System.Drawing.Point(419, 669);
+            this.undobtn.Location = new System.Drawing.Point(419, 790);
             this.undobtn.Name = "undobtn";
             this.undobtn.Size = new System.Drawing.Size(75, 23);
             this.undobtn.TabIndex = 40;
@@ -350,7 +358,7 @@ namespace windows_security_tweak_tool.src
             // applyforcebtn
             // 
             this.applyforcebtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.applyforcebtn.Location = new System.Drawing.Point(173, 669);
+            this.applyforcebtn.Location = new System.Drawing.Point(173, 790);
             this.applyforcebtn.Name = "applyforcebtn";
             this.applyforcebtn.Size = new System.Drawing.Size(100, 23);
             this.applyforcebtn.TabIndex = 89;
@@ -432,7 +440,7 @@ namespace windows_security_tweak_tool.src
             // openOptionalOptionsToolStripMenuItem
             // 
             this.openOptionalOptionsToolStripMenuItem.Name = "openOptionalOptionsToolStripMenuItem";
-            this.openOptionalOptionsToolStripMenuItem.Size = new System.Drawing.Size(227, 22);
+            this.openOptionalOptionsToolStripMenuItem.Size = new System.Drawing.Size(254, 22);
             this.openOptionalOptionsToolStripMenuItem.Text = "Open Optional options";
             this.openOptionalOptionsToolStripMenuItem.Click += new System.EventHandler(this.openOptionalOptionsToolStripMenuItem_Click);
             // 
@@ -440,21 +448,21 @@ namespace windows_security_tweak_tool.src
             // 
             this.setAsServerToolStripMenuItem.Enabled = false;
             this.setAsServerToolStripMenuItem.Name = "setAsServerToolStripMenuItem";
-            this.setAsServerToolStripMenuItem.Size = new System.Drawing.Size(227, 22);
+            this.setAsServerToolStripMenuItem.Size = new System.Drawing.Size(254, 22);
             this.setAsServerToolStripMenuItem.Text = "set as server";
             // 
             // setAsClientToolStripMenuItem
             // 
             this.setAsClientToolStripMenuItem.Enabled = false;
             this.setAsClientToolStripMenuItem.Name = "setAsClientToolStripMenuItem";
-            this.setAsClientToolStripMenuItem.Size = new System.Drawing.Size(227, 22);
+            this.setAsClientToolStripMenuItem.Size = new System.Drawing.Size(254, 22);
             this.setAsClientToolStripMenuItem.Text = "set as client";
             // 
             // resetPoliciesToolStripMenuItem
             // 
             this.resetPoliciesToolStripMenuItem.Name = "resetPoliciesToolStripMenuItem";
-            this.resetPoliciesToolStripMenuItem.Size = new System.Drawing.Size(227, 22);
-            this.resetPoliciesToolStripMenuItem.Text = "reset windows group policies";
+            this.resetPoliciesToolStripMenuItem.Size = new System.Drawing.Size(254, 22);
+            this.resetPoliciesToolStripMenuItem.Text = "hard reset windows group policies";
             this.resetPoliciesToolStripMenuItem.Click += new System.EventHandler(this.resetPoliciesToolStripMenuItem_Click);
             // 
             // helpToolStripMenuItem
@@ -462,13 +470,13 @@ namespace windows_security_tweak_tool.src
             this.helpToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.documentationToolStripMenuItem,
             this.aboutToolStripMenuItem});
-            this.helpToolStripMenuItem.Enabled = false;
             this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
             this.helpToolStripMenuItem.Size = new System.Drawing.Size(42, 20);
             this.helpToolStripMenuItem.Text = "help";
             // 
             // documentationToolStripMenuItem
             // 
+            this.documentationToolStripMenuItem.Enabled = false;
             this.documentationToolStripMenuItem.Name = "documentationToolStripMenuItem";
             this.documentationToolStripMenuItem.Size = new System.Drawing.Size(157, 22);
             this.documentationToolStripMenuItem.Text = "Documentation";
@@ -478,6 +486,7 @@ namespace windows_security_tweak_tool.src
             this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
             this.aboutToolStripMenuItem.Size = new System.Drawing.Size(157, 22);
             this.aboutToolStripMenuItem.Text = "About";
+            this.aboutToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
             // 
             // insecureserviceslabel
             // 
@@ -563,12 +572,11 @@ namespace windows_security_tweak_tool.src
             // 
             this.mbrbtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.mbrbtn.AutoSize = true;
-            this.mbrbtn.Enabled = false;
-            this.mbrbtn.Location = new System.Drawing.Point(206, 461);
+            this.mbrbtn.Location = new System.Drawing.Point(412, 461);
             this.mbrbtn.Name = "mbrbtn";
-            this.mbrbtn.Size = new System.Drawing.Size(288, 23);
+            this.mbrbtn.Size = new System.Drawing.Size(82, 23);
             this.mbrbtn.TabIndex = 87;
-            this.mbrbtn.Text = "disabled, has no uninstall way without damaging the MBR";
+            this.mbrbtn.Text = "Apply";
             this.mbrbtn.UseVisualStyleBackColor = true;
             this.mbrbtn.Click += new System.EventHandler(this.callMBREvent);
             // 
@@ -578,7 +586,7 @@ namespace windows_security_tweak_tool.src
             | System.Windows.Forms.AnchorStyles.Right)));
             this.mbrprogress.Location = new System.Drawing.Point(10, 461);
             this.mbrprogress.Name = "mbrprogress";
-            this.mbrprogress.Size = new System.Drawing.Size(190, 23);
+            this.mbrprogress.Size = new System.Drawing.Size(404, 23);
             this.mbrprogress.TabIndex = 86;
             // 
             // label1
@@ -709,10 +717,115 @@ namespace windows_security_tweak_tool.src
             this.smbprogress.Size = new System.Drawing.Size(409, 23);
             this.smbprogress.TabIndex = 102;
             // 
+            // label5
+            // 
+            this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(11, 652);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(86, 13);
+            this.label5.TabIndex = 107;
+            this.label5.Text = "disable autoplay:";
+            // 
+            // autoplaybtn
+            // 
+            this.autoplaybtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.autoplaybtn.AutoSize = true;
+            this.autoplaybtn.Location = new System.Drawing.Point(422, 668);
+            this.autoplaybtn.Name = "autoplaybtn";
+            this.autoplaybtn.Size = new System.Drawing.Size(71, 23);
+            this.autoplaybtn.TabIndex = 106;
+            this.autoplaybtn.Text = "Apply";
+            this.autoplaybtn.UseVisualStyleBackColor = true;
+            this.autoplaybtn.Click += new System.EventHandler(this.autoplaybtn_Click);
+            // 
+            // autoplayprogress
+            // 
+            this.autoplayprogress.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.autoplayprogress.Location = new System.Drawing.Point(9, 668);
+            this.autoplayprogress.Name = "autoplayprogress";
+            this.autoplayprogress.Size = new System.Drawing.Size(409, 23);
+            this.autoplayprogress.TabIndex = 105;
+            // 
+            // label6
+            // 
+            this.label6.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(11, 693);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(99, 13);
+            this.label6.TabIndex = 110;
+            this.label6.Text = "proxy regsvr32.exe:";
+            // 
+            // regsvr32btn
+            // 
+            this.regsvr32btn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.regsvr32btn.AutoSize = true;
+            this.regsvr32btn.Location = new System.Drawing.Point(422, 709);
+            this.regsvr32btn.Name = "regsvr32btn";
+            this.regsvr32btn.Size = new System.Drawing.Size(71, 23);
+            this.regsvr32btn.TabIndex = 109;
+            this.regsvr32btn.Text = "Apply";
+            this.regsvr32btn.UseVisualStyleBackColor = true;
+            this.regsvr32btn.Click += new System.EventHandler(this.regsvr32btn_Click);
+            // 
+            // regsvr32progress
+            // 
+            this.regsvr32progress.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.regsvr32progress.Location = new System.Drawing.Point(9, 709);
+            this.regsvr32progress.Name = "regsvr32progress";
+            this.regsvr32progress.Size = new System.Drawing.Size(409, 23);
+            this.regsvr32progress.TabIndex = 108;
+            // 
+            // label7
+            // 
+            this.label7.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(13, 735);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(96, 13);
+            this.label7.TabIndex = 113;
+            this.label7.Text = "disable powershell:";
+            // 
+            // powershellbtn
+            // 
+            this.powershellbtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.powershellbtn.AutoSize = true;
+            this.powershellbtn.Location = new System.Drawing.Point(424, 751);
+            this.powershellbtn.Name = "powershellbtn";
+            this.powershellbtn.Size = new System.Drawing.Size(71, 23);
+            this.powershellbtn.TabIndex = 112;
+            this.powershellbtn.Text = "Apply";
+            this.powershellbtn.UseVisualStyleBackColor = true;
+            this.powershellbtn.Click += new System.EventHandler(this.powershellbtn_Click);
+            // 
+            // powershellprogress
+            // 
+            this.powershellprogress.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.powershellprogress.Location = new System.Drawing.Point(11, 751);
+            this.powershellprogress.Name = "powershellprogress";
+            this.powershellprogress.Size = new System.Drawing.Size(409, 23);
+            this.powershellprogress.TabIndex = 111;
+            // 
             // Window
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-            this.ClientSize = new System.Drawing.Size(510, 706);
+            this.ClientSize = new System.Drawing.Size(510, 827);
+            this.Controls.Add(this.label7);
+            this.Controls.Add(this.powershellbtn);
+            this.Controls.Add(this.powershellprogress);
+            this.Controls.Add(this.label6);
+            this.Controls.Add(this.regsvr32btn);
+            this.Controls.Add(this.regsvr32progress);
+            this.Controls.Add(this.label5);
+            this.Controls.Add(this.autoplaybtn);
+            this.Controls.Add(this.autoplayprogress);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.smbbtn);
             this.Controls.Add(this.smbprogress);
@@ -764,7 +877,7 @@ namespace windows_security_tweak_tool.src
             this.Controls.Add(this.menuStrip1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip1;
-            this.MinimumSize = new System.Drawing.Size(526, 745);
+            this.MinimumSize = new System.Drawing.Size(526, 823);
             this.Name = "Window";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Windows Security Tweaker Tool 14.0.25420.1b (WSTT)";
@@ -838,5 +951,14 @@ namespace windows_security_tweak_tool.src
         private Label label3;
         public Button smbbtn;
         public ProgressBar smbprogress;
+        private Label label5;
+        public Button autoplaybtn;
+        public ProgressBar autoplayprogress;
+        private Label label6;
+        public Button regsvr32btn;
+        public ProgressBar regsvr32progress;
+        private Label label7;
+        public Button powershellbtn;
+        public ProgressBar powershellprogress;
     }
 }

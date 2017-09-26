@@ -19,6 +19,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Windows.Forms;
 using windows_security_tweak_tool.src.optionalpolicies;
 
 namespace windows_security_tweak_tool.src.policies
@@ -36,40 +37,52 @@ namespace windows_security_tweak_tool.src.policies
         public static SecurityPolicyType REMOTE_REGISTRY_POLICY = new SecurityPolicyType("remote_registry_policy", new RemoteRegistryPolicy());
         public static SecurityPolicyType RDP_POLICY = new SecurityPolicyType("rdp_policy", new RDPPolicy());
         public static SecurityPolicyType NTLM_POLICY = new SecurityPolicyType("ntlm_policy", new NTLMPolicy());
-        //public static PolicyType MBR_POLICY = new PolicyType("mbr_policy", new MBRPolicy());
+        public static SecurityPolicyType MBR_POLICY = new SecurityPolicyType("mbr_policy", new MBRPolicy());
         public static SecurityPolicyType CERT_POLICY = new SecurityPolicyType("cert_policy", new CertPolicy());
         public static SecurityPolicyType NETSHARE_POLICY = new SecurityPolicyType("netshare_policy", new NetSharePolicy());
         public static SecurityPolicyType LLMNR_POLICY = new SecurityPolicyType("llmnr_policy", new LLMNRPolicy());
         public static SecurityPolicyType IN_SECURE_SERVICES_POLICY = new SecurityPolicyType("in_secure_services_policy", new InSecureServicesPolicy());
         public static SecurityPolicyType UNSIGNED_POLICY = new SecurityPolicyType("unsigned_policy", new UnsignedPolicy());
         public static SecurityPolicyType SMB_SHARING_POLICY = new SecurityPolicyType("smb_sharing_policy", new SMBSharingPolicy());
+        public static SecurityPolicyType AUTOPLAY_POLICY = new SecurityPolicyType("autoplay_policy", new AutoPlayPolicy());
+        public static SecurityPolicyType REGSERVR32_PROXY_POLICY = new SecurityPolicyType("regsvr32_proxy_policy", new Regsvr32ProxyPolicy());
+        public static SecurityPolicyType POWERSHELL_POLICY = new SecurityPolicyType("powershell_policy", new PowershellPolicy());
 
         private string name;
         private SecurityPolicy pol;
+        private int priority = 1;
 
         public SecurityPolicyType(string name, SecurityPolicy pol)
         {
             types.Add(this);
             this.name = name;
             this.pol = pol;
+
+            this.priority = (this.pol.isAsync() ? 1 : 0);
+
         }
 
-        public string getName()
+        public string GetName()
         {
             return name;
         }
 
-        public SecurityPolicy getPolicy(Window wind)
+        public SecurityPolicy GetPolicy(Window wind)
         {
-            pol.setGui(wind);
+            pol.SetGui(wind);
             return pol;
         }
 
-        public static SecurityPolicyType valueOf(string name)
+        public int GetPriority()
         {
-            foreach(SecurityPolicyType type in values())
+            return this.priority;
+        }
+
+        public static SecurityPolicyType ValueOf(string name)
+        {
+            foreach(SecurityPolicyType type in Values())
             {
-                if(type.startsWith(name.ToUpper(), type.getName().ToUpper()))
+                if(type.startsWith(name.ToUpper(), type.GetName().ToUpper()))
                 {
                     return type;
                 }
@@ -77,9 +90,11 @@ namespace windows_security_tweak_tool.src.policies
             return null;
         }
 
-        public static SecurityPolicyType[] values()
+        public static SecurityPolicyType[] Values()
         {
-            return types.ToArray();
+            SecurityPolicyType[] t = types.ToArray();
+            Array.Sort(t, new PolicyComparable());
+            return t;
         }
 
         private bool startsWith(string text, string fulltext)
@@ -87,4 +102,19 @@ namespace windows_security_tweak_tool.src.policies
             return fulltext.IndexOf(text) > -1;
         }
     }
+
+    class PolicyComparable : IComparer<SecurityPolicyType>
+    {
+        public int Compare(SecurityPolicyType a, SecurityPolicyType b)
+        {
+            //higher the priority for policies which are not macros and are async and does not need user control.
+            return (a.GetPriority() as IComparable).CompareTo(b.GetPriority());
+        }
+
+        public int GetHashCode(SecurityPolicyType obj)
+        {
+            return StringComparer.InvariantCultureIgnoreCase.GetHashCode(obj.GetName());
+        }
+    }
+
 }

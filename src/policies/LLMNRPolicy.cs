@@ -32,24 +32,24 @@ namespace windows_security_tweak_tool.src.policies
         private string path = @"SOFTWARE\Policies\Microsoft\Windows NT\DNSClient";
 
 
-        public override string getName()
+        public override string GetName()
         {
-            return getType().getName();
+            return GetPolicyType().GetName();
         }
 
-        public override string getDescription()
+        public override string GetDescription()
         {
             return "disables broadcasting from the LLMNR protocol, and also blocks a form of dns posioning because it does not longer asks other computers to setup a dns server";
         }
 
-        public override SecurityPolicyType getType()
+        public override SecurityPolicyType GetPolicyType()
         {
             return SecurityPolicyType.LLMNR_POLICY;
         }
 
-        public override bool isEnabled()
+        public override bool IsEnabled()
         {
-            RegistryKey key = getRegistry(path, REG.HKLM);
+            RegistryKey key = GetRegistry(path, REG.HKLM);
             if(key != null)
             {
                 int value = (int)key.GetValue("EnableMulticast");
@@ -60,73 +60,86 @@ namespace windows_security_tweak_tool.src.policies
             return false;
         }
 
-        public override void apply()
+        public async override void Apply()
         {
-            getButton().Enabled = false;
+            GetButton().Enabled = false;
             //check if key Windows NT exist...
 
-            RegistryKey WinNT = this.getRegistry(@"SOFTWARE\Policies\Microsoft\Windows NT\", REG.HKLM);
-            if(WinNT == null)
+           await Task.Run(()=> ApplyAsync());
+
+            this.SetGuiEnabled(this);
+            GetButton().Enabled = true;
+        }
+
+        public void ApplyAsync()
+        {
+            RegistryKey WinNT = this.GetRegistry(@"SOFTWARE\Policies\Microsoft\Windows NT\", REG.HKLM);
+            if (WinNT == null)
             {
-                this.getRegistry(@"SOFTWARE\Policies\Microsoft\", REG.HKLM).CreateSubKey("Windows NT");
+                this.GetRegistry(@"SOFTWARE\Policies\Microsoft\", REG.HKLM).CreateSubKey("Windows NT");
             }
 
-            RegistryKey key = this.getRegistry(@"SOFTWARE\Policies\Microsoft\Windows NT\", REG.HKLM).CreateSubKey("DNSClient");
+            RegistryKey key = this.GetRegistry(@"SOFTWARE\Policies\Microsoft\Windows NT\", REG.HKLM).CreateSubKey("DNSClient");
             key.SetValue("EnableMulticast", 0);
             key.Close();
             key.Dispose();
-            this.setGuiEnabled(this);
-            getButton().Enabled = true;
         }
 
-        public override void unapply()
+        public async override void Unapply()
         {
-            getButton().Enabled = false;
-            RegistryKey key = this.getRegistry(@"SOFTWARE\Policies\Microsoft\Windows NT\", REG.HKLM);
+            GetButton().Enabled = false;
+
+            await Task.Run(() => UnapplyAsync());
+
+            this.SetGuiDisabled(this);
+            GetButton().Enabled = true;
+        }
+
+        public void UnapplyAsync()
+        {
+            RegistryKey key = this.GetRegistry(@"SOFTWARE\Policies\Microsoft\Windows NT\", REG.HKLM);
             key.DeleteSubKey("DNSClient");
             key.Close();
             key.Dispose();
-            this.setGuiDisabled(this);
-            getButton().Enabled = true;
         }
 
-        public override bool hasIncompatibilityIssues()
+        public override bool HasIncompatibilityIssues()
         {
             return false;
         }
 
         [Obsolete]
-        public override bool isLanguageDepended()
+        public override bool IsLanguageDepended()
         {
             return false;
         }
 
-        public override bool isMacro()
+        public override bool IsMacro()
         {
             return false;
         }
 
-        public override bool isSafeForBussiness()
+        public override bool IsSafeForBussiness()
         {
             return true;
         }
 
-        public override bool isSecpolDepended()
+        public override bool IsSecpolDepended()
         {
             return false;
         }
 
-        public override bool isUserControlRequired()
+        public override bool IsUserControlRequired()
         {
             return false;
         }
 
-        public override Button getButton()
+        public override Button GetButton()
         {
             return this.gui.llmnrbtn;
         }
 
-        public override ProgressBar getProgressbar()
+        public override ProgressBar GetProgressbar()
         {
             return this.gui.llmnrprogress;
         }

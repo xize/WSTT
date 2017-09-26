@@ -29,24 +29,24 @@ namespace windows_security_tweak_tool.src.policies
     class NTLMPolicy : SecurityPolicy
     {
 
-        public override string getName()
+        public override string GetName()
         {
-            return getType().getName();
+            return GetPolicyType().GetName();
         }
 
-        public override string getDescription()
+        public override string GetDescription()
         {
             return "disables incomming and outcomming NTLM traffic, since most of the computers have standard Remote Desktop Protocol Enabled and most of the times it is NTLM depended\n\nthis means your computer is vulnerable against hash function cracking and a hacker could enter your remote computer very easily\ndo not use this when you are logged into a domain/bussiness network";
         }
 
-        public override SecurityPolicyType getType()
+        public override SecurityPolicyType GetPolicyType()
         {
             return SecurityPolicyType.NTLM_POLICY;
         }
 
-        public override bool isEnabled()
+        public override bool IsEnabled()
         {
-            bool bol = Config.getConfig().getBoolean("NTLM-secure");
+            bool bol = Config.GetConfig().GetBoolean("NTLM-secure");
             if(bol)
             {
                 return true;
@@ -54,42 +54,50 @@ namespace windows_security_tweak_tool.src.policies
             return false;
         }
 
-        public override void apply()
+        public override void Apply()
         {
-            getButton().Enabled = false;
-            
-            AutoIt.AutoItX.Run("mmc.exe secpol.msc", null, 0);
+            GetButton().Enabled = false;
 
+            AutoIt.AutoItX.Run("mmc.exe secpol.msc", null, 0);
             AutoIt.AutoItX.WinWait("[CLASS:MMCMainFrame]");
             AutoIt.AutoItX.WinActivate("[CLASS:MMCMainFrame]");
             AutoIt.AutoItX.Sleep(400);
-         //   fixUnhappyTrigger();
-            AutoIt.AutoItX.Send("{DOWN}{DOWN}{RIGHT}");
+            //fixUnhappyTrigger();
+            AutoIt.AutoItX.Send("{DOWN}");
+            AutoIt.AutoItX.Sleep(300);
+            AutoIt.AutoItX.Send("{DOWN}");
+            AutoIt.AutoItX.Sleep(300);
+            AutoIt.AutoItX.Send("{RIGHT}");
             AutoIt.AutoItX.Sleep(300);
             AutoIt.AutoItX.Send("{DOWN}{DOWN}{DOWN}");
             AutoIt.AutoItX.Sleep(400);
             AutoIt.AutoItX.Send("{TAB}");
-            addNTLMPolicyOptions();
+            AddNTLMPolicyOptions();
             closeWindow();
 
-            SecurityPolicy p = SecurityPolicyType.UPDATE_POLICY.getPolicy(gui);
-            p.apply();
-            Config.getConfig().put("NTLM-secure", true);
-            setGuiEnabled(this);
-            getButton().Enabled = true;
+            SecurityPolicy p = SecurityPolicyType.UPDATE_POLICY.GetPolicy(gui);
+            p.Apply();
+            Config.GetConfig().Put("NTLM-secure", true);
+            SetGuiEnabled(this);
+            GetButton().Enabled = true;
         }
 
-        public override void unapply()
+        public override void Unapply()
         {
-            getButton().Enabled = false;
+            GetButton().Enabled = false;
 
             AutoIt.AutoItX.Run("mmc.exe secpol.msc", null, 0);
 
             AutoIt.AutoItX.WinWait("[CLASS:MMCMainFrame]");
             AutoIt.AutoItX.WinActivate("[CLASS:MMCMainFrame]");
             AutoIt.AutoItX.Sleep(400);
-           // fixUnhappyTrigger();
-            AutoIt.AutoItX.Send("{DOWN}{DOWN}{RIGHT}");
+            //fixUnhappyTrigger();
+            AutoIt.AutoItX.Send("{DOWN}");
+            AutoIt.AutoItX.Sleep(300);
+            AutoIt.AutoItX.Send("{DOWN}");
+            AutoIt.AutoItX.Sleep(300);
+            AutoIt.AutoItX.Send("{RIGHT}");
+
             AutoIt.AutoItX.Sleep(300);
             AutoIt.AutoItX.Send("{DOWN}{DOWN}{DOWN}");
             AutoIt.AutoItX.Sleep(400);
@@ -97,32 +105,35 @@ namespace windows_security_tweak_tool.src.policies
             setDefaultOptions();
             closeWindow();
 
-            SecurityPolicy p = SecurityPolicyType.UPDATE_POLICY.getPolicy(gui);
-            p.apply();
-            Config.getConfig().put("NTLM-secure", false);
-            setGuiDisabled(this);
-            getButton().Enabled = true;
+            SecurityPolicy p = SecurityPolicyType.UPDATE_POLICY.GetPolicy(gui);
+            p.Apply();
+            Config.GetConfig().Put("NTLM-secure", false);
+            SetGuiDisabled(this);
+            GetButton().Enabled = true;
         }
 
-        private void loopToOptions()
+        private void LoopToOptions()
         {
-            for (int i = 0; i < 68; i++)
+            for (int i = 0; i < 69; i++)
             {
                 AutoIt.AutoItX.Send("{DOWN}");
             }
         }
 
-        private void addNTLMPolicyOptions()
+        private void AddNTLMPolicyOptions()
         {
 
-            loopToOptions();
-
+            LoopToOptions();
+            
             AutoIt.AutoItX.Send("{ENTER}");
+            AutoIt.AutoItX.Sleep(300);
             AutoIt.AutoItX.WinWait("[CLASS:#32770]");
             AutoIt.AutoItX.Send("{RIGHT}{RIGHT}");
             AutoIt.AutoItX.Sleep(300);
             AutoIt.AutoItX.Send("{ENTER}");
+            AutoIt.AutoItX.Sleep(300);
             AutoIt.AutoItX.WinWait("[CLASS:#32770]");
+            AutoIt.AutoItX.Sleep(300);
             AutoIt.AutoItX.Send("{ENTER}");
             AutoIt.AutoItX.Sleep(400);
           //  AutoIt.AutoItX.WinActivate("[CLASS:MMCMainFrame]");
@@ -135,12 +146,16 @@ namespace windows_security_tweak_tool.src.policies
             AutoIt.AutoItX.Sleep(400);
          //   AutoIt.AutoItX.WinActivate("[CLASS:MMCMainFrame]");
 
-            AutoIt.AutoItX.Send("{DOWN}{ENTER}");
+            AutoIt.AutoItX.Send("{DOWN}");
+            AutoIt.AutoItX.Sleep(300);
+            AutoIt.AutoItX.Send("{ENTER}");
             AutoIt.AutoItX.WinWait("[CLASS:#32770]");
             AutoIt.AutoItX.Send("{RIGHT}{RIGHT}{RIGHT}{RIGHT}");
             AutoIt.AutoItX.Sleep(300);
             AutoIt.AutoItX.Send("{ENTER}");
-            AutoIt.AutoItX.WinWait("[CLASS:#32770]");
+            AutoIt.AutoItX.Sleep(400);
+            //TODO: observing when the macro gets stuck here on the OK dialog.
+            //AutoIt.AutoItX.WinWait("[CLASS:#32770]");
             AutoIt.AutoItX.Send("{ENTER}");
             AutoIt.AutoItX.Sleep(600);
           //  AutoIt.AutoItX.WinActivate("[CLASS:MMCMainFrame]");
@@ -152,9 +167,10 @@ namespace windows_security_tweak_tool.src.policies
             AutoIt.AutoItX.Send("{ENTER}");
             AutoIt.AutoItX.Sleep(400);
           //  AutoIt.AutoItX.WinActivate("[CLASS:MMCMainFrame]");
-            AutoIt.AutoItX.Sleep(400);
+            //AutoIt.AutoItX.Sleep(400);
             
             AutoIt.AutoItX.Send("{DOWN}{ENTER}");
+            AutoIt.AutoItX.Sleep(300);
             AutoIt.AutoItX.WinWait("[CLASS:#32770]");
             AutoIt.AutoItX.Send("{RIGHT}{RIGHT}{RIGHT}{RIGHT}");
             AutoIt.AutoItX.Sleep(300);
@@ -168,40 +184,46 @@ namespace windows_security_tweak_tool.src.policies
         private void setDefaultOptions()
         {
 
-            loopToOptions();
+            LoopToOptions();
 
             AutoIt.AutoItX.Send("{ENTER}");
             AutoIt.AutoItX.WinWait("[CLASS:#32770]");
             AutoIt.AutoItX.Send("{LEFT}{LEFT}{ENTER}");
-            AutoIt.AutoItX.WinActivate("[CLASS:MMCMainFrame]");
+            AutoIt.AutoItX.Sleep(300);
+            //AutoIt.AutoItX.WinActivate("[CLASS:MMCMainFrame]");
             AutoIt.AutoItX.WinWait("[CLASS:MMCMainFrame]");
             AutoIt.AutoItX.Send("{DOWN}");
+            AutoIt.AutoItX.Sleep(300);
 
             AutoIt.AutoItX.Send("{ENTER}");
             AutoIt.AutoItX.WinWait("[CLASS:#32770]");
             AutoIt.AutoItX.Send("{LEFT}{LEFT}{ENTER}");
-            AutoIt.AutoItX.WinActivate("[CLASS:MMCMainFrame]");
+            //AutoIt.AutoItX.WinActivate("[CLASS:MMCMainFrame]");
             AutoIt.AutoItX.WinWait("[CLASS:MMCMainFrame]");
             AutoIt.AutoItX.Send("{DOWN}");
+            AutoIt.AutoItX.Sleep(300);
 
             AutoIt.AutoItX.Send("{ENTER}");
             AutoIt.AutoItX.WinWait("[CLASS:#32770]");
             AutoIt.AutoItX.Send("{LEFT}{LEFT}{LEFT}{LEFT}{ENTER}");
-            AutoIt.AutoItX.WinActivate("[CLASS:MMCMainFrame]");
+            //AutoIt.AutoItX.WinActivate("[CLASS:MMCMainFrame]");
             AutoIt.AutoItX.WinWait("[CLASS:MMCMainFrame]");
             AutoIt.AutoItX.Send("{DOWN}");
 
+            AutoIt.AutoItX.Sleep(300);
             AutoIt.AutoItX.Send("{ENTER}");
             AutoIt.AutoItX.WinWait("[CLASS:#32770]");
             AutoIt.AutoItX.Send("{LEFT}{LEFT}{LEFT}{LEFT}{ENTER}");
-            AutoIt.AutoItX.WinActivate("[CLASS:MMCMainFrame]");
+            //AutoIt.AutoItX.WinActivate("[CLASS:MMCMainFrame]");
             AutoIt.AutoItX.WinWait("[CLASS:MMCMainFrame]");
             AutoIt.AutoItX.Send("{DOWN}");
 
+            AutoIt.AutoItX.Sleep(300);
             AutoIt.AutoItX.Send("{ENTER}");
             AutoIt.AutoItX.WinWait("[CLASS:#32770]");
             AutoIt.AutoItX.Send("{LEFT}{LEFT}{ENTER}");
-            AutoIt.AutoItX.WinActivate("[CLASS:MMCMainFrame]");
+            AutoIt.AutoItX.Sleep(300);
+            //AutoIt.AutoItX.WinActivate("[CLASS:MMCMainFrame]");
         }
 
         private void closeWindow()
@@ -210,22 +232,22 @@ namespace windows_security_tweak_tool.src.policies
             AutoIt.AutoItX.WinClose("[CLASS:MMCMainFrame]");
         }
 
-        public override Button getButton()
+        public override Button GetButton()
         {
             return gui.NTLMbtn;
         }
 
-        public override ProgressBar getProgressbar()
+        public override ProgressBar GetProgressbar()
         {
             return gui.NTLMProgress;
         }
 
-        public override bool isMacro()
+        public override bool IsMacro()
         {
             return true;
         }
 
-        public override bool isSecpolDepended()
+        public override bool IsSecpolDepended()
         {
             return true;
         }
@@ -243,23 +265,23 @@ namespace windows_security_tweak_tool.src.policies
         }
 
         [Obsolete]
-        public override bool isLanguageDepended()
+        public override bool IsLanguageDepended()
         {
             return true;
         }
 
-        public override bool hasIncompatibilityIssues()
+        public override bool HasIncompatibilityIssues()
         {
             //needs to be checked
             return false;
         }
 
-        public override bool isSafeForBussiness()
+        public override bool IsSafeForBussiness()
         {
             return false;
         }
 
-        public override bool isUserControlRequired()
+        public override bool IsUserControlRequired()
         {
             return false;
         }

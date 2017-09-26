@@ -26,6 +26,7 @@ using System.Security.Principal;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using windows_security_tweak_tool.src.certificates;
 
 namespace windows_security_tweak_tool.src
 {
@@ -44,6 +45,12 @@ namespace windows_security_tweak_tool.src
             Logger.getLogoLogger().ShowLogo();
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
+            if (Debugger.IsAttached)
+            {
+                CertDebugger certwindow = new CertDebugger();
+                certwindow.Show();
+            }
+
             gui = new Window();
             Application.Run(gui);
         }

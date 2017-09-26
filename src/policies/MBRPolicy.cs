@@ -21,138 +21,100 @@ using System.Diagnostics;
 using System.IO;
 using System.IO.Compression;
 using System.Net;
+using System.Threading.Tasks;
 using System.Windows.Forms;
+using windows_security_tweak_tool.src.mbrfilter;
 
 namespace windows_security_tweak_tool.src.policies
 {
     class MBRPolicy : SecurityPolicy
     {
 
-        public override string getName()
+        public override string GetName()
         {
-            return getType().getName();
+            return GetPolicyType().GetName();
         }
 
-        public override string getDescription()
+        public override string GetDescription()
         {
             return "install MBRFilter to prevent bootloader modification, this will help you against rootkits and ransomware";
         }
 
-        public override SecurityPolicyType getType()
+        public override SecurityPolicyType GetPolicyType()
         {
-            return null;
-           // return PolicyType.MBR_POLICY;
+            return SecurityPolicyType.MBR_POLICY;
         }
 
-        public override bool isEnabled()
+        public override bool IsEnabled()
         {
-            if(Directory.Exists(getDataFolder()+@"\mbrfilter"))
-            {
-                return true;
-            }
-            return false;
+            return MBRFilter.getMBRFilter().isInstalled();
         }
 
-        public override void apply()
+        public async override void Apply()
         {
-            getButton().Enabled = false;
-            string url = (Environment.Is64BitOperatingSystem ? "https://github.com/yyounan/MBRFilter/files/536998/64.zip" : "https://github.com/yyounan/MBRFilter/files/536997/32.zip");
-            WebClient client = new WebClient();
-            client.Headers.Add("user-agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.59 Safari/537.36");
-            Directory.CreateDirectory(getDataFolder()+@"\mbrfilter");
-            try
-            {
-                client.DownloadFile(new Uri(url), getDataFolder() + @"\mbrfilter\mbrfilter.zip");
-            } catch(Exception e)
-            {
-                Console.WriteLine(e.Message);
-                MessageBox.Show("Unable to download  MBRFilter, perhaps the file has been removed?\nplease visit: "+url);
-                Directory.Delete(getDataFolder() + @"\mbrfilter");
-                getButton().Enabled = true;
-                return;
-            }
-            ZipArchive archive = ZipFile.OpenRead(getDataFolder() + @"\mbrfilter\mbrfilter.zip");
-            archive.ExtractToDirectory(getDataFolder() + @"\mbrfilter");
-            archive.Dispose();
-            File.Delete(getDataFolder() + @"\mbrfilter\mbrfilter.zip");
-
-            ProcessStartInfo proci = new ProcessStartInfo("infdefaultinstall.exe");
-            proci.Arguments = "\""+ getDataFolder() + @"\mbrfilter\"+(Environment.Is64BitOperatingSystem ? "64" : "32")+ @"\MBRFilter.inf" + "\"";
-            Process proc = Process.Start(proci);
-            while(!proc.HasExited)
-            {
-                //lock
-            }
-            proc.Dispose();
-            setGuiEnabled(this);
-            getButton().Enabled = true;
+            GetButton().Enabled = false;
+            await Task.Run(() => ApplyAsync());
+            SetGuiEnabled(this);
+            GetButton().Enabled = true;
         }
 
-        public override void unapply()
+        public void ApplyAsync()
         {
-            getButton().Enabled = false;
-            ProcessStartInfo proci = new ProcessStartInfo("cmd.exe");
-            proci.Verb = "runas";
-            proci.Arguments = "/c pnputil.exe /delete-driver \"" + getDataFolder() + @"\mbrfilter\" + (Environment.Is64BitOperatingSystem ? "64" : "32") + @"\MBRFilter.inf" + "\"";
-            Process proc = Process.Start(proci);
-            while (!proc.HasExited)
-            {
-                //lock
-            }
-            proc.Dispose();
-            deleteMBR();
-            setGuiDisabled(this);
-            getButton().Enabled = true;
+            MBRFilter.getMBRFilter().install();
         }
 
-        private void deleteMBR()
+        public async override void Unapply()
         {
-            foreach(string a in Directory.GetFiles(getDataFolder() + @"\mbrfilter"))
-            {
-                File.Delete(a);
-            }
-            Directory.Delete(getDataFolder() + @"\mbrfilter", true);
+            GetButton().Enabled = false;
+            await Task.Run(() => UnapplyAsync());
+            SetGuiDisabled(this);
+            GetButton().Enabled = true;
         }
 
-        public override bool hasIncompatibilityIssues()
+        public void UnapplyAsync()
+        {
+            MBRFilter.getMBRFilter().uninstall();
+        }
+
+        public override bool HasIncompatibilityIssues()
         {
             return false;
         }
 
         [Obsolete]
-        public override bool isLanguageDepended()
+        public override bool IsLanguageDepended()
         {
             return false;
         }
 
-        public override bool isMacro()
+        public override bool IsMacro()
         {
             return false;
         }
 
-        public override bool isSecpolDepended()
+        public override bool IsSecpolDepended()
         {
             return false;
         }
 
-        public override Button getButton()
+        public override Button GetButton()
         {
             return gui.mbrbtn;
         }
 
-        public override ProgressBar getProgressbar()
+        public override ProgressBar GetProgressbar()
         {
             return gui.mbrprogress;
         }
 
-        public override bool isSafeForBussiness()
+        public override bool IsSafeForBussiness()
         {
-            return true;
+            return false;
         }
 
-        public override bool isUserControlRequired()
+        public override bool IsUserControlRequired()
         {
-            throw new NotImplementedException();
+            return true;
         }
     }
 }

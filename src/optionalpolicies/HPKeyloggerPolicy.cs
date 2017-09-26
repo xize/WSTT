@@ -29,60 +29,73 @@ namespace windows_security_tweak_tool.src.optionalpolicies
 {
     class HPKeyloggerPolicy : OptionalPolicy
     {
-        public override string getName()
+        public override string GetName()
         {
-            return getType().getName();
+            return GetOptionalPolicyType().GetName();
         }
 
-        public override OptionalPolicyType getType()
+        public override OptionalPolicyType GetOptionalPolicyType()
         {
-            return OptionalPolicyType.HP_KEYLOGGER;
+            return OptionalPolicyType.HP_KEYLOGGER_POLICY;
         }
 
-        public override string getDescription()
+        public override string GetDescription()
         {
             return "checks for the appearence of the HP keylogger, if it found the keylogger this option will disable it";
         }
 
-        public override bool isEnabled()
+        public override bool IsEnabled()
         {
             return false;
         }
 
         //for the reference: https://thehackernews.com/2017/05/hp-audio-driver-laptop-keylogger.html
-        public override void apply()
+        public async override void Apply()
+        {
+
+            GetButton().Enabled = false;
+
+            bool appliance = await Task.Run(() => ApplyAsync());
+
+            if (appliance)
+            {
+                GetProgressbar().Value = 100;
+            }
+            GetButton().Enabled = true;
+        }
+
+        public bool ApplyAsync()
         {
             if (File.Exists(@"C:\Windows\System32\MicTray.exe") || File.Exists(@"C:\Windows\System32\MicTray64.exe"))
             {
-                getButton().Enabled = false;
 
                 MessageBox.Show("we are removing files from your system\nplease note that after a restart you need to check if these files still exist in:\n\nC:\\Windows\\System32\\MicTray.exe\nC:\\Windows\\System32\\MicTray64.exe\n\nif these files exist after reboot please make a issue on our github page!", "Your system is vulnerable!");
 
                 //first kill all processes before removing the files
-                killProcesses();
+                KillProcesses();
 
                 File.Delete(@"C:\Windows\System32\MicTray.exe");
                 File.Delete(@"C:\Windows\System32\MicTray64.exe");
 
                 string[] users = Directory.GetDirectories(@"C:\Users\");
 
-                foreach(string user in users)
+                foreach (string user in users)
                 {
-                    if(File.Exists(user+@"\"+ @"MicTray.log"))
+                    if (File.Exists(user + @"\" + @"MicTray.log"))
                     {
-                        File.Delete(user+@"\"+ @"MicTray.log");
+                        File.Delete(user + @"\" + @"MicTray.log");
                     }
                 }
-
-                getButton().Enabled = true;
-                getProgressbar().Value = 100;
-            } else
+            }
+            else
             {
                 MessageBox.Show("there is no reason to worry about an HP keylogger! :)", "Your pc is safe!");
+                return true;
             }
+            return false;
         }
 
-        private void killProcesses()
+        private void KillProcesses()
         {
             Process[] p1 = Process.GetProcessesByName("MicTray");
             Process[] p2 = Process.GetProcessesByName("MicTray64");
@@ -104,17 +117,17 @@ namespace windows_security_tweak_tool.src.optionalpolicies
             }
         }
 
-        public override void unapply()
+        public override void Unapply()
         {
             throw new NotImplementedException();
         }
 
-        public override Button getButton()
+        public override Button GetButton()
         {
             return gui.HPCheckbtn;
         }
 
-        public override ProgressBar getProgressbar()
+        public override ProgressBar GetProgressbar()
         {
             return gui.HPCheckProgress;
         }

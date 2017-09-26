@@ -29,6 +29,7 @@ using Microsoft.Win32;
 using System.ServiceProcess;
 using windows_security_tweak_tool.src.policies.components;
 using System.Diagnostics;
+using windows_security_tweak_tool.src.utils;
 
 namespace windows_security_tweak_tool.src.policies
 {
@@ -46,7 +47,7 @@ namespace windows_security_tweak_tool.src.policies
         *      <para>sets the gui for the first time</para>
         * </summary>
         **/
-        public void setGui(Window win)
+        public void SetGui(Window win)
         {
             if(this.gui != win)
             {
@@ -59,10 +60,10 @@ namespace windows_security_tweak_tool.src.policies
         *      <para>sets the progress to 100% and the button to unapply.</para>
         * </summary>
         **/
-        public void setGuiEnabled(SecurityPolicy p)
+        public void SetGuiEnabled(SecurityPolicy p)
         {
-            p.getProgressbar().Value = 100;
-            p.getButton().Text = "Undo";
+            p.GetProgressbar().Value = 100;
+            p.GetButton().Text = "Undo";
         }
 
         /**
@@ -70,10 +71,10 @@ namespace windows_security_tweak_tool.src.policies
         *      <para>sets the progress to 0% and the button to apply.</para>
         * </summary>
         **/
-        public void setGuiDisabled(SecurityPolicy p)
+        public void SetGuiDisabled(SecurityPolicy p)
         {
-            p.getProgressbar().Value = 0;
-            p.getButton().Text = "Apply";
+            p.GetProgressbar().Value = 0;
+            p.GetButton().Text = "Apply";
         }
 
         /**
@@ -82,7 +83,7 @@ namespace windows_security_tweak_tool.src.policies
         * </summary>
         * <returns>bool</returns>
         **/
-        public abstract bool isUserControlRequired();
+        public abstract bool IsUserControlRequired();
 
         /**
         * <summary>
@@ -90,7 +91,7 @@ namespace windows_security_tweak_tool.src.policies
         * </summary>
         * <returns>bool</returns>
         **/
-        public abstract bool isSecpolDepended();
+        public abstract bool IsSecpolDepended();
 
         /**
         * <summary>
@@ -98,7 +99,7 @@ namespace windows_security_tweak_tool.src.policies
         * </summary>
         * <returns>bool</returns>
         **/
-        public bool isSecpolEnabled()
+        public bool IsSecpolEnabled()
         {
                 ManagementObjectSearcher search = new ManagementObjectSearcher("SELECT Caption FROM Win32_OperatingSystem");
                 var name = (from x in search.Get().OfType<ManagementObject>() select x.GetPropertyValue("Caption")).FirstOrDefault();
@@ -129,7 +130,7 @@ namespace windows_security_tweak_tool.src.policies
         * </summary>
         * <returns>bool</returns>
         **/
-        public abstract bool isMacro();
+        public abstract bool IsMacro();
 
         /**
         * <summary>
@@ -137,7 +138,7 @@ namespace windows_security_tweak_tool.src.policies
         * </summary>
         * <returns>bool</returns>
         **/
-        public abstract bool isSafeForBussiness();
+        public abstract bool IsSafeForBussiness();
 
         /**
          * <summary>
@@ -149,7 +150,7 @@ namespace windows_security_tweak_tool.src.policies
          * <returns>bool</returns>
          * */
         [Obsolete]
-        public abstract bool isLanguageDepended();
+        public abstract bool IsLanguageDepended();
 
         /**
         * <summary>
@@ -157,7 +158,7 @@ namespace windows_security_tweak_tool.src.policies
         * </summary>
         * <returns>bool</returns>
         **/
-        public abstract bool hasIncompatibilityIssues();
+        public abstract bool HasIncompatibilityIssues();
 
         /**
         * <summary>
@@ -165,7 +166,7 @@ namespace windows_security_tweak_tool.src.policies
         * </summary>
         * <returns>string</returns>
         **/
-        public abstract string getName();
+        public abstract string GetName();
 
         /**
         * <summary>
@@ -173,7 +174,7 @@ namespace windows_security_tweak_tool.src.policies
         * </summary>
         * <returns>PolicyType</returns>
         **/
-        public abstract SecurityPolicyType getType();
+        public abstract SecurityPolicyType GetPolicyType();
 
         /**
         * <summary>
@@ -181,7 +182,7 @@ namespace windows_security_tweak_tool.src.policies
         * </summary>
         * <returns>string</returns>
         **/
-        public abstract string getDescription();
+        public abstract string GetDescription();
 
         /**
         * <summary>
@@ -189,21 +190,26 @@ namespace windows_security_tweak_tool.src.policies
         * </summary>
         * <returns>bool</returns>
         **/
-        public abstract bool isEnabled();
+        public abstract bool IsEnabled();
+
+        public virtual bool isAsync()
+        {
+            return (IsMacro() ? false : true);
+        }
 
         /**
         * <summary>
         *      <para>applies the policy</para>
         * </summary>
         **/
-        public abstract void apply();
+        public abstract void Apply();
 
         /**
         * <summary>
         *      <para>unapplies the policy</para>
         * </summary>
         **/
-        public abstract void unapply();
+        public abstract void Unapply();
 
         /**
         * <summary>
@@ -211,7 +217,7 @@ namespace windows_security_tweak_tool.src.policies
         * </summary>
         * <returns>ProgressBar</returns>
         **/
-        public abstract ProgressBar getProgressbar();
+        public abstract ProgressBar GetProgressbar();
 
         /**
         * <summary>
@@ -219,7 +225,7 @@ namespace windows_security_tweak_tool.src.policies
         * </summary>
         * <returns>Button</returns>
         **/
-        public abstract Button getButton();
+        public abstract Button GetButton();
 
         /**
         * <summary>
@@ -227,9 +233,9 @@ namespace windows_security_tweak_tool.src.policies
         * </summary>
         * <returns>string</returns>
         **/
-        public string getDataFolder()
+        public string GetDataFolder()
         {
-            return Config.getConfig().getDataFolder();
+            return Config.GetConfig().GetDataFolder();
         }
 
         /**
@@ -238,7 +244,7 @@ namespace windows_security_tweak_tool.src.policies
         * </summary>
         * <returns>int</returns>
         **/
-        public int getWindowsVersion()
+        public int GetWindowsVersion()
         {
             if (version > -1)
             {
@@ -258,5 +264,11 @@ namespace windows_security_tweak_tool.src.policies
             }
             throw new Exception("Failed to get Windows version, maybe WMI is broken?");
         }
+
+        public BrowserType GetBrowser()
+        {
+            return Browser.getBrowser().getCurrentBrowserType();
+        }
+
     }
 }

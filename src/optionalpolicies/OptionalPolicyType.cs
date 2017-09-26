@@ -27,10 +27,13 @@ namespace windows_security_tweak_tool.src.optionalpolicies
     class OptionalPolicyType
     {
 
-        public static HashSet<OptionalPolicyType> data = new HashSet<OptionalPolicyType>();
+        private static HashSet<OptionalPolicyType> data = new HashSet<OptionalPolicyType>();
 
         public static OptionalPolicyType NINITE = new OptionalPolicyType("ninite", new NinitePolicy());
-        public static OptionalPolicyType HP_KEYLOGGER = new OptionalPolicyType("hp_keylogger", new HPKeyloggerPolicy());
+        public static OptionalPolicyType HP_KEYLOGGER_POLICY = new OptionalPolicyType("hp_keylogger", new HPKeyloggerPolicy());
+        public static OptionalPolicyType KEEPASS_ADMIN_POLICY = new OptionalPolicyType("keepass_admin_policy", new KeepassAdminPolicy());
+        public static OptionalPolicyType CHROME_64BIT_POLICY = new OptionalPolicyType("chrome_64bit_policy", new Chrome64bitPolicy());
+        public static OptionalPolicyType CHROME_ADDON_POLICY = new OptionalPolicyType("chrome_addon_policy", new ChromeAddonPolicy());
 
         private string name;
         private OptionalPolicy pol;
@@ -39,21 +42,22 @@ namespace windows_security_tweak_tool.src.optionalpolicies
         {
             this.name = name;
             this.pol = policy;
+            data.Add(this);
         }
 
-        public string getName()
+        public string GetName()
         {
             return this.name;
         }
 
-        public OptionalPolicy getPolicy(OptionalWindow wind)
+        public OptionalPolicy GetPolicy(OptionalWindow wind)
         {
-            this.pol.setGui(wind);
+            this.pol.SetGui(wind);
             return this.pol;
         }
 
 
-        public static OptionalPolicyType[] values()
+        public static OptionalPolicyType[] Values()
         {
             return data.ToArray();
         }

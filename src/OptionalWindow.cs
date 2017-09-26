@@ -36,17 +36,40 @@ namespace windows_security_tweak_tool.src
             InitializeComponent();
             //initialize event since visual studio keeps reseting this...
             this.FormClosing += onCloseOptionalWindow;
+
+            foreach (OptionalPolicyType t in OptionalPolicyType.Values())
+            {
+                OptionalPolicy p = t.GetPolicy(this);
+
+                if (p.IsEnabled())
+                {
+                    p.GetProgressbar().Value = 100;
+                    p.GetButton().Text = "undo";
+                    toolTip1.SetToolTip(p.GetButton(), p.GetDescription());
+                    toolTip1.SetToolTip(p.GetProgressbar(), p.GetDescription());
+                } else
+                {
+                    if (p.IsCertificateDepended())
+                    {
+                        if (p.GetCertificate().isExpired())
+                        {
+                            p.GetButton().Text = "Disabled, expired certificate please update WSTT!";
+                            p.GetButton().Enabled = false;
+                        }
+                    }
+                }
+            }
         }
 
         private Label chromeaddonlabel;
-        private Button chromeaddonbtn;
-        private ProgressBar chromeaddonprogress;
+        public Button chromeaddonbtn;
+        public ProgressBar chromeaddonprogress;
         private Label chromelabel;
-        private Button chromebtn;
-        private ProgressBar chromeprogress;
+        public Button chromebtn;
+        public ProgressBar chromeprogress;
         private Label keepasslabel;
-        private Button keepassbtn;
-        private ProgressBar keepassprogress;
+        public Button keepassbtn;
+        public ProgressBar keepassprogress;
         private Label optionaloptionslabel;
         private Panel panel1;
         private LinkLabel ninitelabel;
@@ -76,10 +99,13 @@ namespace windows_security_tweak_tool.src
         private Label label1;
         public Button HPCheckbtn;
         public ProgressBar HPCheckProgress;
+        private ToolTip toolTip1;
+        private IContainer components;
         public CheckBox niniteskypecheckbox;
 
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(OptionalWindow));
             this.chromeaddonlabel = new System.Windows.Forms.Label();
             this.chromeaddonbtn = new System.Windows.Forms.Button();
@@ -120,6 +146,7 @@ namespace windows_security_tweak_tool.src
             this.label1 = new System.Windows.Forms.Label();
             this.HPCheckbtn = new System.Windows.Forms.Button();
             this.HPCheckProgress = new System.Windows.Forms.ProgressBar();
+            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -128,7 +155,7 @@ namespace windows_security_tweak_tool.src
             this.chromeaddonlabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.chromeaddonlabel.AutoSize = true;
-            this.chromeaddonlabel.Location = new System.Drawing.Point(11, 229);
+            this.chromeaddonlabel.Location = new System.Drawing.Point(11, 274);
             this.chromeaddonlabel.Name = "chromeaddonlabel";
             this.chromeaddonlabel.Size = new System.Drawing.Size(164, 13);
             this.chromeaddonlabel.TabIndex = 89;
@@ -138,20 +165,20 @@ namespace windows_security_tweak_tool.src
             // 
             this.chromeaddonbtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.chromeaddonbtn.AutoSize = true;
-            this.chromeaddonbtn.Enabled = false;
-            this.chromeaddonbtn.Location = new System.Drawing.Point(401, 245);
+            this.chromeaddonbtn.Location = new System.Drawing.Point(401, 290);
             this.chromeaddonbtn.Name = "chromeaddonbtn";
             this.chromeaddonbtn.Size = new System.Drawing.Size(94, 23);
             this.chromeaddonbtn.TabIndex = 88;
-            this.chromeaddonbtn.Text = "not implemented";
+            this.chromeaddonbtn.Text = "run";
             this.chromeaddonbtn.UseVisualStyleBackColor = true;
+            this.chromeaddonbtn.Click += new System.EventHandler(this.chromeaddonbtn_Click);
             // 
             // chromeaddonprogress
             // 
             this.chromeaddonprogress.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.chromeaddonprogress.Enabled = false;
-            this.chromeaddonprogress.Location = new System.Drawing.Point(11, 245);
+            this.chromeaddonprogress.Location = new System.Drawing.Point(11, 290);
             this.chromeaddonprogress.Name = "chromeaddonprogress";
             this.chromeaddonprogress.Size = new System.Drawing.Size(406, 23);
             this.chromeaddonprogress.TabIndex = 87;
@@ -161,7 +188,7 @@ namespace windows_security_tweak_tool.src
             this.chromelabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.chromelabel.AutoSize = true;
-            this.chromelabel.Location = new System.Drawing.Point(11, 187);
+            this.chromelabel.Location = new System.Drawing.Point(11, 232);
             this.chromelabel.Name = "chromelabel";
             this.chromelabel.Size = new System.Drawing.Size(369, 13);
             this.chromelabel.TabIndex = 86;
@@ -171,12 +198,11 @@ namespace windows_security_tweak_tool.src
             // 
             this.chromebtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.chromebtn.AutoSize = true;
-            this.chromebtn.Enabled = false;
-            this.chromebtn.Location = new System.Drawing.Point(401, 203);
+            this.chromebtn.Location = new System.Drawing.Point(401, 248);
             this.chromebtn.Name = "chromebtn";
             this.chromebtn.Size = new System.Drawing.Size(94, 23);
             this.chromebtn.TabIndex = 85;
-            this.chromebtn.Text = "not implemented";
+            this.chromebtn.Text = "apply";
             this.chromebtn.UseVisualStyleBackColor = true;
             this.chromebtn.Click += new System.EventHandler(this.chromebtn_Click);
             // 
@@ -184,8 +210,7 @@ namespace windows_security_tweak_tool.src
             // 
             this.chromeprogress.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.chromeprogress.Enabled = false;
-            this.chromeprogress.Location = new System.Drawing.Point(11, 203);
+            this.chromeprogress.Location = new System.Drawing.Point(11, 248);
             this.chromeprogress.Name = "chromeprogress";
             this.chromeprogress.Size = new System.Drawing.Size(406, 23);
             this.chromeprogress.TabIndex = 84;
@@ -195,7 +220,7 @@ namespace windows_security_tweak_tool.src
             this.keepasslabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.keepasslabel.AutoSize = true;
-            this.keepasslabel.Location = new System.Drawing.Point(11, 145);
+            this.keepasslabel.Location = new System.Drawing.Point(11, 190);
             this.keepasslabel.Name = "keepasslabel";
             this.keepasslabel.Size = new System.Drawing.Size(158, 13);
             this.keepasslabel.TabIndex = 83;
@@ -205,12 +230,11 @@ namespace windows_security_tweak_tool.src
             // 
             this.keepassbtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.keepassbtn.AutoSize = true;
-            this.keepassbtn.Enabled = false;
-            this.keepassbtn.Location = new System.Drawing.Point(401, 161);
+            this.keepassbtn.Location = new System.Drawing.Point(401, 206);
             this.keepassbtn.Name = "keepassbtn";
             this.keepassbtn.Size = new System.Drawing.Size(94, 23);
             this.keepassbtn.TabIndex = 82;
-            this.keepassbtn.Text = "not implemented";
+            this.keepassbtn.Text = "apply";
             this.keepassbtn.UseVisualStyleBackColor = true;
             this.keepassbtn.Click += new System.EventHandler(this.keepassbtn_Click);
             // 
@@ -218,8 +242,7 @@ namespace windows_security_tweak_tool.src
             // 
             this.keepassprogress.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.keepassprogress.Enabled = false;
-            this.keepassprogress.Location = new System.Drawing.Point(11, 161);
+            this.keepassprogress.Location = new System.Drawing.Point(11, 206);
             this.keepassprogress.Name = "keepassprogress";
             this.keepassprogress.Size = new System.Drawing.Size(406, 23);
             this.keepassprogress.TabIndex = 81;
@@ -263,7 +286,7 @@ namespace windows_security_tweak_tool.src
             this.panel1.Controls.Add(this.niniteskypecheckbox);
             this.panel1.Location = new System.Drawing.Point(11, 25);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(484, 117);
+            this.panel1.Size = new System.Drawing.Size(484, 163);
             this.panel1.TabIndex = 79;
             // 
             // ninitelabel
@@ -278,10 +301,11 @@ namespace windows_security_tweak_tool.src
             // 
             // niniteselectallbtn
             // 
-            this.niniteselectallbtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.niniteselectallbtn.Location = new System.Drawing.Point(222, 91);
+            this.niniteselectallbtn.AutoSize = true;
+            this.niniteselectallbtn.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.niniteselectallbtn.Location = new System.Drawing.Point(0, 117);
             this.niniteselectallbtn.Name = "niniteselectallbtn";
-            this.niniteselectallbtn.Size = new System.Drawing.Size(75, 23);
+            this.niniteselectallbtn.Size = new System.Drawing.Size(484, 23);
             this.niniteselectallbtn.TabIndex = 20;
             this.niniteselectallbtn.Text = "Deselect all";
             this.niniteselectallbtn.UseVisualStyleBackColor = true;
@@ -289,10 +313,11 @@ namespace windows_security_tweak_tool.src
             // 
             // niniteinstallbtn
             // 
-            this.niniteinstallbtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.niniteinstallbtn.Location = new System.Drawing.Point(303, 90);
+            this.niniteinstallbtn.AutoSize = true;
+            this.niniteinstallbtn.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.niniteinstallbtn.Location = new System.Drawing.Point(0, 140);
             this.niniteinstallbtn.Name = "niniteinstallbtn";
-            this.niniteinstallbtn.Size = new System.Drawing.Size(161, 23);
+            this.niniteinstallbtn.Size = new System.Drawing.Size(484, 23);
             this.niniteinstallbtn.TabIndex = 19;
             this.niniteinstallbtn.Text = "Install programs with Ninite!";
             this.niniteinstallbtn.UseVisualStyleBackColor = true;
@@ -491,7 +516,7 @@ namespace windows_security_tweak_tool.src
             // button1
             // 
             this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.button1.Location = new System.Drawing.Point(13, 368);
+            this.button1.Location = new System.Drawing.Point(13, 411);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
             this.button1.TabIndex = 90;
@@ -501,7 +526,7 @@ namespace windows_security_tweak_tool.src
             // button2
             // 
             this.button2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.button2.Location = new System.Drawing.Point(94, 368);
+            this.button2.Location = new System.Drawing.Point(94, 411);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(75, 23);
             this.button2.TabIndex = 91;
@@ -513,7 +538,7 @@ namespace windows_security_tweak_tool.src
             this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(13, 271);
+            this.label2.Location = new System.Drawing.Point(13, 316);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(151, 13);
             this.label2.TabIndex = 98;
@@ -524,7 +549,7 @@ namespace windows_security_tweak_tool.src
             this.button3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.button3.AutoSize = true;
             this.button3.Enabled = false;
-            this.button3.Location = new System.Drawing.Point(401, 287);
+            this.button3.Location = new System.Drawing.Point(401, 332);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(94, 23);
             this.button3.TabIndex = 97;
@@ -536,7 +561,7 @@ namespace windows_security_tweak_tool.src
             this.progressBar1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.progressBar1.Enabled = false;
-            this.progressBar1.Location = new System.Drawing.Point(11, 287);
+            this.progressBar1.Location = new System.Drawing.Point(11, 332);
             this.progressBar1.Name = "progressBar1";
             this.progressBar1.Size = new System.Drawing.Size(406, 23);
             this.progressBar1.TabIndex = 96;
@@ -546,7 +571,7 @@ namespace windows_security_tweak_tool.src
             this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(13, 313);
+            this.label1.Location = new System.Drawing.Point(13, 358);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(240, 13);
             this.label1.TabIndex = 101;
@@ -556,7 +581,7 @@ namespace windows_security_tweak_tool.src
             // 
             this.HPCheckbtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.HPCheckbtn.AutoSize = true;
-            this.HPCheckbtn.Location = new System.Drawing.Point(401, 329);
+            this.HPCheckbtn.Location = new System.Drawing.Point(401, 374);
             this.HPCheckbtn.Name = "HPCheckbtn";
             this.HPCheckbtn.Size = new System.Drawing.Size(94, 23);
             this.HPCheckbtn.TabIndex = 100;
@@ -568,14 +593,14 @@ namespace windows_security_tweak_tool.src
             // 
             this.HPCheckProgress.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.HPCheckProgress.Location = new System.Drawing.Point(11, 329);
+            this.HPCheckProgress.Location = new System.Drawing.Point(11, 374);
             this.HPCheckProgress.Name = "HPCheckProgress";
             this.HPCheckProgress.Size = new System.Drawing.Size(406, 23);
             this.HPCheckProgress.TabIndex = 99;
             // 
             // OptionalWindow
             // 
-            this.ClientSize = new System.Drawing.Size(510, 403);
+            this.ClientSize = new System.Drawing.Size(510, 446);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.HPCheckbtn);
             this.Controls.Add(this.HPCheckProgress);
@@ -596,8 +621,9 @@ namespace windows_security_tweak_tool.src
             this.Controls.Add(this.optionaloptionslabel);
             this.Controls.Add(this.panel1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.MinimumSize = new System.Drawing.Size(526, 350);
+            this.MinimumSize = new System.Drawing.Size(526, 485);
             this.Name = "OptionalWindow";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Optional options:";
             this.Load += new System.EventHandler(this.OptionalWindow_Load);
             this.panel1.ResumeLayout(false);
@@ -618,17 +644,17 @@ namespace windows_security_tweak_tool.src
         {
             if (niniteselectallbtn.Text == "Select all")
             {
-                foreach (NiniteOption option in NiniteOption.values())
+                foreach (NiniteOption option in NiniteOption.Values())
                 {
-                    option.getCheckbox().Checked = true;
+                    option.GetCheckbox().Checked = true;
                 }
                 niniteselectallbtn.Text = "Deselect";
             }
             else
             {
-                foreach (NiniteOption option in NiniteOption.values())
+                foreach (NiniteOption option in NiniteOption.Values())
                 {
-                    option.getCheckbox().Checked = false;
+                    option.GetCheckbox().Checked = false;
                 }
                 niniteselectallbtn.Text = "Select all";
             }
@@ -637,7 +663,8 @@ namespace windows_security_tweak_tool.src
         private void niniteinstallbtn_Click(object sender, EventArgs e)
         {
             NinitePolicy policy = new NinitePolicy();
-            policy.apply();
+            policy.SetGui(this);
+            policy.Apply();
 
             /*
             NiniteCreator creator = new NiniteCreator();
@@ -655,25 +682,46 @@ namespace windows_security_tweak_tool.src
 
         private void keepassbtn_Click(object sender, EventArgs e)
         {
+            OptionalPolicy p = OptionalPolicyType.KEEPASS_ADMIN_POLICY.GetPolicy(this);
 
+            if(p.IsEnabled())
+            {
+                p.Unapply();
+            } else
+            {
+                p.Apply();
+            }
         }
 
         private void chromebtn_Click(object sender, EventArgs e)
         {
+            OptionalPolicy p = OptionalPolicyType.CHROME_64BIT_POLICY.GetPolicy(this);
 
+            if(p.IsEnabled())
+            {
+                p.Unapply();
+            } else
+            {
+                p.Apply();
+            }
         }
 
         private void HPCheckbtn_Click(object sender, EventArgs e)
         {
-            OptionalPolicy p = OptionalPolicyType.HP_KEYLOGGER.getPolicy(this);
+            OptionalPolicy p = OptionalPolicyType.HP_KEYLOGGER_POLICY.GetPolicy(this);
 
-            p.apply();
+            p.Apply();
 
         }
 
         private void OptionalWindow_Load(object sender, EventArgs e)
         {
+        }
 
+        private void chromeaddonbtn_Click(object sender, EventArgs e)
+        {
+            OptionalPolicy p = OptionalPolicyType.CHROME_ADDON_POLICY.GetPolicy(this);
+            p.Apply();
         }
     }
 }

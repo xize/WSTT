@@ -29,73 +29,73 @@ namespace windows_security_tweak_tool.src.policies
     class UpdatePolicy : SecurityPolicy
     {
 
-        public override void apply()
+        public async override void Apply()
         {
-            this.executeCMD("gpupdate.exe /force", true);
+            await Task.Run(()=>this.ExecuteCMD("gpupdate.exe /force", true));
         }
 
-        public override Button getButton()
+        public override Button GetButton()
         {
             throw new NotImplementedException();
         }
 
-        public override string getDescription()
+        public override string GetDescription()
         {
             return "updates the policy, this is not a UI element.";
         }
 
-        public override string getName()
+        public override string GetName()
         {
             return "update policy";
         }
 
-        public override ProgressBar getProgressbar()
+        public override ProgressBar GetProgressbar()
         {
             throw new NotImplementedException();
         }
 
-        public override SecurityPolicyType getType()
+        public override SecurityPolicyType GetPolicyType()
         {
             return SecurityPolicyType.UPDATE_POLICY;
         }
 
-        public override bool hasIncompatibilityIssues()
+        public override bool HasIncompatibilityIssues()
         {
             return false;
         }
 
-        public override bool isEnabled()
+        public override bool IsEnabled()
         {
             return false;
         }
 
         [Obsolete]
-        public override bool isLanguageDepended()
+        public override bool IsLanguageDepended()
         {
             return false;
         }
 
-        public override bool isMacro()
+        public override bool IsMacro()
         {
             return true;
         }
 
-        public override bool isSafeForBussiness()
+        public override bool IsSafeForBussiness()
         {
             return false;
         }
 
-        public override bool isSecpolDepended()
+        public override bool IsSecpolDepended()
         {
             return true;
         }
 
-        public override bool isUserControlRequired()
+        public override bool IsUserControlRequired()
         {
             return false;
         }
 
-        public override void unapply()
+        public override void Unapply()
         {
             
         }

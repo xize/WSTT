@@ -20,8 +20,10 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using windows_security_tweak_tool.src.certificates;
 using windows_security_tweak_tool.src.ninite;
 
 namespace windows_security_tweak_tool.src.optionalpolicies
@@ -29,44 +31,74 @@ namespace windows_security_tweak_tool.src.optionalpolicies
     class NinitePolicy : OptionalPolicy
     {
 
-        public override string getName()
+        public override string GetName()
         {
-            return getType().getName();
+            return GetOptionalPolicyType().GetName();
         }
 
-        public override string getDescription()
+        public override string GetDescription()
         {
             return "install applications by using third party installer called ninite.";
         }
 
-        public override OptionalPolicyType getType()
+        public override OptionalPolicyType GetOptionalPolicyType()
         {
             return OptionalPolicyType.NINITE;
         }
 
-        public override void apply()
+        public override bool IsCertificateDepended()
         {
-            foreach(NiniteOption option in NiniteOption.values())
+            return true;
+        }
+
+        public override Certificate GetCertificate()
+        {
+            return CertProvider.NINITE.getCertificate();
+        }
+
+        public async override void Apply()
+        {
+            GetButton().Enabled = false;
+
+            await Task.Run(() => ApplyAsync());
+
+            GetButton().Enabled = true;
+        }
+
+        public void ApplyAsync()
+        {
+            foreach (NiniteOption option in NiniteOption.Values())
             {
-                if(option.isEnabled())
+                if (option.IsEnabled())
                 {
+                    //make the gui elements run synchronized.
+                    Thread single = new Thread(()=>sync(option));
+                    single.SetApartmentState(ApartmentState.STA);
+                    single.Start();
+                    single.Join();
+                    //end synchronizing.
                     this.Add(option);
                 }
             }
-            this.downloadNiniteInstaller(this.getNiniteURL());
+            this.DownloadNiniteInstaller(this.GetNiniteURL());
         }
 
-        public override void unapply()
+        public void sync(NiniteOption option)
+        {
+            option.GetCheckbox().Enabled = false;
+        }
+
+        public override void Unapply()
         {
             //not supported   
         }
 
-        public override Button getButton()
+        public override Button GetButton()
         {
             return gui.niniteinstallbtn;
         }
 
-        public override ProgressBar getProgressbar()
+        public override ProgressBar GetProgressbar()
         {
             return null;
         }

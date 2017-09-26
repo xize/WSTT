@@ -27,14 +27,14 @@ namespace windows_security_tweak_tool.src
     interface ConfigInfo
     {
 
-        String getString(String node);
+        String GetString(String node);
 
-        int getInt(String node);
+        int GetInt(String node);
 
-        double getDouble(String node);
+        double GetDouble(String node);
 
-        Boolean getBoolean(string node);
+        Boolean GetBoolean(string node);
 
-        void put(String node, Object obj);
+        void Put(String node, Object obj);
     }
 }

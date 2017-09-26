@@ -42,7 +42,7 @@ namespace windows_security_tweak_tool.src
 
         public Window()
         {
-            Config.getConfig().readConfig();
+            Config.GetConfig().ReadConfig();
             InitializeComponent();
             if(this.optionalw == null)
             {
@@ -56,32 +56,39 @@ namespace windows_security_tweak_tool.src
         private void initializeGuiWithPolicies()
         {
             Logger.getSubTreeLogger().LogTitle("initialize policy components!");
-            foreach (SecurityPolicyType a in SecurityPolicyType.values())
+            foreach (SecurityPolicyType a in SecurityPolicyType.Values())
             {
-                SecurityPolicy p = a.getPolicy(this);
+                SecurityPolicy p = a.GetPolicy(this);
 
                 DateTime startTime = DateTime.Now;
 
-                Logger.getSubTreeLogger().LogTitle("===[initializing policy: "+ p.getName()+"]===");
+                Logger.getSubTreeLogger().LogTitle("===[initializing policy: "+ p.GetName()+"]===");
 
-                if(p.getType() != SecurityPolicyType.UPDATE_POLICY)
+                if(p.GetPolicyType() != SecurityPolicyType.UPDATE_POLICY)
                 {
 
-                    tooltip.SetToolTip(p.getButton(), p.getDescription());
-                    tooltip.SetToolTip(p.getProgressbar(), p.getDescription());
+                    tooltip.SetToolTip(p.GetButton(), p.GetDescription());
+                    tooltip.SetToolTip(p.GetProgressbar(), p.GetDescription());
 
-                    if (p.isEnabled())
+                    if (p.IsEnabled())
                     {
-                        p.getButton().Text = "Undo";
-                        p.getProgressbar().Value = 100;
+                        p.GetButton().Text = "Undo";
+                        p.GetProgressbar().Value = 100;
                     }
 
 
-                    if (!p.isSecpolEnabled() && p.isSecpolDepended())
+                    if (!p.IsSecpolEnabled() && p.IsSecpolDepended())
                     {
-                            p.getButton().Enabled = false;
-                            p.getProgressbar().Enabled = false;
-                            p.getButton().Text = "unsupported!";
+                            Console.WriteLine("Warning: policy " + p.GetName() + " has been disabled unsupported windows edition, no secpol.msc found!");
+                            p.GetButton().Enabled = false;
+                            p.GetProgressbar().Enabled = false;
+                            p.GetButton().Text = "unsupported!";
+                    } else if(p.IsMacro() && !(File.Exists("AutoItX3.Assembly.dll") && File.Exists("AutoItX3.dll") && File.Exists("AutoItX3_x64.dll")))
+                    {
+                        Console.WriteLine("Warning: policy " + p.GetName() + " has been disabled, no AutoIT files found!");
+                        p.GetButton().Enabled = false;
+                        p.GetProgressbar().Enabled = false;
+                        p.GetButton().Text = "AutoIT dll missing!";
                     }
                 }
 
@@ -89,13 +96,13 @@ namespace windows_security_tweak_tool.src
 
                 double ms = (endTime-startTime).TotalMilliseconds;
 
-                Logger.getSubTreeLogger().LogTree("is enabled?: "+ (p.isEnabled() ? "yes" : "no"));
-                Logger.getSubTreeLogger().LogTree("has incompatibility issues between multiple versions of windows?: "+ (p.hasIncompatibilityIssues() ? "yes" : "no"));
-                Logger.getSubTreeLogger().LogTree("is macro depended?: " + (p.isMacro() ? "yes" : "no"));
-                Logger.getSubTreeLogger().LogTree("is safe for bussiness?: " + (p.isSafeForBussiness() ? "yes" : "no"));
-                Logger.getSubTreeLogger().LogTree("depends on secpol?: " + (p.isSecpolDepended() ? "yes" : "no"));
-                Logger.getSubTreeLogger().LogTree("is secpol enabled on this system?: " + (p.isSecpolEnabled() ? "yes" : "no. therefor all policies being depended on secpol are disabled!"));
-                Logger.getSubTreeLogger().LogTree("is manual action required for this policy?: " + (p.isUserControlRequired() ? "yes" : "no"));
+                Logger.getSubTreeLogger().LogTree("is enabled?: "+ (p.IsEnabled() ? "yes" : "no"));
+                Logger.getSubTreeLogger().LogTree("has incompatibility issues between multiple versions of windows?: "+ (p.HasIncompatibilityIssues() ? "yes" : "no"));
+                Logger.getSubTreeLogger().LogTree("is macro depended?: " + (p.IsMacro() ? "yes" : "no"));
+                Logger.getSubTreeLogger().LogTree("is safe for bussiness?: " + (p.IsSafeForBussiness() ? "yes" : "no"));
+                Logger.getSubTreeLogger().LogTree("depends on secpol?: " + (p.IsSecpolDepended() ? "yes" : "no"));
+                Logger.getSubTreeLogger().LogTree("is secpol enabled on this system?: " + (p.IsSecpolEnabled() ? "yes" : "no. therefor all policies being depended on secpol are disabled!"));
+                Logger.getSubTreeLogger().LogTree("is manual action required for this policy?: " + (p.IsUserControlRequired() ? "yes" : "no"));
                 Logger.getSubTreeLogger().LogTree("completed at: "+(int)ms+"ms ticks");
                 Logger.getSubTreeLogger().LogTreeEnd("===[the policy has been initialized with success!]===");
             }
@@ -108,70 +115,65 @@ namespace windows_security_tweak_tool.src
 
         private void callTempPolicyEvent(object sender, EventArgs e)
         {
-            SecurityPolicy p = SecurityPolicyType.TEMP_POLICY.getPolicy(this);
+            SecurityPolicy p = SecurityPolicyType.TEMP_POLICY.GetPolicy(this);
 
-            if (p.isEnabled())
+            if (p.IsEnabled())
             {
-                p.unapply();
+                p.Unapply();
             } else
             {
-                p.apply();
+                p.Apply();
             }
         }
 
         private void callwscriptEvent(object sender, EventArgs e)
         {
-            SecurityPolicy p = SecurityPolicyType.WSCRIPT_POLICY.getPolicy(this);
-            if (p.isEnabled())
+            SecurityPolicy p = SecurityPolicyType.WSCRIPT_POLICY.GetPolicy(this);
+            if (p.IsEnabled())
             {
-                p.unapply();
+                p.Unapply();
             }
             else
             {
-                p.apply();
+                p.Apply();
             }
         }
 
         private void callUACEvent(object sender, EventArgs e)
         {
-            SecurityPolicy p = SecurityPolicyType.UAC_POLICY.getPolicy(this);
-            if(p.isEnabled())
+            SecurityPolicy p = SecurityPolicyType.UAC_POLICY.GetPolicy(this);
+            if(p.IsEnabled())
             {
-                p.unapply();
+                p.Unapply();
             } else
             {
-                p.apply();
+                p.Apply();
             }
         }
 
         private void callNetbiosEvent(object sender, EventArgs e)
         {
-            SecurityPolicy p = SecurityPolicyType.NETBIOS_POLICY.getPolicy(this);
-            if(p.isEnabled())
+            SecurityPolicy p = SecurityPolicyType.NETBIOS_POLICY.GetPolicy(this);
+            if(p.IsEnabled())
             {
-                p.unapply();
+                p.Unapply();
             } else
             {
-                p.apply();
+                p.Apply();
             }
         }
 
         private void callRenameEvent(object sender, EventArgs e)
         {
-            SecurityPolicy p = SecurityPolicyType.RENAME_POLICY.getPolicy(this);
+            SecurityPolicy p = SecurityPolicyType.RENAME_POLICY.GetPolicy(this);
 
-            if(p.isEnabled())
+            if(p.IsEnabled())
             {
-                p.unapply();
+                p.Unapply();
             } else
             {
-                p.apply();
+                p.Apply();
             }
-        }
-
-        private void versionInformationToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-
         }
 
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
@@ -181,39 +183,39 @@ namespace windows_security_tweak_tool.src
 
         private void callRemoteRegEvent(object sender, EventArgs e)
         {
-            SecurityPolicy p = SecurityPolicyType.REMOTE_REGISTRY_POLICY.getPolicy(this);
+            SecurityPolicy p = SecurityPolicyType.REMOTE_REGISTRY_POLICY.GetPolicy(this);
 
-            if (p.isEnabled())
+            if (p.IsEnabled())
             {
-                p.unapply();
+                p.Unapply();
             }
             else
             {
-                p.apply();
+                p.Apply();
             }
         }
 
         private void callRDPEvent(object sender, EventArgs e)
         {
-            SecurityPolicy p = SecurityPolicyType.RDP_POLICY.getPolicy(this);
+            SecurityPolicy p = SecurityPolicyType.RDP_POLICY.GetPolicy(this);
 
-            if (p.isEnabled())
+            if (p.IsEnabled())
             {
-                p.unapply();
+                p.Unapply();
             }
             else
             {
-                p.apply();
+                p.Apply();
             }
         }
 
         private void callNTLMEvent(object sender, EventArgs e)
         {
-            SecurityPolicy p = SecurityPolicyType.NTLM_POLICY.getPolicy(this);
+            SecurityPolicy p = SecurityPolicyType.NTLM_POLICY.GetPolicy(this);
 
-            if (p.isEnabled())
+            if (p.IsEnabled())
             {
-                p.unapply();
+                p.Unapply();
             }
             else
             {
@@ -225,13 +227,13 @@ namespace windows_security_tweak_tool.src
                     return;
                 }
 
-                p.apply();
+                p.Apply();
             }
         }
 
         private void callMBREvent(object sender, EventArgs e)
         {
-            SecurityPolicy p = null;
+            SecurityPolicy p = SecurityPolicyType.MBR_POLICY.GetPolicy(this);
 
             DialogResult result = MessageBox.Show("If you plan to use this feature please note that we have not developed MBRFilter\n\nMBRFilter is licensed under the GPLv2 License and maintained by Yves Younan, Cisco Talos at https://github.com/vrtadmin/MBRFilter\n\nby clicking \"yes\" you agree with their license", "Warning Third party driver", MessageBoxButtons.YesNo);
 
@@ -240,13 +242,13 @@ namespace windows_security_tweak_tool.src
                 return;
             }
 
-            if (p.isEnabled())
+            if (p.IsEnabled())
             {
-                p.unapply();
+                p.Unapply();
             }
             else
             {
-                p.apply();
+                p.Apply();
             }
         }
 
@@ -259,36 +261,36 @@ namespace windows_security_tweak_tool.src
         private void callSafeApplyEvent(object sender, EventArgs e)
         {
             safeapplybtn.Enabled = false;
-            foreach (SecurityPolicyType pt in SecurityPolicyType.values())
+            foreach (SecurityPolicyType pt in SecurityPolicyType.Values())
             {
                 if(pt != SecurityPolicyType.UPDATE_POLICY)
                 {
-                    SecurityPolicy p = pt.getPolicy(this);
-                    p.getButton().Enabled = false;
+                    SecurityPolicy p = pt.GetPolicy(this);
+                    p.GetButton().Enabled = false;
                 }
             }
 
-            foreach (SecurityPolicyType pt in SecurityPolicyType.values())
+            foreach (SecurityPolicyType pt in SecurityPolicyType.Values())
             {
                 if (pt != SecurityPolicyType.UPDATE_POLICY)
                 {
-                    SecurityPolicy p = pt.getPolicy(this);
-                    if(p.isSafeForBussiness())
+                    SecurityPolicy p = pt.GetPolicy(this);
+                    if(p.IsSafeForBussiness())
                     {
-                        if(!p.isEnabled() && !p.isUserControlRequired())
+                        if(!p.IsEnabled() && !p.IsUserControlRequired())
                         {
-                            p.apply();
+                            p.Apply();
                         }
                     }
                 }
             }
 
-            foreach (SecurityPolicyType pt in SecurityPolicyType.values())
+            foreach (SecurityPolicyType pt in SecurityPolicyType.Values())
             {
                 if (pt != SecurityPolicyType.UPDATE_POLICY)
                 {
-                    SecurityPolicy p = pt.getPolicy(this);
-                    p.getButton().Enabled = true;
+                    SecurityPolicy p = pt.GetPolicy(this);
+                    p.GetButton().Enabled = true;
                 }
             }
             safeapplybtn.Enabled = true;
@@ -298,18 +300,19 @@ namespace windows_security_tweak_tool.src
         private void callApplyEvent(object sender, EventArgs e)
         {
             applyforcebtn.Enabled = false;
-            foreach (SecurityPolicyType pt in SecurityPolicyType.values())
+            foreach (SecurityPolicyType pt in SecurityPolicyType.Values())
             {
                 if (pt != SecurityPolicyType.UPDATE_POLICY)
                 {
-                    SecurityPolicy p = pt.getPolicy(this);
-                    if(!p.isUserControlRequired() && !p.isEnabled())
+                    SecurityPolicy p = pt.GetPolicy(this);
+
+                    if (!p.IsUserControlRequired() && !p.IsEnabled())
                     {
-                        if(p.isSecpolDepended() && !p.isSecpolEnabled())
+                        if(p.IsSecpolDepended() && !p.IsSecpolEnabled())
                         {
                             continue;
                         }
-                        p.apply();
+                        p.Apply();
                     }
                 }
             }
@@ -320,18 +323,18 @@ namespace windows_security_tweak_tool.src
         private void callUndoEvent(object sender, EventArgs e)
         {
             undobtn.Enabled = false;
-            foreach (SecurityPolicyType pt in SecurityPolicyType.values())
+            foreach (SecurityPolicyType pt in SecurityPolicyType.Values())
             {
-                if (pt != SecurityPolicyType.UPDATE_POLICY && !pt.getPolicy(this).isUserControlRequired())
+                if (pt != SecurityPolicyType.UPDATE_POLICY && !pt.GetPolicy(this).IsUserControlRequired())
                 {
-                    SecurityPolicy p = pt.getPolicy(this);
-                    if (!p.isUserControlRequired() && p.isEnabled())
+                    SecurityPolicy p = pt.GetPolicy(this);
+                    if (!p.IsUserControlRequired() && p.IsEnabled())
                     {
-                        if (p.isSecpolDepended() && !p.isSecpolEnabled())
+                        if (p.IsSecpolDepended() && !p.IsSecpolEnabled())
                         {
                             continue;
                         }
-                        p.unapply();
+                        p.Unapply();
                     }
                 }
             }
@@ -340,34 +343,29 @@ namespace windows_security_tweak_tool.src
 
         private void callInsecureServicesEvent(object sender, EventArgs e) 
         {
-            SecurityPolicy p = SecurityPolicyType.IN_SECURE_SERVICES_POLICY.getPolicy(this);
+            SecurityPolicy p = SecurityPolicyType.IN_SECURE_SERVICES_POLICY.GetPolicy(this);
 
-            if(p.isEnabled())
+            if(p.IsEnabled())
             {
-                p.unapply();
+                p.Unapply();
             } else
             {
-                p.apply();
+                p.Apply();
             }
         }
 
         private void callBogusCertEvent(object sender, EventArgs e)
         {
-            SecurityPolicy p = SecurityPolicyType.CERT_POLICY.getPolicy(this);
+            SecurityPolicy p = SecurityPolicyType.CERT_POLICY.GetPolicy(this);
 
-            if (p.isEnabled())
+            if (p.IsEnabled())
             {
-                p.unapply();
+                p.Unapply();
             }
             else
             {
-                p.apply();
+                p.Apply();
             }
-        }
-
-        private void tempolicylabel_Click(object sender, EventArgs e)
-        {
-
         }
 
         private void boguscertlabel_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
@@ -376,21 +374,18 @@ namespace windows_security_tweak_tool.src
             a.Dispose();
         }
 
-        private void window_Load(object sender, EventArgs e)
-        {
-
-        }
+        private void window_Load(object sender, EventArgs e){}
 
         private void netsharebtn_Click(object sender, EventArgs e)
         {
-            SecurityPolicy p = SecurityPolicyType.NETSHARE_POLICY.getPolicy(this);
+            SecurityPolicy p = SecurityPolicyType.NETSHARE_POLICY.GetPolicy(this);
 
-            if (p.isEnabled())
+            if (p.IsEnabled())
             {
-                p.unapply();
+                p.Unapply();
             } else
             {
-                p.apply();
+                p.Apply();
             }
         }
 
@@ -402,22 +397,22 @@ namespace windows_security_tweak_tool.src
 
         private void llmnrbtn_Click(object sender, EventArgs e)
         {
-            SecurityPolicy p = SecurityPolicyType.LLMNR_POLICY.getPolicy(this);
-            if (p.isEnabled())
+            SecurityPolicy p = SecurityPolicyType.LLMNR_POLICY.GetPolicy(this);
+            if (p.IsEnabled())
             {
-                p.unapply();
+                p.Unapply();
             }
             else
             {
-                p.apply();
+                p.Apply();
             }
         }
 
         private void resetPoliciesToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if(File.Exists(Config.getConfig().getDataFolder()+@"\config.txt"))
+            if(File.Exists(Config.GetConfig().GetDataFolder()+@"\config.txt"))
             {
-                File.Delete(Config.getConfig().getDataFolder()+@"\config.txt");
+                File.Delete(Config.GetConfig().GetDataFolder()+@"\config.txt");
             }
 
             string[] cmdargs = { "/c RD /S /Q \"%WinDir%\\System32\\GroupPolicyUsers\"", "/c RD /S /Q \"%WinDir%\\System32\\GroupPolicy\"" };
@@ -430,8 +425,8 @@ namespace windows_security_tweak_tool.src
                 pr.Dispose();
             }
 
-            SecurityPolicy p = SecurityPolicyType.UPDATE_POLICY.getPolicy(this);
-            p.apply();
+            SecurityPolicy p = SecurityPolicyType.UPDATE_POLICY.GetPolicy(this);
+            p.Apply();
 
             MessageBox.Show("WSTT needs to be restarted ;-)");
 
@@ -441,20 +436,66 @@ namespace windows_security_tweak_tool.src
 
         private void unsignedbtn_Click(object sender, EventArgs e)
         {
-            SecurityPolicy p = SecurityPolicyType.UNSIGNED_POLICY.getPolicy(this);
-            p.apply();
+            SecurityPolicy p = SecurityPolicyType.UNSIGNED_POLICY.GetPolicy(this);
+            p.Apply();
         }
 
         private void smbbtn_Click(object sender, EventArgs e)
         {
-            SecurityPolicy p = SecurityPolicyType.SMB_SHARING_POLICY.getPolicy(this);
+            SecurityPolicy p = SecurityPolicyType.SMB_SHARING_POLICY.GetPolicy(this);
 
-            if(p.isEnabled())
+            if(p.IsEnabled())
             {
-                p.unapply();
+                p.Unapply();
             } else
             {
-                p.apply();
+                p.Apply();
+            }
+        }
+
+        private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            HelpWindow help = new HelpWindow();
+            help.Show();
+        }
+
+        private void autoplaybtn_Click(object sender, EventArgs e)
+        {
+            SecurityPolicy p = SecurityPolicyType.AUTOPLAY_POLICY.GetPolicy(this);
+
+            if (p.IsEnabled())
+            {
+                p.Unapply();
+            }
+            else
+            {
+                p.Apply();
+            }
+        }
+
+        private void regsvr32btn_Click(object sender, EventArgs e)
+        {
+            SecurityPolicy p = SecurityPolicyType.REGSERVR32_PROXY_POLICY.GetPolicy(this);
+
+            if(p.IsEnabled())
+            {
+                p.Unapply();
+            } else
+            {
+                p.Apply();
+            }
+        }
+
+        private void powershellbtn_Click(object sender, EventArgs e)
+        {
+            SecurityPolicy p = SecurityPolicyType.POWERSHELL_POLICY.GetPolicy(this);
+
+            if(p.IsEnabled())
+            {
+                p.Unapply();
+            } else
+            {
+                p.Apply();
             }
         }
     }

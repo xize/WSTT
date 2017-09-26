@@ -32,82 +32,90 @@ namespace windows_security_tweak_tool.src.policies
     class CertPolicy : SecurityPolicy
     {
 
-        public override string getName()
+        public override string GetName()
         {
-            return getType().getName();
+            return GetPolicyType().GetName();
         }
 
-        public override string getDescription()
+        public override string GetDescription()
         {
             return "makes it easier for people to remove bogus root certificates, however user control is required\nit will open notepad which you can edit the entries you remove will not be removed";
         }
 
-        public override SecurityPolicyType getType()
+        public override SecurityPolicyType GetPolicyType()
         {
             return SecurityPolicyType.CERT_POLICY;
         }
 
-        public override bool isEnabled()
+        public override bool IsEnabled()
         {
             return false;
         }
 
-        public override void apply()
+        public async override void Apply()
         {
-            getButton().Enabled = false;
-            if(!isInstalled())
+            GetButton().Enabled = false;
+            await Task.Run(() => ApplyAsync());
+            GetProgressbar().Value = 100;
+            GetButton().Enabled = true;
+        }
+
+        public void ApplyAsync()
+        {
+            if (!IsInstalled())
             {
-                Directory.CreateDirectory(getDataFolder() + @"\sigcheck");
-                installForFirstTime("sigcheck");
-                installForFirstTime("sigcheck64");
-                installForFirstTime("sigcheckeula");
+                Directory.CreateDirectory(GetDataFolder() + @"\sigcheck");
+                InstallForFirstTime("sigcheck");
+                InstallForFirstTime("sigcheck64");
+                InstallForFirstTime("sigcheckeula");
             }
 
             Process proc;
 
-            if(Environment.Is64BitOperatingSystem)
+            if (Environment.Is64BitOperatingSystem)
             {
                 ProcessStartInfo sinfo = new ProcessStartInfo("cmd.exe");
-                sinfo.Arguments = "/c " + getDataFolder() + @"\sigcheck\sigcheck.exe -tv > " + getDataFolder() + @"\sigcheck\badcerts.txt";
+                sinfo.Arguments = "/c " + GetDataFolder() + @"\sigcheck\sigcheck.exe -tv > " + GetDataFolder() + @"\sigcheck\badcerts.txt";
                 proc = Process.Start(sinfo);
-            } else
+            }
+            else
             {
                 ProcessStartInfo sinfo = new ProcessStartInfo("cmd.exe");
-                sinfo.Arguments = "/c "+getDataFolder() + @"\sigcheck\sigcheck.exe -tv > "+getDataFolder()+@"\sigcheck\badcerts.txt";
+                sinfo.Arguments = "/c " + GetDataFolder() + @"\sigcheck\sigcheck.exe -tv > " + GetDataFolder() + @"\sigcheck\badcerts.txt";
                 proc = Process.Start(sinfo);
             }
 
             while (!proc.HasExited) { } //lock the thread
 
             ProcessStartInfo notepad = new ProcessStartInfo("notepad.exe");
-            notepad.Arguments = getDataFolder()+@"\sigcheck\badcerts.txt";
+            notepad.Arguments = GetDataFolder() + @"\sigcheck\badcerts.txt";
 
             DialogResult result = MessageBox.Show("Please remove the entries which you don't want to be removed.\n\nall the following certificates in this notepad are untrusted root certificates or root certificates not signed by Microsoft.\n\nthings like \"DELL\", \"Anti Virus\", should be removed this will increase your security against man in the middle attacks however some anti virus solutions use it to scan encrypted connections.\n\n do this at your own risk you cannot undo this option!", "Important please read!", MessageBoxButtons.OKCancel);
             if (result == DialogResult.Cancel)
             {
-                if(File.Exists(getDataFolder() + @"\sigcheck\badcerts.txt"))
+                if (File.Exists(GetDataFolder() + @"\sigcheck\badcerts.txt"))
                 {
-                    File.Delete(getDataFolder() + @"\sigcheck\badcerts.txt");
+                    File.Delete(GetDataFolder() + @"\sigcheck\badcerts.txt");
                 }
                 return;
             }
 
             Process notepadproc = Process.Start(notepad);
 
-            while(!notepadproc.HasExited) {} //lock
+            while (!notepadproc.HasExited) { } //lock
 
-            IEnumerable<string> lines = File.ReadLines(getDataFolder() + @"\sigcheck\badcerts.txt");
+            IEnumerable<string> lines = File.ReadLines(GetDataFolder() + @"\sigcheck\badcerts.txt");
             string linestext = "";
             foreach (string line in lines)
             {
-                if(line.Contains("   ")) //3 spaces... I don't understand why: ^([\w\s]{3})+[a-zA-Z0-9\\\/\-]$ does not work....
+                if (line.Contains("   ")) //3 spaces... I don't understand why: ^([\w\s]{3})+[a-zA-Z0-9\\\/\-]$ does not work....
                 {
-                    string strippedline = line.Substring(2, line.Length-2);
-                    linestext += strippedline+"\n";
+                    string strippedline = line.Substring(2, line.Length - 2);
+                    linestext += strippedline + "\n";
                     ProcessStartInfo certutilinfo = new ProcessStartInfo("certutil.exe");
-                    certutilinfo.Arguments = "-delstore Root " +"\""+strippedline+"\"";
+                    certutilinfo.Arguments = "-delstore Root " + "\"" + strippedline + "\"";
                     Process certutil = Process.Start(certutilinfo);
-                    while(!certutil.HasExited){} //lock the thread
+                    while (!certutil.HasExited) { } //lock the thread
                     certutil.Dispose();
                 }
             }
@@ -117,23 +125,21 @@ namespace windows_security_tweak_tool.src.policies
             notepadproc.Dispose();
 
             MessageBox.Show("success the following certificates have been removed.\n=====================================================\n" + linestext);
-            getProgressbar().Value = 100;
-            getButton().Enabled = true;
         }
 
-        public override void unapply()
+        public override void Unapply()
         {
             
         }
 
-        private bool isInstalled()
+        private bool IsInstalled()
         {
-            return Directory.Exists(getDataFolder() + @"\sigcheck");
+            return Directory.Exists(GetDataFolder() + @"\sigcheck");
         }
 
-        private void installForFirstTime(string resource)
+        private void InstallForFirstTime(string resource)
         {
-            string path = getDataFolder() + @"\sigcheck";
+            string path = GetDataFolder() + @"\sigcheck";
 
             switch(resource)
             {
@@ -149,43 +155,43 @@ namespace windows_security_tweak_tool.src.policies
             }
         }
 
-        public override bool hasIncompatibilityIssues()
+        public override bool HasIncompatibilityIssues()
         {
             return false;
         }
 
         [Obsolete]
-        public override bool isLanguageDepended()
+        public override bool IsLanguageDepended()
         {
             return false;
         }
 
-        public override bool isMacro()
+        public override bool IsMacro()
         {
             return false;
         }
 
-        public override bool isSafeForBussiness()
+        public override bool IsSafeForBussiness()
         {
             return true;
         }
 
-        public override bool isSecpolDepended()
+        public override bool IsSecpolDepended()
         {
             return false;
         }
 
-        public override bool isUserControlRequired()
+        public override bool IsUserControlRequired()
         {
             return true;
         }
 
-        public override Button getButton()
+        public override Button GetButton()
         {
             return gui.boguscertbtn;
         }
 
-        public override ProgressBar getProgressbar()
+        public override ProgressBar GetProgressbar()
         {
             return gui.boguscertprogress;
         }
