@@ -46,6 +46,7 @@ namespace windows_security_tweak_tool.src
                 CertDebugger certwindow = new CertDebugger();
                 certwindow.Show();
             }
+
             gui = new Window();
             Application.Run(gui);
         }
