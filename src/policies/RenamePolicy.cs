@@ -112,8 +112,8 @@ namespace windows_security_tweak_tool.src.policies
 
                 Console.WriteLine("extension: "+extension);
 
-                //ExecuteCMD("assoc " + extension + "=txtfile", true);
-                ExecuteCMD("ftype " + extension.ToUpper().Substring(1) + "File=C:\\windows\\system32\\notepad.exe", false);
+                //ExecuteCMD("assoc " + extension + "=txtfile", false);
+                ExecuteCMD("ftype " + extension.ToUpper().Substring(1) + "File=C:\\windows\\system32\\notepad.exe", true);
             }
 
             Config.GetConfig().Put("renamed", true);
