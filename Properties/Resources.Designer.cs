@@ -61,6 +61,16 @@ namespace windows_security_tweak_tool.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap certificate {
+            get {
+                object obj = ResourceManager.GetObject("certificate", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
         internal static byte[] regsvr32 {
@@ -107,16 +117,6 @@ namespace windows_security_tweak_tool.Properties {
             get {
                 object obj = ResourceManager.GetObject("sigcheckeula", resourceCulture);
                 return ((byte[])(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap windowslogo1 {
-            get {
-                object obj = ResourceManager.GetObject("windowslogo1", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
             }
         }
     }

@@ -19,10 +19,12 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using windows_security_tweak_tool.Properties;
 using windows_security_tweak_tool.src.ninite;
 using windows_security_tweak_tool.src.optionalpolicies;
 
@@ -41,12 +43,19 @@ namespace windows_security_tweak_tool.src
             {
                 OptionalPolicy p = t.GetPolicy(this);
 
+                if (p.HasDescription())
+                {
+                    toolTip1.SetToolTip(p.GetButton(), p.GetDescription());
+                    if(p.GetProgressbar() != null)
+                    {
+                        toolTip1.SetToolTip(p.GetProgressbar(), p.GetDescription());
+                    }
+                }
+
                 if (p.IsEnabled())
                 {
                     p.GetProgressbar().Value = 100;
                     p.GetButton().Text = "undo";
-                    toolTip1.SetToolTip(p.GetButton(), p.GetDescription());
-                    toolTip1.SetToolTip(p.GetProgressbar(), p.GetDescription());
                 } else
                 {
                     if (p.IsCertificateDepended())
@@ -101,6 +110,9 @@ namespace windows_security_tweak_tool.src
         public ProgressBar HPCheckProgress;
         private ToolTip toolTip1;
         private IContainer components;
+        private Label label3;
+        public Button chromecertbtn;
+        public ProgressBar chromecertprogress;
         public CheckBox niniteskypecheckbox;
 
         private void InitializeComponent()
@@ -147,6 +159,9 @@ namespace windows_security_tweak_tool.src
             this.HPCheckbtn = new System.Windows.Forms.Button();
             this.HPCheckProgress = new System.Windows.Forms.ProgressBar();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this.label3 = new System.Windows.Forms.Label();
+            this.chromecertbtn = new System.Windows.Forms.Button();
+            this.chromecertprogress = new System.Windows.Forms.ProgressBar();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -516,7 +531,7 @@ namespace windows_security_tweak_tool.src
             // button1
             // 
             this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.button1.Location = new System.Drawing.Point(13, 411);
+            this.button1.Location = new System.Drawing.Point(13, 451);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
             this.button1.TabIndex = 90;
@@ -526,7 +541,7 @@ namespace windows_security_tweak_tool.src
             // button2
             // 
             this.button2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.button2.Location = new System.Drawing.Point(94, 411);
+            this.button2.Location = new System.Drawing.Point(94, 451);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(75, 23);
             this.button2.TabIndex = 91;
@@ -598,9 +613,44 @@ namespace windows_security_tweak_tool.src
             this.HPCheckProgress.Size = new System.Drawing.Size(406, 23);
             this.HPCheckProgress.TabIndex = 99;
             // 
+            // label3
+            // 
+            this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(15, 399);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(205, 13);
+            this.label3.TabIndex = 104;
+            this.label3.Text = "make chrome show certificate information:";
+            // 
+            // chromecertbtn
+            // 
+            this.chromecertbtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.chromecertbtn.AutoSize = true;
+            this.chromecertbtn.Location = new System.Drawing.Point(403, 415);
+            this.chromecertbtn.Name = "chromecertbtn";
+            this.chromecertbtn.Size = new System.Drawing.Size(94, 23);
+            this.chromecertbtn.TabIndex = 103;
+            this.chromecertbtn.Text = "start";
+            this.chromecertbtn.UseVisualStyleBackColor = true;
+            this.chromecertbtn.Click += new System.EventHandler(this.chromecertbtn_Click);
+            // 
+            // chromecertprogress
+            // 
+            this.chromecertprogress.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.chromecertprogress.Location = new System.Drawing.Point(13, 415);
+            this.chromecertprogress.Name = "chromecertprogress";
+            this.chromecertprogress.Size = new System.Drawing.Size(406, 23);
+            this.chromecertprogress.TabIndex = 102;
+            // 
             // OptionalWindow
             // 
-            this.ClientSize = new System.Drawing.Size(510, 446);
+            this.ClientSize = new System.Drawing.Size(510, 486);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.chromecertbtn);
+            this.Controls.Add(this.chromecertprogress);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.HPCheckbtn);
             this.Controls.Add(this.HPCheckProgress);
@@ -721,6 +771,12 @@ namespace windows_security_tweak_tool.src
         private void chromeaddonbtn_Click(object sender, EventArgs e)
         {
             OptionalPolicy p = OptionalPolicyType.CHROME_ADDON_POLICY.GetPolicy(this);
+            p.Apply();
+        }
+
+        private void chromecertbtn_Click(object sender, EventArgs e)
+        {
+            OptionalPolicy p = OptionalPolicyType.CHROME_CERTIFICATE_POLICY.GetPolicy(this);
             p.Apply();
         }
     }
