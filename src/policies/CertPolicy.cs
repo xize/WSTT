@@ -99,10 +99,14 @@ namespace windows_security_tweak_tool.src.policies
 
             IEnumerable<string> lines = File.ReadLines(GetDataFolder() + @"\sigcheck\badcerts.txt");
             string linestext = "";
+
+            Regex r = new Regex(@"^\s\s\s+"); //force first 3 spaces use + to make sure it should match anything else
+
             foreach (string line in lines)
             {
-                if (line.Contains("   ")) //3 spaces... I don't understand why: ^([\w\s]{3})+[a-zA-Z0-9\\\/\-]$ does not work....
+                if(r.IsMatch(line))
                 {
+                    MessageBox.Show(line);
                     string strippedline = line.Substring(2, line.Length - 2);
                     linestext += strippedline + "\n";
                     ProcessStartInfo certutilinfo = new ProcessStartInfo("certutil.exe");
