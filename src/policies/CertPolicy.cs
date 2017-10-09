@@ -70,20 +70,9 @@ namespace windows_security_tweak_tool.src.policies
                 InstallForFirstTime("sigcheckeula");
             }
 
-            Process proc;
-
-            if (Environment.Is64BitOperatingSystem)
-            {
-                ProcessStartInfo sinfo = new ProcessStartInfo("cmd.exe");
-                sinfo.Arguments = "/c " + GetDataFolder() + @"\sigcheck\sigcheck.exe -tv > " + GetDataFolder() + @"\sigcheck\badcerts.txt";
-                proc = Process.Start(sinfo);
-            }
-            else
-            {
-                ProcessStartInfo sinfo = new ProcessStartInfo("cmd.exe");
-                sinfo.Arguments = "/c " + GetDataFolder() + @"\sigcheck\sigcheck.exe -tv > " + GetDataFolder() + @"\sigcheck\badcerts.txt";
-                proc = Process.Start(sinfo);
-            }
+            ProcessStartInfo sinfo = new ProcessStartInfo("cmd.exe");
+            sinfo.Arguments = "/c " + GetDataFolder() + @"\sigcheck\sigcheck" + (Environment.Is64BitOperatingSystem ? "64" : "") + ".exe -tv > "+GetDataFolder()+@"\sigcheck\badcerts.txt";
+            Process proc = Process.Start(sinfo);
 
             proc.WaitForExit();
             proc.Close();
@@ -123,6 +112,10 @@ namespace windows_security_tweak_tool.src.policies
                     certutil.Dispose();
                 }
             }
+
+            //cleanup
+            proc.Dispose();
+            notepadproc.Dispose();
 
             MessageBox.Show("success the following certificates have been removed.\n=====================================================\n" + linestext);
         }
