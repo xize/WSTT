@@ -764,11 +764,12 @@ namespace windows_security_tweak_tool.src
             // 
             this.regsvr32btn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.regsvr32btn.AutoSize = true;
-            this.regsvr32btn.Location = new System.Drawing.Point(422, 709);
+            this.regsvr32btn.Enabled = false;
+            this.regsvr32btn.Location = new System.Drawing.Point(282, 709);
             this.regsvr32btn.Name = "regsvr32btn";
-            this.regsvr32btn.Size = new System.Drawing.Size(71, 23);
+            this.regsvr32btn.Size = new System.Drawing.Size(211, 23);
             this.regsvr32btn.TabIndex = 109;
-            this.regsvr32btn.Text = "Apply";
+            this.regsvr32btn.Text = "disabled, needs a better user right system";
             this.regsvr32btn.UseVisualStyleBackColor = true;
             this.regsvr32btn.Click += new System.EventHandler(this.regsvr32btn_Click);
             // 
@@ -776,6 +777,7 @@ namespace windows_security_tweak_tool.src
             // 
             this.regsvr32progress.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.regsvr32progress.Enabled = false;
             this.regsvr32progress.Location = new System.Drawing.Point(9, 709);
             this.regsvr32progress.Name = "regsvr32progress";
             this.regsvr32progress.Size = new System.Drawing.Size(409, 23);
