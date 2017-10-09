@@ -85,7 +85,9 @@ namespace windows_security_tweak_tool.src.policies
                 proc = Process.Start(sinfo);
             }
 
-            while (!proc.HasExited) { } //lock the thread
+            proc.WaitForExit();
+            proc.Close();
+            proc.Dispose();
 
             ProcessStartInfo notepad = new ProcessStartInfo("notepad.exe");
             notepad.Arguments = GetDataFolder() + @"\sigcheck\badcerts.txt";
@@ -102,7 +104,9 @@ namespace windows_security_tweak_tool.src.policies
 
             Process notepadproc = Process.Start(notepad);
 
-            while (!notepadproc.HasExited) { } //lock
+            notepadproc.WaitForExit();
+            notepadproc.Close();
+            notepadproc.Dispose();
 
             IEnumerable<string> lines = File.ReadLines(GetDataFolder() + @"\sigcheck\badcerts.txt");
             string linestext = "";
@@ -119,10 +123,6 @@ namespace windows_security_tweak_tool.src.policies
                     certutil.Dispose();
                 }
             }
-
-            //cleanup
-            proc.Dispose();
-            notepadproc.Dispose();
 
             MessageBox.Show("success the following certificates have been removed.\n=====================================================\n" + linestext);
         }
