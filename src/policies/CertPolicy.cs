@@ -20,12 +20,16 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
+using System.IO.Compression;
 using System.Linq;
+using System.Net;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using windows_security_tweak_tool.src.certificates;
 
 namespace windows_security_tweak_tool.src.policies
 {
@@ -62,13 +66,8 @@ namespace windows_security_tweak_tool.src.policies
 
         public void ApplyAsync()
         {
-            if (!IsInstalled())
-            {
-                Directory.CreateDirectory(GetDataFolder() + @"\sigcheck");
-                InstallForFirstTime("sigcheck");
-                InstallForFirstTime("sigcheck64");
-                InstallForFirstTime("sigcheckeula");
-            }
+
+            this.DownloadSigCheck();
 
             ProcessStartInfo sinfo = new ProcessStartInfo("cmd.exe");
             sinfo.Arguments = "/c " + GetDataFolder() + @"\sigcheck\sigcheck" + (Environment.Is64BitOperatingSystem ? "64" : "") + ".exe -tv > "+GetDataFolder()+@"\sigcheck\badcerts.txt";
@@ -106,10 +105,11 @@ namespace windows_security_tweak_tool.src.policies
             {
                 if(r.IsMatch(line))
                 {
-                    MessageBox.Show(line);
                     string strippedline = line.Substring(2, line.Length - 2);
                     linestext += strippedline + "\n";
                     ProcessStartInfo certutilinfo = new ProcessStartInfo("certutil.exe");
+                    certutilinfo.CreateNoWindow = true;
+                    certutilinfo.UseShellExecute = false;
                     certutilinfo.Arguments = "-delstore Root " + "\"" + strippedline + "\"";
                     Process certutil = Process.Start(certutilinfo);
                     certutil.WaitForExit();
@@ -117,10 +117,6 @@ namespace windows_security_tweak_tool.src.policies
                     certutil.Dispose();
                 }
             }
-
-            //cleanup
-            proc.Dispose();
-            notepadproc.Dispose();
 
             MessageBox.Show("success the following certificates have been removed.\n=====================================================\n" + linestext);
         }
@@ -130,27 +126,14 @@ namespace windows_security_tweak_tool.src.policies
             
         }
 
-        private bool IsInstalled()
+        public override bool IsCertificateDepended()
         {
-            return Directory.Exists(GetDataFolder() + @"\sigcheck");
+            return true;
         }
 
-        private void InstallForFirstTime(string resource)
+        public override Certificate GetCertificate()
         {
-            string path = GetDataFolder() + @"\sigcheck";
-
-            switch(resource)
-            {
-                case "sigcheck":
-                    File.WriteAllBytes(path+@"\sigcheck.exe", Properties.Resources.sigcheck);
-                    break;
-                case "sigcheck64":
-                    File.WriteAllBytes(path + @"\sigcheck64.exe", Properties.Resources.sigcheck64);
-                    break;
-                case "sigcheckeula":
-                    File.WriteAllBytes(path + @"\Eula.txt", Properties.Resources.sigcheckeula);
-                    break;
-            }
+            return (Environment.Is64BitOperatingSystem ? CertProvider.SIGCHECK_64BIT.getCertificate() : CertProvider.SIGCHECK_32BIT.getCertificate());
         }
 
         public override bool HasIncompatibilityIssues()

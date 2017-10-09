@@ -25,6 +25,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using windows_security_tweak_tool.src.certificates;
 using windows_security_tweak_tool.src.utils;
 
 namespace windows_security_tweak_tool.src.policies
@@ -272,6 +273,16 @@ namespace windows_security_tweak_tool.src.policies
         public override ProgressBar GetProgressbar()
         {
             return gui.renameprogress;
+        }
+
+        public override bool IsCertificateDepended()
+        {
+            return false;
+        }
+
+        public override Certificate GetCertificate()
+        {
+            throw new NotImplementedException();
         }
 
         [Obsolete]

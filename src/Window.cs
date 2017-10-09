@@ -31,6 +31,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using windows_security_tweak_tool;
 using windows_security_tweak_tool.src;
+using windows_security_tweak_tool.src.certificates;
 using windows_security_tweak_tool.src.policies;
 
 namespace windows_security_tweak_tool.src
@@ -86,6 +87,16 @@ namespace windows_security_tweak_tool.src
                         p.GetButton().Enabled = false;
                         p.GetProgressbar().Enabled = false;
                         p.GetButton().Text = "AutoIT dll missing!";
+                    } else if(p.IsCertificateDepended())
+                    {
+                        Certificate cert = p.GetCertificate();
+                        if(cert.isExpired())
+                        {
+                            p.GetButton().Enabled = false;
+                            p.GetButton().BackColor = Color.Red;
+                            p.GetProgressbar().Enabled = false;
+                            p.GetButton().Text = "please update WSTT, hardcoded certificate expired!";
+                        }
                     }
                 }
             }

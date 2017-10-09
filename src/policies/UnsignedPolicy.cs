@@ -24,6 +24,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using windows_security_tweak_tool.src.certificates;
 
 namespace windows_security_tweak_tool.src.policies
 {
@@ -62,36 +63,21 @@ namespace windows_security_tweak_tool.src.policies
 
         public void ApplyAsync()
         {
-            if (!IsInstalled())
-            {
-                Directory.CreateDirectory(GetDataFolder() + @"\sigcheck");
-                InstallForFirstTime("sigcheck");
-                InstallForFirstTime("sigcheck64");
-                InstallForFirstTime("sigcheckeula");
-            }
+            this.DownloadSigCheck();
 
-            Process proc;
-
-            if (Environment.Is64BitOperatingSystem)
-            {
-                ProcessStartInfo sinfo = new ProcessStartInfo("cmd.exe");
-                sinfo.Arguments = "/c " + GetDataFolder() + @"\sigcheck\sigcheck.exe -a -s -u -e C:\windows\system32 > " + GetDataFolder() + @"\sigcheck\unsigned.txt";
-                proc = Process.Start(sinfo);
-            }
-            else
-            {
-                ProcessStartInfo sinfo = new ProcessStartInfo("cmd.exe");
-                sinfo.Arguments = "/c " + GetDataFolder() + @"\sigcheck\sigcheck.exe -a -s -u -e C:\windows\system32 > " + GetDataFolder() + @"\sigcheck\unsigned.txt";
-                proc = Process.Start(sinfo);
-            }
-
-            while (!proc.HasExited) { }
+            ProcessStartInfo sinfo = new ProcessStartInfo("cmd.exe");
+            sinfo.Arguments = "/c " + GetDataFolder() + @"\sigcheck\sigcheck"+(Environment.Is64BitOperatingSystem ? "64":"")+@".exe -a -s -u -e C:\windows\system32 > " + GetDataFolder() + @"\sigcheck\unsigned.txt";
+            Process proc = Process.Start(sinfo);
+            proc.WaitForExit();
             proc.Close();
             proc.Dispose();
 
             ProcessStartInfo info = new ProcessStartInfo("notepad.exe");
             info.Arguments = GetDataFolder() + @"\sigcheck\unsigned.txt";
             Process p = Process.Start(info);
+            p.WaitForExit();
+            p.Close();
+            p.Dispose();
         }
 
         public override void Unapply()
@@ -99,6 +85,15 @@ namespace windows_security_tweak_tool.src.policies
             throw new NotImplementedException();
         }
 
+        public override bool IsCertificateDepended()
+        {
+            return true;
+        }
+
+        public override Certificate GetCertificate()
+        {
+            return (Environment.Is64BitOperatingSystem ? CertProvider.SIGCHECK_64BIT.getCertificate() : CertProvider.SIGCHECK_32BIT.getCertificate());
+        }
 
         public override bool HasIncompatibilityIssues()
         {
@@ -129,29 +124,6 @@ namespace windows_security_tweak_tool.src.policies
         public override bool IsUserControlRequired()
         {
             return true;
-        }
-
-        private bool IsInstalled()
-        {
-            return Directory.Exists(GetDataFolder() + @"\sigcheck");
-        }
-
-        private void InstallForFirstTime(string resource)
-        {
-            string path = GetDataFolder() + @"\sigcheck";
-
-            switch (resource)
-            {
-                case "sigcheck":
-                    File.WriteAllBytes(path + @"\sigcheck.exe", Properties.Resources.sigcheck);
-                    break;
-                case "sigcheck64":
-                    File.WriteAllBytes(path + @"\sigcheck64.exe", Properties.Resources.sigcheck64);
-                    break;
-                case "sigcheckeula":
-                    File.WriteAllBytes(path + @"\Eula.txt", Properties.Resources.sigcheckeula);
-                    break;
-            }
         }
 
         public override Button GetButton()

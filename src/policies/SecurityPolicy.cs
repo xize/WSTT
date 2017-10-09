@@ -30,6 +30,10 @@ using System.ServiceProcess;
 using windows_security_tweak_tool.src.policies.components;
 using System.Diagnostics;
 using windows_security_tweak_tool.src.utils;
+using windows_security_tweak_tool.src.certificates;
+using System.Net;
+using System.IO.Compression;
+using System.Security.Cryptography.X509Certificates;
 
 namespace windows_security_tweak_tool.src.policies
 {
@@ -123,7 +127,66 @@ namespace windows_security_tweak_tool.src.policies
                 }
             return false;
         }
-        
+
+        public void DownloadSigCheck()
+        {
+            string url = "https://download.sysinternals.com/files/Sigcheck.zip";
+            bool isverified = false;
+            bool isfirst = false;
+
+            if (!Directory.Exists(GetDataFolder() + @"\sigcheck"))
+            {
+                Directory.CreateDirectory(GetDataFolder() + @"\sigcheck");
+                isfirst = true;
+            }
+
+            DateTime time = Directory.GetLastWriteTime(GetDataFolder() + @"\sigcheck\");
+            DateTime expire = DateTime.Now.AddMonths(1);
+
+            if (!isfirst && time.Ticks <= expire.Ticks)
+            {
+                //prevents to update sigcheck everytime, just update once per month!
+                return;
+            }
+
+
+            while (!isverified)
+            {
+                WebClient client = new WebClient();
+                
+                foreach (string f in Directory.EnumerateFiles(GetDataFolder() + @"\sigcheck\", "*.*"))
+                {
+                    File.Delete(f);
+                }
+
+                client.DownloadFile(url, GetDataFolder() + @"\sigcheck\sigcheck.zip");
+                client.Dispose();
+                ZipArchive zip = new ZipArchive(File.OpenRead(GetDataFolder() + @"\sigcheck\sigcheck.zip"));
+                zip.ExtractToDirectory(GetDataFolder() + @"\sigcheck");
+                zip.Dispose();
+
+                //verify files by hand from the hashes from the signed certificate!
+                bool isbad = false;
+                foreach (string exe in Directory.EnumerateFiles(GetDataFolder() + @"\sigcheck\", " *.exe"))
+                {
+                    string hash = X509Certificate.CreateFromSignedFile(exe).GetCertHashString();
+                    if (hash != CertProvider.SIGCHECK_32BIT.getCertificate().getHash() || hash != CertProvider.SIGCHECK_64BIT.getCertificate().getHash())
+                    {
+                        isbad = true;
+                        break;
+                    }
+                }
+                if (!isbad)
+                {
+                    isverified = true;
+                }
+                else
+                {
+                    MessageBox.Show("a corrupted version of sigcheck has been downloaded, we redownload this version again!", "invalid version of SigCheck redownloading certificate mismatch...");
+                }
+            }
+        }
+
         /**
         * <summary>
         *      <para>returns true if this policy is macro depended</para>
@@ -196,6 +259,22 @@ namespace windows_security_tweak_tool.src.policies
         {
             return (IsMacro() ? false : true);
         }
+
+        /**
+         * <summary>
+         *      <para>returns true if the policy is certificate dependend</para>
+         * </summary>
+         * <returns>bool</returns>
+         * */
+        public abstract bool IsCertificateDepended();
+
+        /**
+         * <summary>
+         *      <para>returns the certificate</para>
+         * </summary>
+         * <returns>Certificate</returns>
+         * */
+        public abstract Certificate GetCertificate();
 
         /**
         * <summary>
