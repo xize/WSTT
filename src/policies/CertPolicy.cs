@@ -112,7 +112,8 @@ namespace windows_security_tweak_tool.src.policies
                     ProcessStartInfo certutilinfo = new ProcessStartInfo("certutil.exe");
                     certutilinfo.Arguments = "-delstore Root " + "\"" + strippedline + "\"";
                     Process certutil = Process.Start(certutilinfo);
-                    while (!certutil.HasExited) { } //lock the thread
+                    certutil.WaitForExit();
+                    certutil.Close();
                     certutil.Dispose();
                 }
             }
