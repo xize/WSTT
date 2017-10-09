@@ -237,7 +237,6 @@
     <None Include="Resources\regsvr32.exe" />
     <None Include="Resources\regsvr32watchdog.exe" />
     <None Include="src\certificate.jpg" />
-    <Content Include="Resources\certificate.jpg" />
     <Content Include="windows.ico">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

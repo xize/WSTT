@@ -20,7 +20,7 @@ namespace windows_security_tweak_tool.src.optionalpolicies
 
         public override string GetDescription()
         {
-            return "enables chrome to show certificates inside the addressbar for futher investigation\n\n"+Resources.certificate.ToString();
+            return "enables chrome to show certificates inside the addressbar for futher investigation";
         }
 
         public override OptionalPolicyType GetOptionalPolicyType()
