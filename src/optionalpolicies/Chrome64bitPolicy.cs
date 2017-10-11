@@ -43,7 +43,7 @@ namespace windows_security_tweak_tool.src.optionalpolicies
 
         public override Certificate GetCertificate()
         {
-            return CertProvider.GOOGLE_CHROME.getCertificate();
+            return CertProvider.GOOGLE_CHROME.GetCertificate();
         }
 
         public async override void Apply()
@@ -85,7 +85,7 @@ namespace windows_security_tweak_tool.src.optionalpolicies
             archive.Dispose();
 
             X509Certificate cert = X509Certificate.CreateFromSignedFile(Config.GetConfig().GetDataFolder() + @"\wstt-downloaded\chrome\Installers\GoogleChromeStandaloneEnterprise64.msi");
-            if (cert.GetCertHashString() == GetCertificate().getHash())
+            if (cert.GetCertHashString() == GetCertificate().GetHash())
             {
                 Process p = Process.Start(Config.GetConfig().GetDataFolder() + @"\wstt-downloaded\chrome\Installers\GoogleChromeStandaloneEnterprise64.msi");
                 p.WaitForExit();

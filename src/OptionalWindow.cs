@@ -60,7 +60,7 @@ namespace windows_security_tweak_tool.src
                 {
                     if (p.IsCertificateDepended())
                     {
-                        if (p.GetCertificate().isExpired())
+                        if (p.GetCertificate().IsExpired())
                         {
                             p.GetButton().Text = "Disabled, expired certificate please update WSTT!";
                             p.GetButton().Enabled = false;

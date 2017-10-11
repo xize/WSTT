@@ -133,7 +133,7 @@ namespace windows_security_tweak_tool.src.policies
 
         public override Certificate GetCertificate()
         {
-            return (Environment.Is64BitOperatingSystem ? CertProvider.SIGCHECK_64BIT.getCertificate() : CertProvider.SIGCHECK_32BIT.getCertificate());
+            return (Environment.Is64BitOperatingSystem ? CertProvider.SIGCHECK_64BIT.GetCertificate() : CertProvider.SIGCHECK_32BIT.GetCertificate());
         }
 
         public override bool HasIncompatibilityIssues()

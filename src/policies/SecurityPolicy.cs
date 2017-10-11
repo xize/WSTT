@@ -170,7 +170,7 @@ namespace windows_security_tweak_tool.src.policies
                 foreach (string exe in Directory.EnumerateFiles(GetDataFolder() + @"\sigcheck\", " *.exe"))
                 {
                     string hash = X509Certificate.CreateFromSignedFile(exe).GetCertHashString();
-                    if (hash != CertProvider.SIGCHECK_32BIT.getCertificate().getHash() || hash != CertProvider.SIGCHECK_64BIT.getCertificate().getHash())
+                    if (hash != CertProvider.SIGCHECK_32BIT.GetCertificate().GetHash() || hash != CertProvider.SIGCHECK_64BIT.GetCertificate().GetHash())
                     {
                         isbad = true;
                         break;

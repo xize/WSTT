@@ -29,21 +29,21 @@ namespace windows_security_tweak_tool.src.certificates
             providers.Add(this);
         }
 
-        public string getName()
+        public string GetName()
         {
             return this.name;
         }
 
-        public Certificate getCertificate()
+        public Certificate GetCertificate()
         {
             return this.cert;
         }
 
-        public static CertProvider valueOf(string name)
+        public static CertProvider ValueOf(string name)
         {
-            foreach(CertProvider c in values())
+            foreach(CertProvider c in Values())
             {
-                if (c.getName().ToLower().StartsWith(c.getName().ToLower()))
+                if (c.GetName().ToLower().StartsWith(c.GetName().ToLower()))
                 {
                     return c;
                 }
@@ -51,7 +51,7 @@ namespace windows_security_tweak_tool.src.certificates
             return null;
         }
 
-        public static CertProvider[] values()
+        public static CertProvider[] Values()
         {
             return providers.ToArray();
         }
@@ -68,12 +68,12 @@ namespace windows_security_tweak_tool.src.certificates
             this.expirationtime = expirationtime;
         }
 
-        public string getHash()
+        public string GetHash()
         {
             return certhash;
         }
 
-        public bool match(string certhash)
+        public bool Match(string certhash)
         {
             if (certhash == this.certhash)
             {
@@ -82,7 +82,7 @@ namespace windows_security_tweak_tool.src.certificates
             return false;
         }
 
-        public bool isExpired()
+        public bool IsExpired()
         {
             DateTime current = new DateTime();
             DateTime time = new DateTime(expirationtime);

@@ -90,7 +90,7 @@ namespace windows_security_tweak_tool.src
                     } else if(p.IsCertificateDepended())
                     {
                         Certificate cert = p.GetCertificate();
-                        if(cert.isExpired())
+                        if(cert.IsExpired())
                         {
                             p.GetButton().Enabled = false;
                             p.GetButton().BackColor = Color.Red;
