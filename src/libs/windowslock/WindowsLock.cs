@@ -59,7 +59,7 @@ namespace windows_security_tweak_tool.src.libs.windowslock
         {
             if (file.StartsWith(@"C:\windows"))
             {
-                //first take owner ship.
+                //first take ownership.
                 exec("takeown /F "+file+" /A");
                 //grant administrator group full access.
                 exec("icacls "+file+" /grant Administrators:(F)");
