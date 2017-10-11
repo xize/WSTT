@@ -101,7 +101,7 @@ namespace windows_security_tweak_tool.src.ninite
 
         private bool VerifyInstaller()
         {
-            string certhash = CertProvider.NINITE.getCertificate().getHash();
+            string certhash = CertProvider.NINITE.GetCertificate().GetHash();
             X509Certificate cert = X509Certificate.CreateFromSignedFile(GetDataFolder() + @"\ninite\ninite.exe");
             return AuthenticodeTools.IsTrusted(GetDataFolder() + @"\ninite\ninite.exe") && certhash == cert.GetCertHashString();
         }

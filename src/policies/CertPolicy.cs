@@ -20,12 +20,16 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
+using System.IO.Compression;
 using System.Linq;
+using System.Net;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using windows_security_tweak_tool.src.certificates;
 
 namespace windows_security_tweak_tool.src.policies
 {
@@ -62,30 +66,16 @@ namespace windows_security_tweak_tool.src.policies
 
         public void ApplyAsync()
         {
-            if (!IsInstalled())
-            {
-                Directory.CreateDirectory(GetDataFolder() + @"\sigcheck");
-                InstallForFirstTime("sigcheck");
-                InstallForFirstTime("sigcheck64");
-                InstallForFirstTime("sigcheckeula");
-            }
 
-            Process proc;
+            this.DownloadSigCheck();
 
-            if (Environment.Is64BitOperatingSystem)
-            {
-                ProcessStartInfo sinfo = new ProcessStartInfo("cmd.exe");
-                sinfo.Arguments = "/c " + GetDataFolder() + @"\sigcheck\sigcheck.exe -tv > " + GetDataFolder() + @"\sigcheck\badcerts.txt";
-                proc = Process.Start(sinfo);
-            }
-            else
-            {
-                ProcessStartInfo sinfo = new ProcessStartInfo("cmd.exe");
-                sinfo.Arguments = "/c " + GetDataFolder() + @"\sigcheck\sigcheck.exe -tv > " + GetDataFolder() + @"\sigcheck\badcerts.txt";
-                proc = Process.Start(sinfo);
-            }
+            ProcessStartInfo sinfo = new ProcessStartInfo("cmd.exe");
+            sinfo.Arguments = "/c " + GetDataFolder() + @"\sigcheck\sigcheck" + (Environment.Is64BitOperatingSystem ? "64" : "") + ".exe -tv > "+GetDataFolder()+@"\sigcheck\badcerts.txt";
+            Process proc = Process.Start(sinfo);
 
-            while (!proc.HasExited) { } //lock the thread
+            proc.WaitForExit();
+            proc.Close();
+            proc.Dispose();
 
             ProcessStartInfo notepad = new ProcessStartInfo("notepad.exe");
             notepad.Arguments = GetDataFolder() + @"\sigcheck\badcerts.txt";
@@ -102,27 +92,31 @@ namespace windows_security_tweak_tool.src.policies
 
             Process notepadproc = Process.Start(notepad);
 
-            while (!notepadproc.HasExited) { } //lock
+            notepadproc.WaitForExit();
+            notepadproc.Close();
+            notepadproc.Dispose();
 
             IEnumerable<string> lines = File.ReadLines(GetDataFolder() + @"\sigcheck\badcerts.txt");
             string linestext = "";
+
+            Regex r = new Regex(@"^\s\s\s+"); //force first 3 spaces use + to make sure it should match anything else
+
             foreach (string line in lines)
             {
-                if (line.Contains("   ")) //3 spaces... I don't understand why: ^([\w\s]{3})+[a-zA-Z0-9\\\/\-]$ does not work....
+                if(r.IsMatch(line))
                 {
                     string strippedline = line.Substring(2, line.Length - 2);
                     linestext += strippedline + "\n";
                     ProcessStartInfo certutilinfo = new ProcessStartInfo("certutil.exe");
+                    certutilinfo.CreateNoWindow = true;
+                    certutilinfo.UseShellExecute = false;
                     certutilinfo.Arguments = "-delstore Root " + "\"" + strippedline + "\"";
                     Process certutil = Process.Start(certutilinfo);
-                    while (!certutil.HasExited) { } //lock the thread
+                    certutil.WaitForExit();
+                    certutil.Close();
                     certutil.Dispose();
                 }
             }
-
-            //cleanup
-            proc.Dispose();
-            notepadproc.Dispose();
 
             MessageBox.Show("success the following certificates have been removed.\n=====================================================\n" + linestext);
         }
@@ -132,27 +126,14 @@ namespace windows_security_tweak_tool.src.policies
             
         }
 
-        private bool IsInstalled()
+        public override bool IsCertificateDepended()
         {
-            return Directory.Exists(GetDataFolder() + @"\sigcheck");
+            return true;
         }
 
-        private void InstallForFirstTime(string resource)
+        public override Certificate GetCertificate()
         {
-            string path = GetDataFolder() + @"\sigcheck";
-
-            switch(resource)
-            {
-                case "sigcheck":
-                    File.WriteAllBytes(path+@"\sigcheck.exe", Properties.Resources.sigcheck);
-                    break;
-                case "sigcheck64":
-                    File.WriteAllBytes(path + @"\sigcheck64.exe", Properties.Resources.sigcheck64);
-                    break;
-                case "sigcheckeula":
-                    File.WriteAllBytes(path + @"\Eula.txt", Properties.Resources.sigcheckeula);
-                    break;
-            }
+            return (Environment.Is64BitOperatingSystem ? CertProvider.SIGCHECK_64BIT.GetCertificate() : CertProvider.SIGCHECK_32BIT.GetCertificate());
         }
 
         public override bool HasIncompatibilityIssues()

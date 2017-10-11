@@ -79,45 +79,5 @@ namespace windows_security_tweak_tool.Properties {
                 return ((byte[])(obj));
             }
         }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Byte[].
-        /// </summary>
-        internal static byte[] sigcheck {
-            get {
-                object obj = ResourceManager.GetObject("sigcheck", resourceCulture);
-                return ((byte[])(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Byte[].
-        /// </summary>
-        internal static byte[] sigcheck64 {
-            get {
-                object obj = ResourceManager.GetObject("sigcheck64", resourceCulture);
-                return ((byte[])(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Byte[].
-        /// </summary>
-        internal static byte[] sigcheckeula {
-            get {
-                object obj = ResourceManager.GetObject("sigcheckeula", resourceCulture);
-                return ((byte[])(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap windowslogo1 {
-            get {
-                object obj = ResourceManager.GetObject("windowslogo1", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
     }
 }

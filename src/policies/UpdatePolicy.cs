@@ -23,6 +23,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using windows_security_tweak_tool.src.certificates;
 
 namespace windows_security_tweak_tool.src.policies
 {
@@ -67,6 +68,15 @@ namespace windows_security_tweak_tool.src.policies
         public override bool IsEnabled()
         {
             return false;
+        }
+        public override bool IsCertificateDepended()
+        {
+            return false;
+        }
+
+        public override Certificate GetCertificate()
+        {
+            throw new NotImplementedException();
         }
 
         [Obsolete]

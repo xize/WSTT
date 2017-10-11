@@ -44,7 +44,7 @@ namespace windows_security_tweak_tool.src.optionalpolicies
 
         public override Certificate GetCertificate()
         {
-            return CertProvider.KEEPASS.getCertificate();
+            return CertProvider.KEEPASS.GetCertificate();
         }
 
         public async override void Apply()
@@ -84,7 +84,7 @@ namespace windows_security_tweak_tool.src.optionalpolicies
 
                 c.DownloadFile(new Uri(url), Config.GetConfig().GetDataFolder() + @"\wstt-downloaded\KeePass.exe");
                 X509Certificate cert = X509Certificate.CreateFromSignedFile(Config.GetConfig().GetDataFolder() + @"\wstt-downloaded\KeePass.exe");
-                if (cert.GetCertHashString() == GetCertificate().getHash())
+                if (cert.GetCertHashString() == GetCertificate().GetHash())
                 {
                     Process p = Process.Start(Config.GetConfig().GetDataFolder() + @"\wstt-downloaded\KeePass.exe");
                     p.WaitForExit();

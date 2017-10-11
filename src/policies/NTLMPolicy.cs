@@ -23,6 +23,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using windows_security_tweak_tool.src.certificates;
 
 namespace windows_security_tweak_tool.src.policies
 {
@@ -268,6 +269,16 @@ namespace windows_security_tweak_tool.src.policies
         public override bool IsLanguageDepended()
         {
             return true;
+        }
+
+        public override bool IsCertificateDepended()
+        {
+            return false;
+        }
+
+        public override Certificate GetCertificate()
+        {
+            throw new NotImplementedException();
         }
 
         public override bool HasIncompatibilityIssues()

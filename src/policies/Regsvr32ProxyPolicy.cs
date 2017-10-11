@@ -29,6 +29,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using windows_security_tweak_tool.Properties;
+using windows_security_tweak_tool.src.certificates;
 using windows_security_tweak_tool.src.libs.gzip_api;
 using windows_security_tweak_tool.src.libs.permission_api;
 
@@ -217,6 +218,16 @@ namespace windows_security_tweak_tool.src.policies
                 build.Append(hash[i].ToString("X2"));
             }
             return build.ToString();
+        }
+
+        public override bool IsCertificateDepended()
+        {
+            return false;
+        }
+
+        public override Certificate GetCertificate()
+        {
+            throw new NotImplementedException();
         }
 
         public override bool HasIncompatibilityIssues()

@@ -53,7 +53,7 @@ namespace windows_security_tweak_tool.src.optionalpolicies
 
         public override Certificate GetCertificate()
         {
-            return CertProvider.NINITE.getCertificate();
+            return CertProvider.NINITE.GetCertificate();
         }
 
         public async override void Apply()

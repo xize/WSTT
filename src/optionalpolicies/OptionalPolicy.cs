@@ -18,6 +18,7 @@
 */
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -43,6 +44,15 @@ namespace windows_security_tweak_tool.src.optionalpolicies
         public abstract string GetName();
 
         public abstract string GetDescription();
+
+        public bool HasDescription()
+        {
+            if(GetDescription() != null)
+            {
+                return true;
+            }
+            return false;
+        }
 
         public abstract OptionalPolicyType GetOptionalPolicyType();
 

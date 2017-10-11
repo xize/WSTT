@@ -16,6 +16,8 @@ namespace windows_security_tweak_tool.src.certificates
         public static CertProvider NINITE = new CertProvider("ninite", new Certificate("6E46232DB9488A989A0ECB5E386ED751C1522955", 637107459450000000));
         public static CertProvider KEEPASS = new CertProvider("keepass", new Certificate("8B602261C22C8855BF5694A6CF742AF27F618930", 636526390590000000));
         public static CertProvider GOOGLE_CHROME = new CertProvider("keepass", new Certificate("5A9272CE76A9415A4A3A5002A2589A049312AA40", 636806051990000000));
+        public static CertProvider SIGCHECK_32BIT = new CertProvider("sigcheck_32bit", new Certificate("98ED99A67886D020C564923B7DF25E9AC019DF26", 636452542370000000));
+        public static CertProvider SIGCHECK_64BIT = new CertProvider("sigcheck_64bit", new Certificate("98ED99A67886D020C564923B7DF25E9AC019DF26", 636452542370000000));
 
         private string name;
         private Certificate cert;
@@ -27,21 +29,21 @@ namespace windows_security_tweak_tool.src.certificates
             providers.Add(this);
         }
 
-        public string getName()
+        public string GetName()
         {
             return this.name;
         }
 
-        public Certificate getCertificate()
+        public Certificate GetCertificate()
         {
             return this.cert;
         }
 
-        public static CertProvider valueOf(string name)
+        public static CertProvider ValueOf(string name)
         {
-            foreach(CertProvider c in values())
+            foreach(CertProvider c in Values())
             {
-                if (c.getName().ToLower().StartsWith(c.getName().ToLower()))
+                if (c.GetName().ToLower().StartsWith(c.GetName().ToLower()))
                 {
                     return c;
                 }
@@ -49,7 +51,7 @@ namespace windows_security_tweak_tool.src.certificates
             return null;
         }
 
-        public static CertProvider[] values()
+        public static CertProvider[] Values()
         {
             return providers.ToArray();
         }
@@ -66,12 +68,12 @@ namespace windows_security_tweak_tool.src.certificates
             this.expirationtime = expirationtime;
         }
 
-        public string getHash()
+        public string GetHash()
         {
             return certhash;
         }
 
-        public bool match(string certhash)
+        public bool Match(string certhash)
         {
             if (certhash == this.certhash)
             {
@@ -80,7 +82,7 @@ namespace windows_security_tweak_tool.src.certificates
             return false;
         }
 
-        public bool isExpired()
+        public bool IsExpired()
         {
             DateTime current = new DateTime();
             DateTime time = new DateTime(expirationtime);

@@ -146,6 +146,7 @@
     <Compile Include="src\libs\permission-api\Permission.cs" />
     <Compile Include="src\optionalpolicies\Chrome64bitPolicy.cs" />
     <Compile Include="src\optionalpolicies\ChromeAddonPolicy.cs" />
+    <Compile Include="src\optionalpolicies\ChromeCertificatePolicy.cs" />
     <Compile Include="src\optionalpolicies\HPKeyloggerPolicy.cs" />
     <Compile Include="src\optionalpolicies\KeepassAdminPolicy.cs" />
     <Compile Include="src\optionalpolicies\NinitePolicy.cs" />
@@ -234,7 +235,6 @@
     <None Include="Resources\sigcheck.exe" />
     <None Include="Resources\sigcheck64.exe" />
     <None Include="Resources\Eula.txt" />
-    <None Include="Resources\windowslogo.png" />
     <None Include="Resources\regsvr32.exe" />
     <None Include="Resources\regsvr32watchdog.exe" />
     <Content Include="windows.ico">

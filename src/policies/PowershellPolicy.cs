@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using windows_security_tweak_tool.src.certificates;
 
 namespace windows_security_tweak_tool.src.policies
 {
@@ -93,6 +94,16 @@ namespace windows_security_tweak_tool.src.policies
             ExecuteCMD("dism /online /Enable-Feature /FeatureName:MicrosoftWindowsPowerShellV2Root", true);
 
             //TODO: add also a restriction on C:\windows\system32\WindowsPowershell\v1.0 because windows 10 is installed with 2 versions of powershell whereby version '1.0' is being used as default.
+        }
+
+        public override bool IsCertificateDepended()
+        {
+            return false;
+        }
+
+        public override Certificate GetCertificate()
+        {
+            throw new NotImplementedException();
         }
 
         public override bool HasIncompatibilityIssues()
