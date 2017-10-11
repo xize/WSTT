@@ -143,6 +143,7 @@
     <Compile Include="src\libs\gzip-api\Gzip.cs" />
     <Compile Include="src\libs\mbrfilter\MBRFilter.cs" />
     <Compile Include="src\libs\permission-api\Permission.cs" />
+    <Compile Include="src\libs\windowslock\WindowsLock.cs" />
     <Compile Include="src\optionalpolicies\Chrome64bitPolicy.cs" />
     <Compile Include="src\optionalpolicies\ChromeAddonPolicy.cs" />
     <Compile Include="src\optionalpolicies\ChromeCertificatePolicy.cs" />

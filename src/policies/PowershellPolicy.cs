@@ -1,4 +1,22 @@
-﻿using System;
+﻿/*
+    A security toolkit for windows    
+
+    Copyright(C) 2016-2017 Guido Lucassen
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.If not, see<http://www.gnu.org/licenses/>.
+*/
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
@@ -7,6 +25,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using windows_security_tweak_tool.src.certificates;
+using windows_security_tweak_tool.src.libs.windowslock;
 
 namespace windows_security_tweak_tool.src.policies
 {
@@ -30,30 +49,9 @@ namespace windows_security_tweak_tool.src.policies
 
         public override bool IsEnabled()
         {
-            ProcessStartInfo info = new ProcessStartInfo("dism.exe");
-            info.Arguments = "/online /Get-Features";
-            info.UseShellExecute = false;
-            info.CreateNoWindow = true;
-            info.RedirectStandardOutput = true;
-            Process p = Process.Start(info);
-            string data = p.StandardOutput.ReadToEnd();
-            p.WaitForExit();
-            p.Dispose();
-
-            string[] lines = data.Split('\n');
-            for(int i = 0; i < lines.Length;i++)
+            if(File.Exists(@"C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe.disabled"))
             {
-                if(lines[i].Contains("Feature Name : MicrosoftWindowsPowerShellV2") || lines[i].Contains("MicrosoftWindowsPowerShellV2Root"))
-                {
-                    string status = lines[i + 1].Substring("Status : ".Length-1);
-                    if(!status.Contains("Enabled"))
-                    {
-                        return true;
-                    } else
-                    {
-                        return false;
-                    }
-                }
+                return true;
             }
             return false;
         }
@@ -74,7 +72,17 @@ namespace windows_security_tweak_tool.src.policies
             ExecuteCMD("dism /online /Disable-Feature /FeatureName:MicrosoftWindowsPowerShellV2", true);
             ExecuteCMD("dism /online /Disable-Feature /FeatureName:MicrosoftWindowsPowerShellV2Root", true);
 
-            //TODO: add also a restriction on C:\windows\system32\WindowsPowershell\v1.0 because windows 10 is installed with 2 versions of powershell whereby version '1.0' is being used as default.
+            //take owner rights...
+            WindowsLock.GetWindowsFileLock().Unlock(@"C:\windows\system32\WindowsPowershell\v1.0\powershell.exe");
+            WindowsLock.GetWindowsFileLock().Unlock(@"C:\windows\system32\WindowsPowershell\v1.0\powershell_ise.exe");
+
+            //rename files...
+            File.Move(@"C:\windows\system32\WindowsPowershell\v1.0\powershell.exe", @"C:\windows\system32\WindowsPowershell\v1.0\powershell.exe.disabled");
+            File.Move(@"C:\windows\system32\WindowsPowershell\v1.0\powershell_ise.exe", @"C:\windows\system32\WindowsPowershell\v1.0\powershell_ise.exe.disabled");
+
+            //set owner back to trusted installer
+            WindowsLock.GetWindowsFileLock().Lock(@"C:\windows\system32\WindowsPowershell\v1.0\powershell.exe.disabled");
+            WindowsLock.GetWindowsFileLock().Lock(@"C:\windows\system32\WindowsPowershell\v1.0\powershell_ise.exe.disabled");
         }
 
         public async override void Unapply()
@@ -93,7 +101,17 @@ namespace windows_security_tweak_tool.src.policies
             ExecuteCMD("dism /online /Enable-Feature /FeatureName:MicrosoftWindowsPowerShellV2", true);
             ExecuteCMD("dism /online /Enable-Feature /FeatureName:MicrosoftWindowsPowerShellV2Root", true);
 
-            //TODO: add also a restriction on C:\windows\system32\WindowsPowershell\v1.0 because windows 10 is installed with 2 versions of powershell whereby version '1.0' is being used as default.
+            //take owner rights...
+            WindowsLock.GetWindowsFileLock().Unlock(@"C:\windows\system32\WindowsPowershell\v1.0\powershell.exe.disabled");
+            WindowsLock.GetWindowsFileLock().Unlock(@"C:\windows\system32\WindowsPowershell\v1.0\powershell_ise.exe.disabled");
+
+            //rename files...
+            File.Move(@"C:\windows\system32\WindowsPowershell\v1.0\powershell.exe.disabled", @"C:\windows\system32\WindowsPowershell\v1.0\powershell.exe");
+            File.Move(@"C:\windows\system32\WindowsPowershell\v1.0\powershell_ise.exe.disabled", @"C:\windows\system32\WindowsPowershell\v1.0\powershell_ise.exe");
+
+            //set owner back to trusted installer
+            WindowsLock.GetWindowsFileLock().Lock(@"C:\windows\system32\WindowsPowershell\v1.0\powershell.exe");
+            WindowsLock.GetWindowsFileLock().Lock(@"C:\windows\system32\WindowsPowershell\v1.0\powershell_ise.exe");
         }
 
         public override bool IsCertificateDepended()
