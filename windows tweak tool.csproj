@@ -147,6 +147,7 @@
     <Compile Include="src\optionalpolicies\Chrome64bitPolicy.cs" />
     <Compile Include="src\optionalpolicies\ChromeAddonPolicy.cs" />
     <Compile Include="src\optionalpolicies\ChromeCertificatePolicy.cs" />
+    <Compile Include="src\optionalpolicies\ForceAsNonAdministratorPolicy.cs" />
     <Compile Include="src\optionalpolicies\HPKeyloggerPolicy.cs" />
     <Compile Include="src\optionalpolicies\KeepassAdminPolicy.cs" />
     <Compile Include="src\optionalpolicies\NinitePolicy.cs" />
