@@ -110,9 +110,12 @@ namespace windows_security_tweak_tool.src
         public ProgressBar HPCheckProgress;
         private ToolTip toolTip1;
         private IContainer components;
-        private Label label3;
-        public Button chromecertbtn;
         public ProgressBar chromecertprogress;
+        public Button chromecertbtn;
+        private Label label3;
+        private Label label4;
+        public Button forcenonadminbtn;
+        public ProgressBar forcenonadminprogress;
         public CheckBox niniteskypecheckbox;
 
         private void InitializeComponent()
@@ -159,9 +162,12 @@ namespace windows_security_tweak_tool.src
             this.HPCheckbtn = new System.Windows.Forms.Button();
             this.HPCheckProgress = new System.Windows.Forms.ProgressBar();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
-            this.label3 = new System.Windows.Forms.Label();
-            this.chromecertbtn = new System.Windows.Forms.Button();
             this.chromecertprogress = new System.Windows.Forms.ProgressBar();
+            this.chromecertbtn = new System.Windows.Forms.Button();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.forcenonadminbtn = new System.Windows.Forms.Button();
+            this.forcenonadminprogress = new System.Windows.Forms.ProgressBar();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -532,7 +538,7 @@ namespace windows_security_tweak_tool.src
             // 
             this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.button1.Enabled = false;
-            this.button1.Location = new System.Drawing.Point(13, 451);
+            this.button1.Location = new System.Drawing.Point(13, 492);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
             this.button1.TabIndex = 90;
@@ -543,7 +549,7 @@ namespace windows_security_tweak_tool.src
             // 
             this.button2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.button2.Enabled = false;
-            this.button2.Location = new System.Drawing.Point(94, 451);
+            this.button2.Location = new System.Drawing.Point(94, 492);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(75, 23);
             this.button2.TabIndex = 91;
@@ -615,16 +621,14 @@ namespace windows_security_tweak_tool.src
             this.HPCheckProgress.Size = new System.Drawing.Size(406, 23);
             this.HPCheckProgress.TabIndex = 99;
             // 
-            // label3
+            // chromecertprogress
             // 
-            this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.chromecertprogress.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(15, 399);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(205, 13);
-            this.label3.TabIndex = 104;
-            this.label3.Text = "make chrome show certificate information:";
+            this.chromecertprogress.Location = new System.Drawing.Point(13, 415);
+            this.chromecertprogress.Name = "chromecertprogress";
+            this.chromecertprogress.Size = new System.Drawing.Size(406, 23);
+            this.chromecertprogress.TabIndex = 102;
             // 
             // chromecertbtn
             // 
@@ -638,18 +642,55 @@ namespace windows_security_tweak_tool.src
             this.chromecertbtn.UseVisualStyleBackColor = true;
             this.chromecertbtn.Click += new System.EventHandler(this.chromecertbtn_Click);
             // 
-            // chromecertprogress
+            // label3
             // 
-            this.chromecertprogress.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.chromecertprogress.Location = new System.Drawing.Point(13, 415);
-            this.chromecertprogress.Name = "chromecertprogress";
-            this.chromecertprogress.Size = new System.Drawing.Size(406, 23);
-            this.chromecertprogress.TabIndex = 102;
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(15, 399);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(205, 13);
+            this.label3.TabIndex = 104;
+            this.label3.Text = "make chrome show certificate information:";
+            // 
+            // label4
+            // 
+            this.label4.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(13, 441);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(311, 13);
+            this.label4.TabIndex = 107;
+            this.label4.Text = "Add \"Force run as non administrator\" to right click context menu:";
+            // 
+            // forcenonadminbtn
+            // 
+            this.forcenonadminbtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.forcenonadminbtn.AutoSize = true;
+            this.forcenonadminbtn.Location = new System.Drawing.Point(401, 457);
+            this.forcenonadminbtn.Name = "forcenonadminbtn";
+            this.forcenonadminbtn.Size = new System.Drawing.Size(94, 23);
+            this.forcenonadminbtn.TabIndex = 106;
+            this.forcenonadminbtn.Text = "apply";
+            this.forcenonadminbtn.UseVisualStyleBackColor = true;
+            this.forcenonadminbtn.Click += new System.EventHandler(this.forcenonadminbtn_Click);
+            // 
+            // forcenonadminprogress
+            // 
+            this.forcenonadminprogress.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.forcenonadminprogress.Location = new System.Drawing.Point(11, 457);
+            this.forcenonadminprogress.Name = "forcenonadminprogress";
+            this.forcenonadminprogress.Size = new System.Drawing.Size(406, 23);
+            this.forcenonadminprogress.TabIndex = 105;
             // 
             // OptionalWindow
             // 
-            this.ClientSize = new System.Drawing.Size(510, 486);
+            this.ClientSize = new System.Drawing.Size(510, 527);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.forcenonadminbtn);
+            this.Controls.Add(this.forcenonadminprogress);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.chromecertbtn);
             this.Controls.Add(this.chromecertprogress);
@@ -673,7 +714,7 @@ namespace windows_security_tweak_tool.src
             this.Controls.Add(this.optionaloptionslabel);
             this.Controls.Add(this.panel1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.MinimumSize = new System.Drawing.Size(526, 485);
+            this.MinimumSize = new System.Drawing.Size(526, 566);
             this.Name = "OptionalWindow";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Optional options:";
@@ -780,6 +821,19 @@ namespace windows_security_tweak_tool.src
         {
             OptionalPolicy p = OptionalPolicyType.CHROME_CERTIFICATE_POLICY.GetPolicy(this);
             p.Apply();
+        }
+
+        private void forcenonadminbtn_Click(object sender, EventArgs e)
+        {
+            OptionalPolicy p = OptionalPolicyType.FORCE_NON_ADMINISTRATOR_POLICY.GetPolicy(this);
+
+            if(p.IsEnabled())
+            {
+                p.Unapply();
+            } else
+            {
+                p.Apply();
+            }
         }
     }
 }

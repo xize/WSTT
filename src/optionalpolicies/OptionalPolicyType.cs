@@ -35,6 +35,7 @@ namespace windows_security_tweak_tool.src.optionalpolicies
         public static OptionalPolicyType CHROME_64BIT_POLICY = new OptionalPolicyType("chrome_64bit_policy", new Chrome64bitPolicy());
         public static OptionalPolicyType CHROME_ADDON_POLICY = new OptionalPolicyType("chrome_addon_policy", new ChromeAddonPolicy());
         public static OptionalPolicyType CHROME_CERTIFICATE_POLICY = new OptionalPolicyType("chrome certificate policy", new ChromeCertificatePolicy());
+        public static OptionalPolicyType FORCE_NON_ADMINISTRATOR_POLICY = new OptionalPolicyType("force_non_administrator_policy", new ForceAsNonAdministratorPolicy());
 
         private string name;
         private OptionalPolicy pol;
