@@ -57,7 +57,7 @@ namespace windows_security_tweak_tool.src.optionalpolicies
             RegistryKey progkey = root.CreateSubKey("forcenonadministrator");
             progkey.SetValue("", "Force run as non administrator");
             RegistryKey command = progkey.CreateSubKey("command");
-            command.SetValue("", "cmd.exe /c set __COMPAT_LAYER=RUNASINVOKER && start %1");
+            command.SetValue("", "cmd.exe /c set __COMPAT_LAYER=RUNASINVOKER && \"%1\"");
 
             command.Close();
             command.Dispose();
