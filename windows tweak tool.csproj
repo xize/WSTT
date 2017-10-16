@@ -238,6 +238,7 @@
     <None Include="Resources\Eula.txt" />
     <None Include="Resources\regsvr32.exe" />
     <None Include="Resources\regsvr32watchdog.exe" />
+    <None Include="Resources\windowslogo.png" />
     <Content Include="windows.ico">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

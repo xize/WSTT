@@ -79,5 +79,15 @@ namespace windows_security_tweak_tool.Properties {
                 return ((byte[])(obj));
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap windowslogo {
+            get {
+                object obj = ResourceManager.GetObject("windowslogo", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
     }
 }
