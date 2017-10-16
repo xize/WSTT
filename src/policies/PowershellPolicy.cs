@@ -60,6 +60,14 @@ namespace windows_security_tweak_tool.src.policies
         {
             GetButton().Enabled = false;
 
+            DialogResult r = MessageBox.Show("currently it is not advised to run this policy as the undo file permissions are not getting applied correctly...\n\nthis means it will make your system vulnerable because the administrator group always have write/delete permissions for some reason we cannot undo this.\nunless you're a professional yourself then you need to undo the rights yourself like showed below:\n\nC:\\windows\\system32\\WindowsPowershell\\v1.0\\powershell.exe\nC:\\windows\\system32\\WindowsPowershell\\v1.0\\powershell_ise.exe\n\nboth files need to be set to Read-only and Executable-only all other permissions should be rejected and the owner should be set to TrustedInstaller in order to restore the correct rights!", "warning, please read carefully!", MessageBoxButtons.OKCancel);
+
+            if (r == DialogResult.Cancel)
+            {
+                GetButton().Enabled = true;
+                return;
+            }
+
             await Task.Run(() => ApplyAsync());
 
             SetGuiEnabled(this);
@@ -69,6 +77,7 @@ namespace windows_security_tweak_tool.src.policies
 
         public void ApplyAsync()
         {
+
             ExecuteCMD("dism /online /Disable-Feature /FeatureName:MicrosoftWindowsPowerShellV2", true);
             ExecuteCMD("dism /online /Disable-Feature /FeatureName:MicrosoftWindowsPowerShellV2Root", true);
 
@@ -98,6 +107,9 @@ namespace windows_security_tweak_tool.src.policies
 
         public void UnapplyAsync()
         {
+
+            MessageBox.Show("while it works you should manually change the permissions for the Administrators group for:\n\nC:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe\nC:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell_ise.exe\n\nboth files explicity need to be set to Read and Write permissions all other permissions should be disabled!\n\ncurrently we don't have a fix since icacls is very buggy/difficult in how it is implemented..", "warning!");
+
             ExecuteCMD("dism /online /Enable-Feature /FeatureName:MicrosoftWindowsPowerShellV2", true);
             ExecuteCMD("dism /online /Enable-Feature /FeatureName:MicrosoftWindowsPowerShellV2Root", true);
 
@@ -152,7 +164,7 @@ namespace windows_security_tweak_tool.src.policies
 
         public override bool IsUserControlRequired()
         {
-            return false;
+            return true;
         }
 
         public override Button GetButton()
