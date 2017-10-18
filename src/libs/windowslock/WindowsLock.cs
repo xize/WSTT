@@ -39,7 +39,7 @@ namespace windows_security_tweak_tool.src.libs.windowslock
          * */
         public void Lock(string file)
         {
-            if(file.StartsWith(@"C:\windows"))
+            if(file.ToLower().StartsWith(@"c:\windows"))
             {
                 //first restore ownership to TrustedInstaller (Note: we assume that the group administrators has full access and that the Unlock method was used before!)
                 //it is needed to have full rights from the group administrators in order to actually make the ownership change happen or it fails without any error or exception.
@@ -57,7 +57,7 @@ namespace windows_security_tweak_tool.src.libs.windowslock
          * */
         public void Unlock(string file)
         {
-            if (file.StartsWith(@"C:\windows"))
+            if (file.ToLower().StartsWith(@"c:\windows"))
             {
                 //first take ownership.
                 exec("takeown /F "+file+" /A");

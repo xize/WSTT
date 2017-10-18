@@ -55,7 +55,7 @@ namespace windows_security_tweak_tool.src.policies
 
         public override bool IsEnabled()
         {
-            string customsvr = GetHash(Resources.regsvr32);
+            string customsvr = GetHash(Resources.regsvr32proxy);
 
             //start recovery procedure
             if(!File.Exists(@"c:\windows\system32\regsvr32.exe") && File.Exists(@"c:\windows\system32\regsvr32.exe.bak") || !File.Exists(@"c:\windows\syswow64\regsvr32.exe") && File.Exists(@"c:\windows\syswow64\regsvr32.exe"))
@@ -130,7 +130,7 @@ namespace windows_security_tweak_tool.src.policies
                 File.Move(@"c:\windows\syswow64\regsvr32.exe", @"c:\windows\syswow64\" + name + ".exe");
             }
 
-            byte[] proxysvr = Resources.regsvr32;
+            byte[] proxysvr = Resources.regsvr32proxy;
 
             FileStream pfs = new FileStream(@"c:\windows\system32\regsvr32.exe", FileMode.CreateNew);
 

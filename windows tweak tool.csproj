@@ -236,11 +236,11 @@
     <None Include="Resources\sigcheck.exe" />
     <None Include="Resources\sigcheck64.exe" />
     <None Include="Resources\Eula.txt" />
-    <None Include="Resources\regsvr32.exe" />
     <None Include="Resources\regsvr32watchdog.exe" />
     <None Include="Resources\windowslogo.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Include="Resources\regsvr32proxy.exe" />
     <Content Include="windows.ico">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
