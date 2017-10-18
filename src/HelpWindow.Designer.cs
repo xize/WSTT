@@ -37,7 +37,8 @@
             this.SuspendLayout();
             // 
             // pictureBox1
-            //
+            // 
+            this.pictureBox1.Image = global::windows_security_tweak_tool.Properties.Resources.windowslogo;
             this.pictureBox1.Location = new System.Drawing.Point(12, 12);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(101, 95);

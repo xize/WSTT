@@ -764,7 +764,6 @@ namespace windows_security_tweak_tool.src
             // 
             this.regsvr32btn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.regsvr32btn.AutoSize = true;
-            this.regsvr32btn.Enabled = false;
             this.regsvr32btn.Location = new System.Drawing.Point(282, 709);
             this.regsvr32btn.Name = "regsvr32btn";
             this.regsvr32btn.Size = new System.Drawing.Size(211, 23);

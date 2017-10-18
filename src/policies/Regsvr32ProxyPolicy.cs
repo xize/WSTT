@@ -32,6 +32,7 @@ using windows_security_tweak_tool.Properties;
 using windows_security_tweak_tool.src.certificates;
 using windows_security_tweak_tool.src.libs.gzip_api;
 using windows_security_tweak_tool.src.libs.permission_api;
+using windows_security_tweak_tool.src.libs.windowslock;
 
 namespace windows_security_tweak_tool.src.policies
 {
@@ -117,11 +118,13 @@ namespace windows_security_tweak_tool.src.policies
             fs.Dispose();
 
             //first make a backup of regsvr32 since regsvr32 cannot be restored through dism or sfc!
+            WindowsLock.GetWindowsFileLock().Unlock(@"C:\windows\system32\regsvr32.exe");
             File.Copy(@"C:\windows\system32\regsvr32.exe", @"C:\windows\system32\regsvr32.exe.bak");
             File.Move(@"c:\windows\system32\regsvr32.exe", @"c:\windows\system32\" + name + ".exe");
 
             if (Environment.Is64BitOperatingSystem)
             {
+                WindowsLock.GetWindowsFileLock().Unlock(@"C:\windows\syswow64\regsvr32.exe");
                 //first make a backup of regsvr32 since regsvr32 cannot be restored through dism or sfc!
                 File.Copy(@"C:\windows\syswow64\regsvr32.exe", @"C:\windows\syswow64\regsvr32.exe.bak");
                 File.Move(@"c:\windows\syswow64\regsvr32.exe", @"c:\windows\syswow64\" + name + ".exe");
@@ -143,8 +146,10 @@ namespace windows_security_tweak_tool.src.policies
             pfs2.Close();
             pfs2.Dispose();
 
-            Permission.GetPermissionAPI().RestoreToTrustedInstaller(@"c:\windows\system32\regsvr32.exe");
-            Permission.GetPermissionAPI().RestoreToTrustedInstaller(@"C:\windows\system32\regsvr32watchdog.exe");
+            WindowsLock.GetWindowsFileLock().Lock(@"C:\windows\system32\regsvr32.exe");
+            WindowsLock.GetWindowsFileLock().Lock(@"C:\windows\system32\regsvr32watchdog.exe");
+            //Permission.GetPermissionAPI().RestoreToTrustedInstaller(@"c:\windows\system32\regsvr32.exe");
+            //Permission.GetPermissionAPI().RestoreToTrustedInstaller(@"C:\windows\system32\regsvr32watchdog.exe");
 
             if (Environment.Is64BitOperatingSystem)
             {
@@ -159,8 +164,10 @@ namespace windows_security_tweak_tool.src.policies
                 pfs642.Write(proxysvrwatchdog, 0, proxysvrwatchdog.Length);
                 pfs642.Close();
                 pfs642.Dispose();
-                Permission.GetPermissionAPI().RestoreToTrustedInstaller(@"c:\windows\syswow64\regsvr32.exe");
-                Permission.GetPermissionAPI().RestoreToTrustedInstaller(@"c:\windows\syswow64\regsvr32watchdog.exe");
+                WindowsLock.GetWindowsFileLock().Lock(@"C:\windows\syswow64\regsvr32.exe");
+                WindowsLock.GetWindowsFileLock().Lock(@"C:\windows\syswow64\regsvr32watchdog.exe");
+                //Permission.GetPermissionAPI().RestoreToTrustedInstaller(@"c:\windows\syswow64\regsvr32.exe");
+                //Permission.GetPermissionAPI().RestoreToTrustedInstaller(@"c:\windows\syswow64\regsvr32watchdog.exe");
             }
 
             //remove rollback backup
@@ -183,17 +190,25 @@ namespace windows_security_tweak_tool.src.policies
         {
             string name = Gzip.GetGzipApi().Decompress(File.ReadAllText(GetDataFolder() + @"\proxy.dat"));
 
+            WindowsLock.GetWindowsFileLock().Unlock(@"C:\windows\system32\regsvr32.exe");
+            WindowsLock.GetWindowsFileLock().Unlock(@"C:\windows\system32\regsvr32watchdog.exe");
             File.Delete(@"C:\windows\system32\regsvr32.exe");
             File.Delete(@"C:\windows\system32\regsvr32watchdog.exe");
             if (Environment.Is64BitOperatingSystem)
             {
+                WindowsLock.GetWindowsFileLock().Unlock(@"C:\windows\syswow64\regsvr32.exe");
+                WindowsLock.GetWindowsFileLock().Unlock(@"C:\windows\syswow64\regsvr32watchdog.exe");
                 File.Delete(@"C:\windows\syswow64\regsvr32.exe");
                 File.Delete(@"C:\windows\syswow64\regsvr32watchdog.exe");
             }
+            WindowsLock.GetWindowsFileLock().Unlock(@"c:\windows\system32\" + name + ".exe");
             File.Move(@"c:\windows\system32\" + name + ".exe", @"c:\windows\system32\regsvr32.exe");
+            WindowsLock.GetWindowsFileLock().Lock(@"c:\windows\system32\regsvr32.exe");
             if (Environment.Is64BitProcess)
             {
+                WindowsLock.GetWindowsFileLock().Unlock(@"c:\windows\syswow64\" + name + ".exe");
                 File.Move(@"c:\windows\syswow64\" + name + ".exe", @"c:\windows\syswow64\regsvr32.exe");
+                WindowsLock.GetWindowsFileLock().Lock(@"c:\windows\syswow64\regsvr32.exe");
             }
             File.Delete(GetDataFolder() + @"\proxy.dat");
         }
