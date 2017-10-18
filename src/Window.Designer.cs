@@ -879,7 +879,7 @@ namespace windows_security_tweak_tool.src
             this.Controls.Add(this.menuStrip1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip1;
-            this.MinimumSize = new System.Drawing.Size(526, 823);
+            this.MinimumSize = new System.Drawing.Size(526, 866);
             this.Name = "Window";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Windows Security Tweaker Tool 14.0.25420.1b (WSTT)";
