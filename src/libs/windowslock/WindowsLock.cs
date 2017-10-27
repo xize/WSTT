@@ -41,11 +41,12 @@ namespace windows_security_tweak_tool.src.libs.windowslock
         {
             if(file.ToLower().StartsWith(@"c:\windows"))
             {
-                //first restore ownership to TrustedInstaller (Note: we assume that the group administrators has full access and that the Unlock method was used before!)
-                //it is needed to have full rights from the group administrators in order to actually make the ownership change happen or it fails without any error or exception.
+                //exec("icacls " + file + " /remove d: Administrators:F");
+                //exec("icacls " + file + " /grant g: Administrators:RX");
+
+                exec("icacls " + file + " /remove Administrators");
+                exec("icacls " + file + " /grant Administrators:RX");
                 exec("icacls "+file+" /setowner \"NT SERVICE\\TrustedInstaller\"");
-                //now we change the full rights for the group administrators to RX (Read & Executable)
-                exec("icacls "+file+" /grant Administrators:(RX)");
             } else
             {
                 throw new Exception("cannot lock non windows files!");
