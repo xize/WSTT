@@ -30,6 +30,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using windows_security_tweak_tool.src.certificates;
+using windows_security_tweak_tool.src.controls;
 
 namespace windows_security_tweak_tool.src.policies
 {
@@ -60,7 +61,8 @@ namespace windows_security_tweak_tool.src.policies
         {
             GetButton().Enabled = false;
             await Task.Run(() => ApplyAsync());
-            GetProgressbar().Value = 100;
+            RunProgressbar bar = (RunProgressbar)GetProgressbar();
+            bar.RunOnceAnimationAsync();
             GetButton().Enabled = true;
         }
 

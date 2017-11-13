@@ -24,6 +24,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using windows_security_tweak_tool.src.controls;
 
 namespace windows_security_tweak_tool.src.optionalpolicies
 {
@@ -59,7 +60,7 @@ namespace windows_security_tweak_tool.src.optionalpolicies
 
             if (appliance)
             {
-                GetProgressbar().Value = 100;
+                ((RunProgressbar)GetProgressbar()).RunOnceAnimationAsync();
             }
             GetButton().Enabled = true;
         }

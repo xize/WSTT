@@ -78,7 +78,6 @@ namespace windows_security_tweak_tool.src
             this.insecureserviceprogress = new System.Windows.Forms.ProgressBar();
             this.boguscertlabel = new System.Windows.Forms.LinkLabel();
             this.boguscertbtn = new System.Windows.Forms.Button();
-            this.boguscertprogress = new System.Windows.Forms.ProgressBar();
             this.mbrfilterlabel = new System.Windows.Forms.LinkLabel();
             this.mbrbtn = new System.Windows.Forms.Button();
             this.mbrprogress = new System.Windows.Forms.ProgressBar();
@@ -90,7 +89,6 @@ namespace windows_security_tweak_tool.src
             this.llmnrprogress = new System.Windows.Forms.ProgressBar();
             this.label4 = new System.Windows.Forms.Label();
             this.unsignedbtn = new System.Windows.Forms.Button();
-            this.unsignedprogress = new System.Windows.Forms.ProgressBar();
             this.label3 = new System.Windows.Forms.Label();
             this.smbbtn = new System.Windows.Forms.Button();
             this.smbprogress = new System.Windows.Forms.ProgressBar();
@@ -103,6 +101,8 @@ namespace windows_security_tweak_tool.src
             this.label7 = new System.Windows.Forms.Label();
             this.powershellbtn = new System.Windows.Forms.Button();
             this.powershellprogress = new System.Windows.Forms.ProgressBar();
+            this.boguscertprogress = new windows_security_tweak_tool.src.controls.RunProgressbar();
+            this.unsignedprogress = new windows_security_tweak_tool.src.controls.RunProgressbar();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -545,15 +545,6 @@ namespace windows_security_tweak_tool.src
             this.boguscertbtn.UseVisualStyleBackColor = true;
             this.boguscertbtn.Click += new System.EventHandler(this.callBogusCertEvent);
             // 
-            // boguscertprogress
-            // 
-            this.boguscertprogress.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.boguscertprogress.Location = new System.Drawing.Point(8, 419);
-            this.boguscertprogress.Name = "boguscertprogress";
-            this.boguscertprogress.Size = new System.Drawing.Size(406, 23);
-            this.boguscertprogress.TabIndex = 83;
-            // 
             // mbrfilterlabel
             // 
             this.mbrfilterlabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
@@ -572,9 +563,9 @@ namespace windows_security_tweak_tool.src
             // 
             this.mbrbtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.mbrbtn.AutoSize = true;
-            this.mbrbtn.Location = new System.Drawing.Point(412, 461);
+            this.mbrbtn.Location = new System.Drawing.Point(417, 461);
             this.mbrbtn.Name = "mbrbtn";
-            this.mbrbtn.Size = new System.Drawing.Size(82, 23);
+            this.mbrbtn.Size = new System.Drawing.Size(73, 23);
             this.mbrbtn.TabIndex = 87;
             this.mbrbtn.Text = "Apply";
             this.mbrbtn.UseVisualStyleBackColor = true;
@@ -676,15 +667,6 @@ namespace windows_security_tweak_tool.src
             this.unsignedbtn.UseVisualStyleBackColor = true;
             this.unsignedbtn.Click += new System.EventHandler(this.unsignedbtn_Click);
             // 
-            // unsignedprogress
-            // 
-            this.unsignedprogress.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.unsignedprogress.Location = new System.Drawing.Point(10, 586);
-            this.unsignedprogress.Name = "unsignedprogress";
-            this.unsignedprogress.Size = new System.Drawing.Size(384, 23);
-            this.unsignedprogress.TabIndex = 99;
-            // 
             // label3
             // 
             this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
@@ -764,6 +746,7 @@ namespace windows_security_tweak_tool.src
             // 
             this.regsvr32btn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.regsvr32btn.AutoSize = true;
+            this.regsvr32btn.Enabled = false;
             this.regsvr32btn.Location = new System.Drawing.Point(282, 709);
             this.regsvr32btn.Name = "regsvr32btn";
             this.regsvr32btn.Size = new System.Drawing.Size(211, 23);
@@ -814,10 +797,26 @@ namespace windows_security_tweak_tool.src
             this.powershellprogress.Size = new System.Drawing.Size(409, 23);
             this.powershellprogress.TabIndex = 111;
             // 
+            // boguscertprogress
+            // 
+            this.boguscertprogress.Location = new System.Drawing.Point(9, 419);
+            this.boguscertprogress.Name = "boguscertprogress";
+            this.boguscertprogress.Size = new System.Drawing.Size(406, 23);
+            this.boguscertprogress.TabIndex = 114;
+            // 
+            // unsignedprogress
+            // 
+            this.unsignedprogress.Location = new System.Drawing.Point(11, 585);
+            this.unsignedprogress.Name = "unsignedprogress";
+            this.unsignedprogress.Size = new System.Drawing.Size(383, 23);
+            this.unsignedprogress.TabIndex = 115;
+            // 
             // Window
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.ClientSize = new System.Drawing.Size(510, 827);
+            this.Controls.Add(this.unsignedprogress);
+            this.Controls.Add(this.boguscertprogress);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.powershellbtn);
             this.Controls.Add(this.powershellprogress);
@@ -832,7 +831,6 @@ namespace windows_security_tweak_tool.src
             this.Controls.Add(this.smbprogress);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.unsignedbtn);
-            this.Controls.Add(this.unsignedprogress);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.llmnrbtn);
             this.Controls.Add(this.llmnrprogress);
@@ -845,7 +843,6 @@ namespace windows_security_tweak_tool.src
             this.Controls.Add(this.mbrprogress);
             this.Controls.Add(this.boguscertlabel);
             this.Controls.Add(this.boguscertbtn);
-            this.Controls.Add(this.boguscertprogress);
             this.Controls.Add(this.insecureserviceslabel);
             this.Controls.Add(this.insecureservicesbtn);
             this.Controls.Add(this.insecureserviceprogress);
@@ -934,7 +931,6 @@ namespace windows_security_tweak_tool.src
         public ProgressBar mbrprogress;
         private Button applyforcebtn;
         public Button boguscertbtn;
-        public ProgressBar boguscertprogress;
         private LinkLabel boguscertlabel;
         private Label label1;
         public Button netsharebtn;
@@ -945,7 +941,6 @@ namespace windows_security_tweak_tool.src
         public ToolStripMenuItem openOptionalOptionsToolStripMenuItem;
         private Label label4;
         public Button unsignedbtn;
-        public ProgressBar unsignedprogress;
         private ToolStripMenuItem resetPoliciesToolStripMenuItem;
         public ProgressBar insecureserviceprogress;
         public Button insecureservicesbtn;
@@ -961,5 +956,7 @@ namespace windows_security_tweak_tool.src
         private Label label7;
         public Button powershellbtn;
         public ProgressBar powershellprogress;
+        public controls.RunProgressbar unsignedprogress;
+        public controls.RunProgressbar boguscertprogress;
     }
 }

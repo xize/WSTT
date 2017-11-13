@@ -25,6 +25,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using windows_security_tweak_tool.Properties;
+using windows_security_tweak_tool.src.controls;
 using windows_security_tweak_tool.src.ninite;
 using windows_security_tweak_tool.src.optionalpolicies;
 
@@ -107,10 +108,10 @@ namespace windows_security_tweak_tool.src
         public ProgressBar progressBar1;
         private Label label1;
         public Button HPCheckbtn;
-        public ProgressBar HPCheckProgress;
+        public RunProgressbar HPCheckProgress;
         private ToolTip toolTip1;
         private IContainer components;
-        public ProgressBar chromecertprogress;
+        public RunProgressbar chromecertprogress;
         public Button chromecertbtn;
         private Label label3;
         private Label label4;
@@ -118,7 +119,7 @@ namespace windows_security_tweak_tool.src
         public ProgressBar forcenonadminprogress;
         private Label label5;
         public Button sigverifbtn;
-        public ProgressBar sigverifprogress;
+        public RunProgressbar sigverifprogress;
         public CheckBox niniteskypecheckbox;
 
         private void InitializeComponent()
@@ -127,7 +128,7 @@ namespace windows_security_tweak_tool.src
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(OptionalWindow));
             this.chromeaddonlabel = new System.Windows.Forms.Label();
             this.chromeaddonbtn = new System.Windows.Forms.Button();
-            this.chromeaddonprogress = new System.Windows.Forms.ProgressBar();
+            this.chromeaddonprogress = new RunProgressbar();
             this.chromelabel = new System.Windows.Forms.Label();
             this.chromebtn = new System.Windows.Forms.Button();
             this.chromeprogress = new System.Windows.Forms.ProgressBar();
@@ -163,9 +164,9 @@ namespace windows_security_tweak_tool.src
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.label1 = new System.Windows.Forms.Label();
             this.HPCheckbtn = new System.Windows.Forms.Button();
-            this.HPCheckProgress = new System.Windows.Forms.ProgressBar();
+            this.HPCheckProgress = new RunProgressbar();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
-            this.chromecertprogress = new System.Windows.Forms.ProgressBar();
+            this.chromecertprogress = new RunProgressbar();
             this.chromecertbtn = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
@@ -173,7 +174,7 @@ namespace windows_security_tweak_tool.src
             this.forcenonadminprogress = new System.Windows.Forms.ProgressBar();
             this.label5 = new System.Windows.Forms.Label();
             this.sigverifbtn = new System.Windows.Forms.Button();
-            this.sigverifprogress = new System.Windows.Forms.ProgressBar();
+            this.sigverifprogress = new RunProgressbar();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -644,7 +645,7 @@ namespace windows_security_tweak_tool.src
             this.chromecertbtn.Name = "chromecertbtn";
             this.chromecertbtn.Size = new System.Drawing.Size(94, 23);
             this.chromecertbtn.TabIndex = 103;
-            this.chromecertbtn.Text = "start";
+            this.chromecertbtn.Text = "run";
             this.chromecertbtn.UseVisualStyleBackColor = true;
             this.chromecertbtn.Click += new System.EventHandler(this.chromecertbtn_Click);
             // 
