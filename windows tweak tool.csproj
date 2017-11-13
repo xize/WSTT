@@ -155,6 +155,7 @@
     <Compile Include="src\optionalpolicies\ninite\NiniteOption.cs" />
     <Compile Include="src\optionalpolicies\OptionalPolicy.cs" />
     <Compile Include="src\optionalpolicies\OptionalPolicyType.cs" />
+    <Compile Include="src\optionalpolicies\SigVerifPolicy.cs" />
     <Compile Include="src\OptionalWindow.cs">
       <SubType>Form</SubType>
     </Compile>

@@ -116,6 +116,9 @@ namespace windows_security_tweak_tool.src
         private Label label4;
         public Button forcenonadminbtn;
         public ProgressBar forcenonadminprogress;
+        private Label label5;
+        public Button sigverifbtn;
+        public ProgressBar sigverifprogress;
         public CheckBox niniteskypecheckbox;
 
         private void InitializeComponent()
@@ -168,6 +171,9 @@ namespace windows_security_tweak_tool.src
             this.label4 = new System.Windows.Forms.Label();
             this.forcenonadminbtn = new System.Windows.Forms.Button();
             this.forcenonadminprogress = new System.Windows.Forms.ProgressBar();
+            this.label5 = new System.Windows.Forms.Label();
+            this.sigverifbtn = new System.Windows.Forms.Button();
+            this.sigverifprogress = new System.Windows.Forms.ProgressBar();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -538,7 +544,7 @@ namespace windows_security_tweak_tool.src
             // 
             this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.button1.Enabled = false;
-            this.button1.Location = new System.Drawing.Point(13, 492);
+            this.button1.Location = new System.Drawing.Point(13, 534);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
             this.button1.TabIndex = 90;
@@ -549,7 +555,7 @@ namespace windows_security_tweak_tool.src
             // 
             this.button2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.button2.Enabled = false;
-            this.button2.Location = new System.Drawing.Point(94, 492);
+            this.button2.Location = new System.Drawing.Point(94, 534);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(75, 23);
             this.button2.TabIndex = 91;
@@ -685,9 +691,44 @@ namespace windows_security_tweak_tool.src
             this.forcenonadminprogress.Size = new System.Drawing.Size(406, 23);
             this.forcenonadminprogress.TabIndex = 105;
             // 
+            // label5
+            // 
+            this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(13, 483);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(203, 13);
+            this.label5.TabIndex = 110;
+            this.label5.Text = "use sigverif to check for unsigned drivers:";
+            // 
+            // sigverifbtn
+            // 
+            this.sigverifbtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.sigverifbtn.AutoSize = true;
+            this.sigverifbtn.Location = new System.Drawing.Point(401, 499);
+            this.sigverifbtn.Name = "sigverifbtn";
+            this.sigverifbtn.Size = new System.Drawing.Size(94, 23);
+            this.sigverifbtn.TabIndex = 109;
+            this.sigverifbtn.Text = "run";
+            this.sigverifbtn.UseVisualStyleBackColor = true;
+            this.sigverifbtn.Click += new System.EventHandler(this.sigverifbtn_Click);
+            // 
+            // sigverifprogress
+            // 
+            this.sigverifprogress.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.sigverifprogress.Location = new System.Drawing.Point(11, 499);
+            this.sigverifprogress.Name = "sigverifprogress";
+            this.sigverifprogress.Size = new System.Drawing.Size(406, 23);
+            this.sigverifprogress.TabIndex = 108;
+            // 
             // OptionalWindow
             // 
-            this.ClientSize = new System.Drawing.Size(510, 527);
+            this.ClientSize = new System.Drawing.Size(510, 569);
+            this.Controls.Add(this.label5);
+            this.Controls.Add(this.sigverifbtn);
+            this.Controls.Add(this.sigverifprogress);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.forcenonadminbtn);
             this.Controls.Add(this.forcenonadminprogress);
@@ -714,7 +755,7 @@ namespace windows_security_tweak_tool.src
             this.Controls.Add(this.optionaloptionslabel);
             this.Controls.Add(this.panel1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.MinimumSize = new System.Drawing.Size(526, 566);
+            this.MinimumSize = new System.Drawing.Size(526, 608);
             this.Name = "OptionalWindow";
             this.Text = "Optional options:";
             this.Load += new System.EventHandler(this.OptionalWindow_Load);
@@ -833,6 +874,12 @@ namespace windows_security_tweak_tool.src
             {
                 p.Apply();
             }
+        }
+
+        private void sigverifbtn_Click(object sender, EventArgs e)
+        {
+            OptionalPolicy p = OptionalPolicyType.SIGVERIF_POLICY.GetPolicy(this);
+            p.Apply();
         }
     }
 }
