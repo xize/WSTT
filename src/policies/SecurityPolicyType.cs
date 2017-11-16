@@ -28,31 +28,32 @@ namespace windows_security_tweak_tool.src.policies
 
         protected static HashSet<SecurityPolicyType> types = new HashSet<SecurityPolicyType>();
 
-        public static SecurityPolicyType TEMP_POLICY = new SecurityPolicyType("temp_policy", new TempPolicy());
-        public static SecurityPolicyType WSCRIPT_POLICY = new SecurityPolicyType("wscript_policy", new WscriptPolicy());
-        public static SecurityPolicyType UPDATE_POLICY = new SecurityPolicyType("update_policy", new UpdatePolicy());
-        public static SecurityPolicyType UAC_POLICY = new SecurityPolicyType("uac_policy", new UacPolicy());
-        public static SecurityPolicyType NETBIOS_POLICY = new SecurityPolicyType("netbios_policy", new NetbiosPolicy());
-        public static SecurityPolicyType RENAME_POLICY = new SecurityPolicyType("rename_policy", new RenamePolicy());
-        public static SecurityPolicyType REMOTE_REGISTRY_POLICY = new SecurityPolicyType("remote_registry_policy", new RemoteRegistryPolicy());
-        public static SecurityPolicyType RDP_POLICY = new SecurityPolicyType("rdp_policy", new RDPPolicy());
-        public static SecurityPolicyType NTLM_POLICY = new SecurityPolicyType("ntlm_policy", new NTLMPolicy());
-        public static SecurityPolicyType MBR_POLICY = new SecurityPolicyType("mbr_policy", new MBRPolicy());
-        public static SecurityPolicyType CERT_POLICY = new SecurityPolicyType("cert_policy", new CertPolicy());
-        public static SecurityPolicyType NETSHARE_POLICY = new SecurityPolicyType("netshare_policy", new NetSharePolicy());
-        public static SecurityPolicyType LLMNR_POLICY = new SecurityPolicyType("llmnr_policy", new LLMNRPolicy());
-        public static SecurityPolicyType IN_SECURE_SERVICES_POLICY = new SecurityPolicyType("in_secure_services_policy", new InSecureServicesPolicy());
-        public static SecurityPolicyType UNSIGNED_POLICY = new SecurityPolicyType("unsigned_policy", new UnsignedPolicy());
-        public static SecurityPolicyType SMB_SHARING_POLICY = new SecurityPolicyType("smb_sharing_policy", new SMBSharingPolicy());
-        public static SecurityPolicyType AUTOPLAY_POLICY = new SecurityPolicyType("autoplay_policy", new AutoPlayPolicy());
-        public static SecurityPolicyType REGSERVR32_PROXY_POLICY = new SecurityPolicyType("regsvr32_proxy_policy", new Regsvr32ProxyPolicy());
-        public static SecurityPolicyType POWERSHELL_POLICY = new SecurityPolicyType("powershell_policy", new PowershellPolicy());
+        public static SecurityPolicyType TEMP_POLICY = new SecurityPolicyType("temp_policy", new TempPolicy(), 0x01);
+        public static SecurityPolicyType WSCRIPT_POLICY = new SecurityPolicyType("wscript_policy", new WscriptPolicy(), 0x02);
+        public static SecurityPolicyType UPDATE_POLICY = new SecurityPolicyType("update_policy", new UpdatePolicy(), 0x03);
+        public static SecurityPolicyType UAC_POLICY = new SecurityPolicyType("uac_policy", new UacPolicy(), 0x04);
+        public static SecurityPolicyType NETBIOS_POLICY = new SecurityPolicyType("netbios_policy", new NetbiosPolicy(), 0x05);
+        public static SecurityPolicyType RENAME_POLICY = new SecurityPolicyType("rename_policy", new RenamePolicy(), 0x06);
+        public static SecurityPolicyType REMOTE_REGISTRY_POLICY = new SecurityPolicyType("remote_registry_policy", new RemoteRegistryPolicy(), 0x07);
+        public static SecurityPolicyType RDP_POLICY = new SecurityPolicyType("rdp_policy", new RDPPolicy(), 0x08);
+        public static SecurityPolicyType NTLM_POLICY = new SecurityPolicyType("ntlm_policy", new NTLMPolicy(), 0x09);
+        public static SecurityPolicyType MBR_POLICY = new SecurityPolicyType("mbr_policy", new MBRPolicy(), 0x10);
+        public static SecurityPolicyType CERT_POLICY = new SecurityPolicyType("cert_policy", new CertPolicy(), 0x11);
+        public static SecurityPolicyType NETSHARE_POLICY = new SecurityPolicyType("netshare_policy", new NetSharePolicy(), 0x12);
+        public static SecurityPolicyType LLMNR_POLICY = new SecurityPolicyType("llmnr_policy", new LLMNRPolicy(), 0x13);
+        public static SecurityPolicyType IN_SECURE_SERVICES_POLICY = new SecurityPolicyType("in_secure_services_policy", new InSecureServicesPolicy(), 0x14);
+        public static SecurityPolicyType UNSIGNED_POLICY = new SecurityPolicyType("unsigned_policy", new UnsignedPolicy(), 0x15);
+        public static SecurityPolicyType SMB_SHARING_POLICY = new SecurityPolicyType("smb_sharing_policy", new SMBSharingPolicy(), 0x16);
+        public static SecurityPolicyType AUTOPLAY_POLICY = new SecurityPolicyType("autoplay_policy", new AutoPlayPolicy(), 0x17);
+        public static SecurityPolicyType REGSERVR32_PROXY_POLICY = new SecurityPolicyType("regsvr32_proxy_policy", new Regsvr32ProxyPolicy(), 0x18);
+        public static SecurityPolicyType POWERSHELL_POLICY = new SecurityPolicyType("powershell_policy", new PowershellPolicy(), 0x19);
 
         private string name;
         private SecurityPolicy pol;
         private int priority = 1;
+        private byte packet;
 
-        public SecurityPolicyType(string name, SecurityPolicy pol)
+        public SecurityPolicyType(string name, SecurityPolicy pol, byte packetid)
         {
             types.Add(this);
             this.name = name;
@@ -85,6 +86,23 @@ namespace windows_security_tweak_tool.src.policies
                 if(type.startsWith(name.ToUpper(), type.GetName().ToUpper()))
                 {
                     return type;
+                }
+            }
+            return null;
+        }
+
+        public byte GetPacketID()
+        {
+            return this.packet;
+        }
+
+        public static SecurityPolicyType GetSecurityPolicyByID(byte b)
+        {
+            foreach(SecurityPolicyType t in Values())
+            {
+                if(t.GetPacketID() == b)
+                {
+                    return t;
                 }
             }
             return null;

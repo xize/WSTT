@@ -125,6 +125,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Include="src\controls\RunProgressbar.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="src\libs\certificates\CertDebugger.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -185,6 +188,9 @@
     <Compile Include="src\libs\authenticodetools\AuthenticodeTools.cs" />
     <Compile Include="src\libs\browser-api\BrowserType.cs" />
     <Compile Include="src\libs\browser-api\Browser.cs" />
+    <Compile Include="src\socket\client\WindowsClient.cs" />
+    <Compile Include="src\socket\server\WindowsServer.cs" />
+    <Compile Include="src\socket\WClient.cs" />
     <Compile Include="src\Window.cs">
       <SubType>Form</SubType>
     </Compile>
