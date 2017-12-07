@@ -747,11 +747,11 @@ namespace windows_security_tweak_tool.src
             this.regsvr32btn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.regsvr32btn.AutoSize = true;
             this.regsvr32btn.Enabled = false;
-            this.regsvr32btn.Location = new System.Drawing.Point(282, 709);
+            this.regsvr32btn.Location = new System.Drawing.Point(424, 709);
             this.regsvr32btn.Name = "regsvr32btn";
-            this.regsvr32btn.Size = new System.Drawing.Size(211, 23);
+            this.regsvr32btn.Size = new System.Drawing.Size(69, 23);
             this.regsvr32btn.TabIndex = 109;
-            this.regsvr32btn.Text = "disabled, needs a better user right system";
+            this.regsvr32btn.Text = "disabled";
             this.regsvr32btn.UseVisualStyleBackColor = true;
             this.regsvr32btn.Click += new System.EventHandler(this.regsvr32btn_Click);
             // 
@@ -780,11 +780,12 @@ namespace windows_security_tweak_tool.src
             // 
             this.powershellbtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.powershellbtn.AutoSize = true;
+            this.powershellbtn.Enabled = false;
             this.powershellbtn.Location = new System.Drawing.Point(424, 751);
             this.powershellbtn.Name = "powershellbtn";
             this.powershellbtn.Size = new System.Drawing.Size(71, 23);
             this.powershellbtn.TabIndex = 112;
-            this.powershellbtn.Text = "Apply";
+            this.powershellbtn.Text = "disabled";
             this.powershellbtn.UseVisualStyleBackColor = true;
             this.powershellbtn.Click += new System.EventHandler(this.powershellbtn_Click);
             // 
