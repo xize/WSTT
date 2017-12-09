@@ -94,7 +94,7 @@ namespace windows_security_tweak_tool.src.optionalpolicies
 
                     foreach(int version in fixedversions)
                     {
-                        if (product > version)
+                        if (product >= version)
                         {
                             safe = true;
                             break;
