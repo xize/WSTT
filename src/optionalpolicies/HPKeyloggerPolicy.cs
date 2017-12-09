@@ -70,16 +70,61 @@ namespace windows_security_tweak_tool.src.optionalpolicies
         {
 
             //begin check SynTP keylogger check...
-
             RegistryKey checkkey1 = RegistryKey.OpenBaseKey(RegistryHive.LocalMachine, RegistryView.Default).OpenSubKey(@"\Software\Synaptics\SynTP");
             RegistryKey checkkey2 = RegistryKey.OpenBaseKey(RegistryHive.LocalMachine, RegistryView.Default).OpenSubKey(@"\Software\Synaptics\SynTP");
             
             //todo: add version check and value check... this isn't very good.
             if(File.Exists(@"C:\windows\system32\drivers\SynTP.sys") || File.Exists(@"C:\windows\syswow64\drivers\SynTP.sys") || checkkey1 != null || checkkey2 != null)
             {
-                MessageBox.Show("warning there are signs you are probably infected by a HP keylogger\nplease update your Synaptics touch driver via HP their site!\n\nsince this keylogger is harder to detect this error could be false alarm.", "warning");
-            }
 
+                int[] fixedversions = {
+                    190172021,
+                    19019631,
+                    19019631,
+                    17018251,
+                    1938221,
+                    1933131,
+                };
+
+                bool safe = false;
+
+                if(File.Exists(@"C:\windows\system32\drivers\SynTP.sys"))
+                {
+                    int product = Int32.Parse(FileVersionInfo.GetVersionInfo(@"C:\windows\system32\drivers\SynTP.sys").ProductVersion.Replace(".", "").Replace("", "").Replace("A", ""));
+
+                    foreach(int version in fixedversions)
+                    {
+                        if (product > version)
+                        {
+                            safe = true;
+                            break;
+                        }
+                    }
+
+                    if(!safe)
+                    {
+                        MessageBox.Show("warning there are signs you are probably infected by a HP keylogger\nplease update your Synaptics touch driver via HP their site!\n\nsince this keylogger is harder to detect this error could be false alarm.\n\nvisit https://support.hp.com/us-en/document/c05827409 to see if your driver version is higher than this", "warning");
+                    }
+
+                } else if(File.Exists(@"C:\windows\syswow64\drivers\SynTP.sys"))
+                {
+                    int product = Int32.Parse(FileVersionInfo.GetVersionInfo(@"C:\windows\syswow64\drivers\SynTP.sys").ProductVersion.Replace(".", "").Replace("", "").Replace("A", ""));
+
+                    foreach (int version in fixedversions)
+                    {
+                        if (product >= version)
+                        {
+                            safe = true;
+                            break;
+                        }
+                    }
+
+                    if (!safe)
+                    {
+                        MessageBox.Show("warning there are signs you are probably infected by a HP keylogger\nplease update your Synaptics touch driver via HP their site!\n\nsince this keylogger is harder to detect this error could be false alarm.\n\nvisit https://support.hp.com/us-en/document/c05827409 to see if your driver version is higher than this", "warning");
+                    }
+                }
+            }
             //end check
 
             //begin audio driver keylogger mictray
