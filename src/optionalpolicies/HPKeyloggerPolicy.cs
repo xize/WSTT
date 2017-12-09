@@ -72,10 +72,10 @@ namespace windows_security_tweak_tool.src.optionalpolicies
             //begin check SynTP keylogger check...
             RegistryKey checkkey1 = RegistryKey.OpenBaseKey(RegistryHive.LocalMachine, RegistryView.Default).OpenSubKey(@"\Software\Synaptics\SynTP");
             RegistryKey checkkey2 = RegistryKey.OpenBaseKey(RegistryHive.LocalMachine, RegistryView.Default).OpenSubKey(@"\Software\Synaptics\PointerPort");
-            
+
             //todo: check if the registry makes sense for detection, and the fixed versions do work for detection.
-            //      there is not very much information to which versions are vulnerable since they aren't headless drivers but packaged as family driver suites we also don't know if newer familys will come and use this touchpad to... 
-            if(File.Exists(@"C:\windows\system32\drivers\SynTP.sys") || File.Exists(@"C:\windows\syswow64\drivers\SynTP.sys") || checkkey1 != null || checkkey2 != null)
+            //      there is not very much information to which versions are vulnerable since they aren't headless drivers but packaged as family driver suites we also don't know if newer families will come and use this touchpad to with a complete different version throwing mud at our detection... 
+            if (File.Exists(@"C:\windows\system32\drivers\SynTP.sys") || File.Exists(@"C:\windows\syswow64\drivers\SynTP.sys") || checkkey1 != null || checkkey2 != null)
             {
 
                 int[] fixedversions = {
