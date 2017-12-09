@@ -16,6 +16,7 @@
     You should have received a copy of the GNU General Public License
     along with this program.If not, see<http://www.gnu.org/licenses/>.
 */
+using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -67,6 +68,22 @@ namespace windows_security_tweak_tool.src.optionalpolicies
 
         public bool ApplyAsync()
         {
+
+            //begin check SynTP keylogger check...
+
+            RegistryKey checkkey1 = RegistryKey.OpenBaseKey(RegistryHive.LocalMachine, RegistryView.Default).OpenSubKey(@"\Software\Synaptics\SynTP");
+            RegistryKey checkkey2 = RegistryKey.OpenBaseKey(RegistryHive.LocalMachine, RegistryView.Default).OpenSubKey(@"\Software\Synaptics\SynTP");
+            
+            //todo: add version check and value check... this isn't very good.
+            if(File.Exists(@"C:\windows\system32\drivers\SynTP.sys") || File.Exists(@"C:\windows\syswow64\drivers\SynTP.sys") || checkkey1 != null || checkkey2 != null)
+            {
+                MessageBox.Show("warning there are signs you are probably infected by a HP keylogger\nplease update your Synaptics touch driver via HP their site!\n\nsince this keylogger is harder to detect this error could be false alarm.", "warning");
+            }
+
+            //end check
+
+            //begin audio driver keylogger mictray
+
             if (File.Exists(@"C:\Windows\System32\MicTray.exe") || File.Exists(@"C:\Windows\System32\MicTray64.exe"))
             {
 
@@ -83,7 +100,7 @@ namespace windows_security_tweak_tool.src.optionalpolicies
                 if(version32 <= badvalue || version64 <= badvalue)
                 {
                     //end of version check
-                    MessageBox.Show("we are removing files from your system\nplease note that after a restart you need to check if these files still exist in:\n\nC:\\Windows\\System32\\MicTray.exe\nC:\\Windows\\System32\\MicTray64.exe\n\nif these files exist after reboot please make a issue on our github page!", "Your system is vulnerable!");
+                    MessageBox.Show("we are removing HP's audio driver from your system along with the keylogs NOTE: a newer version of this driver contains a patch\nplease note that after a restart you need to check if these files still exist in:\n\nC:\\Windows\\System32\\MicTray.exe\nC:\\Windows\\System32\\MicTray64.exe\n\nif these files exist after reboot please make a issue on our github page!", "Your system is vulnerable!");
 
                     //first kill all processes before removing the files
                     KillProcesses();
@@ -107,6 +124,7 @@ namespace windows_security_tweak_tool.src.optionalpolicies
                 MessageBox.Show("there is no reason to worry about an HP keylogger! :)", "Your pc is safe!");
                 return true;
             }
+            //end check
             return false;
         }
 
