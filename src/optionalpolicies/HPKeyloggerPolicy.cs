@@ -70,21 +70,35 @@ namespace windows_security_tweak_tool.src.optionalpolicies
             if (File.Exists(@"C:\Windows\System32\MicTray.exe") || File.Exists(@"C:\Windows\System32\MicTray64.exe"))
             {
 
-                MessageBox.Show("we are removing files from your system\nplease note that after a restart you need to check if these files still exist in:\n\nC:\\Windows\\System32\\MicTray.exe\nC:\\Windows\\System32\\MicTray64.exe\n\nif these files exist after reboot please make a issue on our github page!", "Your system is vulnerable!");
+                //begin check version 1.0.0.46
 
-                //first kill all processes before removing the files
-                KillProcesses();
+                int badvalue = 10046;
 
-                File.Delete(@"C:\Windows\System32\MicTray.exe");
-                File.Delete(@"C:\Windows\System32\MicTray64.exe");
+                string bit32 = @"C:\Windows\System32\MicTray.exe";
+                string bit64 = @"C:\Windows\System32\MicTray64.exe";
 
-                string[] users = Directory.GetDirectories(@"C:\Users\");
+                int version32 = Int32.Parse(FileVersionInfo.GetVersionInfo(bit32).ProductVersion.Replace(".", ""));
+                int version64 = Int32.Parse(FileVersionInfo.GetVersionInfo(bit64).ProductVersion.Replace(".", ""));
 
-                foreach (string user in users)
+                if(version32 <= badvalue || version64 <= badvalue)
                 {
-                    if (File.Exists(user + @"\" + @"MicTray.log"))
+                    //end of version check
+                    MessageBox.Show("we are removing files from your system\nplease note that after a restart you need to check if these files still exist in:\n\nC:\\Windows\\System32\\MicTray.exe\nC:\\Windows\\System32\\MicTray64.exe\n\nif these files exist after reboot please make a issue on our github page!", "Your system is vulnerable!");
+
+                    //first kill all processes before removing the files
+                    KillProcesses();
+
+                    File.Delete(@"C:\Windows\System32\MicTray.exe");
+                    File.Delete(@"C:\Windows\System32\MicTray64.exe");
+
+                    string[] users = Directory.GetDirectories(@"C:\Users\");
+
+                    foreach (string user in users)
                     {
-                        File.Delete(user + @"\" + @"MicTray.log");
+                        if (File.Exists(user + @"\" + @"MicTray.log"))
+                        {
+                            File.Delete(user + @"\" + @"MicTray.log");
+                        }
                     }
                 }
             }
