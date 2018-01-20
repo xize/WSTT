@@ -141,9 +141,9 @@ namespace windows_security_tweak_tool.src.policies
             }
 
             DateTime time = Directory.GetLastWriteTime(GetDataFolder() + @"\sigcheck\");
-            DateTime expire = DateTime.Now.AddMonths(1);
+            DateTime expire = time.AddMonths(1);
 
-            if (!isfirst && time.Ticks <= expire.Ticks)
+            if (!isfirst && (expire.Ticks-time.Ticks) > 0)
             {
                 //prevents to update sigcheck everytime, just update once per month!
                 return;
