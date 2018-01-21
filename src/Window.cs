@@ -467,6 +467,7 @@ namespace windows_security_tweak_tool.src
             }
         }
 
+        /*
         private void regsvr32btn_Click(object sender, EventArgs e)
         {
             SecurityPolicy p = SecurityPolicyType.REGSERVR32_PROXY_POLICY.GetPolicy(this);
@@ -479,7 +480,7 @@ namespace windows_security_tweak_tool.src
                 p.Apply();
             }
         }
-
+        */
         private void powershellbtn_Click(object sender, EventArgs e)
         {
             SecurityPolicy p = SecurityPolicyType.POWERSHELL_POLICY.GetPolicy(this);

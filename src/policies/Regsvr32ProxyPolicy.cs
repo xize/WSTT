@@ -50,7 +50,7 @@ namespace windows_security_tweak_tool.src.policies
 
         public override SecurityPolicyType GetPolicyType()
         {
-            return SecurityPolicyType.REGSERVR32_PROXY_POLICY;
+            return null /* SecurityPolicyType.REGSERVR32_PROXY_POLICY*/;
         }
 
         public override bool IsEnabled()
