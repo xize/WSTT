@@ -41,11 +41,14 @@ namespace windows_security_tweak_tool.src
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
+
+            /*
             if (Debugger.IsAttached)
             {
                 CertDebugger certwindow = new CertDebugger();
                 certwindow.Show();
             }
+            */
 
             gui = new Window();
             Application.Run(gui);
