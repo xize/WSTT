@@ -73,7 +73,7 @@ namespace windows_security_tweak_tool.src
 
         private Label chromeaddonlabel;
         public Button chromeaddonbtn;
-        public ProgressBar chromeaddonprogress;
+        public RunProgressbar chromeaddonprogress;
         private Label chromelabel;
         public Button chromebtn;
         public ProgressBar chromeprogress;
@@ -95,7 +95,6 @@ namespace windows_security_tweak_tool.src
         public CheckBox niniteimgburncheckbox;
         public CheckBox ninitegoogledrivecheckbox;
         public CheckBox ninitedropboxcheckbox;
-        public CheckBox ninitembamcheckbox;
         public CheckBox niniteessentialscheckbox;
         public CheckBox ninitespotifycheckbox;
         public CheckBox ninitevlcplayercheckbox;
@@ -128,7 +127,7 @@ namespace windows_security_tweak_tool.src
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(OptionalWindow));
             this.chromeaddonlabel = new System.Windows.Forms.Label();
             this.chromeaddonbtn = new System.Windows.Forms.Button();
-            this.chromeaddonprogress = new RunProgressbar();
+            this.chromeaddonprogress = new windows_security_tweak_tool.src.controls.RunProgressbar();
             this.chromelabel = new System.Windows.Forms.Label();
             this.chromebtn = new System.Windows.Forms.Button();
             this.chromeprogress = new System.Windows.Forms.ProgressBar();
@@ -150,7 +149,6 @@ namespace windows_security_tweak_tool.src
             this.niniteimgburncheckbox = new System.Windows.Forms.CheckBox();
             this.ninitegoogledrivecheckbox = new System.Windows.Forms.CheckBox();
             this.ninitedropboxcheckbox = new System.Windows.Forms.CheckBox();
-            this.ninitembamcheckbox = new System.Windows.Forms.CheckBox();
             this.niniteessentialscheckbox = new System.Windows.Forms.CheckBox();
             this.ninitespotifycheckbox = new System.Windows.Forms.CheckBox();
             this.ninitevlcplayercheckbox = new System.Windows.Forms.CheckBox();
@@ -164,9 +162,9 @@ namespace windows_security_tweak_tool.src
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.label1 = new System.Windows.Forms.Label();
             this.HPCheckbtn = new System.Windows.Forms.Button();
-            this.HPCheckProgress = new RunProgressbar();
+            this.HPCheckProgress = new windows_security_tweak_tool.src.controls.RunProgressbar();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
-            this.chromecertprogress = new RunProgressbar();
+            this.chromecertprogress = new windows_security_tweak_tool.src.controls.RunProgressbar();
             this.chromecertbtn = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
@@ -174,7 +172,7 @@ namespace windows_security_tweak_tool.src
             this.forcenonadminprogress = new System.Windows.Forms.ProgressBar();
             this.label5 = new System.Windows.Forms.Label();
             this.sigverifbtn = new System.Windows.Forms.Button();
-            this.sigverifprogress = new RunProgressbar();
+            this.sigverifprogress = new windows_security_tweak_tool.src.controls.RunProgressbar();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -305,7 +303,6 @@ namespace windows_security_tweak_tool.src
             this.panel1.Controls.Add(this.niniteimgburncheckbox);
             this.panel1.Controls.Add(this.ninitegoogledrivecheckbox);
             this.panel1.Controls.Add(this.ninitedropboxcheckbox);
-            this.panel1.Controls.Add(this.ninitembamcheckbox);
             this.panel1.Controls.Add(this.niniteessentialscheckbox);
             this.panel1.Controls.Add(this.ninitespotifycheckbox);
             this.panel1.Controls.Add(this.ninitevlcplayercheckbox);
@@ -356,7 +353,7 @@ namespace windows_security_tweak_tool.src
             this.niniteputtycheckbox.AutoSize = true;
             this.niniteputtycheckbox.Checked = true;
             this.niniteputtycheckbox.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.niniteputtycheckbox.Location = new System.Drawing.Point(95, 91);
+            this.niniteputtycheckbox.Location = new System.Drawing.Point(95, 68);
             this.niniteputtycheckbox.Name = "niniteputtycheckbox";
             this.niniteputtycheckbox.Size = new System.Drawing.Size(50, 17);
             this.niniteputtycheckbox.TabIndex = 18;
@@ -412,7 +409,7 @@ namespace windows_security_tweak_tool.src
             // ninite7zipcheckbox
             // 
             this.ninite7zipcheckbox.AutoSize = true;
-            this.ninite7zipcheckbox.Location = new System.Drawing.Point(95, 68);
+            this.ninite7zipcheckbox.Location = new System.Drawing.Point(95, 45);
             this.ninite7zipcheckbox.Name = "ninite7zipcheckbox";
             this.ninite7zipcheckbox.Size = new System.Drawing.Size(48, 17);
             this.ninite7zipcheckbox.TabIndex = 13;
@@ -462,16 +459,6 @@ namespace windows_security_tweak_tool.src
             this.ninitedropboxcheckbox.TabIndex = 8;
             this.ninitedropboxcheckbox.Text = "Dropbox";
             this.ninitedropboxcheckbox.UseVisualStyleBackColor = true;
-            // 
-            // ninitembamcheckbox
-            // 
-            this.ninitembamcheckbox.AutoSize = true;
-            this.ninitembamcheckbox.Location = new System.Drawing.Point(95, 45);
-            this.ninitembamcheckbox.Name = "ninitembamcheckbox";
-            this.ninitembamcheckbox.Size = new System.Drawing.Size(91, 17);
-            this.ninitembamcheckbox.TabIndex = 7;
-            this.ninitembamcheckbox.Text = "Malwarebytes";
-            this.ninitembamcheckbox.UseVisualStyleBackColor = true;
             // 
             // niniteessentialscheckbox
             // 

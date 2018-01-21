@@ -35,7 +35,6 @@ namespace windows_security_tweak_tool.src.ninite
         public static NiniteOption CLASSIC_START = new NiniteOption("classicstart", Program.getGui().getOptionalWindow().niniteclassiccheckbox);
         public static NiniteOption WINSCP = new NiniteOption("winscp", Program.getGui().getOptionalWindow().winscpcheckbox);
         public static NiniteOption THUNDERBIRD = new NiniteOption("thunderbird", Program.getGui().getOptionalWindow().ninitethunderbirdcheckbox);
-        public static NiniteOption MALWAREBYTES = new NiniteOption("malwarebytes", Program.getGui().getOptionalWindow().ninitembamcheckbox);
         public static NiniteOption SEVENZIP = new NiniteOption("7zip", Program.getGui().getOptionalWindow().ninite7zipcheckbox);
         public static NiniteOption PUTTY = new NiniteOption("putty", Program.getGui().getOptionalWindow().niniteputtycheckbox);
         public static NiniteOption ITUNES = new NiniteOption("itunes", Program.getGui().getOptionalWindow().niniteitunescheckbox);
