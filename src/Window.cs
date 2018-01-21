@@ -45,16 +45,10 @@ namespace windows_security_tweak_tool.src
         {
             Config.GetConfig().ReadConfig();
             InitializeComponent();
-            if(this.optionalw == null)
-            {
-               this.optionalw = new OptionalWindow();
-            }
-            initializeGuiWithPolicies(); //cannot use this yet because of a issue with instance loading ;-)
-
             this.Text = String.Format("Windows Security Tweaker Tool {0}b(WSTT)", Application.ProductVersion);
         }
 
-        private void initializeGuiWithPolicies()
+        private void InitializeGuiWithPolicies()
         {
 
             foreach (SecurityPolicyType a in SecurityPolicyType.Values())
@@ -368,7 +362,14 @@ namespace windows_security_tweak_tool.src
             a.Dispose();
         }
 
-        private void window_Load(object sender, EventArgs e){}
+        private void window_Load(object sender, EventArgs e){
+            if (this.optionalw == null)
+            {
+                this.optionalw = new OptionalWindow();
+            }
+
+            InitializeGuiWithPolicies();
+        }
 
         private void netsharebtn_Click(object sender, EventArgs e)
         {
