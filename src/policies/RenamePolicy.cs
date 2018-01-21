@@ -108,14 +108,18 @@ namespace windows_security_tweak_tool.src.policies
 
         public void ApplyAsync()
         {
+
+            StringBuilder build = new StringBuilder();
+
             foreach (string extension in extensions)
             {
-
-                Console.WriteLine("extension: "+extension);
-
                 //ExecuteCMD("assoc " + extension + "=txtfile", false);
-                ExecuteCMD("ftype " + extension.ToUpper().Substring(1) + "File=C:\\windows\\system32\\notepad.exe", true);
+                build.Append("ftype " + extension.ToUpper().Substring(1) + "File=C:\\windows\\system32\\notepad.exe && ");
             }
+
+            build.Append("echo done!");
+
+            ExecuteCMD(build.ToString(), false);
 
             Config.GetConfig().Put("renamed", true);
         }
@@ -145,6 +149,8 @@ namespace windows_security_tweak_tool.src.policies
                 }
             }
 
+            StringBuilder build = new StringBuilder();
+
             foreach (string extension in extensions)
             {
                 //ExecuteCMD("assoc " + extension + " = " + extension.ToUpper() + "File", true);
@@ -159,99 +165,103 @@ namespace windows_security_tweak_tool.src.policies
                         if (officepath != null)
                         {
                             Console.WriteLine("extension: " + extension + " gets defaulted to: " + officepath + "\\winword.exe");
-                            argument = "ftype " + extension.Substring(1).ToUpper() + "File=\""+officepath+"\\winword.exe /n\"";
+                            argument = "ftype " + extension.Substring(1).ToUpper() + "File=\""+officepath+ "\\winword.exe /n\" && ";
                         }
                         break;
                     case ".dotm":
                         if(officepath != null)
                         {
                             Console.WriteLine("extension: " + extension + " gets defaulted to: " + officepath +"\\winword.exe");
-                            argument = "ftype " + extension.Substring(1).ToUpper() + "File=\""+officepath+"\\winword.exe /n\"";
+                            argument = "ftype " + extension.Substring(1).ToUpper() + "File=\""+officepath+ "\\winword.exe /n\" && ";
                         }
                         break;
                     case ".pptm":
                         if(officepath != null)
                         {
                             Console.WriteLine("extension: " + extension + " gets defaulted to: " + officepath+"\\powerpoint.exe");
-                            argument = "ftype " + extension.Substring(1).ToUpper() + "File=\""+officepath+"\\powerpoint.exe /n\"";
+                            argument = "ftype " + extension.Substring(1).ToUpper() + "File=\""+officepath+ "\\powerpoint.exe /n\" && ";
                         }
                         break;
                     case ".xlm":
                         if(officepath != null)
                         {
                             Console.WriteLine("extension: " + extension + " gets defaulted to: " + officepath +"\\Excel.exe");
-                            argument = "ftype " + extension.Substring(1).ToUpper() + "File=\""+officepath+"\\Excel.exe /n\"";
+                            argument = "ftype " + extension.Substring(1).ToUpper() + "File=\""+officepath+ "\\Excel.exe /n\" && ";
                         }
                         break;
                     case ".xlsm":
                         if (officepath != null)
                         {
                             Console.WriteLine("extension: " + extension + " gets defaulted to: " + officepath + "\\Excel.exe");
-                            argument = "ftype " + extension.Substring(1).ToUpper() + "File=\""+ officepath +"\\Excel.exe/n\"";
+                            argument = "ftype " + extension.Substring(1).ToUpper() + "File=\""+ officepath + "\\Excel.exe/n\" && ";
                         }
                         break;
                     case ".ps1":
                         Console.WriteLine("extension: " + extension + " gets defaulted to: " + @"C:\windows\system32\notepad.exe");
-                        argument = "ftype " + extension.Substring(1).ToUpper() + @"File=C:\Windows\System32\notepad.exe";
+                        argument = "ftype " + extension.Substring(1).ToUpper() + @"File=C:\Windows\System32\notepad.exe && ";
                         break;
                     case ".mhtml":
                         Console.WriteLine("extension: " + extension + " gets defaulted to: " + BrowserType.INTERNET_EXPLORE.getPath());
-                        argument = "ftype " + extension.Substring(1).ToUpper() + "File=\"" + BrowserType.INTERNET_EXPLORE.getPath() + "\"";
+                        argument = "ftype " + extension.Substring(1).ToUpper() + "File=\"" + BrowserType.INTERNET_EXPLORE.getPath() + "\" && ";
                         break;
                     case ".mht":
                         Console.WriteLine("extension: " + extension + " gets defaulted to: " + BrowserType.INTERNET_EXPLORE.getPath());
-                        argument = "ftype " + extension.Substring(1).ToUpper() + "File=\"" + BrowserType.INTERNET_EXPLORE.getPath() + "\"";
+                        argument = "ftype " + extension.Substring(1).ToUpper() + "File=\"" + BrowserType.INTERNET_EXPLORE.getPath() + "\" && ";
                         break;
                     case ".hta":
                         Console.WriteLine("extension: " + extension + @" gets defaulted to: C:\windows\system32\mshta.exe");
-                        argument = "ftype " + extension.Substring(1).ToUpper() + @"File=C:\windows\system32\mshta.exe";
+                        argument = "ftype " + extension.Substring(1).ToUpper() + @"File=C:\windows\system32\mshta.exe && ";
                         break;
                     case ".svg":
                         Console.WriteLine("extension: " + extension + " gets defaulted to: " + BrowserType.INTERNET_EXPLORE.getPath());
-                        argument = "ftype " + extension.Substring(1).ToUpper() + "File=\"" + BrowserType.INTERNET_EXPLORE.getPath() + "\"";
+                        argument = "ftype " + extension.Substring(1).ToUpper() + "File=\"" + BrowserType.INTERNET_EXPLORE.getPath() + "\" && ";
                         break;
                     case ".pdf":
                         if (type == BrowserType.CHROME)
                         {
                             Console.WriteLine("extension: " + extension + " gets defaulted to: " + BrowserType.CHROME.getPath());
-                            argument = "ftype " + extension.Substring(1).ToUpper() + "File=\"" + BrowserType.CHROME.getPath() + "\"";
+                            argument = "ftype " + extension.Substring(1).ToUpper() + "File=\"" + BrowserType.CHROME.getPath() + "\" && ";
                         }
                         else if (type == BrowserType.FIREFOX)
                         {
                             Console.WriteLine("extension: " + extension + " gets defaulted to: " + BrowserType.FIREFOX.getPath());
-                            argument = "ftype " + extension.Substring(1).ToUpper() + "File=\"" + BrowserType.FIREFOX.getPath() + "\"";
+                            argument = "ftype " + extension.Substring(1).ToUpper() + "File=\"" + BrowserType.FIREFOX.getPath() + "\" && ";
                         }
                         else
                         {
                             Console.WriteLine("extension: " + extension + " gets defaulted to: " + BrowserType.INTERNET_EXPLORE.getPath());
-                            argument = "ftype " + extension.Substring(1).ToUpper() + "File=\"" + BrowserType.INTERNET_EXPLORE.getPath() + "\"";
+                            argument = "ftype " + extension.Substring(1).ToUpper() + "File=\"" + BrowserType.INTERNET_EXPLORE.getPath() + "\" && ";
                         }
                         break;
                     case ".cfm":
                         if (type == BrowserType.CHROME)
                         {
                             Console.WriteLine("extension: " + extension + " gets defaulted to: " + BrowserType.CHROME.getPath());
-                            argument = "ftype " + extension.Substring(1).ToUpper() + "File=\"" + BrowserType.CHROME.getPath() + "\"";
+                            argument = "ftype " + extension.Substring(1).ToUpper() + "File=\"" + BrowserType.CHROME.getPath() + "\" && ";
                         }
                         else if (type == BrowserType.FIREFOX)
                         {
                             Console.WriteLine("extension: " + extension + " gets defaulted to: " + BrowserType.FIREFOX.getPath());
-                            argument = "ftype " + extension.Substring(1).ToUpper() + "File=\"" + BrowserType.FIREFOX.getPath() + "\"";
+                            argument = "ftype " + extension.Substring(1).ToUpper() + "File=\"" + BrowserType.FIREFOX.getPath() + "\" && ";
                         }
                         else
                         {
                             Console.WriteLine("extension: " + extension + " gets defaulted to: " + BrowserType.INTERNET_EXPLORE.getPath());
-                            argument = "ftype " + extension.Substring(1).ToUpper() + "File=\"" + BrowserType.INTERNET_EXPLORE.getPath() + "\"";
+                            argument = "ftype " + extension.Substring(1).ToUpper() + "File=\"" + BrowserType.INTERNET_EXPLORE.getPath() + "\" && ";
                         }
                         break;
                     default:
                         Console.WriteLine("extension: " + extension + " gets defaulted to: " + @"C:\Windows\System32\wscript.exe");
-                        argument = "ftype " + extension.Substring(1).ToUpper() + @"File=C:\Windows\System32\wscript.exe";
+                        argument = "ftype " + extension.Substring(1).ToUpper() + @"File=C:\Windows\System32\wscript.exe && ";
                         break;
                 }
 
-                ExecuteCMD(argument, true);
+                build.Append(argument);
             }
+
+            build.Append("echo done!");
+
+            ExecuteCMD(build.ToString(), true);
             Config.GetConfig().Put("renamed", false);
         }
 
