@@ -1,4 +1,5 @@
-﻿using System.Reflection;
+﻿using System.Resources;
+using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
@@ -6,7 +7,7 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("Windows Tweak Tool")]
-[assembly: AssemblyDescription("With this tool you can automate security patches, such as policies")]
+[assembly: AssemblyDescription("With this tool you can automate security patches")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyProduct("Windows Tweak Tool")]
 [assembly: AssemblyCopyright("Copyright ©  2016-2017")]
@@ -32,5 +33,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyVersion("1.1.*")]
 [assembly: AssemblyCompany("Windows Tweak Tool")]
 [assembly: AssemblyTrademark("Windows Tweak Tool")]
+[assembly: AssemblyFileVersion("1.1")]
+[assembly: NeutralResourcesLanguage("en")]
 //[assembly: AssemblyVersion("1.1.0.0")]
 //[assembly: AssemblyFileVersion("1.1.0.0")]

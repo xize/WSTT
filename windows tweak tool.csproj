@@ -41,7 +41,7 @@
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
     <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>TRACE;DEBUG</DefineConstants>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <Prefer32Bit>false</Prefer32Bit>
@@ -240,9 +240,6 @@
     <Content Include="AutoItX3_x64.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <None Include="Resources\sigcheck.exe" />
-    <None Include="Resources\sigcheck64.exe" />
-    <None Include="Resources\Eula.txt" />
     <None Include="Resources\regsvr32watchdog.exe" />
     <None Include="Resources\windowslogo.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
