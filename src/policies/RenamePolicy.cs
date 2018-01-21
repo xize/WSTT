@@ -119,7 +119,7 @@ namespace windows_security_tweak_tool.src.policies
 
             build.Append("echo done!");
 
-            ExecuteCMD(build.ToString(), false);
+            ExecuteCMD(build.ToString(), true);
 
             Config.GetConfig().Put("renamed", true);
         }
