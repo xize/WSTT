@@ -41,7 +41,6 @@ namespace windows_security_tweak_tool.src.policies
             services.Add("FDResPub", ServiceType.MANUAL);
             services.Add("HomeGroupProvider", ServiceType.MANUAL);
             services.Add("SharedAccess", ServiceType.DISABLED);
-            services.Add("iphlpsvc", ServiceType.AUTOMATIC);
             services.Add("KtmRm", ServiceType.MANUAL);
             services.Add("lltdsvc", ServiceType.MANUAL);
             services.Add("NetTcpPortSharing", ServiceType.DISABLED);
