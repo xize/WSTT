@@ -52,28 +52,6 @@ namespace windows_security_tweak_tool.src.policies
             {
                 return Config.GetConfig().GetBoolean("smb-enabled");
             }
-            else
-            {/*
-                ProcessStartInfo info = new ProcessStartInfo("dism.exe");
-                info.Arguments = "/online /Get-FeatureInfo /FeatureName:SMB1Protocol";
-                info.CreateNoWindow = true;
-                info.UseShellExecute = false;
-                info.RedirectStandardOutput = true;
-                Process p = Process.Start(info);
-
-                string output = "";
-                output = p.StandardOutput.ReadToEnd();
-
-                p.WaitForExit();
-                p.Close();
-                p.Dispose();
-                if (output.ToLower().Contains("disable"))
-                {
-                    return true;
-                }
-                */
-            }
-            
             return false;
         }
 
