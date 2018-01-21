@@ -20,6 +20,7 @@ using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.ServiceProcess;
 using System.Text;
@@ -221,6 +222,35 @@ namespace windows_security_tweak_tool.src.policies.components
             }
             Process p = Process.Start(info);
             while (!p.HasExited) { }
+            p.Close();
+            p.Dispose();
+        }
+
+        public void ExecuteCMD(string arguments, bool ghost, bool dumptxt)
+        {
+            ProcessStartInfo info = new ProcessStartInfo("cmd.exe");
+            info.Arguments = "/c " + arguments;
+            if (ghost)
+            {
+                info.UseShellExecute = false;
+                info.CreateNoWindow = true;
+            }
+            if(dumptxt)
+            {
+                info.UseShellExecute = false;
+                info.RedirectStandardOutput = true;
+            }
+            Process p = Process.Start(info);
+
+            p.WaitForExit();
+            if (dumptxt)
+            {
+                string logdata = p.StandardOutput.ReadToEnd();
+                if (!File.Exists("dump.log"))
+                {
+                    File.WriteAllText("dump.log", logdata);
+                }
+            }
             p.Close();
             p.Dispose();
         }
