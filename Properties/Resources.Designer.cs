@@ -61,26 +61,6 @@ namespace windows_security_tweak_tool.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized resource of type System.Byte[].
-        /// </summary>
-        internal static byte[] regsvr32proxy {
-            get {
-                object obj = ResourceManager.GetObject("regsvr32proxy", resourceCulture);
-                return ((byte[])(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Byte[].
-        /// </summary>
-        internal static byte[] regsvr32watchdog {
-            get {
-                object obj = ResourceManager.GetObject("regsvr32watchdog", resourceCulture);
-                return ((byte[])(obj));
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap windowslogo {
