@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
 using windows_security_tweak_tool.src.policies;
+using windows_security_tweak_tool.src.controls;
 
 namespace windows_security_tweak_tool.src
 {
@@ -95,11 +96,8 @@ namespace windows_security_tweak_tool.src
             this.label5 = new System.Windows.Forms.Label();
             this.autoplaybtn = new System.Windows.Forms.Button();
             this.autoplayprogress = new System.Windows.Forms.ProgressBar();
-            this.label7 = new System.Windows.Forms.Label();
-            this.powershellbtn = new System.Windows.Forms.Button();
-            this.powershellprogress = new System.Windows.Forms.ProgressBar();
-            this.boguscertprogress = new windows_security_tweak_tool.src.controls.RunProgressbar();
-            this.unsignedprogress = new windows_security_tweak_tool.src.controls.RunProgressbar();
+            this.boguscertprogress = new System.Windows.Forms.ProgressBar();
+            this.unsignedprogress = new System.Windows.Forms.ProgressBar();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -330,7 +328,7 @@ namespace windows_security_tweak_tool.src
             // safeapplybtn
             // 
             this.safeapplybtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.safeapplybtn.Location = new System.Drawing.Point(9, 748);
+            this.safeapplybtn.Location = new System.Drawing.Point(9, 702);
             this.safeapplybtn.Name = "safeapplybtn";
             this.safeapplybtn.Size = new System.Drawing.Size(158, 23);
             this.safeapplybtn.TabIndex = 39;
@@ -343,7 +341,7 @@ namespace windows_security_tweak_tool.src
             // undobtn
             // 
             this.undobtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.undobtn.Location = new System.Drawing.Point(419, 748);
+            this.undobtn.Location = new System.Drawing.Point(419, 702);
             this.undobtn.Name = "undobtn";
             this.undobtn.Size = new System.Drawing.Size(75, 23);
             this.undobtn.TabIndex = 40;
@@ -355,7 +353,7 @@ namespace windows_security_tweak_tool.src
             // applyforcebtn
             // 
             this.applyforcebtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.applyforcebtn.Location = new System.Drawing.Point(173, 748);
+            this.applyforcebtn.Location = new System.Drawing.Point(173, 702);
             this.applyforcebtn.Name = "applyforcebtn";
             this.applyforcebtn.Size = new System.Drawing.Size(100, 23);
             this.applyforcebtn.TabIndex = 89;
@@ -636,9 +634,9 @@ namespace windows_security_tweak_tool.src
             // 
             this.llmnrprogress.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.llmnrprogress.Location = new System.Drawing.Point(11, 545);
+            this.llmnrprogress.Location = new System.Drawing.Point(10, 545);
             this.llmnrprogress.Name = "llmnrprogress";
-            this.llmnrprogress.Size = new System.Drawing.Size(406, 23);
+            this.llmnrprogress.Size = new System.Drawing.Size(407, 23);
             this.llmnrprogress.TabIndex = 93;
             // 
             // label4
@@ -728,62 +726,26 @@ namespace windows_security_tweak_tool.src
             this.autoplayprogress.Size = new System.Drawing.Size(409, 23);
             this.autoplayprogress.TabIndex = 105;
             // 
-            // label7
-            // 
-            this.label7.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(13, 694);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(96, 13);
-            this.label7.TabIndex = 113;
-            this.label7.Text = "disable powershell:";
-            // 
-            // powershellbtn
-            // 
-            this.powershellbtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.powershellbtn.AutoSize = true;
-            this.powershellbtn.Enabled = false;
-            this.powershellbtn.Location = new System.Drawing.Point(424, 710);
-            this.powershellbtn.Name = "powershellbtn";
-            this.powershellbtn.Size = new System.Drawing.Size(71, 23);
-            this.powershellbtn.TabIndex = 112;
-            this.powershellbtn.Text = "disabled";
-            this.powershellbtn.UseVisualStyleBackColor = true;
-            this.powershellbtn.Click += new System.EventHandler(this.powershellbtn_Click);
-            // 
-            // powershellprogress
-            // 
-            this.powershellprogress.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.powershellprogress.Location = new System.Drawing.Point(11, 710);
-            this.powershellprogress.Name = "powershellprogress";
-            this.powershellprogress.Size = new System.Drawing.Size(409, 23);
-            this.powershellprogress.TabIndex = 111;
-            // 
             // boguscertprogress
             // 
-            this.boguscertprogress.Location = new System.Drawing.Point(9, 419);
+            this.boguscertprogress.Location = new System.Drawing.Point(12, 419);
             this.boguscertprogress.Name = "boguscertprogress";
-            this.boguscertprogress.Size = new System.Drawing.Size(406, 23);
-            this.boguscertprogress.TabIndex = 114;
+            this.boguscertprogress.Size = new System.Drawing.Size(399, 23);
+            this.boguscertprogress.TabIndex = 108;
             // 
             // unsignedprogress
             // 
-            this.unsignedprogress.Location = new System.Drawing.Point(11, 585);
+            this.unsignedprogress.Location = new System.Drawing.Point(8, 586);
             this.unsignedprogress.Name = "unsignedprogress";
             this.unsignedprogress.Size = new System.Drawing.Size(383, 23);
-            this.unsignedprogress.TabIndex = 115;
+            this.unsignedprogress.TabIndex = 109;
             // 
             // Window
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-            this.ClientSize = new System.Drawing.Size(510, 785);
+            this.ClientSize = new System.Drawing.Size(510, 739);
             this.Controls.Add(this.unsignedprogress);
             this.Controls.Add(this.boguscertprogress);
-            this.Controls.Add(this.label7);
-            this.Controls.Add(this.powershellbtn);
-            this.Controls.Add(this.powershellprogress);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.autoplaybtn);
             this.Controls.Add(this.autoplayprogress);
@@ -836,7 +798,7 @@ namespace windows_security_tweak_tool.src
             this.Controls.Add(this.menuStrip1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip1;
-            this.MinimumSize = new System.Drawing.Size(526, 824);
+            this.MinimumSize = new System.Drawing.Size(526, 778);
             this.Name = "Window";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Windows Security Tweaker Tool 14.0.25420.1b (WSTT)";
@@ -911,10 +873,7 @@ namespace windows_security_tweak_tool.src
         private Label label5;
         public Button autoplaybtn;
         public ProgressBar autoplayprogress;
-        private Label label7;
-        public Button powershellbtn;
-        public ProgressBar powershellprogress;
-        public controls.RunProgressbar unsignedprogress;
-        public controls.RunProgressbar boguscertprogress;
+        public ProgressBar boguscertprogress;
+        public ProgressBar unsignedprogress;
     }
 }
