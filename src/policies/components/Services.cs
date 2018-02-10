@@ -105,7 +105,10 @@ namespace windows_security_tweak_tool.src.policies.components
             {
                 controller.Stop();
                 controller.WaitForStatus(ServiceControllerStatus.Stopped, new TimeSpan(timeout));
-            } catch(System.ServiceProcess.TimeoutException)
+            } catch(InvalidOperationException e)
+            {
+                MessageBox.Show("the service"+service+" refused to stop access denied!", "error!");
+            } catch(System.TimeoutException e)
             {
                 MessageBox.Show("the service " + service + " could not be stopped timeout!, please try again.", "error!");
             }
