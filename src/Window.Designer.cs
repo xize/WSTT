@@ -98,6 +98,7 @@ namespace windows_security_tweak_tool.src
             this.autoplayprogress = new System.Windows.Forms.ProgressBar();
             this.boguscertprogress = new System.Windows.Forms.ProgressBar();
             this.unsignedprogress = new System.Windows.Forms.ProgressBar();
+            this.disablepowershellcheck = new System.Windows.Forms.CheckBox();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -107,7 +108,7 @@ namespace windows_security_tweak_tool.src
             | System.Windows.Forms.AnchorStyles.Right)));
             this.temp_policy_load.Location = new System.Drawing.Point(12, 44);
             this.temp_policy_load.Name = "temp_policy_load";
-            this.temp_policy_load.Size = new System.Drawing.Size(403, 23);
+            this.temp_policy_load.Size = new System.Drawing.Size(282, 23);
             this.temp_policy_load.TabIndex = 0;
             // 
             // temp_policy_btn
@@ -740,10 +741,21 @@ namespace windows_security_tweak_tool.src
             this.unsignedprogress.Size = new System.Drawing.Size(383, 23);
             this.unsignedprogress.TabIndex = 109;
             // 
+            // disablepowershellcheck
+            // 
+            this.disablepowershellcheck.AutoSize = true;
+            this.disablepowershellcheck.Location = new System.Drawing.Point(300, 48);
+            this.disablepowershellcheck.Name = "disablepowershellcheck";
+            this.disablepowershellcheck.Size = new System.Drawing.Size(118, 17);
+            this.disablepowershellcheck.TabIndex = 110;
+            this.disablepowershellcheck.Text = "disable powershell?";
+            this.disablepowershellcheck.UseVisualStyleBackColor = true;
+            // 
             // Window
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.ClientSize = new System.Drawing.Size(510, 739);
+            this.Controls.Add(this.disablepowershellcheck);
             this.Controls.Add(this.unsignedprogress);
             this.Controls.Add(this.boguscertprogress);
             this.Controls.Add(this.label5);
@@ -875,5 +887,6 @@ namespace windows_security_tweak_tool.src
         public ProgressBar autoplayprogress;
         public ProgressBar boguscertprogress;
         public ProgressBar unsignedprogress;
+        public CheckBox disablepowershellcheck;
     }
 }

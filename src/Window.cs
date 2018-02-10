@@ -46,6 +46,7 @@ namespace windows_security_tweak_tool.src
             Config.GetConfig().ReadConfig();
             InitializeComponent();
             this.Text = String.Format("Windows Security Tweaker Tool {0}b(WSTT)", Application.ProductVersion);
+            this.InitializeGuiWithPolicies();
         }
 
         private void InitializeGuiWithPolicies()
@@ -367,8 +368,9 @@ namespace windows_security_tweak_tool.src
             {
                 this.optionalw = new OptionalWindow();
             }
-
+            /*
             InitializeGuiWithPolicies();
+            */
         }
 
         private void netsharebtn_Click(object sender, EventArgs e)

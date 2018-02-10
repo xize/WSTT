@@ -96,8 +96,13 @@ namespace windows_security_tweak_tool.src.policies
             AddPolicyRule("%localappdata%\\*.exe");
             AddPolicyRule("%localappdata%\\*.dll");
             AddPolicyRule("%localappdata%\\*.au3");
-            AddPolicyRule("%systemdir%\\system32\\WindowsPowershell\\*\\*.exe");
-            AddPolicyRule("%systemdir%\\syswow64\\WindowsPowershell\\*\\*.exe");
+
+            if (gui.disablepowershellcheck.Checked)
+            {
+                AddPolicyRule("%windir%\\system32\\WindowsPowershell\\*\\*.exe");
+                AddPolicyRule("%windir%\\syswow64\\WindowsPowershell\\*\\*.exe");
+            }
+
             AutoIt.AutoItX.Sleep(400);
 
             CloseMMCWindow();
