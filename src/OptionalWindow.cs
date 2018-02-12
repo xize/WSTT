@@ -73,13 +73,10 @@ namespace windows_security_tweak_tool.src
 
         private Label chromeaddonlabel;
         public Button chromeaddonbtn;
-        public RunProgressbar chromeaddonprogress;
         private Label chromelabel;
         public Button chromebtn;
-        public ProgressBar chromeprogress;
         private Label keepasslabel;
         public Button keepassbtn;
-        public ProgressBar keepassprogress;
         private Label optionaloptionslabel;
         private Panel panel1;
         private LinkLabel ninitelabel;
@@ -104,21 +101,24 @@ namespace windows_security_tweak_tool.src
         private Button button2;
         private Label label2;
         public Button button3;
-        public ProgressBar progressBar1;
         private Label label1;
         public Button HPCheckbtn;
-        public RunProgressbar HPCheckProgress;
         private ToolTip toolTip1;
         private IContainer components;
-        public RunProgressbar chromecertprogress;
         public Button chromecertbtn;
         private Label label3;
         private Label label4;
         public Button forcenonadminbtn;
-        public ProgressBar forcenonadminprogress;
         private Label label5;
         public Button sigverifbtn;
-        public RunProgressbar sigverifprogress;
+        public ProgressBar keepassprogress;
+        public ProgressBar chromeprogress;
+        public ProgressBar chromeaddonprogress;
+        public ProgressBar button3progress;
+        public ProgressBar HPCheckProgress;
+        public ProgressBar chromecertprogress;
+        public ProgressBar forcenonadminprogress;
+        public ProgressBar sigverifprogress;
         public CheckBox niniteskypecheckbox;
 
         private void InitializeComponent()
@@ -127,13 +127,10 @@ namespace windows_security_tweak_tool.src
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(OptionalWindow));
             this.chromeaddonlabel = new System.Windows.Forms.Label();
             this.chromeaddonbtn = new System.Windows.Forms.Button();
-            this.chromeaddonprogress = new windows_security_tweak_tool.src.controls.RunProgressbar();
             this.chromelabel = new System.Windows.Forms.Label();
             this.chromebtn = new System.Windows.Forms.Button();
-            this.chromeprogress = new System.Windows.Forms.ProgressBar();
             this.keepasslabel = new System.Windows.Forms.Label();
             this.keepassbtn = new System.Windows.Forms.Button();
-            this.keepassprogress = new System.Windows.Forms.ProgressBar();
             this.optionaloptionslabel = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             this.ninitelabel = new System.Windows.Forms.LinkLabel();
@@ -159,20 +156,23 @@ namespace windows_security_tweak_tool.src
             this.button2 = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.button3 = new System.Windows.Forms.Button();
-            this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.label1 = new System.Windows.Forms.Label();
             this.HPCheckbtn = new System.Windows.Forms.Button();
-            this.HPCheckProgress = new windows_security_tweak_tool.src.controls.RunProgressbar();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
-            this.chromecertprogress = new windows_security_tweak_tool.src.controls.RunProgressbar();
             this.chromecertbtn = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.forcenonadminbtn = new System.Windows.Forms.Button();
-            this.forcenonadminprogress = new System.Windows.Forms.ProgressBar();
             this.label5 = new System.Windows.Forms.Label();
             this.sigverifbtn = new System.Windows.Forms.Button();
-            this.sigverifprogress = new windows_security_tweak_tool.src.controls.RunProgressbar();
+            this.keepassprogress = new System.Windows.Forms.ProgressBar();
+            this.chromeprogress = new System.Windows.Forms.ProgressBar();
+            this.chromeaddonprogress = new System.Windows.Forms.ProgressBar();
+            this.button3progress = new System.Windows.Forms.ProgressBar();
+            this.HPCheckProgress = new System.Windows.Forms.ProgressBar();
+            this.chromecertprogress = new System.Windows.Forms.ProgressBar();
+            this.forcenonadminprogress = new System.Windows.Forms.ProgressBar();
+            this.sigverifprogress = new System.Windows.Forms.ProgressBar();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -199,16 +199,6 @@ namespace windows_security_tweak_tool.src
             this.chromeaddonbtn.UseVisualStyleBackColor = true;
             this.chromeaddonbtn.Click += new System.EventHandler(this.chromeaddonbtn_Click);
             // 
-            // chromeaddonprogress
-            // 
-            this.chromeaddonprogress.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.chromeaddonprogress.Enabled = false;
-            this.chromeaddonprogress.Location = new System.Drawing.Point(11, 290);
-            this.chromeaddonprogress.Name = "chromeaddonprogress";
-            this.chromeaddonprogress.Size = new System.Drawing.Size(406, 23);
-            this.chromeaddonprogress.TabIndex = 87;
-            // 
             // chromelabel
             // 
             this.chromelabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
@@ -232,15 +222,6 @@ namespace windows_security_tweak_tool.src
             this.chromebtn.UseVisualStyleBackColor = true;
             this.chromebtn.Click += new System.EventHandler(this.chromebtn_Click);
             // 
-            // chromeprogress
-            // 
-            this.chromeprogress.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.chromeprogress.Location = new System.Drawing.Point(11, 248);
-            this.chromeprogress.Name = "chromeprogress";
-            this.chromeprogress.Size = new System.Drawing.Size(406, 23);
-            this.chromeprogress.TabIndex = 84;
-            // 
             // keepasslabel
             // 
             this.keepasslabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
@@ -263,15 +244,6 @@ namespace windows_security_tweak_tool.src
             this.keepassbtn.Text = "apply";
             this.keepassbtn.UseVisualStyleBackColor = true;
             this.keepassbtn.Click += new System.EventHandler(this.keepassbtn_Click);
-            // 
-            // keepassprogress
-            // 
-            this.keepassprogress.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.keepassprogress.Location = new System.Drawing.Point(11, 206);
-            this.keepassprogress.Name = "keepassprogress";
-            this.keepassprogress.Size = new System.Drawing.Size(406, 23);
-            this.keepassprogress.TabIndex = 81;
             // 
             // optionaloptionslabel
             // 
@@ -573,16 +545,6 @@ namespace windows_security_tweak_tool.src
             this.button3.Text = "not implemented";
             this.button3.UseVisualStyleBackColor = true;
             // 
-            // progressBar1
-            // 
-            this.progressBar1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.progressBar1.Enabled = false;
-            this.progressBar1.Location = new System.Drawing.Point(11, 332);
-            this.progressBar1.Name = "progressBar1";
-            this.progressBar1.Size = new System.Drawing.Size(406, 23);
-            this.progressBar1.TabIndex = 96;
-            // 
             // label1
             // 
             this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
@@ -606,31 +568,13 @@ namespace windows_security_tweak_tool.src
             this.HPCheckbtn.UseVisualStyleBackColor = true;
             this.HPCheckbtn.Click += new System.EventHandler(this.HPCheckbtn_Click);
             // 
-            // HPCheckProgress
-            // 
-            this.HPCheckProgress.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.HPCheckProgress.Location = new System.Drawing.Point(11, 374);
-            this.HPCheckProgress.Name = "HPCheckProgress";
-            this.HPCheckProgress.Size = new System.Drawing.Size(406, 23);
-            this.HPCheckProgress.TabIndex = 99;
-            // 
-            // chromecertprogress
-            // 
-            this.chromecertprogress.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.chromecertprogress.Location = new System.Drawing.Point(13, 415);
-            this.chromecertprogress.Name = "chromecertprogress";
-            this.chromecertprogress.Size = new System.Drawing.Size(406, 23);
-            this.chromecertprogress.TabIndex = 102;
-            // 
             // chromecertbtn
             // 
             this.chromecertbtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.chromecertbtn.AutoSize = true;
-            this.chromecertbtn.Location = new System.Drawing.Point(403, 415);
+            this.chromecertbtn.Location = new System.Drawing.Point(400, 415);
             this.chromecertbtn.Name = "chromecertbtn";
-            this.chromecertbtn.Size = new System.Drawing.Size(94, 23);
+            this.chromecertbtn.Size = new System.Drawing.Size(97, 23);
             this.chromecertbtn.TabIndex = 103;
             this.chromecertbtn.Text = "run";
             this.chromecertbtn.UseVisualStyleBackColor = true;
@@ -670,15 +614,6 @@ namespace windows_security_tweak_tool.src
             this.forcenonadminbtn.UseVisualStyleBackColor = true;
             this.forcenonadminbtn.Click += new System.EventHandler(this.forcenonadminbtn_Click);
             // 
-            // forcenonadminprogress
-            // 
-            this.forcenonadminprogress.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.forcenonadminprogress.Location = new System.Drawing.Point(11, 457);
-            this.forcenonadminprogress.Name = "forcenonadminprogress";
-            this.forcenonadminprogress.Size = new System.Drawing.Size(406, 23);
-            this.forcenonadminprogress.TabIndex = 105;
-            // 
             // label5
             // 
             this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
@@ -702,44 +637,91 @@ namespace windows_security_tweak_tool.src
             this.sigverifbtn.UseVisualStyleBackColor = true;
             this.sigverifbtn.Click += new System.EventHandler(this.sigverifbtn_Click);
             // 
+            // keepassprogress
+            // 
+            this.keepassprogress.Location = new System.Drawing.Point(11, 205);
+            this.keepassprogress.Name = "keepassprogress";
+            this.keepassprogress.Size = new System.Drawing.Size(391, 23);
+            this.keepassprogress.TabIndex = 111;
+            // 
+            // chromeprogress
+            // 
+            this.chromeprogress.Location = new System.Drawing.Point(11, 248);
+            this.chromeprogress.Name = "chromeprogress";
+            this.chromeprogress.Size = new System.Drawing.Size(391, 23);
+            this.chromeprogress.TabIndex = 112;
+            // 
+            // chromeaddonprogress
+            // 
+            this.chromeaddonprogress.Location = new System.Drawing.Point(11, 290);
+            this.chromeaddonprogress.Name = "chromeaddonprogress";
+            this.chromeaddonprogress.Size = new System.Drawing.Size(391, 23);
+            this.chromeaddonprogress.TabIndex = 113;
+            // 
+            // button3progress
+            // 
+            this.button3progress.Location = new System.Drawing.Point(11, 332);
+            this.button3progress.Name = "button3progress";
+            this.button3progress.Size = new System.Drawing.Size(391, 23);
+            this.button3progress.TabIndex = 114;
+            // 
+            // HPCheckProgress
+            // 
+            this.HPCheckProgress.Location = new System.Drawing.Point(11, 374);
+            this.HPCheckProgress.Name = "HPCheckProgress";
+            this.HPCheckProgress.Size = new System.Drawing.Size(391, 23);
+            this.HPCheckProgress.TabIndex = 115;
+            // 
+            // chromecertprogress
+            // 
+            this.chromecertprogress.Location = new System.Drawing.Point(12, 415);
+            this.chromecertprogress.Name = "chromecertprogress";
+            this.chromecertprogress.Size = new System.Drawing.Size(390, 23);
+            this.chromecertprogress.TabIndex = 116;
+            // 
+            // forcenonadminprogress
+            // 
+            this.forcenonadminprogress.Location = new System.Drawing.Point(11, 457);
+            this.forcenonadminprogress.Name = "forcenonadminprogress";
+            this.forcenonadminprogress.Size = new System.Drawing.Size(391, 23);
+            this.forcenonadminprogress.TabIndex = 117;
+            // 
             // sigverifprogress
             // 
-            this.sigverifprogress.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.sigverifprogress.Location = new System.Drawing.Point(11, 499);
             this.sigverifprogress.Name = "sigverifprogress";
-            this.sigverifprogress.Size = new System.Drawing.Size(406, 23);
-            this.sigverifprogress.TabIndex = 108;
+            this.sigverifprogress.Size = new System.Drawing.Size(391, 23);
+            this.sigverifprogress.TabIndex = 118;
             // 
             // OptionalWindow
             // 
             this.ClientSize = new System.Drawing.Size(510, 569);
+            this.Controls.Add(this.sigverifprogress);
+            this.Controls.Add(this.forcenonadminprogress);
+            this.Controls.Add(this.chromecertprogress);
+            this.Controls.Add(this.HPCheckProgress);
+            this.Controls.Add(this.button3progress);
+            this.Controls.Add(this.chromeaddonprogress);
+            this.Controls.Add(this.chromeprogress);
+            this.Controls.Add(this.keepassprogress);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.sigverifbtn);
-            this.Controls.Add(this.sigverifprogress);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.forcenonadminbtn);
-            this.Controls.Add(this.forcenonadminprogress);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.chromecertbtn);
-            this.Controls.Add(this.chromecertprogress);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.HPCheckbtn);
-            this.Controls.Add(this.HPCheckProgress);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.button3);
-            this.Controls.Add(this.progressBar1);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.chromeaddonlabel);
             this.Controls.Add(this.chromeaddonbtn);
-            this.Controls.Add(this.chromeaddonprogress);
             this.Controls.Add(this.chromelabel);
             this.Controls.Add(this.chromebtn);
-            this.Controls.Add(this.chromeprogress);
             this.Controls.Add(this.keepasslabel);
             this.Controls.Add(this.keepassbtn);
-            this.Controls.Add(this.keepassprogress);
             this.Controls.Add(this.optionaloptionslabel);
             this.Controls.Add(this.panel1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
