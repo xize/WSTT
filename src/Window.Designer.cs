@@ -60,6 +60,7 @@ namespace windows_security_tweak_tool.src
             this.undobtn = new System.Windows.Forms.Button();
             this.tooltip = new System.Windows.Forms.ToolTip(this.components);
             this.applyforcebtn = new System.Windows.Forms.Button();
+            this.discoverycheckbox = new System.Windows.Forms.CheckBox();
             this.ntlmlabel = new System.Windows.Forms.Label();
             this.NTLMbtn = new System.Windows.Forms.Button();
             this.NTLMProgress = new System.Windows.Forms.ProgressBar();
@@ -363,6 +364,18 @@ namespace windows_security_tweak_tool.src
             this.applyforcebtn.UseVisualStyleBackColor = true;
             this.applyforcebtn.Click += new System.EventHandler(this.callApplyEvent);
             // 
+            // discoverycheckbox
+            // 
+            this.discoverycheckbox.AutoSize = true;
+            this.discoverycheckbox.Location = new System.Drawing.Point(305, 383);
+            this.discoverycheckbox.Name = "discoverycheckbox";
+            this.discoverycheckbox.Size = new System.Drawing.Size(113, 17);
+            this.discoverycheckbox.TabIndex = 111;
+            this.discoverycheckbox.Text = "disable discovery?";
+            this.tooltip.SetToolTip(this.discoverycheckbox, "discovery is a service which makes it easier to detect hardware across the networ" +
+        "k.\r\nprinters and such may require this feature to work properly.");
+            this.discoverycheckbox.UseVisualStyleBackColor = true;
+            // 
             // ntlmlabel
             // 
             this.ntlmlabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
@@ -513,7 +526,7 @@ namespace windows_security_tweak_tool.src
             | System.Windows.Forms.AnchorStyles.Right)));
             this.insecureserviceprogress.Location = new System.Drawing.Point(9, 377);
             this.insecureserviceprogress.Name = "insecureserviceprogress";
-            this.insecureserviceprogress.Size = new System.Drawing.Size(406, 23);
+            this.insecureserviceprogress.Size = new System.Drawing.Size(290, 23);
             this.insecureserviceprogress.TabIndex = 80;
             // 
             // boguscertlabel
@@ -755,6 +768,7 @@ namespace windows_security_tweak_tool.src
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.ClientSize = new System.Drawing.Size(510, 739);
+            this.Controls.Add(this.discoverycheckbox);
             this.Controls.Add(this.disablepowershellcheck);
             this.Controls.Add(this.unsignedprogress);
             this.Controls.Add(this.boguscertprogress);
@@ -888,5 +902,6 @@ namespace windows_security_tweak_tool.src
         public ProgressBar boguscertprogress;
         public ProgressBar unsignedprogress;
         public CheckBox disablepowershellcheck;
+        public CheckBox discoverycheckbox;
     }
 }

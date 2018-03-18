@@ -112,11 +112,26 @@ namespace windows_security_tweak_tool.src.policies
         {
             foreach (KeyValuePair<string, ServiceType> service in services)
             {
-                if (this.IsServiceStarted(service.Key))
+
+                if (service.Key == "fdPHost")
                 {
-                    this.StopService(service.Key, this);
+                    if(GetDiscoveryCheckbox().Checked)
+                    {
+                        if (this.IsServiceStarted(service.Key))
+                        {
+                            this.StopService(service.Key, this);
+                        }
+                        this.SetServiceType(service.Key, ServiceType.DISABLED);
+                    }
+                } else
+                {
+                    if (this.IsServiceStarted(service.Key))
+                    {
+                        this.StopService(service.Key, this);
+                    }
+                    this.SetServiceType(service.Key, ServiceType.DISABLED);
                 }
-                this.SetServiceType(service.Key, ServiceType.DISABLED);
+
             }
             Config.GetConfig().Put("insecure-services", true);
         }
@@ -136,7 +151,16 @@ namespace windows_security_tweak_tool.src.policies
         {
             foreach (KeyValuePair<string, ServiceType> service in services)
             {
-                this.SetServiceType(service.Key, service.Value);
+                if(service.Key == "fdPHost")
+                {
+                    if(GetDiscoveryCheckbox().Checked)
+                    {
+                        this.SetServiceType(service.Key, service.Value);
+                    }
+                } else
+                {
+                    this.SetServiceType(service.Key, service.Value);
+                }
             }
             Config.GetConfig().Put("insecure-services", false);
         }
@@ -191,6 +215,11 @@ namespace windows_security_tweak_tool.src.policies
         public override ProgressBar GetProgressbar()
         {
             return gui.insecureserviceprogress;
+        }
+
+        public CheckBox GetDiscoveryCheckbox()
+        {
+            return gui.discoverycheckbox;
         }
     }
 }
