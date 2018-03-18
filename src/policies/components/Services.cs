@@ -108,7 +108,7 @@ namespace windows_security_tweak_tool.src.policies.components
             } catch(InvalidOperationException e)
             {
                 MessageBox.Show("the service"+service+" refused to stop access denied!", "error!");
-            } catch(System.TimeoutException e)
+            } catch(System.ServiceProcess.TimeoutException e)
             {
                 MessageBox.Show("the service " + service + " could not be stopped timeout!, please try again.", "error!");
             }
