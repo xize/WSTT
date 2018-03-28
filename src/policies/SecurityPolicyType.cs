@@ -45,6 +45,7 @@ namespace windows_security_tweak_tool.src.policies
         public static SecurityPolicyType UNSIGNED_POLICY = new SecurityPolicyType("unsigned_policy", new UnsignedPolicy(), 0x15);
         public static SecurityPolicyType SMB_SHARING_POLICY = new SecurityPolicyType("smb_sharing_policy", new SMBSharingPolicy(), 0x16);
         public static SecurityPolicyType AUTOPLAY_POLICY = new SecurityPolicyType("autoplay_policy", new AutoPlayPolicy(), 0x17);
+        public static SecurityPolicyType P2PUPDATE_POLICY = new SecurityPolicyType("p2pupdate_policy", new P2PUpdatesPolicy(), 0x18);
 
         private string name;
         private SecurityPolicy pol;

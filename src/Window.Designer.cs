@@ -100,6 +100,9 @@ namespace windows_security_tweak_tool.src
             this.boguscertprogress = new System.Windows.Forms.ProgressBar();
             this.unsignedprogress = new System.Windows.Forms.ProgressBar();
             this.disablepowershellcheck = new System.Windows.Forms.CheckBox();
+            this.windowsupdatepeerbtn = new System.Windows.Forms.Button();
+            this.windowsupdatepeerprogress = new System.Windows.Forms.ProgressBar();
+            this.label6 = new System.Windows.Forms.Label();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -330,7 +333,7 @@ namespace windows_security_tweak_tool.src
             // safeapplybtn
             // 
             this.safeapplybtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.safeapplybtn.Location = new System.Drawing.Point(9, 702);
+            this.safeapplybtn.Location = new System.Drawing.Point(9, 762);
             this.safeapplybtn.Name = "safeapplybtn";
             this.safeapplybtn.Size = new System.Drawing.Size(158, 23);
             this.safeapplybtn.TabIndex = 39;
@@ -343,7 +346,7 @@ namespace windows_security_tweak_tool.src
             // undobtn
             // 
             this.undobtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.undobtn.Location = new System.Drawing.Point(419, 702);
+            this.undobtn.Location = new System.Drawing.Point(419, 762);
             this.undobtn.Name = "undobtn";
             this.undobtn.Size = new System.Drawing.Size(75, 23);
             this.undobtn.TabIndex = 40;
@@ -355,7 +358,7 @@ namespace windows_security_tweak_tool.src
             // applyforcebtn
             // 
             this.applyforcebtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.applyforcebtn.Location = new System.Drawing.Point(173, 702);
+            this.applyforcebtn.Location = new System.Drawing.Point(173, 762);
             this.applyforcebtn.Name = "applyforcebtn";
             this.applyforcebtn.Size = new System.Drawing.Size(100, 23);
             this.applyforcebtn.TabIndex = 89;
@@ -764,10 +767,45 @@ namespace windows_security_tweak_tool.src
             this.disablepowershellcheck.Text = "disable powershell?";
             this.disablepowershellcheck.UseVisualStyleBackColor = true;
             // 
+            // windowsupdatepeerbtn
+            // 
+            this.windowsupdatepeerbtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.windowsupdatepeerbtn.AutoSize = true;
+            this.windowsupdatepeerbtn.Location = new System.Drawing.Point(422, 710);
+            this.windowsupdatepeerbtn.Name = "windowsupdatepeerbtn";
+            this.windowsupdatepeerbtn.Size = new System.Drawing.Size(71, 23);
+            this.windowsupdatepeerbtn.TabIndex = 113;
+            this.windowsupdatepeerbtn.Text = "Apply";
+            this.windowsupdatepeerbtn.UseVisualStyleBackColor = true;
+            this.windowsupdatepeerbtn.Click += new System.EventHandler(this.windowsupdatepeerbtn_Click);
+            // 
+            // windowsupdatepeerprogress
+            // 
+            this.windowsupdatepeerprogress.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.windowsupdatepeerprogress.Location = new System.Drawing.Point(9, 710);
+            this.windowsupdatepeerprogress.Name = "windowsupdatepeerprogress";
+            this.windowsupdatepeerprogress.Size = new System.Drawing.Size(409, 23);
+            this.windowsupdatepeerprogress.TabIndex = 112;
+            // 
+            // label6
+            // 
+            this.label6.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(9, 694);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(185, 13);
+            this.label6.TabIndex = 114;
+            this.label6.Text = "disable peer to peer windows updates";
+            // 
             // Window
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-            this.ClientSize = new System.Drawing.Size(510, 739);
+            this.ClientSize = new System.Drawing.Size(510, 799);
+            this.Controls.Add(this.label6);
+            this.Controls.Add(this.windowsupdatepeerbtn);
+            this.Controls.Add(this.windowsupdatepeerprogress);
             this.Controls.Add(this.discoverycheckbox);
             this.Controls.Add(this.disablepowershellcheck);
             this.Controls.Add(this.unsignedprogress);
@@ -824,7 +862,7 @@ namespace windows_security_tweak_tool.src
             this.Controls.Add(this.menuStrip1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip1;
-            this.MinimumSize = new System.Drawing.Size(526, 778);
+            this.MinimumSize = new System.Drawing.Size(526, 838);
             this.Name = "Window";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Windows Security Tweaker Tool 14.0.25420.1b (WSTT)";
@@ -903,5 +941,8 @@ namespace windows_security_tweak_tool.src
         public ProgressBar unsignedprogress;
         public CheckBox disablepowershellcheck;
         public CheckBox discoverycheckbox;
+        public Button windowsupdatepeerbtn;
+        public ProgressBar windowsupdatepeerprogress;
+        private Label label6;
     }
 }

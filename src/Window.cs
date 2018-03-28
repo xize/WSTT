@@ -469,5 +469,19 @@ namespace windows_security_tweak_tool.src
                 p.Apply();
             }
         }
+
+        private void windowsupdatepeerbtn_Click(object sender, EventArgs e)
+        {
+            SecurityPolicy p = SecurityPolicyType.P2PUPDATE_POLICY.GetPolicy(this);
+
+            if (p.IsEnabled())
+            {
+                p.Unapply();
+            }
+            else
+            {
+                p.Apply();
+            }
+        }
     }
 }
