@@ -32,7 +32,6 @@ namespace windows_security_tweak_tool.src.policies
 
             if (k == null)
             {
-                MessageBox.Show("you might use a different version of windows which doesn't support this policy!", "warning");
                 this.GetButton().Enabled = false;
                 this.GetButton().Text = "unsupported!";
                 return false;
