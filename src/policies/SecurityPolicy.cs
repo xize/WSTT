@@ -159,13 +159,19 @@ namespace windows_security_tweak_tool.src.policies
                 {
                     File.Delete(f);
                 }
+                try
+                {
 
-                client.DownloadFile(url, GetDataFolder() + @"\sigcheck\sigcheck.zip");
-                client.Dispose();
-                ZipArchive zip = new ZipArchive(File.OpenRead(GetDataFolder() + @"\sigcheck\sigcheck.zip"));
-                zip.ExtractToDirectory(GetDataFolder() + @"\sigcheck");
-                zip.Dispose();
-
+                    client.DownloadFile(url, GetDataFolder() + @"\sigcheck\sigcheck.zip");
+                    client.Dispose();
+                    ZipArchive zip = new ZipArchive(File.OpenRead(GetDataFolder() + @"\sigcheck\sigcheck.zip"));
+                    zip.ExtractToDirectory(GetDataFolder() + @"\sigcheck");
+                    zip.Dispose();
+                } catch(Exception)
+                {
+                    MessageBox.Show("error cannot download sigcheck timeout, please try again", "warning!");
+                    return;
+                }
                 //verify files by hand from the hashes from the signed certificate!
                 bool isbad = false;
                 foreach (string exe in Directory.EnumerateFiles(GetDataFolder() + @"\sigcheck\", " *.exe"))
