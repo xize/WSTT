@@ -81,33 +81,38 @@ namespace windows_security_tweak_tool.src.optionalpolicies
                 {
                     Directory.CreateDirectory(Config.GetConfig().GetDataFolder() + @"\wstt-downloaded");
                 }
-
-                c.DownloadFile(new Uri(url), Config.GetConfig().GetDataFolder() + @"\wstt-downloaded\KeePass.exe");
-                X509Certificate cert = X509Certificate.CreateFromSignedFile(Config.GetConfig().GetDataFolder() + @"\wstt-downloaded\KeePass.exe");
-                if (cert.GetCertHashString() == GetCertificate().GetHash())
+                try
                 {
-                    Process p = Process.Start(Config.GetConfig().GetDataFolder() + @"\wstt-downloaded\KeePass.exe");
-                    p.WaitForExit();
-                    p.Dispose();
-                    RegistryKey key = RegistryKey.OpenBaseKey(RegistryHive.LocalMachine, RegistryView.Default).OpenSubKey(@"SOFTWARE\Microsoft\Windows NT\CurrentVersion\AppCompatFlags\", true);
-                    RegistryKey layers = key.OpenSubKey("layers", true);
-                    if (layers == null)
+                    c.DownloadFile(new Uri(url), Config.GetConfig().GetDataFolder() + @"\wstt-downloaded\KeePass.exe");
+                    X509Certificate cert = X509Certificate.CreateFromSignedFile(Config.GetConfig().GetDataFolder() + @"\wstt-downloaded\KeePass.exe");
+                    if (cert.GetCertHashString() == GetCertificate().GetHash())
                     {
-                        layers = key.CreateSubKey("layers");
+                        Process p = Process.Start(Config.GetConfig().GetDataFolder() + @"\wstt-downloaded\KeePass.exe");
+                        p.WaitForExit();
+                        p.Dispose();
+                        RegistryKey key = RegistryKey.OpenBaseKey(RegistryHive.LocalMachine, RegistryView.Default).OpenSubKey(@"SOFTWARE\Microsoft\Windows NT\CurrentVersion\AppCompatFlags\", true);
+                        RegistryKey layers = key.OpenSubKey("layers", true);
+                        if (layers == null)
+                        {
+                            layers = key.CreateSubKey("layers");
+                        }
+                        layers.SetValue(@"C:\Program Files (x86)\KeePass Password Safe 2\KeePass.exe", "~ RUNASADMIN");
+                        layers.Close();
+                        layers.Dispose();
+                        key.Close();
+                        key.Dispose();
+                        File.Delete(Config.GetConfig().GetDataFolder() + @"\wstt-downloaded\KeePass.exe");
+                        return true;
                     }
-                    layers.SetValue(@"C:\Program Files (x86)\KeePass Password Safe 2\KeePass.exe", "~ RUNASADMIN");
-                    layers.Close();
-                    layers.Dispose();
-                    key.Close();
-                    key.Dispose();
-                    File.Delete(Config.GetConfig().GetDataFolder() + @"\wstt-downloaded\KeePass.exe");
-                    return true;
-                }
-                else
+                    else
+                    {
+                        File.Delete(Config.GetConfig().GetDataFolder() + @"\wstt-downloaded\KeePass.exe");
+                        MessageBox.Show("Failed to download keepass the certificate did not match!", "invalid certificate!");
+                        GetButton().Enabled = true;
+                    }
+                } catch(Exception)
                 {
-                    File.Delete(Config.GetConfig().GetDataFolder() + @"\wstt-downloaded\KeePass.exe");
-                    MessageBox.Show("Failed to download keepass the certificate did not match!", "invalid certificate!");
-                    GetButton().Enabled = true;
+                    MessageBox.Show("failed to download Keepass please try again!", "error!");
                 }
             }
             return false;
