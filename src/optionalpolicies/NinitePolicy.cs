@@ -72,20 +72,10 @@ namespace windows_security_tweak_tool.src.optionalpolicies
                 if (option.IsEnabled())
                 {
                     //make the gui elements run synchronized.
-                    Thread single = new Thread(()=>sync(option));
-                    single.SetApartmentState(ApartmentState.STA);
-                    single.Start();
-                    single.Join();
-                    //end synchronizing.
                     this.Add(option);
                 }
             }
             this.DownloadNiniteInstaller(this.GetNiniteURL());
-        }
-
-        public void sync(NiniteOption option)
-        {
-            option.GetCheckbox().Enabled = false;
         }
 
         public override void Unapply()
