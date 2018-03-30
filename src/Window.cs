@@ -264,7 +264,7 @@ namespace windows_security_tweak_tool.src
                 if (pt != SecurityPolicyType.UPDATE_POLICY)
                 {
                     SecurityPolicy p = pt.GetPolicy(this);
-                    if(p.IsSafeForBussiness())
+                    if(p.IsSafeForBussiness() && !p.IsMacro())
                     {
                         if(!p.IsEnabled() && !p.IsUserControlRequired())
                         {
@@ -289,6 +289,7 @@ namespace windows_security_tweak_tool.src
         private void callApplyEvent(object sender, EventArgs e)
         {
             applyforcebtn.Enabled = false;
+
             foreach (SecurityPolicyType pt in SecurityPolicyType.Values())
             {
                 if (pt != SecurityPolicyType.UPDATE_POLICY)
@@ -297,14 +298,21 @@ namespace windows_security_tweak_tool.src
 
                     if (!p.IsUserControlRequired() && !p.IsEnabled())
                     {
-                        if(p.IsSecpolDepended() && !p.IsSecpolEnabled())
+                        if (p.IsMacro() && (File.Exists("AutoItX3.Assembly.dll") && File.Exists("AutoItX3.dll") && File.Exists("AutoItX3_x64.dll")))
+                        {
+                            p.Apply();
+                        }
+                        else if (p.IsSecpolDepended() && !p.IsSecpolEnabled())
                         {
                             continue;
+                        } else
+                        {
+                            p.Apply();
                         }
-                        p.Apply();
                     }
                 }
             }
+
             applyforcebtn.Enabled = true;
             MessageBox.Show("All policies have been applied!, those who are not require user control.", "Policies with success applied!");
     }
@@ -319,11 +327,18 @@ namespace windows_security_tweak_tool.src
                     SecurityPolicy p = pt.GetPolicy(this);
                     if (!p.IsUserControlRequired() && p.IsEnabled())
                     {
-                        if (p.IsSecpolDepended() && !p.IsSecpolEnabled())
+                        if (p.IsMacro() && (File.Exists("AutoItX3.Assembly.dll") && File.Exists("AutoItX3.dll") && File.Exists("AutoItX3_x64.dll")))
+                        {
+                            p.Unapply();
+                        }
+                        else if (p.IsSecpolDepended() && !p.IsSecpolEnabled())
                         {
                             continue;
                         }
-                        p.Unapply();
+                        else
+                        {
+                            p.Unapply();
+                        }
                     }
                 }
             }
