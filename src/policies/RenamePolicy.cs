@@ -118,7 +118,7 @@ namespace windows_security_tweak_tool.src.policies
                 if(extension == ".ahk")
                 {
                     string path = Environment.Is64BitOperatingSystem ? @"C:\windows\Program Files\AutoHotKey\AutoHotkey.exe" : @"C:\windows\Program Files (x86)\AutoHotKey\AutoHotkey.exe";
-                    if (GetAHKCheckBox().Checked && File.Exists(path))
+                    if (GetAHKCheckBox().Checked)
                     {
                         build.Append("ftype " + extension.ToUpper().Substring(1) + "File=C:\\windows\\system32\\notepad.exe && ");
                     }
