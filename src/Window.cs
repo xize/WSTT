@@ -40,6 +40,7 @@ namespace windows_security_tweak_tool.src
     {
 
         private OptionalWindow optionalw;
+        private HelpWindow helpwin;
 
         public Window()
         {
@@ -47,6 +48,8 @@ namespace windows_security_tweak_tool.src
             InitializeComponent();
             this.Text = String.Format("Windows Security Tweaker Tool {0}b(WSTT)", Application.ProductVersion);
             this.InitializeGuiWithPolicies();
+            this.helpwin = new HelpWindow();
+            this.helpwin.FormClosing += new FormClosingEventHandler(this.closehelpform);
         }
 
         private void InitializeGuiWithPolicies()
@@ -467,8 +470,15 @@ namespace windows_security_tweak_tool.src
 
         private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            HelpWindow help = new HelpWindow();
-            help.Show();
+            this.aboutToolStripMenuItem.Enabled = false;
+            this.helpwin.Show();
+        }
+
+        private void closehelpform(object sender, FormClosingEventArgs e)
+        {
+            this.helpwin.Hide();
+            this.aboutToolStripMenuItem.Enabled = true;
+            e.Cancel = true;
         }
 
         private void autoplaybtn_Click(object sender, EventArgs e)
