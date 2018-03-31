@@ -103,6 +103,7 @@ namespace windows_security_tweak_tool.src
             this.windowsupdatepeerbtn = new System.Windows.Forms.Button();
             this.windowsupdatepeerprogress = new System.Windows.Forms.ProgressBar();
             this.label6 = new System.Windows.Forms.Label();
+            this.ahkcheckbox = new System.Windows.Forms.CheckBox();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -231,7 +232,7 @@ namespace windows_security_tweak_tool.src
             | System.Windows.Forms.AnchorStyles.Right)));
             this.renameprogress.Location = new System.Drawing.Point(12, 167);
             this.renameprogress.Name = "renameprogress";
-            this.renameprogress.Size = new System.Drawing.Size(403, 23);
+            this.renameprogress.Size = new System.Drawing.Size(320, 23);
             this.renameprogress.TabIndex = 9;
             // 
             // uaclabel
@@ -799,10 +800,21 @@ namespace windows_security_tweak_tool.src
             this.label6.TabIndex = 114;
             this.label6.Text = "disable peer to peer windows updates";
             // 
+            // ahkcheckbox
+            // 
+            this.ahkcheckbox.AutoSize = true;
+            this.ahkcheckbox.Location = new System.Drawing.Point(338, 171);
+            this.ahkcheckbox.Name = "ahkcheckbox";
+            this.ahkcheckbox.Size = new System.Drawing.Size(79, 17);
+            this.ahkcheckbox.TabIndex = 115;
+            this.ahkcheckbox.Text = "block ahk?";
+            this.ahkcheckbox.UseVisualStyleBackColor = true;
+            // 
             // Window
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.ClientSize = new System.Drawing.Size(510, 799);
+            this.Controls.Add(this.ahkcheckbox);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.windowsupdatepeerbtn);
             this.Controls.Add(this.windowsupdatepeerprogress);
@@ -943,5 +955,6 @@ namespace windows_security_tweak_tool.src
         public Button windowsupdatepeerbtn;
         public ProgressBar windowsupdatepeerprogress;
         private Label label6;
+        public CheckBox ahkcheckbox;
     }
 }

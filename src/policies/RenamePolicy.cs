@@ -36,6 +36,7 @@ namespace windows_security_tweak_tool.src.policies
         private string[] extensions =
         {
             //scripts, however there are alot more but I lost the article....
+            ".ahk",
             ".js",
             ".svg",
             ".jse",
@@ -114,7 +115,17 @@ namespace windows_security_tweak_tool.src.policies
             foreach (string extension in extensions)
             {
                 //ExecuteCMD("assoc " + extension + "=txtfile", false);
-                build.Append("ftype " + extension.ToUpper().Substring(1) + "File=C:\\windows\\system32\\notepad.exe && ");
+                if(extension == ".ahk")
+                {
+                    string path = Environment.Is64BitOperatingSystem ? @"C:\windows\Program Files\AutoHotKey\AutoHotkey.exe" : @"C:\windows\Program Files (x86)\AutoHotKey\AutoHotkey.exe";
+                    if (GetAHKCheckBox().Checked && File.Exists(path))
+                    {
+                        build.Append("ftype " + extension.ToUpper().Substring(1) + "File=C:\\windows\\system32\\notepad.exe && ");
+                    }
+                } else
+                {
+                    build.Append("ftype " + extension.ToUpper().Substring(1) + "File=C:\\windows\\system32\\notepad.exe && ");
+                }
             }
 
             build.Append("echo done!");
@@ -250,6 +261,15 @@ namespace windows_security_tweak_tool.src.policies
                             argument = "ftype " + extension.Substring(1).ToUpper() + "File=\"" + BrowserType.INTERNET_EXPLORE.getPath() + " %1\" && ";
                         }
                         break;
+                    case ".ahk":
+                        string path = Environment.Is64BitOperatingSystem ? @"C:\windows\Program Files\AutoHotKey\AutoHotkey.exe" : @"C:\windows\Program Files (x86)\AutoHotKey\AutoHotkey.exe";
+                        //make sure it is installed atleast...
+                        if (File.Exists(path))
+                        {
+                            Console.WriteLine("extension: " + extension + " gets defaulted to:" + path);
+                            argument = "ftype " + extension.Substring(1).ToUpper() + "File=\"" + path + " %1\" && ";
+                        }
+                        break;
                     default:
                         Console.WriteLine("extension: " + extension + " gets defaulted to: " + @"C:\Windows\System32\wscript.exe");
                         argument = "ftype " + extension.Substring(1).ToUpper() + @"File=C:\Windows\System32\wscript.exe %1 && ";
@@ -285,6 +305,11 @@ namespace windows_security_tweak_tool.src.policies
             return gui.renameprogress;
         }
 
+        public CheckBox GetAHKCheckBox()
+        {
+            return gui.ahkcheckbox;
+        }
+
         public override bool IsCertificateDepended()
         {
             return false;
@@ -315,5 +340,6 @@ namespace windows_security_tweak_tool.src.policies
         {
             return false;
         }
+
     }
 }
