@@ -49,6 +49,8 @@ namespace windows_security_tweak_tool.src
             this.Text = String.Format("Windows Security Tweaker Tool {0}b(WSTT)", Application.ProductVersion);
             this.InitializeGuiWithPolicies();
             this.helpwin = new HelpWindow();
+            this.optionalw = new OptionalWindow();
+            this.optionalw.FormClosing += new FormClosingEventHandler(this.closeoptionalw);
             this.helpwin.FormClosing += new FormClosingEventHandler(this.closehelpform);
         }
 
@@ -381,16 +383,6 @@ namespace windows_security_tweak_tool.src
             a.Dispose();
         }
 
-        private void window_Load(object sender, EventArgs e){
-            if (this.optionalw == null)
-            {
-                this.optionalw = new OptionalWindow();
-            }
-            /*
-            InitializeGuiWithPolicies();
-            */
-        }
-
         private void netsharebtn_Click(object sender, EventArgs e)
         {
             SecurityPolicy p = SecurityPolicyType.NETSHARE_POLICY.GetPolicy(this);
@@ -406,8 +398,15 @@ namespace windows_security_tweak_tool.src
 
         private void openOptionalOptionsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            optionalw.Visible = true;
+            optionalw.Show();
             openOptionalOptionsToolStripMenuItem.Enabled = false;
+        }
+
+        private void closeoptionalw(object sender, FormClosingEventArgs e)
+        {
+            optionalw.Hide();
+            openOptionalOptionsToolStripMenuItem.Enabled = true;
+            e.Cancel = true;
         }
 
         private void llmnrbtn_Click(object sender, EventArgs e)
