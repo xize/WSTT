@@ -117,7 +117,7 @@ namespace windows_security_tweak_tool.src.policies
                 //ExecuteCMD("assoc " + extension + "=txtfile", false);
                 if(extension == ".ahk")
                 {
-                    string path = Environment.Is64BitOperatingSystem ? @"C:\Program Files\AutoHotKey\AutoHotkey.exe" : @"C:\Program Files (x86)\AutoHotKey\AutoHotkey.exe";
+                    string path = Environment.Is64BitOperatingSystem ? @"C:\Program Files\AutoHotkey\AutoHotkey.exe" : @"C:\Program Files (x86)\AutoHotkey\AutoHotkey.exe";
                     if (GetAHKCheckBox().Checked)
                     {
                         build.Append("ftype " + extension.ToUpper().Substring(1) + "File=C:\\windows\\system32\\notepad.exe && ");
@@ -262,7 +262,7 @@ namespace windows_security_tweak_tool.src.policies
                         }
                         break;
                     case ".ahk":
-                        string path = Environment.Is64BitOperatingSystem ? @"C:\Program Files\AutoHotKey\AutoHotkey.exe" : @"C:\Program Files (x86)\AutoHotKey\AutoHotkey.exe";
+                        string path = Environment.Is64BitOperatingSystem ? @"C:\Program Files\AutoHotkey\AutoHotkey.exe" : @"C:\Program Files (x86)\AutoHotkey\AutoHotkey.exe";
                         //make sure it is installed atleast...
                         if (File.Exists(path))
                         {
