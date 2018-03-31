@@ -36,8 +36,8 @@ namespace windows_security_tweak_tool.src.policies
         private string[] extensions =
         {
             //scripts, however there are alot more but I lost the article....
-            ".ahk",
             ".js",
+            ".ahk",
             ".svg",
             ".jse",
             ".vbs",
@@ -120,7 +120,7 @@ namespace windows_security_tweak_tool.src.policies
                     string path = Environment.Is64BitOperatingSystem ? @"C:\Program Files\AutoHotkey\AutoHotkey.exe" : @"C:\Program Files (x86)\AutoHotkey\AutoHotkey.exe";
                     if (GetAHKCheckBox().Checked)
                     {
-                        build.Append("ftype " + extension.ToUpper().Substring(1) + "File=C:\\windows\\system32\\notepad.exe && ");
+                        build.Append("ftype AutoHotkeyScript=C:\\windows\\system32\\notepad.exe %1 && ");
                     }
                 } else
                 {
@@ -262,12 +262,12 @@ namespace windows_security_tweak_tool.src.policies
                         }
                         break;
                     case ".ahk":
-                        string path = Environment.Is64BitOperatingSystem ? @"C:\Program Files\AutoHotkey\AutoHotkey.exe" : @"C:\Program Files (x86)\AutoHotkey\AutoHotkey.exe";
+                        string path = Environment.Is64BitOperatingSystem ? @"C:\Program Files\AutoHotkey\AutoHotkeyU64.exe" : @"C:\Program Files (x86)\AutoHotkey\AutoHotkeyU32.exe";
                         //make sure it is installed atleast...
                         if (File.Exists(path))
                         {
                             Console.WriteLine("extension: " + extension + " gets defaulted to:" + path);
-                            argument = "ftype " + extension.Substring(1).ToUpper() + "File=\"" + path + " %1\" && ";
+                            argument = "ftype AutoHotkeyScript=\"" + path + " %1\" && ";
                         }
                         break;
                     default:
