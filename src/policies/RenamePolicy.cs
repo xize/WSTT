@@ -164,14 +164,14 @@ namespace windows_security_tweak_tool.src.policies
                     case ".docm":
                         if (officepath != null)
                         {
-                            Console.WriteLine("extension: " + extension + " gets defaulted to: " + officepath + "\\winword.exe");
+                            Console.WriteLine("extension: " + extension + " gets defaulted to: " + officepath + "\\winword.exe /n");
                             argument = "ftype " + extension.Substring(1).ToUpper() + "File=\""+officepath+ "\\winword.exe /n\" && ";
                         }
                         break;
                     case ".dotm":
                         if(officepath != null)
                         {
-                            Console.WriteLine("extension: " + extension + " gets defaulted to: " + officepath +"\\winword.exe");
+                            Console.WriteLine("extension: " + extension + " gets defaulted to: " + officepath +"\\winword.exe /n");
                             argument = "ftype " + extension.Substring(1).ToUpper() + "File=\""+officepath+ "\\winword.exe /n\" && ";
                         }
                         break;
@@ -179,21 +179,21 @@ namespace windows_security_tweak_tool.src.policies
                         if(officepath != null)
                         {
                             Console.WriteLine("extension: " + extension + " gets defaulted to: " + officepath+"\\powerpoint.exe");
-                            argument = "ftype " + extension.Substring(1).ToUpper() + "File=\""+officepath+ "\\powerpoint.exe /n\" && ";
+                            argument = "ftype " + extension.Substring(1).ToUpper() + "File=\""+officepath+ "\\powerpoint.exe\" && ";
                         }
                         break;
                     case ".xlm":
                         if(officepath != null)
                         {
-                            Console.WriteLine("extension: " + extension + " gets defaulted to: " + officepath +"\\Excel.exe");
-                            argument = "ftype " + extension.Substring(1).ToUpper() + "File=\""+officepath+ "\\Excel.exe /n\" && ";
+                            Console.WriteLine("extension: " + extension + " gets defaulted to: " + officepath +"\\Excel.exe /e");
+                            argument = "ftype " + extension.Substring(1).ToUpper() + "File=\""+officepath+ "\\Excel.exe /e\" && ";
                         }
                         break;
                     case ".xlsm":
                         if (officepath != null)
                         {
-                            Console.WriteLine("extension: " + extension + " gets defaulted to: " + officepath + "\\Excel.exe");
-                            argument = "ftype " + extension.Substring(1).ToUpper() + "File=\""+ officepath + "\\Excel.exe/n\" && ";
+                            Console.WriteLine("extension: " + extension + " gets defaulted to: " + officepath + "\\Excel.exe /e");
+                            argument = "ftype " + extension.Substring(1).ToUpper() + "File=\""+ officepath + "\\Excel.exe /e\" && ";
                         }
                         break;
                     case ".ps1":
@@ -201,20 +201,20 @@ namespace windows_security_tweak_tool.src.policies
                         argument = "ftype " + extension.Substring(1).ToUpper() + @"File=C:\Windows\System32\notepad.exe && ";
                         break;
                     case ".mhtml":
-                        Console.WriteLine("extension: " + extension + " gets defaulted to: " + BrowserType.INTERNET_EXPLORE.getPath());
-                        argument = "ftype " + extension.Substring(1).ToUpper() + "File=\"" + BrowserType.INTERNET_EXPLORE.getPath() + "\" && ";
+                        Console.WriteLine("extension: " + extension + " gets defaulted to: " + BrowserType.INTERNET_EXPLORE.getPath()+" -nohome");
+                        argument = "ftype " + extension.Substring(1).ToUpper() + "File=\"" + BrowserType.INTERNET_EXPLORE.getPath() + " -nohome\" && ";
                         break;
                     case ".mht":
-                        Console.WriteLine("extension: " + extension + " gets defaulted to: " + BrowserType.INTERNET_EXPLORE.getPath());
-                        argument = "ftype " + extension.Substring(1).ToUpper() + "File=\"" + BrowserType.INTERNET_EXPLORE.getPath() + "\" && ";
+                        Console.WriteLine("extension: " + extension + " gets defaulted to: " + BrowserType.INTERNET_EXPLORE.getPath()+" -nohome");
+                        argument = "ftype " + extension.Substring(1).ToUpper() + "File=\"" + BrowserType.INTERNET_EXPLORE.getPath() + " -nohome\" && ";
                         break;
                     case ".hta":
-                        Console.WriteLine("extension: " + extension + @" gets defaulted to: C:\windows\system32\mshta.exe");
-                        argument = "ftype " + extension.Substring(1).ToUpper() + @"File=C:\windows\system32\mshta.exe && ";
+                        Console.WriteLine("extension: " + extension + @" gets defaulted to: C:\windows\SYSTEM32\mshta.exe %1");
+                        argument = "ftype " + extension.Substring(1).ToUpper() + @"File=C:\windows\system32\mshta.exe %1 && ";
                         break;
                     case ".svg":
-                        Console.WriteLine("extension: " + extension + " gets defaulted to: " + BrowserType.INTERNET_EXPLORE.getPath());
-                        argument = "ftype " + extension.Substring(1).ToUpper() + "File=\"" + BrowserType.INTERNET_EXPLORE.getPath() + "\" && ";
+                        Console.WriteLine("extension: " + extension + " gets defaulted to: " + BrowserType.INTERNET_EXPLORE.getPath()+" -nohome");
+                        argument = "ftype " + extension.Substring(1).ToUpper() + "File=\"" + BrowserType.INTERNET_EXPLORE.getPath() + " -nohome\" && ";
                         break;
                     case ".pdf":
                         if (type == BrowserType.CHROME)
@@ -237,22 +237,22 @@ namespace windows_security_tweak_tool.src.policies
                         if (type == BrowserType.CHROME)
                         {
                             Console.WriteLine("extension: " + extension + " gets defaulted to: " + BrowserType.CHROME.getPath());
-                            argument = "ftype " + extension.Substring(1).ToUpper() + "File=\"" + BrowserType.CHROME.getPath() + "\" && ";
+                            argument = "ftype " + extension.Substring(1).ToUpper() + "File=\"" + BrowserType.CHROME.getPath() + "  %1\" && ";
                         }
                         else if (type == BrowserType.FIREFOX)
                         {
                             Console.WriteLine("extension: " + extension + " gets defaulted to: " + BrowserType.FIREFOX.getPath());
-                            argument = "ftype " + extension.Substring(1).ToUpper() + "File=\"" + BrowserType.FIREFOX.getPath() + "\" && ";
+                            argument = "ftype " + extension.Substring(1).ToUpper() + "File=\"" + BrowserType.FIREFOX.getPath() + " %1\" && ";
                         }
                         else
                         {
                             Console.WriteLine("extension: " + extension + " gets defaulted to: " + BrowserType.INTERNET_EXPLORE.getPath());
-                            argument = "ftype " + extension.Substring(1).ToUpper() + "File=\"" + BrowserType.INTERNET_EXPLORE.getPath() + "\" && ";
+                            argument = "ftype " + extension.Substring(1).ToUpper() + "File=\"" + BrowserType.INTERNET_EXPLORE.getPath() + " %1\" && ";
                         }
                         break;
                     default:
                         Console.WriteLine("extension: " + extension + " gets defaulted to: " + @"C:\Windows\System32\wscript.exe");
-                        argument = "ftype " + extension.Substring(1).ToUpper() + @"File=C:\Windows\System32\wscript.exe && ";
+                        argument = "ftype " + extension.Substring(1).ToUpper() + @"File=C:\Windows\System32\wscript.exe %1 && ";
                         break;
                 }
 
