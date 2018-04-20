@@ -12,8 +12,6 @@ using windows_security_tweak_tool.src.controls;
 
 namespace windows_security_tweak_tool.src.optionalpolicies
 {
-	//TODO: manually load the addons as tabs into chrome, chrome doesn't allow drag and drop anymore, deprecated this class for now
-	[Obsolete]
     class ChromeAddonPolicy : OptionalPolicy
     {
 
