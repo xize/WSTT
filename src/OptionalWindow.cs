@@ -28,6 +28,7 @@ using windows_security_tweak_tool.Properties;
 using windows_security_tweak_tool.src.controls;
 using windows_security_tweak_tool.src.ninite;
 using windows_security_tweak_tool.src.optionalpolicies;
+using windows_security_tweak_tool.src.controls;
 
 namespace windows_security_tweak_tool.src
 {
@@ -113,7 +114,7 @@ namespace windows_security_tweak_tool.src
         public Button sigverifbtn;
         public ProgressBar keepassprogress;
         public ProgressBar chromeprogress;
-        public ProgressBar chromeaddonprogress;
+        public RunProgressbar chromeaddonprogress;
         public ProgressBar button3progress;
         public ProgressBar HPCheckProgress;
         public ProgressBar chromecertprogress;
@@ -167,7 +168,7 @@ namespace windows_security_tweak_tool.src
             this.sigverifbtn = new System.Windows.Forms.Button();
             this.keepassprogress = new System.Windows.Forms.ProgressBar();
             this.chromeprogress = new System.Windows.Forms.ProgressBar();
-            this.chromeaddonprogress = new System.Windows.Forms.ProgressBar();
+            this.chromeaddonprogress = new RunProgressbar();
             this.button3progress = new System.Windows.Forms.ProgressBar();
             this.HPCheckProgress = new System.Windows.Forms.ProgressBar();
             this.chromecertprogress = new System.Windows.Forms.ProgressBar();

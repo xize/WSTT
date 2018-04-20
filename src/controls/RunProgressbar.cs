@@ -7,7 +7,6 @@ using System.Windows.Forms;
 
 namespace windows_security_tweak_tool.src.controls
 {
-    [Obsolete]
     public class RunProgressbar : ProgressBar
     {
 
