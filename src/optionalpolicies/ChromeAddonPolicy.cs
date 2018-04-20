@@ -12,6 +12,8 @@ using windows_security_tweak_tool.src.controls;
 
 namespace windows_security_tweak_tool.src.optionalpolicies
 {
+	//TODO: manually load the addons as tabs into chrome, chrome doesn't allow drag and drop anymore, deprecated this class for now
+	[Obsolete]
     class ChromeAddonPolicy : OptionalPolicy
     {
 
@@ -28,6 +30,7 @@ namespace windows_security_tweak_tool.src.optionalpolicies
             new ChromeAddon("umatrix", "ogfcmafjalglgifnmanfmnieipoejdcf"),
             new ChromeAddon("usragentswitcher", "djflhoibgkdhkhhcedjiklpkjnoahfmg"),
             new ChromeAddon("wheretodeleteanaccount", "hfpofkfbabpbbmchmiekfnlcgaedbgcf"),
+            new ChromeAddon("windowsdefender", "bkbeeeffjjeopflfhgeknacdieedcoml")
         }.ToList();
 
         public override string GetName()
