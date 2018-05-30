@@ -145,7 +145,7 @@
             this.setAsClientToolStripMenuItem,
             this.hardResetWindowsGroupPoliciesToolStripMenuItem});
             this.settingsmenustrip.Name = "settingsmenustrip";
-            this.settingsmenustrip.Size = new System.Drawing.Size(257, 92);
+            this.settingsmenustrip.Size = new System.Drawing.Size(257, 114);
             // 
             // openOptionalOptionsToolStripMenuItem
             // 
@@ -155,12 +155,14 @@
             // 
             // setAsServerToolStripMenuItem
             // 
+            this.setAsServerToolStripMenuItem.Enabled = false;
             this.setAsServerToolStripMenuItem.Name = "setAsServerToolStripMenuItem";
             this.setAsServerToolStripMenuItem.Size = new System.Drawing.Size(256, 22);
             this.setAsServerToolStripMenuItem.Text = "Set as server";
             // 
             // setAsClientToolStripMenuItem
             // 
+            this.setAsClientToolStripMenuItem.Enabled = false;
             this.setAsClientToolStripMenuItem.Name = "setAsClientToolStripMenuItem";
             this.setAsClientToolStripMenuItem.Size = new System.Drawing.Size(256, 22);
             this.setAsClientToolStripMenuItem.Text = "Set as client";
