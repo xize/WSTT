@@ -31,7 +31,7 @@ namespace windows_security_tweak_tool.src
     static class Program
     {
 
-        private static Window gui;
+        private static Form gui;
 
         /// <summary>
         /// The main entry point for the application.
@@ -50,13 +50,23 @@ namespace windows_security_tweak_tool.src
             }
             */
 
-            gui = new Window();
-            Application.Run(gui);
+            DialogResult r = MessageBox.Show("do you want to view WSTT in our new experimental gui?\n\nthe experimental gui may or may not include all functionality to the program.", "[WSTT] design question: ", MessageBoxButtons.YesNo);
+
+            if (r == DialogResult.Yes)
+            {
+                gui = new Window2();
+                Application.Run(gui);
+            }
+            else
+            {
+                gui = new Window();
+                Application.Run(gui);
+            }
         }
 
         public static Window getGui()
         {
-            return gui;
+            return (Window) gui;
         }
     }
 }
