@@ -21,6 +21,7 @@ namespace windows_security_tweak_tool.src
             InitializeComponent();
             filebtn.Click += new EventHandler(FileBtnClickEvent);
             settingbtn.Click += new EventHandler(SettingBtnClickEvent);
+            helpbtn.Click += new EventHandler(HelpBtnClickEvent);
         }
 
         public int Status
@@ -105,5 +106,11 @@ namespace windows_security_tweak_tool.src
         {
             settingsmenustrip.Show(this, new Point(114, 70));
         }
+
+        private void HelpBtnClickEvent(object sender, EventArgs e)
+        {
+            helpmenustrip.Show(this, new Point(190, 70));
+        }
+
     }
 }

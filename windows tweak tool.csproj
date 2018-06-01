@@ -134,6 +134,12 @@
     <Compile Include="src\controls\RunProgressbar.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="src\controls\TransparantRichTextBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="src\controls\TransparantRichTextBox.Designer.cs">
+      <DependentUpon>TransparantRichTextBox.cs</DependentUpon>
+    </Compile>
     <Compile Include="src\libs\certificates\CertDebugger.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -263,6 +269,9 @@
     <None Include="Resources\wstt_context_bg.jpg" />
     <None Include="Resources\filebtn.png" />
     <None Include="Resources\settingsbtn.png" />
+    <None Include="Resources\helpbtn.png" />
+    <None Include="Resources\header.jpg" />
+    <None Include="Resources\contentbar.jpg" />
     <Content Include="windows.ico">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
