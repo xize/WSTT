@@ -113,6 +113,16 @@ namespace windows_security_tweak_tool.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap progressbar_bg {
+            get {
+                object obj = ResourceManager.GetObject("progressbar_bg", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap settingsbtn {
             get {
                 object obj = ResourceManager.GetObject("settingsbtn", resourceCulture);

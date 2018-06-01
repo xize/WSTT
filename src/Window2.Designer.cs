@@ -40,8 +40,15 @@
             this.helpmenustrip = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.documentationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.panel5 = new System.Windows.Forms.Panel();
+            this.descriptionProgressBar5 = new windows_security_tweak_tool.src.controls.DescriptionProgressBar();
+            this.descriptionProgressBar4 = new windows_security_tweak_tool.src.controls.DescriptionProgressBar();
+            this.descriptionProgressBar3 = new windows_security_tweak_tool.src.controls.DescriptionProgressBar();
+            this.descriptionProgressBar2 = new windows_security_tweak_tool.src.controls.DescriptionProgressBar();
+            this.descriptionProgressBar1 = new windows_security_tweak_tool.src.controls.DescriptionProgressBar();
             this.panel4 = new System.Windows.Forms.Panel();
             this.banner = new System.Windows.Forms.Panel();
+            this.bannertext = new windows_security_tweak_tool.src.controls.TransparantRichTextBox();
             this.panel3 = new System.Windows.Forms.Panel();
             this.helpbtn = new System.Windows.Forms.Panel();
             this.settingbtn = new System.Windows.Forms.Panel();
@@ -50,11 +57,10 @@
             this.panel2 = new System.Windows.Forms.Panel();
             this.closebtn = new System.Windows.Forms.Label();
             this.minimizebtn = new System.Windows.Forms.Label();
-            this.panel5 = new System.Windows.Forms.Panel();
-            this.bannertext = new windows_security_tweak_tool.src.controls.TransparantRichTextBox();
             this.filesmenustrip.SuspendLayout();
             this.settingsmenustrip.SuspendLayout();
             this.helpmenustrip.SuspendLayout();
+            this.panel5.SuspendLayout();
             this.banner.SuspendLayout();
             this.panel3.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -132,6 +138,80 @@
             this.helpToolStripMenuItem.Size = new System.Drawing.Size(156, 22);
             this.helpToolStripMenuItem.Text = "help";
             // 
+            // panel5
+            // 
+            this.panel5.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.panel5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(238)))), ((int)(((byte)(238)))));
+            this.panel5.Controls.Add(this.descriptionProgressBar5);
+            this.panel5.Controls.Add(this.descriptionProgressBar4);
+            this.panel5.Controls.Add(this.descriptionProgressBar3);
+            this.panel5.Controls.Add(this.descriptionProgressBar2);
+            this.panel5.Controls.Add(this.descriptionProgressBar1);
+            this.panel5.Location = new System.Drawing.Point(10, 167);
+            this.panel5.Name = "panel5";
+            this.panel5.Size = new System.Drawing.Size(503, 638);
+            this.panel5.TabIndex = 5;
+            // 
+            // descriptionProgressBar5
+            // 
+            this.descriptionProgressBar5.AddCheckBox = "";
+            this.descriptionProgressBar5.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("descriptionProgressBar5.BackgroundImage")));
+            this.descriptionProgressBar5.Description = "disable NTLM inbound and outbound policies (macro):";
+            this.descriptionProgressBar5.Location = new System.Drawing.Point(9, 256);
+            this.descriptionProgressBar5.MaximumSize = new System.Drawing.Size(428, 56);
+            this.descriptionProgressBar5.Name = "descriptionProgressBar5";
+            this.descriptionProgressBar5.SetActive = true;
+            this.descriptionProgressBar5.Size = new System.Drawing.Size(428, 56);
+            this.descriptionProgressBar5.TabIndex = 4;
+            // 
+            // descriptionProgressBar4
+            // 
+            this.descriptionProgressBar4.AddCheckBox = "block ahk?";
+            this.descriptionProgressBar4.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("descriptionProgressBar4.BackgroundImage")));
+            this.descriptionProgressBar4.Description = "change the default extension of scripts to notepad:";
+            this.descriptionProgressBar4.Location = new System.Drawing.Point(9, 194);
+            this.descriptionProgressBar4.MaximumSize = new System.Drawing.Size(428, 56);
+            this.descriptionProgressBar4.Name = "descriptionProgressBar4";
+            this.descriptionProgressBar4.SetActive = true;
+            this.descriptionProgressBar4.Size = new System.Drawing.Size(428, 56);
+            this.descriptionProgressBar4.TabIndex = 3;
+            // 
+            // descriptionProgressBar3
+            // 
+            this.descriptionProgressBar3.AddCheckBox = "";
+            this.descriptionProgressBar3.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("descriptionProgressBar3.BackgroundImage")));
+            this.descriptionProgressBar3.Description = "disable wscript so that vbs scripts cannot run:";
+            this.descriptionProgressBar3.Location = new System.Drawing.Point(9, 132);
+            this.descriptionProgressBar3.MaximumSize = new System.Drawing.Size(428, 56);
+            this.descriptionProgressBar3.Name = "descriptionProgressBar3";
+            this.descriptionProgressBar3.SetActive = true;
+            this.descriptionProgressBar3.Size = new System.Drawing.Size(428, 56);
+            this.descriptionProgressBar3.TabIndex = 2;
+            // 
+            // descriptionProgressBar2
+            // 
+            this.descriptionProgressBar2.AddCheckBox = "";
+            this.descriptionProgressBar2.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("descriptionProgressBar2.BackgroundImage")));
+            this.descriptionProgressBar2.Description = "disable netbios over ip to protect against network viruses:";
+            this.descriptionProgressBar2.Location = new System.Drawing.Point(9, 70);
+            this.descriptionProgressBar2.MaximumSize = new System.Drawing.Size(428, 56);
+            this.descriptionProgressBar2.Name = "descriptionProgressBar2";
+            this.descriptionProgressBar2.SetActive = true;
+            this.descriptionProgressBar2.Size = new System.Drawing.Size(428, 56);
+            this.descriptionProgressBar2.TabIndex = 1;
+            // 
+            // descriptionProgressBar1
+            // 
+            this.descriptionProgressBar1.AddCheckBox = "";
+            this.descriptionProgressBar1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("descriptionProgressBar1.BackgroundImage")));
+            this.descriptionProgressBar1.Description = "protect known malware directories (needs secpol) (macro):";
+            this.descriptionProgressBar1.Location = new System.Drawing.Point(9, 8);
+            this.descriptionProgressBar1.MaximumSize = new System.Drawing.Size(428, 56);
+            this.descriptionProgressBar1.Name = "descriptionProgressBar1";
+            this.descriptionProgressBar1.SetActive = true;
+            this.descriptionProgressBar1.Size = new System.Drawing.Size(428, 56);
+            this.descriptionProgressBar1.TabIndex = 0;
+            // 
             // panel4
             // 
             this.panel4.BackgroundImage = global::windows_security_tweak_tool.Properties.Resources.contentbar;
@@ -148,6 +228,19 @@
             this.banner.Name = "banner";
             this.banner.Size = new System.Drawing.Size(526, 87);
             this.banner.TabIndex = 3;
+            // 
+            // bannertext
+            // 
+            this.bannertext.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.bannertext.Cursor = System.Windows.Forms.Cursors.Default;
+            this.bannertext.Font = new System.Drawing.Font("Verdana", 10F);
+            this.bannertext.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(160)))), ((int)(((byte)(160)))), ((int)(((byte)(160)))));
+            this.bannertext.Location = new System.Drawing.Point(114, 3);
+            this.bannertext.Name = "bannertext";
+            this.bannertext.ReadOnly = true;
+            this.bannertext.Size = new System.Drawing.Size(288, 81);
+            this.bannertext.TabIndex = 0;
+            this.bannertext.Text = "test";
             // 
             // panel3
             // 
@@ -232,28 +325,6 @@
             this.minimizebtn.Text = "_";
             this.minimizebtn.Click += new System.EventHandler(this.minimizebtn_Click);
             // 
-            // panel5
-            // 
-            this.panel5.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.panel5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(238)))), ((int)(((byte)(238)))));
-            this.panel5.Location = new System.Drawing.Point(10, 167);
-            this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(503, 638);
-            this.panel5.TabIndex = 5;
-            // 
-            // bannertext
-            // 
-            this.bannertext.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.bannertext.Cursor = System.Windows.Forms.Cursors.Default;
-            this.bannertext.Font = new System.Drawing.Font("Verdana", 10F);
-            this.bannertext.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(160)))), ((int)(((byte)(160)))), ((int)(((byte)(160)))));
-            this.bannertext.Location = new System.Drawing.Point(114, 3);
-            this.bannertext.Name = "bannertext";
-            this.bannertext.ReadOnly = true;
-            this.bannertext.Size = new System.Drawing.Size(288, 81);
-            this.bannertext.TabIndex = 0;
-            this.bannertext.Text = "test";
-            // 
             // Window2
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -276,6 +347,7 @@
             this.filesmenustrip.ResumeLayout(false);
             this.settingsmenustrip.ResumeLayout(false);
             this.helpmenustrip.ResumeLayout(false);
+            this.panel5.ResumeLayout(false);
             this.banner.ResumeLayout(false);
             this.panel3.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
@@ -309,5 +381,10 @@
         private controls.TransparantRichTextBox bannertext;
         private System.Windows.Forms.Panel panel4;
         private System.Windows.Forms.Panel panel5;
+        private controls.DescriptionProgressBar descriptionProgressBar1;
+        private controls.DescriptionProgressBar descriptionProgressBar2;
+        private controls.DescriptionProgressBar descriptionProgressBar3;
+        private controls.DescriptionProgressBar descriptionProgressBar4;
+        private controls.DescriptionProgressBar descriptionProgressBar5;
     }
 }

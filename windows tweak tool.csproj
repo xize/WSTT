@@ -131,6 +131,12 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Include="src\controls\DescriptionProgressBar.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="src\controls\DescriptionProgressBar.Designer.cs">
+      <DependentUpon>DescriptionProgressBar.cs</DependentUpon>
+    </Compile>
     <Compile Include="src\controls\RunProgressbar.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -216,6 +222,9 @@
     <Compile Include="src\Window2.Designer.cs">
       <DependentUpon>Window2.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="src\controls\DescriptionProgressBar.resx">
+      <DependentUpon>DescriptionProgressBar.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="src\libs\certificates\CertDebugger.resx">
       <DependentUpon>CertDebugger.cs</DependentUpon>
     </EmbeddedResource>
@@ -272,6 +281,7 @@
     <None Include="Resources\contentbar.jpg" />
     <None Include="Resources\wstt_title_saved.jpg" />
     <None Include="Resources\wstt_title_unsaved.jpg" />
+    <None Include="Resources\progressbar-bg.png" />
     <Content Include="windows.ico">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
