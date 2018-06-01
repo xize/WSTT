@@ -194,24 +194,25 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(526, 35);
             this.panel1.TabIndex = 0;
+            this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
             // 
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.Color.Transparent;
             this.panel2.Controls.Add(this.closebtn);
             this.panel2.Controls.Add(this.minimizebtn);
-            this.panel2.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel2.Location = new System.Drawing.Point(388, 0);
+            this.panel2.Location = new System.Drawing.Point(477, 0);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(138, 35);
+            this.panel2.Size = new System.Drawing.Size(49, 35);
             this.panel2.TabIndex = 0;
             // 
             // closebtn
             // 
+            this.closebtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.closebtn.AutoSize = true;
             this.closebtn.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.closebtn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(137)))), ((int)(((byte)(137)))), ((int)(((byte)(137)))));
-            this.closebtn.Location = new System.Drawing.Point(120, 9);
+            this.closebtn.Location = new System.Drawing.Point(31, 9);
             this.closebtn.Name = "closebtn";
             this.closebtn.Size = new System.Drawing.Size(15, 13);
             this.closebtn.TabIndex = 0;
@@ -220,10 +221,11 @@
             // 
             // minimizebtn
             // 
+            this.minimizebtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.minimizebtn.AutoSize = true;
             this.minimizebtn.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.minimizebtn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(137)))), ((int)(((byte)(137)))), ((int)(((byte)(137)))));
-            this.minimizebtn.Location = new System.Drawing.Point(99, 9);
+            this.minimizebtn.Location = new System.Drawing.Point(10, 9);
             this.minimizebtn.Name = "minimizebtn";
             this.minimizebtn.Size = new System.Drawing.Size(15, 13);
             this.minimizebtn.TabIndex = 0;

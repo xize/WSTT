@@ -14,6 +14,9 @@ namespace windows_security_tweak_tool.src
     {
 
         private int savestatus = 0;
+        private bool mouseDown;
+        private Point lastLocation;
+
 
 
         public Window2()
@@ -22,7 +25,41 @@ namespace windows_security_tweak_tool.src
             filebtn.Click += new EventHandler(FileBtnClickEvent);
             settingbtn.Click += new EventHandler(SettingBtnClickEvent);
             helpbtn.Click += new EventHandler(HelpBtnClickEvent);
+            foreach(Control c in this.Controls)
+            {
+                SetMoveAble(c);
+            }
         }
+
+        public void SetMoveAble(Control c)
+        {
+            c.MouseDown += new MouseEventHandler(Form1_MouseDown);
+            c.MouseMove += new MouseEventHandler(Form1_MouseMove);
+            c.MouseUp += new MouseEventHandler(Form1_MouseUp);
+        }
+
+        private void Form1_MouseDown(object sender, MouseEventArgs e)
+        {
+            mouseDown = true;
+            lastLocation = e.Location;
+        }
+
+        private void Form1_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (mouseDown)
+            {
+                this.Location = new Point(
+                    (this.Location.X - lastLocation.X) + e.X, (this.Location.Y - lastLocation.Y) + e.Y);
+
+                this.Update();
+            }
+        }
+
+        private void Form1_MouseUp(object sender, MouseEventArgs e)
+        {
+            mouseDown = false;
+        }
+
 
         public int Status
         {
@@ -112,5 +149,9 @@ namespace windows_security_tweak_tool.src
             helpmenustrip.Show(this, new Point(190, 70));
         }
 
+        private void panel1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
     }
 }
