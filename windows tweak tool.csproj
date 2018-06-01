@@ -263,8 +263,6 @@
     <None Include="Resources\windowslogo.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="Resources\wstt_title_saved.jpg" />
-    <None Include="Resources\wstt_title_unsaved.jpg" />
     <None Include="Resources\minimizebtn.png" />
     <None Include="Resources\wstt_context_bg.jpg" />
     <None Include="Resources\filebtn.png" />
@@ -272,6 +270,8 @@
     <None Include="Resources\helpbtn.png" />
     <None Include="Resources\header.jpg" />
     <None Include="Resources\contentbar.jpg" />
+    <None Include="Resources\wstt_title_saved.jpg" />
+    <None Include="Resources\wstt_title_unsaved.jpg" />
     <Content Include="windows.ico">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
