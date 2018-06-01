@@ -160,7 +160,7 @@
             this.descriptionProgressBar5.Location = new System.Drawing.Point(9, 256);
             this.descriptionProgressBar5.MaximumSize = new System.Drawing.Size(428, 56);
             this.descriptionProgressBar5.Name = "descriptionProgressBar5";
-            this.descriptionProgressBar5.SetActive = true;
+            this.descriptionProgressBar5.SetActive = false;
             this.descriptionProgressBar5.Size = new System.Drawing.Size(428, 56);
             this.descriptionProgressBar5.TabIndex = 4;
             // 
@@ -184,7 +184,7 @@
             this.descriptionProgressBar3.Location = new System.Drawing.Point(9, 132);
             this.descriptionProgressBar3.MaximumSize = new System.Drawing.Size(428, 56);
             this.descriptionProgressBar3.Name = "descriptionProgressBar3";
-            this.descriptionProgressBar3.SetActive = true;
+            this.descriptionProgressBar3.SetActive = false;
             this.descriptionProgressBar3.Size = new System.Drawing.Size(428, 56);
             this.descriptionProgressBar3.TabIndex = 2;
             // 
